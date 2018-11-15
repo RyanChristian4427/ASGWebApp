@@ -5,6 +5,8 @@ import com.assessment.drones.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
@@ -23,5 +25,9 @@ public class ReviewServiceImpl implements ReviewService {
         } else {
             return null;
         }
+    }
+
+    public List<Review> reviewsByInstructor(String lastName){
+        return reviewRepository.reviewsByInstructor(lastName);
     }
 }
