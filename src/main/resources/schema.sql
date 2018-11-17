@@ -1,0 +1,29 @@
+SET MODE MySQL;
+SET IGNORECASE=TRUE;
+
+CREATE TABLE IF NOT EXISTS `client` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `progress_id` VARCHAR(20) NOT NULL,
+  `basic_info_id` INT UNSIGNED NOT NULL,
+  `address_id` TEXT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `venue` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `instructor_id` INT UNSIGNED NOT NULL,
+  `location_address_id` INT UNSIGNED NOT NULL,
+  `course_name` VARCHAR(20) NOT NULL,
+  `start_time` TIME NOT NULL,
+  `end_time` TIME NOT NULL,
+  `participants_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `review` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `client_id` INT UNSIGNED NOT NULL,
+  `instructor_id` INT UNSIGNED NOT NULL,
+  `review_text` TEXT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
