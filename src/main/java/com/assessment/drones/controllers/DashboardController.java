@@ -34,7 +34,7 @@ public class DashboardController {
         users.add(new User("Ryan2@gmail.com", "ryan", "christian",  false));
 
         for (User u: users) {
-            if (u.getEmailAddress().equals(userEmail)) {
+            if (u.getEmailAddress().equalsIgnoreCase(userEmail)) {
                 model.addAttribute("user", u);
             }
         }

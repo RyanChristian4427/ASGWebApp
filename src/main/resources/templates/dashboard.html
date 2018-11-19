@@ -102,21 +102,21 @@
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                         <h6 class="dropdown-header">Login Screens:</h6>
                         <a class="dropdown-item" href="login.html">Login</a>
-                        <a class="dropdown-item" href="register.html">Register</a>
-                        <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+                        <a class="dropdown-item" href="future_use/register.html">Register</a>
+                        <a class="dropdown-item" href="future_use/forgot-password.html">Forgot Password</a>
                         <div class="dropdown-divider"></div>
                         <h6 class="dropdown-header">Other Pages:</h6>
-                        <a class="dropdown-item" href="404.html">404 Page</a>
-                        <a class="dropdown-item" href="blank.html">Blank Page</a>
+                        <a class="dropdown-item" href="future_use/404.html">404 Page</a>
+                        <a class="dropdown-item" href="future_use/blank.html">Blank Page</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                    <a class="nav-link" href="future_use/charts.html">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Charts</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="future_use/tables.html">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Tables</span></a>
                 </li>
@@ -217,7 +217,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <!-- Can pass a list object here later to get a table view-->
-                                <div th:if="${not #lists.isEmpty(listItem)}">
+                                <div th:if="${not #lists.isEmpty(exList)}">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                         <tr>
@@ -240,7 +240,7 @@
                                         </tr>
                                         </tfoot>
                                         <tbody>
-                                        <tr>
+                                        <tr th:each="listItem : ${exList}">
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
                                             <td>Edinburgh</td>
@@ -347,7 +347,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div th:if="${#lists.isEmpty(listItem)}">
+                                <div th:if="${#lists.isEmpty(exList)}">
                                     <span>Either the list gave no results, or no list exists yet.</span>
                                 </div>
                             </div>
