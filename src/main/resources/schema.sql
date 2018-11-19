@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE if not exists `user` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(15) NOT NULL,
+  `email_address` VARCHAR(15) NOT NULL,
   `password` VARCHAR(20) NOT NULL,
   `access_level` VARCHAR(10),
   PRIMARY KEY (`id`))

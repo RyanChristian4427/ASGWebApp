@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class User {
 
-    private String userName;
+    private String emailAddress;
     private String firstName;
     private String lastName;
     private boolean isAdmin;
