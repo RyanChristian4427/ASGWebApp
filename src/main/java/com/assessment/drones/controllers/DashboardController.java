@@ -28,7 +28,7 @@ public class DashboardController {
 
     //All of this is temp while waiting for the database to be created
     @RequestMapping(path = "/dashboard")
-    public String viewDashboard(@RequestParam(value = "user") String userEmail, Model model) {
+    public String viewDashboard(@RequestParam(value = "user", required = false) String userEmail, Model model) {
         ArrayList<User> users = new ArrayList<>();
         users.add(new User("Ryan1@gmail.com", "Ryan", "Christian",  true));
         users.add(new User("Ryan2@gmail.com", "ryan", "christian",  false));

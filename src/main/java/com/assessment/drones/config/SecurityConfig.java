@@ -16,32 +16,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("user1").password(passwordEncoder().encode("user1Pass")).roles("USER")
+                .withUser("user1").password(passwordEncoder().encode("pass")).roles("USER")
                 .and()
                 .withUser("user2").password(passwordEncoder().encode("user2Pass")).roles("USER")
                 .and()
-                .withUser("admin").password(passwordEncoder().encode("adminPass")).roles("ADMIN");
+                .withUser("admin@admin").password(passwordEncoder().encode("pass")).roles("ADMIN");
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login*").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login.html")
-                .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/dashboard.html", true)
-                //.failureUrl("/login.html?error=true")
-                .failureHandler(authenticationFailureHandler())
-                .and()
-                .logout()
-                .logoutUrl("/perform_logout")
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessHandler(logoutSuccessHandler());
+                .antMatchers("/login").permitAll()
+                .antMatchers("/css/**", "/js/**", "/vendor/**").permitAll()
+                .anyRequest().authenticated();
+
+        http.formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/dashboard",true)
+                .failureUrl("/login.html?error=true");
     }
 
     @Bean
