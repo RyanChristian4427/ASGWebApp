@@ -23,6 +23,6 @@
         artifacts:
             name: "$CI_JOB_NAME"
             reports:
-             - build/test-results/test/TEST-*.xml
+             	junit: build/test-results/test/TEST-*.xml
             expire_in: 1 week
 
