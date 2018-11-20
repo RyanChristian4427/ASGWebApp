@@ -22,7 +22,7 @@
         script: ./gradlew build
         artifacts:
             name: "$CI_JOB_NAME"
-            paths:
-             - ./build/reports/tests/
+            reports:
+             - build/test-results/test/TEST-*.xml
             expire_in: 1 week
 
