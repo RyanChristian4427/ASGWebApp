@@ -23,7 +23,6 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     annotationProcessor('org.projectlombok:lombok:1.18.2')
     compileOnly('org.projectlombok:lombok:1.18.2')
