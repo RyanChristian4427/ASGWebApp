@@ -27,7 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
         }
     }
 
-    public List<Review> reviewsByInstructor(String lastName){
-        return reviewRepository.reviewsByInstructor(lastName);
+    public List<Review> reviewsByInstructor(String surname){
+        return reviewRepository.reviewsByInstructor(surname);
     }
 }

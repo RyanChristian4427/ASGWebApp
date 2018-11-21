@@ -10,5 +10,5 @@ public interface ReviewRepository
 {
     Integer addReview(Review review);
 
-    List<Review> reviewsByInstructor(String lastName);
+    List<Review> reviewsByInstructor(String surname);
 }

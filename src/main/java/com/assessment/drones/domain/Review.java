@@ -8,7 +8,7 @@ import lombok.Data;
 public class Review {
 
     private Long id;
-    private Long clientID;
+    private Long candidateNumber;
     private Long instructorID;
     private String reviewText;
 }

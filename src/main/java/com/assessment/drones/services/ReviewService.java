@@ -8,5 +8,5 @@ public interface ReviewService {
 
     String addReview(Review review);
 
-    List<Review> reviewsByInstructor(String lastName);
+    List<Review> reviewsByInstructor(String surname);
 }

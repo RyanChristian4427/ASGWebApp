@@ -124,3 +124,11 @@ CREATE TABLE IF NOT EXISTS `recommendations` (
     PRIMARY KEY (`id`),
     FOREIGN KEY (`candidate_number`) REFERENCES `candidate` (`number`)
 ) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `review` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `candidate_number` INT UNSIGNED NOT NULL,
+  `instructor_id` INT UNSIGNED NOT NULL,
+  `review_text` TEXT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
