@@ -26,8 +26,10 @@ CREATE TABLE IF NOT EXISTS `general` (
     PRIMARY KEY (`id`),
     UNIQUE KEY (`id`),
     UNIQUE (`candidate_number`),
-    FOREIGN KEY (`candidate_number`) REFERENCES `candidate` (`candidate_number`)
-) ENGINE=InnoDB;
+    FOREIGN KEY (`candidate_number`) REFERENCES `candidate` (`candidate_number`),
+    FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
+)
+ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `review` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -36,3 +38,21 @@ CREATE TABLE IF NOT EXISTS `review` (
   `review_text` TEXT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `address` (
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `line_1` VARCHAR(50) NOT NULL,
+    `line_2` VARCHAR(50) NOT NULL,
+    `city` VARCHAR(20) NOT NULL,
+    `postcode` VARCHAR(10) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `email` VARCHAR(50) NOT NULL,
+    `password` VARCHAR(50) NOT NULL,
+    `access_level` VARCHAR(10),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
