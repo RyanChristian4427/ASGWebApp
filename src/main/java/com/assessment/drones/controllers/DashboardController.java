@@ -1,6 +1,6 @@
 package com.assessment.drones.controllers;
 
-import com.assessment.drones.domain.LoginForm;
+import com.assessment.drones.domain.LoginDTO;
 import com.assessment.drones.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +19,11 @@ public class DashboardController {
     }
 
     @RequestMapping(path = "/login",  method= RequestMethod.POST)
-    public String login(LoginForm loginForm) {
+    public String login(LoginDTO loginDTO) {
         //potential login service, checking details and such
 
         //Totally temp, as this is not at all secure. Will use authentication handlers later
-        return "redirect:/dashboard?user=" + loginForm.getEmailAddress();
+        return "redirect:/dashboard?user=" + loginDTO.getEmailAddress();
     }
 
     //All of this is temp while waiting for the database to be created
