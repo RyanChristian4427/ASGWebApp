@@ -10,5 +10,6 @@ public class MVCAuto implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/dashboard").setViewName("dashboard");
+        registry.addViewController("/register").setViewName("register");
     }
 }
