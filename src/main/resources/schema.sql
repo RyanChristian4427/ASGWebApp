@@ -8,7 +8,9 @@ CREATE TABLE IF NOT EXISTS candidate (
     surname VARCHAR(15) NOT NULL,
     contact_info_id INT UNSIGNED NOT NULL,
     general_info_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (reference_number)
+    PRIMARY KEY (reference_number),
+    FOREIGN KEY (contact_info_id) REFERENCES contact_info (id),
+    FOREIGN KEY (general_info_id) REFERENCES general_info (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS user (
@@ -25,7 +27,8 @@ CREATE TABLE IF NOT EXISTS contact_info (
     review_date DATE NOT NULL,
     delete_date DATE NOT NULL,
     address_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (address_id) REFERENCES address(id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS address (
@@ -45,7 +48,8 @@ CREATE TABLE IF NOT EXISTS general_info (
     previous_flying_exp TEXT NOT NULL,
     preferred_location VARCHAR(50) NOT NULL,
     drone_type_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (drone_type_id) REFERENCES drone (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS drone (
@@ -65,10 +69,10 @@ CREATE TABLE IF NOT EXISTS instructor (
 
 CREATE TABLE IF NOT EXISTS course (
 	course_number VARCHAR(20) NOT NULL,
-  course_name VARCHAR(20) NOT NULL,
-  course_start DATE NOT NULL,
-  course_end DATE NOT NULL,
-  PRIMARY KEY (course_number)
+    course_name VARCHAR(20) NOT NULL,
+    course_start DATE NOT NULL,
+    course_end DATE NOT NULL,
+    PRIMARY KEY (course_number)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS flying_training (
@@ -135,8 +139,10 @@ CREATE TABLE IF NOT EXISTS recommendations (
 
 CREATE TABLE IF NOT EXISTS review (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  candidate_number INT UNSIGNED NOT NULL,
-  instructor_id INT UNSIGNED NOT NULL,
-  review_text TEXT NOT NULL,
-  PRIMARY KEY (id)
+    candidate_number VARCHAR(20) NOT NULL,
+    instructor_id INT UNSIGNED NOT NULL,
+    review_text TEXT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (candidate_number) REFERENCES candidate (reference_number),
+    FOREIGN KEY (instructor_id) REFERENCES instructor (id)
 ) ENGINE = InnoDB;
