@@ -22,7 +22,7 @@ public class ReviewRepositoryJdbc implements ReviewRepository
 
         reviewMapper = (rs, i) -> new Review(
                 rs.getLong("id"),
-                rs.getLong("candidate_number"),
+                rs.getString("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getString("reviewText")
         );
