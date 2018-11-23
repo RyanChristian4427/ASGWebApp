@@ -12,7 +12,7 @@ public class User {
     private String emailAddress;
     private String firstName;
     private String lastName;
-    private boolean userRole;
+    private String userRole;
     //More can be added later, depending on what we want to show on
     //the dashboard page
 }

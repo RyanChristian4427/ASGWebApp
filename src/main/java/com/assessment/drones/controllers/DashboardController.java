@@ -1,6 +1,6 @@
 package com.assessment.drones.controllers;
 
-import com.assessment.drones.domain.LoginDTO;
+import com.assessment.drones.domain.LoginDto;
 import com.assessment.drones.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ public class DashboardController {
     }
 
     @RequestMapping(path = "/login",  method= RequestMethod.POST)
-    public String login(LoginDTO loginDTO) {
+    public String login(LoginDto loginDTO) {
         //potential login service, checking details and such
 
         //Totally temp, as this is not at all secure. Will use authentication handlers later
@@ -30,8 +30,8 @@ public class DashboardController {
     @RequestMapping(path = "/dashboard")
     public String viewDashboard(@RequestParam(value = "user", required = false) String userEmail, Model model) {
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Ryan1@gmail.com", "Ryan", "Christian",  true));
-        users.add(new User("Ryan2@gmail.com", "ryan", "christian",  false));
+        users.add(new User("Ryan1@gmail.com", "Ryan", "Christian",  "admin"));
+        users.add(new User("Ryan2@gmail.com", "ryan", "christian",  "user"));
 
         for (User u: users) {
             if (u.getEmailAddress().equalsIgnoreCase(userEmail)) {
