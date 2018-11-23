@@ -1,13 +1,13 @@
 package com.assessment.drones.domain;
 
 import com.assessment.drones.validation.PasswordMatches;
+import com.assessment.drones.validation.ValidEmail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -25,6 +25,7 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
+    @ValidEmail
     private String emailAddress;
 
     @NotNull

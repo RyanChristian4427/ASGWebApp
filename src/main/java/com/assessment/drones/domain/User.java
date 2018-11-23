@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
     private String emailAddress;
-    private String firstName;
-    private String lastName;
+    private String password;
     private String userRole;
     //More can be added later, depending on what we want to show on
     //the dashboard page

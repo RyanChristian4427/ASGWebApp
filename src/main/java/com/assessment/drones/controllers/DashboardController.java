@@ -27,19 +27,19 @@ public class DashboardController {
     }
 
     //All of this is temp while waiting for the database to be created
-    @RequestMapping(path = "/dashboard")
-    public String viewDashboard(@RequestParam(value = "user", required = false) String userEmail, Model model) {
-        ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Ryan1@gmail.com", "Ryan", "Christian",  "admin"));
-        users.add(new User("Ryan2@gmail.com", "ryan", "christian",  "user"));
-
-        for (User u: users) {
-            if (u.getEmailAddress().equalsIgnoreCase(userEmail)) {
-                model.addAttribute("user", u);
-            }
-        }
-        return "dashboard";
-    }
+//    @RequestMapping(path = "/dashboard")
+//    public String viewDashboard(@RequestParam(value = "user", required = false) String userEmail, Model model) {
+//        ArrayList<User> users = new ArrayList<>();
+//        users.add(new User("Ryan1@gmail.com", "Ryan", "Christian",  "admin"));
+//        users.add(new User("Ryan2@gmail.com", "ryan", "christian",  "user"));
+//
+//        for (User u: users) {
+//            if (u.getEmailAddress().equalsIgnoreCase(userEmail)) {
+//                model.addAttribute("user", u);
+//            }
+//        }
+//        return "dashboard";
+//    }
 
 
 }

@@ -32,12 +32,16 @@
                       <div class="form-label-group">
                         <input type="text" id="firstName" th:field="*{firstName}" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
                         <label for="firstName">First name</label>
+                        <p th:each="error: ${#fields.errors('firstName')}"
+                             th:text="${error}">Validation error</p>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-label-group">
                         <input type="text" id="lastName" th:field="*{lastName}" class="form-control" placeholder="Last name" required="required">
                         <label for="lastName">Last name</label>
+                          <p th:each="error: ${#fields.errors('lastName')}"
+                             th:text="${error}">Validation error</p>
                       </div>
                     </div>
                   </div>
@@ -46,6 +50,8 @@
                   <div class="form-label-group">
                     <input type="email" id="emailAddress" th:field="*{emailAddress}" class="form-control" placeholder="Email Address" required="required">
                     <label for="emailAddress">Email Address</label>
+                      <p th:each="error: ${#fields.errors('emailAddress')}"
+                         th:text="${error}">Validation error</p>
                   </div>
                 </div>
                 <div class="form-group">
@@ -54,6 +60,8 @@
                       <div class="form-label-group">
                         <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" required="required">
                         <label for="inputPassword">Password</label>
+                          <p th:each="error: ${#fields.errors('password')}"
+                             th:text="${error}">Validation error</p>
                       </div>
                     </div>
                     <div class="col-md-6">

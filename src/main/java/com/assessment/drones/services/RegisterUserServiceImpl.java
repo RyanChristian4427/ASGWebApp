@@ -29,7 +29,13 @@ public class RegisterUserServiceImpl implements RegisterUserService {
                             +  accountDto.getEmailAddress());
         }
 
-        return new User();
+        Integer insertResponse = userRepository.saveUser(accountDto);
+
+        if (insertResponse == 1) {
+            return new User(accountDto.getEmailAddress(), accountDto.getPassword(), "USER");
+        } else {
+            return null;
+        }
     }
     private boolean emailExist(String email) {
         User user = userRepository.findUserByEmail(email);
