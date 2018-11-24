@@ -1,3 +1,5 @@
+# ALTER TABLE user AUTO_INCREMENT =1;
+
 # INSERT INTO user (id, email, password, access_level) VALUES (1, 'admin@admin', 'pass', 'admin');
 # INSERT INTO user (id, email, password, access_level) VALUES (2, 'user@user', 'pass', 'user');
 

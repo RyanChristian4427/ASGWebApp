@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/dashboard",true)
-                .failureUrl("/login.html?error=true");
+                .failureUrl("/login?error=true");
     }
 
     @Bean

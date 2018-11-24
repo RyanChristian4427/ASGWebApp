@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -43,14 +45,16 @@ public class UserRepositoryJdbc implements UserRepository{
     public Integer saveUser(UserDto accountDto) {
         ArrayList<Object> params = new ArrayList<>();
         params.add(accountDto.getEmailAddress());
-        params.add(accountDto.getPassword());
+        params.add(passwordEncoder().encode(accountDto.getPassword()));
         params.add("USER");
         return jdbcTemplate.update(
                 "INSERT INTO user(email, password, access_level) VALUES(?, ?, ?)",
                 params.toArray());
     }
 
-
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 
 }
