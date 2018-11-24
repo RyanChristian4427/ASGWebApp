@@ -18,16 +18,8 @@ public class RegisterUserServiceImpl implements RegisterUserService {
         userRepository = aUserRepository;
     }
 
-    @Transactional
     @Override
-    public User registerNewUserAccount(UserDto accountDto)
-            throws EmailExistsException {
-
-        if (emailExist(accountDto.getEmailAddress())) {
-            throw new EmailExistsException(
-                    "There is an account with that email address: "
-                            +  accountDto.getEmailAddress());
-        }
+    public User registerNewUserAccount(UserDto accountDto) {
 
         Integer insertResponse = userRepository.saveUser(accountDto);
 
@@ -37,8 +29,10 @@ public class RegisterUserServiceImpl implements RegisterUserService {
             return null;
         }
     }
-    private boolean emailExist(String email) {
-        User user = userRepository.findUserByEmail(email);
-        return user != null;
+
+    @Override
+    public boolean emailAlreadyInUse(String email) {
+//        User user = userRepository.findUserByEmail(email);
+        return userRepository.findUserByEmail(email) == null;
     }
 }

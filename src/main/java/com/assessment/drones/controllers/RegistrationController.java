@@ -39,27 +39,13 @@ public class RegistrationController {
             @ModelAttribute("user") @Valid UserDto accountDto,
             BindingResult result) {
 
-        User registered = new User();
         if (!result.hasErrors()) {
-            registered = createUserAccount(accountDto, result);
-        }
-        if (registered == null) {
-            result.rejectValue("emailAddress", "message.regError");
+            registerUserService.registerNewUserAccount(accountDto);
         }
         if (result.hasErrors()) {
             return new ModelAndView("register", "user", accountDto);
         } else {
             return new ModelAndView("login", "user", accountDto);
         }
-    }
-
-    private User createUserAccount(UserDto accountDto, BindingResult result) {
-        User registered;
-        try {
-            registered = registerUserService.registerNewUserAccount(accountDto);
-        } catch (EmailExistsException e) {
-            return null;
-        }
-        return registered;
     }
 }

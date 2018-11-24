@@ -31,9 +31,7 @@ public class UserRepositoryJdbc implements UserRepository{
     public User findUserByEmail(String emailAddress) {
         try {
             return jdbcTemplate.queryForObject(
-                    "SELECT email, first_name, surname, access_level FROM candidate " +
-                            "INNER JOIN user ON candidate.user_id=user.id " +
-                            "WHERE user.email = ?",
+                    "SELECT email, password, access_level FROM user WHERE user.email = ?",
                     new Object[]{emailAddress},
                     userMapper);
         } catch (EmptyResultDataAccessException e) {
