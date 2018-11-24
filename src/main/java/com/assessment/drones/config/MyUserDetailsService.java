@@ -35,20 +35,6 @@ public class MyUserDetailsService implements UserDetailsService {
         } else {
             return new DefaultUserDetails(user);
         }
-
-//        List<String> hell = new ArrayList<>();
-//        hell.add("USER");
-//        hell.add("ADMIN");
-//
-//        boolean enabled = true;
-//        boolean accountNonExpired = true;
-//        boolean credentialsNonExpired = true;
-//        boolean accountNonLocked = true;
-//        return new org.springframework.security.core.userdetails.User
-//                (user.getEmailAddress(),
-//                        user.getPassword().toLowerCase(), enabled, accountNonExpired,
-//                        credentialsNonExpired, accountNonLocked,
-//                        getAuthorities(hell));
     }
 
     private static List<GrantedAuthority> getAuthorities (List<String> roles) {

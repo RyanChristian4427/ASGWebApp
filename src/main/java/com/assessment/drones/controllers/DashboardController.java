@@ -16,7 +16,6 @@ public class DashboardController {
     //All of this is temp while waiting for the database to be created
     @RequestMapping(path = "/dashboard", method = RequestMethod.GET)
     public String viewDashboard(@RequestParam(value = "user", required = false) String userEmail, Model model) {
-        System.out.println("Login is requesting the dashboard");
         return "dashboard";
     }
 
