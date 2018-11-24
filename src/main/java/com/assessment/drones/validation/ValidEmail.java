@@ -16,7 +16,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = EmailValidator.class)
 @Documented
 public @interface ValidEmail {
-    String message() default "Email already in use. Please login, or choose another email address.";
+    String message() default "Email address has an invalid format, or email already in use. " +
+            "Please review the address. If it is correct, the email is already in use. Please login instead.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

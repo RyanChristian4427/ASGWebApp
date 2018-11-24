@@ -50,7 +50,7 @@
                   <div class="form-label-group">
                     <input type="email" id="emailAddress" th:field="*{emailAddress}" class="form-control" placeholder="Email Address" required="required">
                     <label for="emailAddress">Email Address</label>
-                      <p th:each="error: ${#fields.errors('emailAddress')}"
+                      <p th:each="error : ${#fields.errors('emailAddress')}"
                          th:text="${error}">Validation error</p>
                   </div>
                 </div>
@@ -60,8 +60,7 @@
                       <div class="form-label-group">
                         <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" required="required">
                         <label for="inputPassword">Password</label>
-                          <p th:each="error: ${#fields.errors('password')}"
-                             th:text="${error}">Validation error</p>
+                          <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Validation error</p>
                       </div>
                     </div>
                     <div class="col-md-6">
