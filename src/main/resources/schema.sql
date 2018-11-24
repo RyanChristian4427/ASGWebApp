@@ -1,6 +1,44 @@
 CREATE SCHEMA IF NOT EXISTS ASG;
 USE ASG;
 
+CREATE TABLE IF NOT EXISTS address (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    line_1 VARCHAR(50) NOT NULL,
+    line_2 VARCHAR(50) NOT NULL,
+    city VARCHAR(20) NOT NULL,
+    postcode VARCHAR(10) NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS contact_info (
+    id INT UNSIGNED NOT NULL,
+    telephone_number INT NOT NULL,
+    review_date DATE NOT NULL,
+    delete_date DATE NOT NULL,
+    address_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (address_id) REFERENCES address(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS drone (
+    id INT UNSIGNED NOT NULL,
+    make VARCHAR(15) NOT NULL,
+    model VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS general_info (
+    id INT UNSIGNED NOT NULL,
+    date_of_birth DATE NOT NULL,
+    place_of_birth VARCHAR(50) NOT NULL,
+    company_name VARCHAR(20) NOT NULL,
+    previous_flying_exp TEXT NOT NULL,
+    preferred_location VARCHAR(50) NOT NULL,
+    drone_type_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (drone_type_id) REFERENCES drone (id)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS candidate (
 	reference_number VARCHAR(20) NOT NULL,
     user_id INT UNSIGNED NOT NULL,
@@ -16,47 +54,9 @@ CREATE TABLE IF NOT EXISTS candidate (
 CREATE TABLE IF NOT EXISTS user (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL,
-    password VARCHAR(500) NOT NULL,
+    password VARCHAR(60) NOT NULL,
     access_level VARCHAR(10),
     PRIMARY KEY (id)
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS contact_info (
-	id INT UNSIGNED NOT NULL,
-    telephone_number INT NOT NULL,
-    review_date DATE NOT NULL,
-    delete_date DATE NOT NULL,
-    address_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (address_id) REFERENCES address(id)
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS address (
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    line_1 VARCHAR(50) NOT NULL,
-    line_2 VARCHAR(50) NOT NULL,
-    city VARCHAR(20) NOT NULL,
-    postcode VARCHAR(10) NOT NULL,
-    PRIMARY KEY (id)
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS general_info (
-	id INT UNSIGNED NOT NULL,
-    date_of_birth DATE NOT NULL,
-    place_of_birth VARCHAR(50) NOT NULL,
-    company_name VARCHAR(20) NOT NULL,
-    previous_flying_exp TEXT NOT NULL,
-    preferred_location VARCHAR(50) NOT NULL,
-    drone_type_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (drone_type_id) REFERENCES drone (id)
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS drone (
-	id INT UNSIGNED NOT NULL,
-    make VARCHAR(15) NOT NULL,
-    model VARCHAR(20) NOT NULL,
-	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS instructor (
