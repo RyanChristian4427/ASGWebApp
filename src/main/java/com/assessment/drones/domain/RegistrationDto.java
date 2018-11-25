@@ -33,12 +33,42 @@ public class RegistrationDto {
     private String password;
     private String matchingPassword;
 
-    private String address;
+    @NotNull
+    @NotEmpty
+    private String addressLine1;
+    private String addressLine2;
+
+    @NotNull
+    @NotEmpty
+    private String postCode;
+
+    @NotNull
+    @NotEmpty
+    private String city;
+
+    @NotNull
+    @NotEmpty
     private String phoneNumber;
+
     private String companyName;
+
+    @NotNull
+    @NotEmpty
     private String dob;
+
+    @NotNull
+    @NotEmpty
     private String pob;
+
+    @NotNull
+    @NotEmpty
     private String flightExperience;
+
+    @NotNull
+    @NotEmpty
     private String preferredLocation;
+
+    @NotNull
+    @NotEmpty
     private String droneType;
 }

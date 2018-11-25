@@ -43,16 +43,19 @@ public class UserRepositoryJdbc implements UserRepository{
 
     @Override
     public Integer saveUser(RegistrationDto accountDto) {
-        ArrayList<Object> params = new ArrayList<>();
-        params.add(accountDto.getEmailAddress());
-        params.add(passwordEncoder().encode(accountDto.getPassword()));
-        params.add("USER");
-        return jdbcTemplate.update(
+        ArrayList<Object> user = new ArrayList<>();
+        user.add(accountDto.getEmailAddress());
+        user.add(passwordEncoder().encode(accountDto.getPassword()));
+        user.add("USER");
+        return (jdbcTemplate.update(
                 "INSERT INTO user(email, password, access_level) VALUES(?, ?, ?)",
-                params.toArray());
+                user.toArray()));
+//                jdbcTemplate.update(
+//                ""
+//                );
     }
 
-    public PasswordEncoder passwordEncoder() {
+    private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
