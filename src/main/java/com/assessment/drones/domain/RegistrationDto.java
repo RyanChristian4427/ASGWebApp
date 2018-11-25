@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @PasswordMatches
-public class UserDto {
+public class RegistrationDto {
 
     @NotNull
     @NotEmpty
@@ -32,4 +32,13 @@ public class UserDto {
     @NotEmpty
     private String password;
     private String matchingPassword;
+
+    private String address;
+    private String phoneNumber;
+    private String companyName;
+    private String dob;
+    private String pob;
+    private String flightExperience;
+    private String preferredLocation;
+    private String droneType;
 }

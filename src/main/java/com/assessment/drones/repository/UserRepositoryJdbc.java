@@ -1,7 +1,7 @@
 package com.assessment.drones.repository;
 
 import com.assessment.drones.domain.User;
-import com.assessment.drones.domain.UserDto;
+import com.assessment.drones.domain.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -42,7 +42,7 @@ public class UserRepositoryJdbc implements UserRepository{
     }
 
     @Override
-    public Integer saveUser(UserDto accountDto) {
+    public Integer saveUser(RegistrationDto accountDto) {
         ArrayList<Object> params = new ArrayList<>();
         params.add(accountDto.getEmailAddress());
         params.add(passwordEncoder().encode(accountDto.getPassword()));

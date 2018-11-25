@@ -1,6 +1,6 @@
 package com.assessment.drones.controllers;
 
-import com.assessment.drones.domain.UserDto;
+import com.assessment.drones.domain.RegistrationDto;
 import com.assessment.drones.services.RegisterUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,19 +24,19 @@ public class RegistrationController {
 
     @RequestMapping(path="/register", method= RequestMethod.GET)
     public String register(Model model){
-        UserDto accountDto = new UserDto();
+        RegistrationDto accountDto = new RegistrationDto();
         model.addAttribute("user", accountDto);
         return "register";
     }
 
-    public String register(Model model, UserDto accountDto){
+    public String register(Model model, RegistrationDto accountDto){
         model.addAttribute("user", accountDto);
         return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerUserAccount(
-            @ModelAttribute("user") @Valid UserDto accountDto,
+            @ModelAttribute("user") @Valid RegistrationDto accountDto,
             BindingResult result,
             Model model) {
 
