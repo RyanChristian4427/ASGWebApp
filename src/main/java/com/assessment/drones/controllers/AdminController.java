@@ -1,6 +1,8 @@
 package com.assessment.drones.controllers;
 
 import com.assessment.drones.domain.FlyTraining;
+import com.assessment.drones.services.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,15 @@ import java.util.Date;
 
 @Controller
 public class AdminController {
+
+    private AdminService adminService;
+
+    @Autowired
+    public AdminController(AdminService aService) {
+        this.adminService = aService;
+    }
+
+
     //method to take the user to the admin page
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
     public String viewAdmin (){
@@ -34,6 +45,8 @@ public class AdminController {
         train.setType(type);
         train.setInstructor_id(instructorId);
         train.setSkills_date(skillsDate);
+
+        adminService.addFlyTraining(train);
 
         return "admin";
     }
