@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
+
 @Controller
 public class AdminController {
     //method to take the user to the admin page
@@ -23,15 +25,15 @@ public class AdminController {
 
     //getting data from the flying training form
     @RequestMapping(path = "/admin/flyingTraining", method = RequestMethod.POST)
-    public String getFlyTraining (@RequestParam("candidateNum") String candidateNum,
+    public String getFlyTraining (@RequestParam("candidate_number") String candidateNum,
                                   @RequestParam("type") String type,
-                                  @RequestParam("instructorId") Long instructorId,
-                                  @RequestParam("skillsDate") String skillsDate){
+                                  @RequestParam("instructor_id") Long instructorId,
+                                  @RequestParam("skills_date") Date skillsDate){
         FlyTraining train = new FlyTraining();
-        train.setCandidateNum(candidateNum);
+        train.setCandidate_number(candidateNum);
         train.setType(type);
-        train.setInstructorId(instructorId);
-        train.setSkillsDate(skillsDate);
+        train.setInstructor_id(instructorId);
+        train.setSkills_date(skillsDate);
 
         return "admin";
     }
