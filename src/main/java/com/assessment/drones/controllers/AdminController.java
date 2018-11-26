@@ -15,11 +15,13 @@ public class AdminController {
         return "admin";
     }
 
+    //method to take the admin to the flying training form
     @RequestMapping(path = "/admin/flyingTraining", method = RequestMethod.GET)
     public String viewFlyTraining () {
         return "flyTrainForm";
     }
 
+    //getting data from the flying training form
     @RequestMapping(path = "/admin/flyingTraining", method = RequestMethod.POST)
     public String getFlyTraining (@RequestParam("candidateNum") String candidateNum,
                                   @RequestParam("type") String type,
@@ -32,5 +34,25 @@ public class AdminController {
         train.setSkillsDate(skillsDate);
 
         return "admin";
+    }
+
+    @RequestMapping(path = "/admin/groundSchool", method = RequestMethod.GET)
+    public String viewGroundSchool() {
+        return "groundSchoolForm";
+    }
+
+    @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.GET)
+    public String viewOperatorsManual() {
+        return "operatorsManualForm";
+    }
+
+    @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.GET)
+    public String viewFlightAssessment() {
+        return "flightAssessmentForm";
+    }
+
+    @RequestMapping(path = "/admin/recommendations", method = RequestMethod.GET)
+    public String viewRecommendations() {
+        return "recommendationsForm";
     }
 }
