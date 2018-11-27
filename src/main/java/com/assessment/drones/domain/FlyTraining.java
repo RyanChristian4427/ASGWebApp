@@ -13,6 +13,6 @@ public class FlyTraining {
     private Long id;
     private String candidate_number;
     private Long instructor_id;
-    private String type;
+    private String training_type;
     private Date skills_date;
 }

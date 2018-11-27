@@ -75,10 +75,10 @@ public class AdminRepositoryJdbc implements AdminRepository{
         ArrayList<Object> params = new ArrayList<>();
         params.add(flyTraining.getCandidate_number());
         params.add(flyTraining.getInstructor_id());
-        params.add(flyTraining.getType());
+        params.add(flyTraining.getTraining_type());
         params.add(flyTraining.getSkills_date());
         return jdbcTemplate.update(
-                "INSERT INTO flying_training (candidate_number, instructor_id, type, skills_date) " +
+                "INSERT INTO flying_training (candidate_number, instructor_id, training_type, skills_assessment_date) " +
                         "VALUES(?, ?, ?, ?)",
                 params.toArray());
     }

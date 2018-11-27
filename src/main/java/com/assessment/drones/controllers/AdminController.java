@@ -37,12 +37,12 @@ public class AdminController {
     //getting data from the flying training form
     @RequestMapping(path = "/admin/flyingTraining", method = RequestMethod.POST)
     public String getFlyTraining (@RequestParam("candidate_number") String candidateNum,
-                                  @RequestParam("type") String type,
+                                  @RequestParam("training_type") String type,
                                   @RequestParam("instructor_id") Long instructorId,
                                   @RequestParam("skills_date") Date skillsDate){
         FlyTraining train = new FlyTraining();
         train.setCandidate_number(candidateNum);
-        train.setType(type);
+        train.setTraining_type(type);
         train.setInstructor_id(instructorId);
         train.setSkills_date(skillsDate);
 

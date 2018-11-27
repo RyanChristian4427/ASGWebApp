@@ -22,41 +22,15 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Update a users flying training</div>
-        <div class="card-body">
-            <form action="/admin/flyingTraining" method="POST">
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="form-label-group">
-                                <input type="text" id="candidate_number" class="form-control" placeholder="Candidate number" required="required">
-                                <label for="candidate_number">Candidate Number</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-label-group">
-                                <input type="text" id="type" class="form-control" placeholder="Type of training" required="required">
-                                <label for="type">Type of Training</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-label-group">
-                        <input type="text" id="instructor_id" class="form-control" placeholder="Instructors Id number" required="required">
-                        <label for="instructor_id">Instructor's Id</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-label-group">
-                        <input type="date" id="skills_date" class="form-control" placeholder="Skills Assessment Date" required="required">
-                        <label for="skills_date">Skills Assessment Date</label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block" value="submit">Submit</button>
-            </form>
-        </div>
+    <div>
+        <h1>Update a users Flight training</h1>
+        <form action="/admin/flyingTraining" method="post">
+            <label>Enter candidate number:</label><input type="text" name="candidate_number" id="candidate_number" placeholder="Enter candidate number" required/><br>
+            <input type="text" name="training_type" id="training_type" placeholder="Type of training"><br>
+            <input type="text" name="instructor_id" id="instructor_id" placeholder="Instructor id"><br>
+            <input type="text" name="skills_date" id="skills_date" placeholder="YYYY/MM/DD"/><br>
+            <input type="submit" id="submit" value="submit"/>
+        </form>
     </div>
 </div>
 
