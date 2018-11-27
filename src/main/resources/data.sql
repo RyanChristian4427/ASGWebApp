@@ -1,11 +1,2 @@
-# ALTER TABLE user AUTO_INCREMENT =1;
-
-# INSERT INTO user (id, email, password, access_level) VALUES (1, 'admin@admin', 'pass', 'admin');
-# INSERT INTO user (id, email, password, access_level) VALUES (2, 'user@user', 'pass', 'user');
-
-
-# insert into client (user_id, progress_id, basic_info_id, address_id) values (1, 1, 1, 1);
-# insert into temp_basic_info(id, firstName, lastName) values (1, 'Ryan', 'Admin');
-#
-# insert into client (user_id, progress_id, basic_info_id, address_id) values (2, 2, 2, 2);
-# insert into temp_basic_info(id, firstName, lastName) values (2, 'Ryan', 'User');
+INSERT INTO user (id, email, password, role) VALUES (1, 'admin@asg.com', '$2a$10$6443CNhV26R6qEMohATMYuleZxiUfr/ya0urCUqheo5STYOU6maqu', 'admin');
+INSERT INTO user (id, email, password, role) VALUES (2, 'user@asg.com', '$2a$10$cGXMmSfOg2ZrUXUgCxaiaO4pgjJsSvcFYlKPMcFDBgVp3MqrZ2M96', 'user');

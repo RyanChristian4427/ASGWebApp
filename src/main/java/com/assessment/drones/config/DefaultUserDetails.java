@@ -8,12 +8,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class DefaultUserDetails implements UserDetails
 {
     private User user;
 
-    public DefaultUserDetails(User aUser)
+    DefaultUserDetails(User aUser)
     {
         this.user = aUser;
     }
@@ -23,7 +24,7 @@ public class DefaultUserDetails implements UserDetails
     {
         return new ArrayList<>() {
             {
-                add(new SimpleGrantedAuthority(user.getRole()));
+                add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
             }
         };
     }

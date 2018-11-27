@@ -30,7 +30,7 @@ public class UserRepositoryJdbc implements UserRepository{
         userMapper = (rs, i) -> new User(
                 rs.getString("email"),
                 rs.getString("password"),
-                rs.getString("access_level")
+                rs.getString("role")
         );
     }
 
@@ -38,7 +38,7 @@ public class UserRepositoryJdbc implements UserRepository{
     public User findUserByEmail(String emailAddress) {
         try {
             return jdbcTemplate.queryForObject(
-                    "SELECT email, password, access_level FROM user WHERE user.email = ?",
+                    "SELECT email, password, role FROM user WHERE user.email = ?",
                     new Object[]{emailAddress},
                     userMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -99,11 +99,11 @@ public class UserRepositoryJdbc implements UserRepository{
 
         jdbcTemplate.update(connection -> {
                 PreparedStatement pstmt = connection.prepareStatement(
-                        "INSERT INTO user(email, password, access_level) VALUES(?, ?, ?)",
+                        "INSERT INTO user(email, password, role) VALUES(?, ?, ?)",
                         new String[] {"id"});
                 pstmt.setString(1, accountDto.getEmailAddress());
                 pstmt.setString(2, passwordEncoder().encode(accountDto.getPassword()));
-                pstmt.setString(3, "USER");
+                pstmt.setString(3, "user");
                 return pstmt;
         }, holder);
 

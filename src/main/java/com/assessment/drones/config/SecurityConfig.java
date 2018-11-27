@@ -35,13 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/admin").hasRole("admin")
                 .antMatchers("/css/**", "/js/**", "/vendor/**").permitAll()
                 .anyRequest().authenticated();
 
         http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/dashboard",true)
+                .defaultSuccessUrl("/dashboard",false)
                 .failureUrl("/login?error=true");
     }
 

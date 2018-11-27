@@ -33,15 +33,8 @@ public class MyUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(
                     "No user found with username: "+ email);
         } else {
+            System.out.println("User's role is: " + user.getRole());
             return new DefaultUserDetails(user);
         }
-    }
-
-    private static List<GrantedAuthority> getAuthorities (List<String> roles) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for (String role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role));
-        }
-        return authorities;
     }
 }
