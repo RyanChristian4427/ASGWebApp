@@ -33,8 +33,8 @@ public class RegistrationDto {
     private String password;
     private String matchingPassword;
 
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     private String addressLine1;
     private String addressLine2;
 

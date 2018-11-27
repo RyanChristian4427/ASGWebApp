@@ -50,8 +50,7 @@ public class UserRepositoryJdbc implements UserRepository{
     public Integer saveUser(RegistrationDto accountDto) {
         KeyHolder holder = new GeneratedKeyHolder();
 
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+        jdbcTemplate.update(connection -> {
                 PreparedStatement pstmt = connection.prepareStatement(
                         "INSERT INTO address(line_1, line_2, city, postcode) VALUES(?, ?, ?, ?)",
                         new String[] {"id"});
@@ -60,35 +59,29 @@ public class UserRepositoryJdbc implements UserRepository{
                 pstmt.setString(3, accountDto.getCity());
                 pstmt.setString(4, accountDto.getPostCode());
                 return pstmt;
-            }
-        }, holder);
+            }, holder);
 
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+        jdbcTemplate.update(connection -> {
                 PreparedStatement pstmt = connection.prepareStatement(
                         "INSERT INTO contact_info(phone_number, address_id) VALUES(?, ?)",
                         new String[] {"id"});
                 pstmt.setString(1, accountDto.getPhoneNumber());
                 pstmt.setLong(2, holder.getKey().longValue());
                 return pstmt;
-            }
         }, holder);
 
-        Long contactInfoKey = holder.getKey().longValue();
+        long contactInfoKey = holder.getKey().longValue();
 
-        jdbcTemplate.update(new PreparedStatementCreator() {
-                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+        jdbcTemplate.update(connection -> {
                         PreparedStatement pstmt = connection.prepareStatement(
                                 "INSERT INTO drone(make, model) VALUES(?, ?)",
                                 new String[] {"id"});
                         pstmt.setString(1, accountDto.getDroneMake());
                         pstmt.setString(2, accountDto.getDroneModel());
                         return pstmt;
-                    }
                 }, holder);
 
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+        jdbcTemplate.update(connection -> {
                 PreparedStatement pstmt = connection.prepareStatement(
                         "INSERT INTO general_info(date_of_birth, place_of_birth, company_name, " +
                                 "previous_flying_exp, preferred_location, drone_type_id) VALUES(?, ?, ?, ?, ?, ?)",
@@ -100,13 +93,11 @@ public class UserRepositoryJdbc implements UserRepository{
                 pstmt.setString(5, accountDto.getPreferredLocation());
                 pstmt.setLong(6, holder.getKey().longValue());
                 return pstmt;
-            }
         }, holder);
 
-        Long generalInfoKey = holder.getKey().longValue();
+        long generalInfoKey = holder.getKey().longValue();
 
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+        jdbcTemplate.update(connection -> {
                 PreparedStatement pstmt = connection.prepareStatement(
                         "INSERT INTO user(email, password, access_level) VALUES(?, ?, ?)",
                         new String[] {"id"});
@@ -114,12 +105,11 @@ public class UserRepositoryJdbc implements UserRepository{
                 pstmt.setString(2, passwordEncoder().encode(accountDto.getPassword()));
                 pstmt.setString(3, "USER");
                 return pstmt;
-            }
         }, holder);
-        Long userIdKey = holder.getKey().longValue();
 
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+        long userIdKey = holder.getKey().longValue();
+
+        jdbcTemplate.update(connection -> {
                 PreparedStatement pstmt = connection.prepareStatement(
                         "INSERT INTO candidate(user_id, first_name," +
                                 "surname, contact_info_id, general_info_id) VALUES(?, ?, ?, ?, ?)",
@@ -130,8 +120,8 @@ public class UserRepositoryJdbc implements UserRepository{
                 pstmt.setLong(4, contactInfoKey);
                 pstmt.setLong(5, generalInfoKey);
                 return pstmt;
-            }
         });
+
     return 1;
     }
 
