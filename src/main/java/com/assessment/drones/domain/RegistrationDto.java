@@ -70,5 +70,9 @@ public class RegistrationDto {
 
     @NotNull
     @NotEmpty
-    private String droneType;
+    private String droneMake;
+
+    @NotNull
+    @NotEmpty
+    private String droneModel;
 }

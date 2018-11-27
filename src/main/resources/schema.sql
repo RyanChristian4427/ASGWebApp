@@ -11,24 +11,22 @@ CREATE TABLE IF NOT EXISTS address (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS contact_info (
-  id INT UNSIGNED NOT NULL,
-    telephone_number INT NOT NULL,
-    review_date DATE NOT NULL,
-    delete_date DATE NOT NULL,
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    phone_number VARCHAR(15) NOT NULL,
     address_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (address_id) REFERENCES address(id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS drone (
-  id INT UNSIGNED NOT NULL,
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     make VARCHAR(15) NOT NULL,
     model VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS general_info (
-  id INT UNSIGNED NOT NULL,
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     date_of_birth DATE NOT NULL,
     place_of_birth VARCHAR(50) NOT NULL,
     company_name VARCHAR(20) NOT NULL,
@@ -40,7 +38,7 @@ CREATE TABLE IF NOT EXISTS general_info (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS candidate (
-	reference_number VARCHAR(20) NOT NULL,
+	reference_number INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
     first_name VARCHAR(10) NOT NULL,
     surname VARCHAR(15) NOT NULL,
