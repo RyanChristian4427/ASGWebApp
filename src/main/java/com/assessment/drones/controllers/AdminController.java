@@ -1,7 +1,6 @@
 package com.assessment.drones.controllers;
 
-import com.assessment.drones.domain.FlyTraining;
-import com.assessment.drones.domain.GroundSchool;
+import com.assessment.drones.domain.*;
 import com.assessment.drones.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,13 +88,40 @@ public class AdminController {
         return "operatorsManualForm";
     }
 
+    @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.POST)
+    public String addOperatorsManual(){
+
+        OperatorsManual oManual = new OperatorsManual();
+
+        adminService.addOperatorsManual(oManual);
+        return "admin";
+    }
+
     @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.GET)
     public String viewFlightAssessment() {
         return "flightAssessmentForm";
     }
 
+    @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.POST)
+    public String addFlightAssessment(){
+
+        FlightAssessment fAssessment = new FlightAssessment();
+
+        adminService.addFlightAssessment(fAssessment);
+        return "admin";
+    }
+
     @RequestMapping(path = "/admin/recommendations", method = RequestMethod.GET)
     public String viewRecommendations() {
         return "recommendationsForm";
+    }
+
+    @RequestMapping(path = "/admin/recommendations", method = RequestMethod.POST)
+    public String addRecommendations(){
+
+        Recommendations recommendations = new Recommendations();
+
+        adminService.addRecommendations(recommendations);
+        return "admin";
     }
 }
