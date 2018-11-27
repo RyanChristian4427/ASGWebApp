@@ -23,7 +23,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         flyTrainingRowMapper = (rs, i) -> new FlyTraining(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
+                rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getString("type"),
                 rs.getDate("skills_date")
