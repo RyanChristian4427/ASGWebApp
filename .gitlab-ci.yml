@@ -10,14 +10,14 @@ stages:
 - build
 
 before_script:
-        -apt update
-        -apt install -y mysql-client
-        - echo $GRADLE_HOME
-        - echo `pwd`
-        - export GRADLE_USER_HOME=`pwd`/.gradle
-        - rm -f  .gradle/caches/modules-2/modules-2.lock
-        - rm -fr .gradle/caches/*/plugin-resolution/
-        - chmod +x gradlew
+    - apt update
+    - apt install -y mysql-client
+    - echo $GRADLE_HOME
+    - echo `pwd`
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - rm -f  .gradle/caches/modules-2/modules-2.lock
+    - rm -fr .gradle/caches/*/plugin-resolution/
+    - chmod +x gradlew
 cache:
     paths:
         - .gradle/caches
