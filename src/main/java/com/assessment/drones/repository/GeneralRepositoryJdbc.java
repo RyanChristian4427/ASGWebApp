@@ -13,13 +13,13 @@ import java.util.List;
 public class GeneralRepositoryJdbc implements GeneralRepository
 {
     private JdbcTemplate jdbcTemplate;
-    private RowMapper<GeneralInfo> reviewMapper;
+    private RowMapper<GeneralInfo> generalInfoRowMapper;
 
     @Autowired
     public GeneralRepositoryJdbc(JdbcTemplate aTemplate){
         jdbcTemplate = aTemplate;
 
-        reviewMapper = (rs, i) -> new GeneralInfo(
+        generalInfoRowMapper = (rs, i) -> new GeneralInfo(
                 rs.getLong("id"),
                 rs.getString("dob"),
                 rs.getString("placeOfBirth"),
