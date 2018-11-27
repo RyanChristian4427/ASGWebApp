@@ -79,6 +79,8 @@ public class AdminController {
         gSchool.setPass_result(pResult);
         gSchool.setResit(Long.parseLong(resit));
 
+        adminService.addGroundSchool(gSchool);
+
         return "admin";
     }
 
