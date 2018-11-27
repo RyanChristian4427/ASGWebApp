@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class GroundSchool {
     private Long id;
-    private String candidate_number;
+    private Long candidate_number;
     private Long instructor_id;
     private Date completion_date;
     private Long question_bank;

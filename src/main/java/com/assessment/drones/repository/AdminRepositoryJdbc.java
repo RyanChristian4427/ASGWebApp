@@ -31,7 +31,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         groundSchoolRowMapper = (rs, i) -> new GroundSchool(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
+                rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getDate("completion_date"),
                 rs.getLong("question_bank"),
@@ -42,7 +42,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         operatorsManualRowMapper = (rs, i) -> new OperatorsManual(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
+                rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getDate("submitted_date"),
                 rs.getDate("pass_date")
@@ -50,7 +50,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         flightAssessmentRowMapper = (rs, i) -> new FlightAssessment(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
+                rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getString("insurance"),
                 rs.getString("logged-hours"),
@@ -60,7 +60,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         recommendationsRowMapper = (rs, i) -> new Recommendations(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
+                rs.getLong("candidate_number"),
                 rs.getDate("asg_recommend_date"),
                 rs.getDate("flight_competence_date"),
                 rs.getDate("application_data_date"),

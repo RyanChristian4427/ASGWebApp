@@ -1,6 +1,7 @@
 package com.assessment.drones.controllers;
 
 import com.assessment.drones.domain.FlyTraining;
+import com.assessment.drones.domain.GroundSchool;
 import com.assessment.drones.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,6 +55,31 @@ public class AdminController {
     @RequestMapping(path = "/admin/groundSchool", method = RequestMethod.GET)
     public String viewGroundSchool() {
         return "groundSchoolForm";
+    }
+
+    @RequestMapping(path = "/admin/groundSchool",  method = RequestMethod.POST)
+    public String getGroundSchool(@RequestParam("candidate_number") Long cNum,
+                                  @RequestParam("instructor_id") Long iNum,
+                                  @RequestParam("completion_date") Date complDate,
+                                  @RequestParam("question_bank") Long qBank,
+                                  @RequestParam("pass_date") Date pDate,
+                                  @RequestParam("pass_result") Long pResult,
+                                  @RequestParam("resit") String resit){
+        if(resit.equals("Y") || resit.equals("y")) {
+            resit = "1";
+        } else {
+            resit = "0";
+        }
+        GroundSchool gSchool = new GroundSchool();
+        gSchool.setCandidate_number(cNum);
+        gSchool.setInstructor_id(iNum);
+        gSchool.setCompletion_date(complDate);
+        gSchool.setQuestion_bank(qBank);
+        gSchool.setPass_date(pDate);
+        gSchool.setPass_result(pResult);
+        gSchool.setResit(Long.parseLong(resit));
+
+        return "admin";
     }
 
     @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.GET)

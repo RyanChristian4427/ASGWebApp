@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class FlightAssessment {
     private Long id;
-    private String candidate_number;
+    private Long candidate_number;
     private Long instructor_id;
     private String insurance;
     private String logged_hours;

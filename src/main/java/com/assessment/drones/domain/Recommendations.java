@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Recommendations {
     private Long id;
-    private String candidate_number;
+    private Long candidate_number;
     private Date asg_recommend_date;
     private Date flight_competence_date;
     private Date application_data_date;
