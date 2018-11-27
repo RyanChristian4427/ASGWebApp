@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class FlyTraining {
     private Long id;
-    private String candidate_number;
+    private Long candidate_number;
     private Long instructor_id;
     private String training_type;
     private Date skills_date;
