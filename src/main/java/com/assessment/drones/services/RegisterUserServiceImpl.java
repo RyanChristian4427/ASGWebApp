@@ -1,7 +1,7 @@
 package com.assessment.drones.services;
 
 import com.assessment.drones.domain.User;
-import com.assessment.drones.domain.UserDto;
+import com.assessment.drones.domain.RegistrationDto;
 import com.assessment.drones.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class RegisterUserServiceImpl implements RegisterUserService {
     }
 
     @Override
-    public User registerNewUserAccount(UserDto accountDto) {
+    public User registerNewUserAccount(RegistrationDto accountDto) {
 
         Integer insertResponse = userRepository.saveUser(accountDto);
 
