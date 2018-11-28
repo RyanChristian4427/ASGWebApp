@@ -112,7 +112,7 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.POST)
-    public String addFlightAssessment(){
+    public String addFlightAssessment(@RequestParam("")){
 
         FlightAssessment fAssessment = new FlightAssessment();
 

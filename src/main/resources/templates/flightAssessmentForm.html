@@ -26,9 +26,13 @@
         <h1>Update a users Flight Assessment</h1>
         <form action="/admin/flightAssessment" method="post">
             <label>Enter candidate number:</label><input type="number" name="candidate_number" id="candidate_number" placeholder="Enter candidate number" required = "required"/><br>
-            <label>Enter training type:</label><input type="text" name="training_type" id="training_type" placeholder="Type of training" required="required"><br>
             <label>Enter instructor id:</label><input type="text" name="instructor_id" id="instructor_id" placeholder="Instructor id" required="required"><br>
-            <label>Enter skills assessment date:</label><input type="text" name="skills_date" id="skills_date" placeholder="YYYY/MM/DD" pattern="\d\d\d\d\/\d\d\/\d\d" required = "required"/><br>
+            <label>Enter whether the candidate has insurance:</label><br>
+            <input type="radio" name="insurance" id="has_insurance" checked value="Y"><br>
+            <input type="radio" name="insurance" id="no_insurance" value="N"><br>
+            <label>Enter number of logged hours before assessment:</label><input type="text" name="logged_hours" id="logged_hours" placeholder="Number of logged hours" required="required"><br>
+            <label>Enter the suas category:</label><input type="text" name="suas_category" id="suas_category" placeholder="SUAS category" required="required"><br>
+            <label>Enter the candidates pass date:</label><input type="text" name="assessment_pass_date" id="assessment_pass_date" placeholder="YYYY/MM/DD" pattern="\d\d\d\d\/\d\d\/\d\d" required = "required"><br>
             <input type="submit" id="submit" value="submit"/>
         </form>
     </div>

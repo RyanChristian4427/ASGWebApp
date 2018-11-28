@@ -61,12 +61,12 @@ public class AdminRepositoryJdbc implements AdminRepository{
         recommendationsRowMapper = (rs, i) -> new Recommendations(
                 rs.getLong("id"),
                 rs.getLong("candidate_number"),
-                rs.getDate("asg_recommend_date"),
-                rs.getDate("flight_competence_date"),
-                rs.getDate("application_data_date"),
-                rs.getDate("application_date"),
-                rs.getDate("caa_approval_date"),
-                rs.getDate("overall_comments_approval_by_caa")
+                rs.getString("asg_recommend_date"),
+                rs.getString("flight_competence_date"),
+                rs.getString("application_data_date"),
+                rs.getString("application_date"),
+                rs.getString("caa_approval_date"),
+                rs.getString("overall_comments_approval_by_caa")
         );
     }
 
