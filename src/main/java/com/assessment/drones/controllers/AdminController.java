@@ -138,9 +138,22 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/admin/recommendations", method = RequestMethod.POST)
-    public String addRecommendations(){
+    public String addRecommendations(@RequestParam("candidate_number") Long cNum,
+                                     @RequestParam("asg_recommend_date") String asg,
+                                     @RequestParam("flight_competence_date") String competence,
+                                     @RequestParam("application_data_date") String data_date,
+                                     @RequestParam("application_date") String app_date,
+                                     @RequestParam("caa_approval_date") String caa_approval,
+                                     @RequestParam("overall_comments_approval_by_caa") String comments){
 
         Recommendations recommendations = new Recommendations();
+        recommendations.setCandidate_number(cNum);
+        recommendations.setAsg_recommend_date(asg);
+        recommendations.setFlight_competence_date(competence);
+        recommendations.setApplication_data_date(data_date);
+        recommendations.setApplication_date(app_date);
+        recommendations.setCaa_approval_date(caa_approval);
+        recommendations.setOverall_comments_approval_by_caa(comments);
 
         adminService.addRecommendations(recommendations);
         return "admin";
