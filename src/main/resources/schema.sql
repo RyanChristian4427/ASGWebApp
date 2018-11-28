@@ -104,8 +104,8 @@ CREATE TABLE IF NOT EXISTS operators_manual (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     candidate_number INT UNSIGNED NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
-    submitted_date DATE NOT NULL,
-    pass_date DATE NOT NULL,
+    submitted_date VARCHAR(20) NOT NULL,
+    pass_date VARCHAR(20) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (candidate_number) REFERENCES candidate (reference_number),
     FOREIGN KEY (instructor_id) REFERENCES instructor (id)
@@ -127,12 +127,12 @@ CREATE TABLE IF NOT EXISTS flight_assessment (
 CREATE TABLE IF NOT EXISTS recommendations (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     candidate_number INT UNSIGNED NOT NULL,
-    asg_recomend_date DATE NOT NULL,
-    flight_competence_date DATE NOT NULL,
-    application_data_date DATE NOT NULL,
-    application_date DATE NOT NULL,
-    caa_approval_date DATE NOT NULL,
-    overall_comments_approval_by_caa DATE NOT NULL,
+    asg_recomend_date VARCHAR(20) NOT NULL,
+    flight_competence_date VARCHAR(20) NOT NULL,
+    application_data_date VARCHAR(20) NOT NULL,
+    application_date VARCHAR(20) NOT NULL,
+    caa_approval_date VARCHAR(20) NOT NULL,
+    overall_comments_approval_by_caa VARCHAR(20) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (candidate_number) REFERENCES candidate (reference_number)
 ) ENGINE=InnoDB;

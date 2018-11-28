@@ -11,11 +11,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class Recommendations {
     private Long id;
-    private String candidate_number;
-    private Date asg_recommend_date;
-    private Date flight_competence_date;
-    private Date application_data_date;
-    private Date application_date;
-    private Date caa_approval_date;
-    private Date overall_comments_approval_by_caa;
+    private Long candidate_number;
+    private String asg_recommend_date;
+    private String flight_competence_date;
+    private String application_data_date;
+    private String application_date;
+    private String caa_approval_date;
+    private String overall_comments_approval_by_caa;
 }

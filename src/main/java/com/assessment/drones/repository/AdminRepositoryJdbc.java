@@ -31,7 +31,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         groundSchoolRowMapper = (rs, i) -> new GroundSchool(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
+                rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getDate("completion_date"),
                 rs.getLong("question_bank"),
@@ -42,15 +42,15 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         operatorsManualRowMapper = (rs, i) -> new OperatorsManual(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
+                rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
-                rs.getDate("submitted_date"),
-                rs.getDate("pass_date")
+                rs.getString("submitted_date"),
+                rs.getString("pass_date")
         );
 
         flightAssessmentRowMapper = (rs, i) -> new FlightAssessment(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
+                rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getString("insurance"),
                 rs.getString("logged-hours"),
@@ -60,13 +60,13 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         recommendationsRowMapper = (rs, i) -> new Recommendations(
                 rs.getLong("id"),
-                rs.getString("candidate_number"),
-                rs.getDate("asg_recommend_date"),
-                rs.getDate("flight_competence_date"),
-                rs.getDate("application_data_date"),
-                rs.getDate("application_date"),
-                rs.getDate("caa_approval_date"),
-                rs.getDate("overall_comments_approval_by_caa")
+                rs.getLong("candidate_number"),
+                rs.getString("asg_recommend_date"),
+                rs.getString("flight_competence_date"),
+                rs.getString("application_data_date"),
+                rs.getString("application_date"),
+                rs.getString("caa_approval_date"),
+                rs.getString("overall_comments_approval_by_caa")
         );
     }
 
@@ -94,7 +94,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
         params.add(groundSchool.getPass_result());
         params.add(groundSchool.getResit());
         return jdbcTemplate.update(
-                "INSERT INTO ground_school (candidate_number, instructor_id, completion_date, question_bank, pass_result, pass_date, resit) " +
+                "INSERT INTO ground_school (candidate_number, instructor_id, completion_date, question_bank, pass_date, pass_result, resit) " +
                         "VALUES(?, ?, ?, ?, ?, ?, ?)",
                 params.toArray());
     }
@@ -107,7 +107,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
         params.add(operatorsManual.getSubmitted_date());
         params.add(operatorsManual.getPass_date());
         return jdbcTemplate.update(
-                "INSERT INTO ground_school (candidate_number, instructor_id, submitted_date, pass_date) " +
+                "INSERT INTO operators_manual (candidate_number, instructor_id, submitted_date, pass_date) " +
                         "VALUES(?, ?, ?, ?)",
                 params.toArray());
     }
