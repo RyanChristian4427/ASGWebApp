@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -89,9 +91,25 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.POST)
-    public String addOperatorsManual(){
+    public String addOperatorsManual(@RequestParam("candidate_number") Long cNum,
+                                     @RequestParam("instructor_id") Long iNum,
+                                     @RequestParam("submitted_date") Date subDate,
+                                     @RequestParam("pass_date") Date pDate) throws ParseException {
 
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        if (subDate == null){
+            String temp = "0000/00/00";
+            subDate = format.parse(temp);
+        }
+        if (pDate == null){
+            String temp = "0000/00/00";
+            pDate = format.parse(temp);
+        }
         OperatorsManual oManual = new OperatorsManual();
+        oManual.setCandidate_number(cNum);
+        oManual.setInstructor_id(iNum);
+        oManual.setSubmitted_date(subDate);
+        oManual.setPass_date(pDate);
 
         adminService.addOperatorsManual(oManual);
         return "admin";
