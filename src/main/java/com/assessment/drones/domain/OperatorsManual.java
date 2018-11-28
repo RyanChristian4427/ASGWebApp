@@ -13,6 +13,6 @@ public class OperatorsManual {
     private Long id;
     private Long candidate_number;
     private Long instructor_id;
-    private Date submitted_date;
-    private Date pass_date;
+    private String submitted_date;
+    private String pass_date;
 }

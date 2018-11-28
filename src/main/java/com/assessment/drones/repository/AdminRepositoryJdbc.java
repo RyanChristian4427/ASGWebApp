@@ -44,8 +44,8 @@ public class AdminRepositoryJdbc implements AdminRepository{
                 rs.getLong("id"),
                 rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
-                rs.getDate("submitted_date"),
-                rs.getDate("pass_date")
+                rs.getString("submitted_date"),
+                rs.getString("pass_date")
         );
 
         flightAssessmentRowMapper = (rs, i) -> new FlightAssessment(
