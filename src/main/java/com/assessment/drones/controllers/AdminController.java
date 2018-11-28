@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -112,9 +113,20 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.POST)
-    public String addFlightAssessment(@RequestParam("")){
+    public String addFlightAssessment(@RequestParam("candidate_number") Long cNum,
+                                      @RequestParam("instructor_id") Long iNum,
+                                      @RequestParam("insurance") String ins,
+                                      @RequestParam("logged_hours") String logged,
+                                      @RequestParam("suas_category") String suas,
+                                      @RequestParam("assessment_pass_date") Date pass){
 
         FlightAssessment fAssessment = new FlightAssessment();
+        fAssessment.setCandidate_number(cNum);
+        fAssessment.setInstructor_id(iNum);
+        fAssessment.setInsurance(ins);
+        fAssessment.setLogged_hours(logged);
+        fAssessment.setSuas_category(suas);
+        fAssessment.setAssessment_pass_date(pass);
 
         adminService.addFlightAssessment(fAssessment);
         return "admin";
