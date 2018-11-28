@@ -9,16 +9,19 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private MyUserDetailsService userDetailsService;
+    private AuthSuccessHandler authSuccessHandler;
 
     @Autowired
-    public SecurityConfig(MyUserDetailsService aService) {
+    public SecurityConfig(MyUserDetailsService aService, AuthSuccessHandler aAuthSuccessHandler) {
         userDetailsService = aService;
+        authSuccessHandler = aAuthSuccessHandler;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/dashboard",false)
+                .successHandler(authSuccessHandler)
                 .failureUrl("/login?error=true");
     }
 
