@@ -94,7 +94,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
         params.add(groundSchool.getPass_result());
         params.add(groundSchool.getResit());
         return jdbcTemplate.update(
-                "INSERT INTO ground_school (candidate_number, instructor_id, completion_date, question_bank, pass_result, pass_date, resit) " +
+                "INSERT INTO ground_school (candidate_number, instructor_id, completion_date, question_bank, pass_date, pass_result, resit) " +
                         "VALUES(?, ?, ?, ?, ?, ?, ?)",
                 params.toArray());
     }
@@ -107,7 +107,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
         params.add(operatorsManual.getSubmitted_date());
         params.add(operatorsManual.getPass_date());
         return jdbcTemplate.update(
-                "INSERT INTO ground_school (candidate_number, instructor_id, submitted_date, pass_date) " +
+                "INSERT INTO operators_manual (candidate_number, instructor_id, submitted_date, pass_date) " +
                         "VALUES(?, ?, ?, ?)",
                 params.toArray());
     }
