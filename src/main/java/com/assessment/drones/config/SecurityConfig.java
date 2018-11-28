@@ -47,6 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 .successHandler(authSuccessHandler)
                 .failureUrl("/login?error=true");
+
+        http.logout()
+                .logoutSuccessUrl("/login");
     }
 
     @Bean

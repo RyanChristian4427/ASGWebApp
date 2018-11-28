@@ -33,7 +33,6 @@ public class MyUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(
                     "No user found with username: "+ email);
         } else {
-            System.out.println("User's role is: " + user.getRole());
             return new DefaultUserDetails(user);
         }
     }
