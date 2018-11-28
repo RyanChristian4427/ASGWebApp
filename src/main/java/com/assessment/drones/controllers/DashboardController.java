@@ -1,44 +1,28 @@
 package com.assessment.drones.controllers;
 
-import com.assessment.drones.domain.LoginForm;
-import com.assessment.drones.domain.User;
+import com.assessment.drones.domain.RegistrationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+import java.security.Principal;
 
 @Controller
 public class DashboardController {
 
-    @RequestMapping(path = "/login", method= RequestMethod.GET)
-    public String login() {
-        return "login";
+    @RequestMapping(path = "/dashboard", method = RequestMethod.GET)
+    public String viewDashboard(Principal principal, Model model) {
+        model.addAttribute("userName", principal.getName());
+        RegistrationDto accountDto = new RegistrationDto();
+        model.addAttribute("user", accountDto);
+        return "clientDashboard";
     }
 
-    @RequestMapping(path = "/login",  method= RequestMethod.POST)
-    public String login(LoginForm loginForm) {
-        //potential login service, checking details and such
+    @RequestMapping(path = "/updateDetails", method = RequestMethod.POST)
+    public void updateClientDetails() {
 
-        //Totally temp, as this is not at all secure. Will use authentication handlers later
-        return "redirect:/dashboard?user=" + loginForm.getEmailAddress();
-    }
-
-    //All of this is temp while waiting for the database to be created
-    @RequestMapping(path = "/dashboard")
-    public String viewDashboard(@RequestParam(value = "user") String userEmail, Model model) {
-        ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Ryan1@gmail.com", "Ryan", "Christian",  true));
-        users.add(new User("Ryan2@gmail.com", "ryan", "christian",  false));
-
-        for (User u: users) {
-            if (u.getEmailAddress().equalsIgnoreCase(userEmail)) {
-                model.addAttribute("user", u);
-            }
-        }
-        return "dashboard";
     }
 
 
