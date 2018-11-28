@@ -103,7 +103,7 @@ public class UserRepositoryJdbc implements UserRepository{
                         new String[] {"id"});
                 pstmt.setString(1, accountDto.getEmailAddress());
                 pstmt.setString(2, passwordEncoder().encode(accountDto.getPassword()));
-                pstmt.setString(3, "user");
+                pstmt.setString(3, "client");
                 return pstmt;
         }, holder);
 
