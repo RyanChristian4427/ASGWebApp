@@ -4,14 +4,10 @@ import com.assessment.drones.domain.*;
 import com.assessment.drones.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -28,7 +24,7 @@ public class AdminController {
     //method to take the user to the admin page
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
     public String viewAdmin (){
-        return "admin";
+        return "adminDashboard";
     }
 
     //method to take the admin to the flying training form
@@ -51,7 +47,7 @@ public class AdminController {
 
         adminService.addFlyTraining(train);
 
-        return "admin";
+        return "adminDashboard";
     }
 
     @RequestMapping(path = "/admin/groundSchool", method = RequestMethod.GET)
@@ -83,7 +79,7 @@ public class AdminController {
 
         adminService.addGroundSchool(gSchool);
 
-        return "admin";
+        return "adminDashboard";
     }
 
     @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.GET)
@@ -104,7 +100,7 @@ public class AdminController {
         oManual.setPass_date(pDate);
 
         adminService.addOperatorsManual(oManual);
-        return "admin";
+        return "adminDashboard";
     }
 
     @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.GET)
@@ -129,7 +125,7 @@ public class AdminController {
         fAssessment.setAssessment_pass_date(pass);
 
         adminService.addFlightAssessment(fAssessment);
-        return "admin";
+        return "adminDashboard";
     }
 
     @RequestMapping(path = "/admin/recommendations", method = RequestMethod.GET)
@@ -156,6 +152,6 @@ public class AdminController {
         recommendations.setOverall_comments_approval_by_caa(comments);
 
         adminService.addRecommendations(recommendations);
-        return "admin";
+        return "adminDashboard";
     }
 }
