@@ -68,4 +68,14 @@ public class AdminServiceImpl implements AdminService{
             return null;
         }
     }
+
+    @Override
+    public OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
+        return this.adminRepository.findOperatorManualByInstructorAndCandidate(instructorId, candidateId);
+    }
+
+    @Override
+    public int save(OperatorsManual om) {
+        return this.adminRepository.save(om);
+    }
 }

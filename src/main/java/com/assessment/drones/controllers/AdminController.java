@@ -102,8 +102,29 @@ public class AdminController {
         adminService.addOperatorsManual(oManual);
         return "adminDashboard";
     }
+    @RequestMapping(path = "/admin/uperatorsManual/update", method = RequestMethod.POST)
+    public String updateOperatorMaual(@RequestParam("candidate_number") Long cNum,
+                                      @RequestParam("instructor_id") Long iNum,
+                                      @RequestParam("submitted_date") String subDate,
+                                      @RequestParam("pass_date") String pDate) {
 
-    @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.GET)
+        OperatorsManual om = this.adminService.findOperatorManualByInstructorAndCandidate(iNum, cNum);
+
+        if (om != null) {
+            // it exists
+            om.setPass_date(pDate);
+            om.setSubmitted_date(subDate);
+            adminService.save(om);
+
+            return "information updated";
+        } else {
+            return "not found ";
+            // give an error saying not found
+            //throw new RuntimeException("test exception");
+        }
+    }
+
+        @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.GET)
     public String viewFlightAssessment() {
         return "flightAssessmentForm";
     }

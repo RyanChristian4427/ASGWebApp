@@ -2,10 +2,14 @@ package com.assessment.drones.repository;
 
 import com.assessment.drones.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 @Repository
@@ -141,5 +145,31 @@ public class AdminRepositoryJdbc implements AdminRepository{
                 "INSERT INTO recommendations (candidate_number, asg_recomend_date, flight_competence_date, application_data_date, application_date, caa_approval_date, overall_comments_approval_by_caa) " +
                         "VALUES(?, ?, ?, ?, ?, ?, ?)",
                 params.toArray());
+    }
+    public OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
+        try {
+            return jdbcTemplate.queryForObject(
+                    "SELECT * FROM operators_manual WHERE instructor_id = ? AND candidate_number = ?",
+                    new Object[]{instructorId, candidateId},
+                    this.operatorsManualRowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public int save(OperatorsManual om) {
+        KeyHolder holder = new GeneratedKeyHolder();
+
+        return jdbcTemplate.update(connection -> {
+            PreparedStatement pstmt = connection.prepareStatement(
+                    "UPDATE operators_manual SET submitted_date = ? AND pass_date = ? WHERE candidate_number = ? AND instructor_id = ? ",
+                    new String[] {"id"});
+            pstmt.setString(1, om.getSubmitted_date());
+            pstmt.setString(2, om.getPass_date());
+            pstmt.setLong(3, om.getCandidate_number());
+            pstmt.setLong(4, om.getInstructor_id());
+            return pstmt;
+        }, holder);
     }
 }

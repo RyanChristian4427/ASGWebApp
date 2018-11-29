@@ -12,4 +12,8 @@ public interface AdminService {
     String addFlightAssessment(FlightAssessment flightAssessment);
 
     String addRecommendations(Recommendations recommendations);
+
+    OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
+
+    int save(OperatorsManual om);
 }
