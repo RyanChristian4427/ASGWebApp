@@ -17,11 +17,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private MyUserDetailsService userDetailsService;
     private AuthSuccessHandler authSuccessHandler;
+    private AuthFailureHandler authFailureHandler;
 
     @Autowired
-    public SecurityConfig(MyUserDetailsService aService, AuthSuccessHandler aAuthSuccessHandler) {
+    public SecurityConfig(MyUserDetailsService aService, AuthSuccessHandler aAuthSuccessHandler, AuthFailureHandler aAuthFailureHandler) {
         userDetailsService = aService;
         authSuccessHandler = aAuthSuccessHandler;
+        authFailureHandler = aAuthFailureHandler;
     }
 
     @Override
@@ -37,8 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login", "/login-error").permitAll()
                 .antMatchers("/admin").hasRole("admin")
+                .antMatchers("/dashboard").hasRole("client")
                 .antMatchers("/css/**", "/js/**", "/vendor/**").permitAll()
                 .anyRequest().authenticated();
 
@@ -46,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .successHandler(authSuccessHandler)
-                .failureUrl("/login?error=true");
+                .failureHandler(authFailureHandler);
 
         http.logout()
                 .logoutSuccessUrl("/login");
