@@ -111,14 +111,15 @@ public class UserRepositoryJdbc implements UserRepository{
 
         jdbcTemplate.update(connection -> {
                 PreparedStatement pstmt = connection.prepareStatement(
-                        "INSERT INTO candidate(user_id, first_name," +
-                                "surname, contact_info_id, general_info_id) VALUES(?, ?, ?, ?, ?)",
+                        "INSERT INTO candidate(reference_number, user_id, first_name," +
+                                "surname, contact_info_id, general_info_id) VALUES(?, ?, ?, ?, ?, ?)",
                         new String[] {"reference_number"});
-                pstmt.setLong(1, userIdKey);
-                pstmt.setString(2, accountDto.getFirstName());
-                pstmt.setString(3, accountDto.getLastName());
-                pstmt.setLong(4, contactInfoKey);
-                pstmt.setLong(5, generalInfoKey);
+                pstmt.setString(1, "Temp");
+                pstmt.setLong(2, userIdKey);
+                pstmt.setString(3, accountDto.getFirstName());
+                pstmt.setString(4, accountDto.getLastName());
+                pstmt.setLong(5, contactInfoKey);
+                pstmt.setLong(6, generalInfoKey);
                 return pstmt;
         });
 

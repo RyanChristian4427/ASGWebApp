@@ -58,8 +58,7 @@ public class RegistrationDto {
 
     private String companyName;
 
-//    @NotNull
-//    @NotEmpty
+    @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dob;
 

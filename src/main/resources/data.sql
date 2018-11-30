@@ -18,10 +18,10 @@ INSERT INTO contact_info (id, phone_number, address_id) VALUES (4, '7911564856',
 INSERT INTO drone (id, make, model) VALUES (1,'DJI', 'Mavic');
 INSERT INTO drone (id, make, model) VALUES (2,'DJI', 'Matrice');
 
-INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (1, '10/10/1990', 'Cardiff', '', 'None', 'Cardiff', 1);
-INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (2, '10/10/1990', 'Somerset', '', 'Some', 'Somerset', 2);
-INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (3, '10/10/1990', 'Aberdeen', 'Microsoft', 'A lot', 'Aberdeen', 1);
-INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (4, '10/10/1990', 'Cardiff', 'Apple', 'A Pro', 'Cardiff', 2);
+INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (1, '1990/2/28', 'Cardiff', '', 'None', 'Cardiff', 1);
+INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (2, '1990/10/21', 'Somerset', '', 'Some', 'Somerset', 2);
+INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (3, '1990/12/31', 'Aberdeen', 'Microsoft', 'A lot', 'Aberdeen', 1);
+INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (4, '1990/11/15', 'Cardiff', 'Apple', 'A Pro', 'Cardiff', 2);
 
 INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (1, 3, 'Blaise', 'Pascal', 1, 1);
 INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (2, 4, 'Caroline', 'Herschel', 2, 2);

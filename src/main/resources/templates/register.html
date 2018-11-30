@@ -127,9 +127,8 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="form-label-group">
-                      <input type="date" id="dob" th:field="*{#dates.format(dob,'dd-MMM-yyyy')}" class="form-control"
-                             required="required" autofocus="autofocus">
-                      <label for="dob">Date of Birth</label>
+                      <input type="text" id="dob" name="dob" th:field="*{dob}" placeholder="dd/mm/yyyy" class="form-control" required="required">
+                      <label for="dob" id="dob_label">Date of Birth</label>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -190,6 +189,7 @@
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <script src="js/test.js"></script>
+        <script src="js/sb-admin.js"></script>
 
         <!-- Core plugin JavaScript-->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
