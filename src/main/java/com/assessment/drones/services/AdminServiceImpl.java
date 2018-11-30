@@ -78,4 +78,14 @@ public class AdminServiceImpl implements AdminService{
     public int save(OperatorsManual om) {
         return this.adminRepository.save(om);
     }
+
+    @Override
+    public FlightAssessment findFlightAssessment(long candidate_number, long instructor_id) {
+        return this.adminRepository.findFlightAssessment(candidate_number, instructor_id);
+    }
+
+    @Override
+    public int saveFlightAssessment(FlightAssessment fa) {
+        return this.adminRepository.saveFlightAssessment(fa);
+    }
 }

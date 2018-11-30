@@ -9,6 +9,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
@@ -172,4 +173,32 @@ public class AdminRepositoryJdbc implements AdminRepository{
             return pstmt;
         }, holder);
     }
-}
+
+    @Override
+    public FlightAssessment findFlightAssessment(long candidate_number, long instructor_id) {
+        try {
+            return jdbcTemplate.queryForObject(
+                    "SELECT * FROM flight_assessment WHERE instructor_id = ? AND candidate_number = ?",
+                    new Object[]{instructor_id, candidate_number},
+                    this.flightAssessmentRowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public int saveFlightAssessment(FlightAssessment fa) {
+        KeyHolder holder = new GeneratedKeyHolder();
+
+        return jdbcTemplate.update(connection -> {
+            PreparedStatement pstmt = connection.prepareStatement(
+                    "UPDATE flight_assessment SET Insurance = ?, Logged_hours = ?  ,Assessment_pass_date =?,  WHERE candidate_number = ? AND instructor_id = ? ",
+                    new String[] {"id"});
+            pstmt.setString(1, fa.getLogged_hours());
+            pstmt.setString(2, fa.getInsurance());
+            pstmt.setDate(3, (Date) fa.getAssessment_pass_date());
+            pstmt.setString(4, fa.getSuas_category());
+            return pstmt;
+        }, holder);
+    }}
+

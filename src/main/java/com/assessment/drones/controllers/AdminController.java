@@ -115,7 +115,7 @@ public class AdminController {
             throw new RuntimeException("Candidate number or instructor id not found ");
         }
     }
-    
+
 
         @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.GET)
     public String viewFlightAssessment() {
@@ -138,8 +138,23 @@ public class AdminController {
         fAssessment.setSuas_category(suas);
         fAssessment.setAssessment_pass_date(pass);
 
-        adminService.addFlightAssessment(fAssessment);
-        return "adminDashboard";
+        FlightAssessment fa = this.adminService.findFlightAssessment(iNum,cNum);
+
+        if (fa != null) {
+            // it exists
+            fa.setSuas_category(suas);
+            fa.setAssessment_pass_date(pass);
+            fa.setLogged_hours(logged);
+            fa.setInsurance(ins);
+
+            adminService.addFlightAssessment(fa);
+            adminService.saveFlightAssessment(fa);
+
+            return "adminDashboard";
+        } else {
+            // give an error saying not found
+            throw new RuntimeException("Candidate number or instructor id not found ");
+        }
     }
 
     @RequestMapping(path = "/admin/recommendations", method = RequestMethod.GET)
