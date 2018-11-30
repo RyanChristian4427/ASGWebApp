@@ -1,6 +1,7 @@
 package com.assessment.drones.domain;
 
 import com.assessment.drones.validation.PasswordMatches;
+import com.assessment.drones.validation.ValidDoB;
 import com.assessment.drones.validation.ValidEmail;
 import com.assessment.drones.validation.ValidPostCode;
 import lombok.AllArgsConstructor;
@@ -38,9 +39,10 @@ public class RegistrationDto {
     private String password;
     private String matchingPassword;
 
-//    @NotNull
-//    @NotEmpty
+    @NotNull
+    @NotEmpty
     private String addressLine1;
+
     private String addressLine2;
 
     @NotNull
@@ -59,6 +61,7 @@ public class RegistrationDto {
     private String companyName;
 
     @NotNull
+    @ValidDoB
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dob;
 

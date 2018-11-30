@@ -1,8 +1,5 @@
 package com.assessment.drones.validation;
 
-import com.assessment.drones.services.RegisterUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Pattern;
