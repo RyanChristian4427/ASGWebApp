@@ -17,10 +17,6 @@ public interface AdminRepository {
 
     OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
 
-    int save(OperatorsManual om);
-
     FlightAssessment findFlightAssessment(long candidate_number, long instructor_id);
-
-    int saveFlightAssessment(FlightAssessment fa);
 
 }

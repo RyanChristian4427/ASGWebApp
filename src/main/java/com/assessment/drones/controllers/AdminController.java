@@ -107,7 +107,6 @@ public class AdminController {
             om.setSubmitted_date(subDate);
 
             adminService.addOperatorsManual(om);
-            adminService.save(om);
 
             return "adminDashboard";
         } else {
@@ -148,7 +147,6 @@ public class AdminController {
             fa.setInsurance(ins);
 
             adminService.addFlightAssessment(fa);
-            adminService.saveFlightAssessment(fa);
 
             return "adminDashboard";
         } else {

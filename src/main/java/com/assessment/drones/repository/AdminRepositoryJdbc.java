@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 @Repository
 public class AdminRepositoryJdbc implements AdminRepository{
+
     private JdbcTemplate jdbcTemplate;
     private RowMapper<FlyTraining> flyTrainingRowMapper;
     private RowMapper<GroundSchool> groundSchoolRowMapper;
@@ -159,22 +160,6 @@ public class AdminRepositoryJdbc implements AdminRepository{
     }
 
     @Override
-    public int save(OperatorsManual om) {
-        KeyHolder holder = new GeneratedKeyHolder();
-
-        return jdbcTemplate.update(connection -> {
-            PreparedStatement pstmt = connection.prepareStatement(
-                    "UPDATE operators_manual SET submitted_date = ?, pass_date = ? WHERE candidate_number = ? AND instructor_id = ? ",
-                    new String[] {"id"});
-            pstmt.setString(1, om.getSubmitted_date());
-            pstmt.setString(2, om.getPass_date());
-            pstmt.setLong(3, om.getCandidate_number());
-            pstmt.setLong(4, om.getInstructor_id());
-            return pstmt;
-        }, holder);
-    }
-
-    @Override
     public FlightAssessment findFlightAssessment(long candidate_number, long instructor_id) {
         try {
             return jdbcTemplate.queryForObject(
@@ -185,20 +170,5 @@ public class AdminRepositoryJdbc implements AdminRepository{
             return null;
         }
     }
-
-    @Override
-    public int saveFlightAssessment(FlightAssessment fa) {
-        KeyHolder holder = new GeneratedKeyHolder();
-
-        return jdbcTemplate.update(connection -> {
-            PreparedStatement pstmt = connection.prepareStatement(
-                    "UPDATE flight_assessment SET Insurance = ?, Logged_hours = ?  ,Assessment_pass_date =?,  WHERE candidate_number = ? AND instructor_id = ? ",
-                    new String[] {"id"});
-            pstmt.setString(1, fa.getLogged_hours());
-            pstmt.setString(2, fa.getInsurance());
-            pstmt.setDate(3, (Date) fa.getAssessment_pass_date());
-            pstmt.setString(4, fa.getSuas_category());
-            return pstmt;
-        }, holder);
-    }}
+}
 
