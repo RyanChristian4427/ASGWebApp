@@ -5,19 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 @Repository
 public class AdminRepositoryJdbc implements AdminRepository{
 
     private JdbcTemplate jdbcTemplate;
-    private RowMapper<FlyTraining> flyTrainingRowMapper;
+    private RowMapper<FlightTrainingDto> flyTrainingRowMapper;
     private RowMapper<GroundSchool> groundSchoolRowMapper;
     private RowMapper<OperatorsManual> operatorsManualRowMapper;
     private RowMapper<FlightAssessment> flightAssessmentRowMapper;
@@ -27,9 +23,9 @@ public class AdminRepositoryJdbc implements AdminRepository{
     public AdminRepositoryJdbc(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
 
-        flyTrainingRowMapper = (rs, i) -> new FlyTraining(
+        flyTrainingRowMapper = (rs, i) -> new FlightTrainingDto(
                 rs.getLong("id"),
-                rs.getLong("candidate_number"),
+                rs.getString("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getString("type"),
                 rs.getDate("skills_date")
@@ -77,16 +73,11 @@ public class AdminRepositoryJdbc implements AdminRepository{
     }
 
     @Override
-    public Integer addFlyTraining(FlyTraining flyTraining){
-        ArrayList<Object> params = new ArrayList<>();
-        params.add(flyTraining.getCandidate_number());
-        params.add(flyTraining.getInstructor_id());
-        params.add(flyTraining.getTraining_type());
-        params.add(flyTraining.getSkills_date());
+    public Integer saveFlightTraining(FlightTrainingDto flightTrainingDto){
         return jdbcTemplate.update(
-                "INSERT INTO flying_training (candidate_number, instructor_id, training_type, skills_assessment_date) " +
-                        "VALUES(?, ?, ?, ?)",
-                params.toArray());
+                "INSERT INTO flight_training (candidate_number, instructor_id, training_type, " +
+                        "skills_assessment_date) VALUES(?, ?, ?, ?)", flightTrainingDto.getCandidate_number(),
+                flightTrainingDto.getInstructor_id(), flightTrainingDto.getTraining_type(), flightTrainingDto.getSkills_date());
     }
 
     @Override

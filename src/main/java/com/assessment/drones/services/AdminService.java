@@ -3,7 +3,7 @@ package com.assessment.drones.services;
 import com.assessment.drones.domain.*;
 
 public interface AdminService {
-    String addFlyTraining(FlyTraining flyTraining);
+    String addFlyTraining(FlightTrainingDto flightTrainingDto);
 
     String addGroundSchool(GroundSchool groundSchool);
 

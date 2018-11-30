@@ -9,9 +9,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FlyTraining {
+public class FlightTrainingDto {
     private Long id;
-    private Long candidate_number;
+    private String candidate_number;
     private Long instructor_id;
     private String training_type;
     private Date skills_date;

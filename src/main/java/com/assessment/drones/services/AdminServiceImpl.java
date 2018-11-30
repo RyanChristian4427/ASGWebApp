@@ -15,8 +15,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addFlyTraining(FlyTraining flyTraining){
-        Integer response = adminRepository.addFlyTraining(flyTraining);
+    public String addFlyTraining(FlightTrainingDto flightTrainingDto){
+        Integer response = adminRepository.saveFlightTraining(flightTrainingDto);
 
         if (response == 1) {
             return "Insert Success";

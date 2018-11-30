@@ -13,11 +13,6 @@ public class DateOfBirthValidator implements ConstraintValidator<ValidDoB, Local
 
     @Override
     public boolean isValid(LocalDate dob, ConstraintValidatorContext context){
-        if (dob != null) {
-            System.out.println(Period.between(dob, LocalDate.now()).getYears() >= 18);
-            return (Period.between(dob, LocalDate.now()).getYears() >= 18);
-        } else {
-            return false;
-        }
+        return Period.between(dob, LocalDate.now()).getYears() >= 18;
     }
 }

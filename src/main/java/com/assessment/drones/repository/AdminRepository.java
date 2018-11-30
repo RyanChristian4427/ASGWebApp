@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface AdminRepository {
-    Integer addFlyTraining (FlyTraining flyTraining);
+    Integer saveFlightTraining(FlightTrainingDto flightTrainingDto);
 
     Integer addGroundSchool (GroundSchool groundSchool);
 

@@ -4,10 +4,14 @@ import com.assessment.drones.domain.*;
 import com.assessment.drones.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Date;
 
 @Controller
@@ -23,30 +27,16 @@ public class AdminController {
 
     //method to take the user to the admin page
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
-    public String viewAdmin (){
+    public String viewAdmin(Model model){
+        FlightTrainingDto flightTrainingDto = new FlightTrainingDto();
+        model.addAttribute("flightTrainingForm", flightTrainingDto);
         return "adminDashboard";
     }
 
-    //method to take the admin to the flying training form
-    @RequestMapping(path = "/admin/flyingTraining", method = RequestMethod.GET)
-    public String viewFlyTraining () {
-        return "flyTrainForm";
-    }
-
     //getting data from the flying training form
-    @RequestMapping(path = "/admin/flyingTraining", method = RequestMethod.POST)
-    public String getFlyTraining (@RequestParam("candidate_number") Long candidateNum,
-                                  @RequestParam("training_type") String type,
-                                  @RequestParam("instructor_id") Long instructorId,
-                                  @RequestParam("skills_date") Date skillsDate){
-        FlyTraining train = new FlyTraining();
-        train.setCandidate_number(candidateNum);
-        train.setTraining_type(type);
-        train.setInstructor_id(instructorId);
-        train.setSkills_date(skillsDate);
-
-        adminService.addFlyTraining(train);
-
+    @RequestMapping(path = "/admin/flightTraining", method = RequestMethod.POST)
+    public String getFlyTraining (@ModelAttribute("flightTrainingForm") FlightTrainingDto flightTrainingDto){
+        adminService.addFlyTraining(flightTrainingDto);
         return "adminDashboard";
     }
 

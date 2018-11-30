@@ -78,15 +78,13 @@ CREATE TABLE IF NOT EXISTS course (
     PRIMARY KEY (course_number)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS flying_training (
+CREATE TABLE IF NOT EXISTS flight_training (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_id INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(10) NOT NULL,
     training_type VARCHAR(20) NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     skills_assessment_date DATE NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (candidate_id) REFERENCES candidate (id),
-    FOREIGN KEY (instructor_id) REFERENCES instructor (id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ground_school (
@@ -98,9 +96,7 @@ CREATE TABLE IF NOT EXISTS ground_school (
     pass_date DATE NOT NULL,
     pass_result INT UNSIGNED NOT NULL,
     resit TINYINT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (candidate_id) REFERENCES candidate (id),
-    FOREIGN KEY (instructor_id) REFERENCES instructor (id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS operators_manual (
@@ -109,9 +105,7 @@ CREATE TABLE IF NOT EXISTS operators_manual (
     instructor_id INT UNSIGNED NOT NULL,
     submitted_date VARCHAR(20) NOT NULL,
     pass_date VARCHAR(20) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (candidate_id) REFERENCES candidate (id),
-    FOREIGN KEY (instructor_id) REFERENCES instructor (id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS flight_assessment (
@@ -122,9 +116,7 @@ CREATE TABLE IF NOT EXISTS flight_assessment (
     logged_hours TIME NOT NULL,
     suas_category VARCHAR(20) NOT NULL,
     assessment_pass_date DATE NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (candidate_id) REFERENCES candidate (id),
-    FOREIGN KEY (instructor_id) REFERENCES instructor (id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS recommendations (
@@ -136,8 +128,7 @@ CREATE TABLE IF NOT EXISTS recommendations (
     application_date VARCHAR(20) NOT NULL,
     caa_approval_date VARCHAR(20) NOT NULL,
     overall_comments_approval_by_caa VARCHAR(20) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (candidate_id) REFERENCES candidate (id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS review (
