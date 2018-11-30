@@ -5,7 +5,7 @@ import com.assessment.drones.domain.*;
 public interface AdminService {
     String addFlyTraining(FlightTrainingDto flightTrainingDto);
 
-    String addGroundSchool(GroundSchool groundSchool);
+    String addGroundSchool(GroundSchoolDto groundSchoolDto);
 
     String addOperatorsManual(OperatorsManual operatorsManual);
 

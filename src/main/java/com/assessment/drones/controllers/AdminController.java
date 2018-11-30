@@ -5,13 +5,11 @@ import com.assessment.drones.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.util.Date;
 
 @Controller
@@ -29,7 +27,9 @@ public class AdminController {
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
     public String viewAdmin(Model model){
         FlightTrainingDto flightTrainingDto = new FlightTrainingDto();
-        model.addAttribute("flightTrainingForm", flightTrainingDto);
+        GroundSchoolDto groundSchoolDto = new GroundSchoolDto();
+        model.addAttribute("flightTrainingForm", new FlightTrainingDto());
+        model.addAttribute("groundSchoolForm", new GroundSchoolDto());
         return "adminDashboard";
     }
 
@@ -37,39 +37,13 @@ public class AdminController {
     @RequestMapping(path = "/admin/flightTraining", method = RequestMethod.POST)
     public String getFlyTraining (@ModelAttribute("flightTrainingForm") FlightTrainingDto flightTrainingDto){
         adminService.addFlyTraining(flightTrainingDto);
-        return "adminDashboard";
-    }
-
-    @RequestMapping(path = "/admin/groundSchool", method = RequestMethod.GET)
-    public String viewGroundSchool() {
-        return "groundSchoolForm";
+        return "redirect:/admin";
     }
 
     @RequestMapping(path = "/admin/groundSchool",  method = RequestMethod.POST)
-    public String getGroundSchool(@RequestParam("candidate_number") Long cNum,
-                                  @RequestParam("instructor_id") Long iNum,
-                                  @RequestParam("completion_date") Date complDate,
-                                  @RequestParam("question_bank") Long qBank,
-                                  @RequestParam("pass_date") Date pDate,
-                                  @RequestParam("pass_result") Long pResult,
-                                  @RequestParam("resit") String resit){
-        if(resit.equals("Y") || resit.equals("y")) {
-            resit = "1";
-        } else {
-            resit = "0";
-        }
-        GroundSchool gSchool = new GroundSchool();
-        gSchool.setCandidate_number(cNum);
-        gSchool.setInstructor_id(iNum);
-        gSchool.setCompletion_date(complDate);
-        gSchool.setQuestion_bank(qBank);
-        gSchool.setPass_date(pDate);
-        gSchool.setPass_result(pResult);
-        gSchool.setResit(Long.parseLong(resit));
-
-        adminService.addGroundSchool(gSchool);
-
-        return "adminDashboard";
+    public String getGroundSchool(@ModelAttribute("flightTrainingForm") GroundSchoolDto groundSchoolDto){
+        adminService.addGroundSchool(groundSchoolDto);
+        return "redirect:/admin";
     }
 
     @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.GET)

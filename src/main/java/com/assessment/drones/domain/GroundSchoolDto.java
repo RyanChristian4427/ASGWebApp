@@ -9,13 +9,11 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GroundSchool {
-    private Long id;
-    private Long candidate_number;
+public class GroundSchoolDto {
+    private String candidate_number;
     private Long instructor_id;
     private Date completion_date;
     private Long question_bank;
-    private Date pass_date;
     private Long pass_result;
-    private Long resit;
+    private Boolean resit;
 }

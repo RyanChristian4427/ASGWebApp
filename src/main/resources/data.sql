@@ -31,4 +31,4 @@ INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_i
 INSERT INTO instructor (id, user_id, first_name, surname) VALUES (1, 1, 'Erwin', 'Schroedinger');
 INSERT INTO instructor (id, user_id, first_name, surname) VALUES (2, 2, 'Johannes', 'Kepler');
 
-INSERT into operators_manual (candidate_id, instructor_id ,submitted_date ,pass_date )VALUES(2,2,'10/10/1990','10/10/1990');
+INSERT into operators_manual (candidate_number, instructor_id ,submitted_date ,pass_date )VALUES(2,2,'10/10/1990','10/10/1990');

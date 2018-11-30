@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public interface AdminRepository {
     Integer saveFlightTraining(FlightTrainingDto flightTrainingDto);
 
-    Integer addGroundSchool (GroundSchool groundSchool);
+    Integer saveGroundSchool(GroundSchoolDto groundSchoolDto);
 
     Integer addOperatorsManual (OperatorsManual operatorsManual);
 

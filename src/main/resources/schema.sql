@@ -89,11 +89,10 @@ CREATE TABLE IF NOT EXISTS flight_training (
 
 CREATE TABLE IF NOT EXISTS ground_school (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  candidate_id INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(10) NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     completion_date DATE NOT NULL,
     question_bank INT NOT NULL,
-    pass_date DATE NOT NULL,
     pass_result INT UNSIGNED NOT NULL,
     resit TINYINT NOT NULL,
     PRIMARY KEY (id)
@@ -101,7 +100,7 @@ CREATE TABLE IF NOT EXISTS ground_school (
 
 CREATE TABLE IF NOT EXISTS operators_manual (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_id INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(10) NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     submitted_date VARCHAR(20) NOT NULL,
     pass_date VARCHAR(20) NOT NULL,
@@ -110,7 +109,7 @@ CREATE TABLE IF NOT EXISTS operators_manual (
 
 CREATE TABLE IF NOT EXISTS flight_assessment (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_id INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(10) NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     insurance VARCHAR(1) NOT NULL,
     logged_hours TIME NOT NULL,
@@ -121,7 +120,7 @@ CREATE TABLE IF NOT EXISTS flight_assessment (
 
 CREATE TABLE IF NOT EXISTS recommendations (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_id INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(10) NOT NULL,
     asg_recomend_date VARCHAR(20) NOT NULL,
     flight_competence_date VARCHAR(20) NOT NULL,
     application_data_date VARCHAR(20) NOT NULL,

@@ -14,7 +14,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<FlightTrainingDto> flyTrainingRowMapper;
-    private RowMapper<GroundSchool> groundSchoolRowMapper;
+    private RowMapper<GroundSchoolDto> groundSchoolRowMapper;
     private RowMapper<OperatorsManual> operatorsManualRowMapper;
     private RowMapper<FlightAssessment> flightAssessmentRowMapper;
     private RowMapper<Recommendations> recommendationsRowMapper;
@@ -31,15 +31,13 @@ public class AdminRepositoryJdbc implements AdminRepository{
                 rs.getDate("skills_date")
         );
 
-        groundSchoolRowMapper = (rs, i) -> new GroundSchool(
-                rs.getLong("id"),
-                rs.getLong("candidate_number"),
+        groundSchoolRowMapper = (rs, i) -> new GroundSchoolDto(
+                rs.getString("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getDate("completion_date"),
                 rs.getLong("question_bank"),
-                rs.getDate("pass_date"),
                 rs.getLong("pass_result"),
-                rs.getLong("resit")
+                rs.getBoolean("resit")
         );
 
         operatorsManualRowMapper = (rs, i) -> new OperatorsManual(
@@ -81,19 +79,16 @@ public class AdminRepositoryJdbc implements AdminRepository{
     }
 
     @Override
-    public Integer addGroundSchool(GroundSchool groundSchool){
-        ArrayList<Object> params = new ArrayList<>();
-        params.add(groundSchool.getCandidate_number());
-        params.add(groundSchool.getInstructor_id());
-        params.add(groundSchool.getCompletion_date());
-        params.add(groundSchool.getQuestion_bank());
-        params.add(groundSchool.getPass_date());
-        params.add(groundSchool.getPass_result());
-        params.add(groundSchool.getResit());
+    public Integer saveGroundSchool(GroundSchoolDto groundSchoolDto){
+        int resit = 0;
+        if(groundSchoolDto.getResit()) {
+            resit = 1;
+        }
         return jdbcTemplate.update(
-                "INSERT INTO ground_school (candidate_number, instructor_id, completion_date, question_bank, pass_date, pass_result, resit) " +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?)",
-                params.toArray());
+                "INSERT INTO ground_school (candidate_number, instructor_id, completion_date, question_bank, " +
+                        "pass_result, resit) VALUES(?, ?, ?, ?, ?, ?)", groundSchoolDto.getCandidate_number(),
+                groundSchoolDto.getInstructor_id(), groundSchoolDto.getCompletion_date(), groundSchoolDto.getQuestion_bank(),
+                groundSchoolDto.getPass_result(), resit);
     }
 
     @Override

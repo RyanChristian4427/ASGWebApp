@@ -26,8 +26,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addGroundSchool(GroundSchool groundSchool){
-        Integer response = adminRepository.addGroundSchool(groundSchool);
+    public String addGroundSchool(GroundSchoolDto groundSchoolDto){
+        Integer response = adminRepository.saveGroundSchool(groundSchoolDto);
 
         if (response == 1) {
             return "Insert Success";
