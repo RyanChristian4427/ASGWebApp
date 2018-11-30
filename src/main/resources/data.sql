@@ -1,7 +1,9 @@
 INSERT INTO user (id, email, password, role) VALUES (1, 'admin@asg.com', '$2a$10$6443CNhV26R6qEMohATMYuleZxiUfr/ya0urCUqheo5STYOU6maqu', 'admin');
 INSERT INTO user (id, email, password, role) VALUES (2, 'admin2@asg.com', '$2a$10$cGXMmSfOg2ZrUXUgCxaiaO4pgjJsSvcFYlKPMcFDBgVp3MqrZ2M96', 'admin');
-INSERT INTO user (id, email, password, role) VALUES (3, 'client2@asg.com', '$2a$10$S4MOcUgShERWJpI1EpTReeNbwKL09wElxbCLLimHdf3yrOG7H2PWG', 'client');
-INSERT INTO user (id, email, password, role) VALUES (4, 'client3@asg.com', '$2a$10$uzGe/I2v.1LtdTPBQg8oDOe/07mlgaGyG0UoF8G5VQD7b6PAvTQHq', 'client');
+INSERT INTO user (id, email, password, role) VALUES (3, 'client@asg.com', '$2a$10$S4MOcUgShERWJpI1EpTReeNbwKL09wElxbCLLimHdf3yrOG7H2PWG', 'client');
+INSERT INTO user (id, email, password, role) VALUES (4, 'client2@asg.com', '$2a$10$uzGe/I2v.1LtdTPBQg8oDOe/07mlgaGyG0UoF8G5VQD7b6PAvTQHq', 'client');
+INSERT INTO user (id, email, password, role) VALUES (5, 'client3@asg.com', '$2a$10$H2GWvDnlRJD1DuVPkfkSLujsmzSwGmM7ELKpZY0olKQFObp4GWZ56', 'client');
+INSERT INTO user (id, email, password, role) VALUES (6, 'client4@asg.com', '$2a$10$1XELQEuTrZ0JbFg0MijjI.4QFWJYMppieYp5XN8Aj6z6LIg9QwgN2', 'client');
 
 INSERT INTO address (id, line_1, line_2, city, postcode) VALUES (1, 'Studio 103, The Business Centre', '61 Wellfield Road', 'Cardiff', 'CF24 3DG');
 INSERT INTO address (id, line_1, line_2, city, postcode) VALUES (2, 'Unit 14, 3 Edgar Buildings', 'George Street', 'Bath', 'BA1 2FJ');
@@ -21,10 +23,10 @@ INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previ
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (3, '10/10/1990', 'Aberdeen', 'Microsoft', 'A lot', 'Aberdeen', 1);
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (4, '10/10/1990', 'Cardiff', 'Apple', 'A Pro', 'Cardiff', 2);
 
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (1, 1, 'Blaise', 'Pascal', 1, 1);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (2, 2, 'Caroline', 'Herschel', 2, 2);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (3, 3, 'Edmond', 'Halley', 3, 3);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (4, 4, 'Enrico', 'Fermi', 4, 4);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (1, 3, 'Blaise', 'Pascal', 1, 1);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (2, 4, 'Caroline', 'Herschel', 2, 2);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (3, 5, 'Edmond', 'Halley', 3, 3);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (4, 6, 'Enrico', 'Fermi', 4, 4);
 
 INSERT INTO instructor (id, user_id, first_name, surname) VALUES (1, 1, 'Erwin', 'Schroedinger');
 INSERT INTO instructor (id, user_id, first_name, surname) VALUES (2, 2, 'Johannes', 'Kepler');
