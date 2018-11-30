@@ -86,7 +86,7 @@ public class UserRepositoryJdbc implements UserRepository{
                         "INSERT INTO general_info(date_of_birth, place_of_birth, company_name, " +
                                 "previous_flying_exp, preferred_location, drone_type_id) VALUES(?, ?, ?, ?, ?, ?)",
                         new String[] {"id"});
-                pstmt.setString(1, accountDto.getDob());
+                pstmt.setObject(1, accountDto.getDob());
                 pstmt.setString(2, accountDto.getPob());
                 pstmt.setString(3, accountDto.getCompanyName());
                 pstmt.setString(4, accountDto.getFlightExperience());
