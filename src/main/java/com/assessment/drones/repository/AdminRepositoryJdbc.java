@@ -163,7 +163,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
 
         return jdbcTemplate.update(connection -> {
             PreparedStatement pstmt = connection.prepareStatement(
-                    "UPDATE operators_manual SET submitted_date = ? AND pass_date = ? WHERE candidate_number = ? AND instructor_id = ? ",
+                    "UPDATE operators_manual SET submitted_date = ?, pass_date = ? WHERE candidate_number = ? AND instructor_id = ? ",
                     new String[] {"id"});
             pstmt.setString(1, om.getSubmitted_date());
             pstmt.setString(2, om.getPass_date());

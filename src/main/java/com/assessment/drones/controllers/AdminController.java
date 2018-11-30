@@ -105,7 +105,8 @@ public class AdminController {
             // it exists
             om.setPass_date(pDate);
             om.setSubmitted_date(subDate);
-            adminService.addOperatorsManual(oManual);
+
+            adminService.addOperatorsManual(om);
             adminService.save(om);
 
             return "adminDashboard";
@@ -114,6 +115,7 @@ public class AdminController {
             throw new RuntimeException("Candidate number or instructor id not found ");
         }
     }
+
     @RequestMapping(path = "/admin/uperatorsManual/update", method = RequestMethod.POST)
     public String updateOperatorMaual(@RequestParam("candidate_number") Long cNum,
                                       @RequestParam("instructor_id") Long iNum,
@@ -130,9 +132,9 @@ public class AdminController {
 
             return "information updated";
         } else {
-            return "not found ";
+
             // give an error saying not found
-            //throw new RuntimeException("test exception");
+            throw new RuntimeException("not found");
         }
     }
 
