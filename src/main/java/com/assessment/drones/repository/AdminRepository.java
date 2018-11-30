@@ -14,4 +14,9 @@ public interface AdminRepository {
     Integer addFlightAssessment (FlightAssessment flightAssessment);
 
     Integer addRecommendations (Recommendations recommendations);
+
+    OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
+
+    FlightAssessment findFlightAssessment(long candidate_number, long instructor_id);
+
 }

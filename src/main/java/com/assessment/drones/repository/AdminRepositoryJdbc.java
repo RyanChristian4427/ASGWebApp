@@ -2,14 +2,20 @@ package com.assessment.drones.repository;
 
 import com.assessment.drones.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 @Repository
 public class AdminRepositoryJdbc implements AdminRepository{
+
     private JdbcTemplate jdbcTemplate;
     private RowMapper<FlyTraining> flyTrainingRowMapper;
     private RowMapper<GroundSchool> groundSchoolRowMapper;
@@ -142,4 +148,27 @@ public class AdminRepositoryJdbc implements AdminRepository{
                         "VALUES(?, ?, ?, ?, ?, ?, ?)",
                 params.toArray());
     }
+    public OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
+        try {
+            return jdbcTemplate.queryForObject(
+                    "SELECT * FROM operators_manual WHERE instructor_id = ? AND candidate_number = ?",
+                    new Object[]{instructorId, candidateId},
+                    this.operatorsManualRowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public FlightAssessment findFlightAssessment(long candidate_number, long instructor_id) {
+        try {
+            return jdbcTemplate.queryForObject(
+                    "SELECT * FROM flight_assessment WHERE instructor_id = ? AND candidate_number = ?",
+                    new Object[]{instructor_id, candidate_number},
+                    this.flightAssessmentRowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 }
+

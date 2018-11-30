@@ -99,11 +99,24 @@ public class AdminController {
         oManual.setSubmitted_date(subDate);
         oManual.setPass_date(pDate);
 
-        adminService.addOperatorsManual(oManual);
-        return "adminDashboard";
+        OperatorsManual om = this.adminService.findOperatorManualByInstructorAndCandidate(iNum, cNum);
+
+        if (om != null) {
+            // it exists
+            om.setPass_date(pDate);
+            om.setSubmitted_date(subDate);
+
+            adminService.addOperatorsManual(om);
+
+            return "adminDashboard";
+        } else {
+            // give an error saying not found
+            throw new RuntimeException("Candidate number or instructor id not found ");
+        }
     }
 
-    @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.GET)
+
+        @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.GET)
     public String viewFlightAssessment() {
         return "flightAssessmentForm";
     }
@@ -124,8 +137,22 @@ public class AdminController {
         fAssessment.setSuas_category(suas);
         fAssessment.setAssessment_pass_date(pass);
 
-        adminService.addFlightAssessment(fAssessment);
-        return "adminDashboard";
+        FlightAssessment fa = this.adminService.findFlightAssessment(iNum,cNum);
+
+        if (fa != null) {
+            // it exists
+            fa.setSuas_category(suas);
+            fa.setAssessment_pass_date(pass);
+            fa.setLogged_hours(logged);
+            fa.setInsurance(ins);
+
+            adminService.addFlightAssessment(fa);
+
+            return "adminDashboard";
+        } else {
+            // give an error saying not found
+            throw new RuntimeException("Candidate number or instructor id not found ");
+        }
     }
 
     @RequestMapping(path = "/admin/recommendations", method = RequestMethod.GET)
