@@ -103,6 +103,11 @@ public class AdminServiceImpl implements AdminService{
                     .getInstructor_id()).isPresent() &&
                     adminRepository.findOperationsManual(((OperatorsManualDto) formDto).getCandidate_number()).isPresent();
             addOperatorsManual((OperatorsManualDto) formDto);
+        } else if (formDto instanceof FlightAssessmentDto) {
+            verified = candidateRepository.findCandidateByNumber(((FlightAssessmentDto) formDto)
+                    .getCandidate_number()).isPresent() && instructorRepository.findInstructorByID(((FlightAssessmentDto) formDto)
+                    .getInstructor_id()).isPresent();
+            addFlightAssessment((FlightAssessmentDto) formDto);
         }
         return verified;
     }

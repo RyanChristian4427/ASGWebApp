@@ -29,16 +29,25 @@ public class AdminController {
     //method to take the user to the admin page
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
     public String viewAdmin(Model model){
-        Map<String, Object> attributes = new HashMap<>()
-        {{
-            put("flightTrainingForm", new FlightTrainingDto());
-            put("groundSchoolForm", new GroundSchoolDto());
-            put("operatorsManualForm", new OperatorsManualDto());
-            put("flightAssessmentFromForm", new FlightAssessmentDto());
-            put("recommendationsForm", new RecommendationsDto());
+        model.addAttribute("flightTrainingForm", new FlightTrainingDto());
+        model.addAttribute("groundSchoolForm", new GroundSchoolDto());
+        model.addAttribute("operatorsManualForm", new OperatorsManualDto());
+        model.addAttribute("flightAssessmentForm", new FlightAssessmentDto());
+        model.addAttribute("recommendationsForm", new RecommendationsDto());
 
-        }};
-        model.addAllAttributes(attributes);
+        //Perhaps more efficient, though Thymeleaf shows errors in the HTML, making it a bit harder
+        //to work with.
+//        Map<String, Object> attributes = new HashMap<>()
+//        {{
+//            put("flightTrainingForm", new FlightTrainingDto());
+//            put("groundSchoolForm", new GroundSchoolDto());
+//            put("operatorsManualForm", new OperatorsManualDto());
+//            put("flightAssessmentFromForm", new FlightAssessmentDto());
+//            put("recommendationsForm", new RecommendationsDto());
+//
+//        }};
+//        model.addAllAttributes(attributes);
+
         return "adminDashboard";
     }
 
@@ -69,24 +78,7 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/admin/recommendations", method = RequestMethod.POST)
-    public String addRecommendations(@RequestParam("candidate_number") Long cNum,
-                                     @RequestParam("asg_recommend_date") String asg,
-                                     @RequestParam("flight_competence_date") String competence,
-                                     @RequestParam("application_data_date") String data_date,
-                                     @RequestParam("application_date") String app_date,
-                                     @RequestParam("caa_approval_date") String caa_approval,
-                                     @RequestParam("overall_comments_approval_by_caa") String comments){
-
-        RecommendationsDto recommendationsDto = new RecommendationsDto();
-        recommendationsDto.setCandidate_number(cNum);
-        recommendationsDto.setAsg_recommend_date(asg);
-        recommendationsDto.setFlight_competence_date(competence);
-        recommendationsDto.setApplication_data_date(data_date);
-        recommendationsDto.setApplication_date(app_date);
-        recommendationsDto.setCaa_approval_date(caa_approval);
-        recommendationsDto.setOverall_comments_approval_by_caa(comments);
-
-        adminService.addRecommendations(recommendationsDto);
-        return "adminDashboard";
-    }
+    public String addRecommendations(@ModelAttribute("flightAssessment") RecommendationsDto recommendationsDto){
+        adminService.verify(recommendationsDto);
+        return "redirect:/admin";    }
 }

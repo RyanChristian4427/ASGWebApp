@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS flight_assessment (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS recommendationsDto (
+CREATE TABLE IF NOT EXISTS recommendations (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     candidate_number VARCHAR(13) NOT NULL,
     asg_recomend_date VARCHAR(20) NOT NULL,

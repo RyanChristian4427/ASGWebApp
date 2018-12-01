@@ -12,7 +12,7 @@ import java.util.Date;
 public class FlightAssessmentDto {
     private String candidate_number;
     private Long instructor_id;
-    private String insurance;
+    private Boolean insurance;
     private Double logged_hours;
     private String suas_category;
 }
