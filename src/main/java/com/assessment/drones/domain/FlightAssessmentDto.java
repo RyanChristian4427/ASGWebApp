@@ -10,9 +10,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FlightAssessmentDto {
-    private String candidate_number;
-    private Long instructor_id;
+    private String candidateNumber;
+    private Long instructorId;
     private Boolean insurance;
-    private Double logged_hours;
-    private String suas_category;
+    private Double loggedHours;
+    private String suasCategory;
 }

@@ -27,17 +27,16 @@ public class AdminRepositoryJdbc implements AdminRepository{
         jdbcTemplate = aTemplate;
 
         flyTrainingRowMapper = (rs, i) -> new FlightTrainingDto(
-                rs.getLong("id"),
                 rs.getString("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getString("type"),
-                rs.getDate("skills_date")
+                rs.getDate("skills_date").toLocalDate()
         );
 
         groundSchoolRowMapper = (rs, i) -> new GroundSchoolDto(
                 rs.getString("candidate_number"),
                 rs.getLong("instructor_id"),
-                rs.getDate("completion_date"),
+                rs.getDate("completion_date").toLocalDate(),
                 rs.getLong("question_bank"),
                 rs.getLong("pass_result"),
                 rs.getBoolean("resit")
@@ -57,14 +56,12 @@ public class AdminRepositoryJdbc implements AdminRepository{
         );
 
         recommendationsRowMapper = (rs, i) -> new RecommendationsDto(
-                rs.getLong("id"),
-                rs.getLong("candidate_number"),
-                rs.getString("asg_recommend_date"),
-                rs.getString("flight_competence_date"),
-                rs.getString("application_data_date"),
-                rs.getString("application_date"),
-                rs.getString("caa_approval_date"),
-                rs.getString("overall_comments_approval_by_caa")
+                rs.getString("candidate_number"),
+                rs.getDate("asg_recommend_date").toLocalDate(),
+                rs.getDate("flight_competence_date").toLocalDate(),
+                rs.getDate("application_date").toLocalDate(),
+                rs.getDate("caa_approval_date").toLocalDate(),
+                rs.getDate("overall_comments_approval_by_caa").toLocalDate()
         );
     }
 
@@ -72,8 +69,8 @@ public class AdminRepositoryJdbc implements AdminRepository{
     public Integer saveFlightTraining(FlightTrainingDto flightTrainingDto){
         return jdbcTemplate.update(
                 "INSERT INTO flight_training (candidate_number, instructor_id, training_type, " +
-                        "skills_assessment_date) VALUES(?, ?, ?, ?)", flightTrainingDto.getCandidate_number(),
-                flightTrainingDto.getInstructor_id(), flightTrainingDto.getTraining_type(), flightTrainingDto.getSkills_date());
+                        "skills_assessment_date) VALUES(?, ?, ?, ?)", flightTrainingDto.getCandidateNumber(),
+                flightTrainingDto.getInstructorId(), flightTrainingDto.getTrainingType(), flightTrainingDto.getSkillsDate());
     }
 
     @Override
@@ -84,17 +81,17 @@ public class AdminRepositoryJdbc implements AdminRepository{
         }
         return jdbcTemplate.update(
                 "INSERT INTO ground_school (candidate_number, instructor_id, completion_date, question_bank, " +
-                        "pass_date, pass_result, resit) VALUES(?, ?, ?, ?, ?, ?, ?)", groundSchoolDto.getCandidate_number(),
-                groundSchoolDto.getInstructor_id(), groundSchoolDto.getCompletion_date(), groundSchoolDto.getQuestion_bank(),
-                LocalDate.now(), groundSchoolDto.getPass_result(), resit);
+                        "pass_date, pass_result, resit) VALUES(?, ?, ?, ?, ?, ?, ?)", groundSchoolDto.getCandidateNumber(),
+                groundSchoolDto.getInstructorId(), groundSchoolDto.getCompletionDate(), groundSchoolDto.getQuestionBank(),
+                LocalDate.now(), groundSchoolDto.getPassResult(), resit);
     }
 
     @Override
     public Integer addOperatorsManual(OperatorsManualDto operatorsManualDto){
         return jdbcTemplate.update(
                 "UPDATE operators_manual SET instructor_id = ?, pass_date = ? " +
-                        "WHERE candidate_number = ?", operatorsManualDto.getInstructor_id(), LocalDate.now(),
-                operatorsManualDto.getCandidate_number());
+                        "WHERE candidate_number = ?", operatorsManualDto.getInstructorId(), LocalDate.now(),
+                operatorsManualDto.getCandidateNumber());
     }
 
     @Override
@@ -102,24 +99,18 @@ public class AdminRepositoryJdbc implements AdminRepository{
         return jdbcTemplate.update(
                 "INSERT INTO flight_assessment (candidate_number, instructor_id, insurance, logged_hours, " +
                         "suas_category, assessment_pass_date) VALUES(?, ?, ?, ?, ?, ?)",
-                flightAssessmentDto.getCandidate_number(), flightAssessmentDto.getInstructor_id(), flightAssessmentDto.getInsurance(),
-                flightAssessmentDto.getLogged_hours(), flightAssessmentDto.getSuas_category(), LocalDate.now());
+                flightAssessmentDto.getCandidateNumber(), flightAssessmentDto.getInstructorId(), flightAssessmentDto.getInsurance(),
+                flightAssessmentDto.getLoggedHours(), flightAssessmentDto.getSuasCategory(), LocalDate.now());
     }
 
     @Override
     public Integer addRecommendations(RecommendationsDto recommendationsDto){
-        ArrayList<Object> params = new ArrayList<>();
-        params.add(recommendationsDto.getCandidate_number());
-        params.add(recommendationsDto.getAsg_recommend_date());
-        params.add(recommendationsDto.getFlight_competence_date());
-        params.add(recommendationsDto.getApplication_data_date());
-        params.add(recommendationsDto.getApplication_date());
-        params.add(recommendationsDto.getCaa_approval_date());
-        params.add(recommendationsDto.getOverall_comments_approval_by_caa());
         return jdbcTemplate.update(
-                "INSERT INTO recommendations (candidate_number, asg_recomend_date, flight_competence_date, application_data_date, application_date, caa_approval_date, overall_comments_approval_by_caa) " +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?)",
-                params.toArray());
+                "INSERT INTO recommendations (candidate_number, asg_recomend_date, flight_competence_date, " +
+                        "caa_application_date, caa_approval_date, overall_comments_approval_by_caa) VALUES(?, ?, ?, ?, ?, ?)",
+                recommendationsDto.getCandidateNumber(), recommendationsDto.getAsgRecommendDate(),
+                recommendationsDto.getFlightCompetenceDate(), recommendationsDto.getCaaApplicationDate(),
+                recommendationsDto.getCaaApprovalDate(), recommendationsDto.getAsgOverallCommentsAndApprovalByCaa());
     }
 
     @Override

@@ -124,8 +124,7 @@ CREATE TABLE IF NOT EXISTS recommendations (
     candidate_number VARCHAR(13) NOT NULL,
     asg_recomend_date VARCHAR(20) NOT NULL,
     flight_competence_date VARCHAR(20) NOT NULL,
-    application_data_date VARCHAR(20) NOT NULL,
-    application_date VARCHAR(20) NOT NULL,
+    caa_application_date VARCHAR(20) NOT NULL,
     caa_approval_date VARCHAR(20) NOT NULL,
     overall_comments_approval_by_caa VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)

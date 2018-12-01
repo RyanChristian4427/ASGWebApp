@@ -80,5 +80,6 @@ public class AdminController {
     @RequestMapping(path = "/admin/recommendations", method = RequestMethod.POST)
     public String addRecommendations(@ModelAttribute("flightAssessment") RecommendationsDto recommendationsDto){
         adminService.verify(recommendationsDto);
-        return "redirect:/admin";    }
+        return "redirect:/admin";
+    }
 }

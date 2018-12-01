@@ -11,6 +11,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OperatorsManualDto {
-    private String candidate_number;
-    private Long instructor_id;
+    private String candidateNumber;
+    private Long instructorId;
 }
