@@ -1,6 +1,7 @@
-package com.assessment.drones.repository;
+package com.assessment.drones.repository.implementations;
 
 import com.assessment.drones.domain.Instructor;
+import com.assessment.drones.repository.interfaces.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

@@ -1,8 +1,7 @@
-package com.assessment.drones.services;
+package com.assessment.drones.services.implementations;
 
-import com.assessment.drones.domain.User;
-import com.assessment.drones.domain.RegistrationDto;
-import com.assessment.drones.repository.UserRepository;
+import com.assessment.drones.repository.interfaces.UserRepository;
+import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +11,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository aUserRepository) {
-        userRepository = aUserRepository;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override

@@ -1,6 +1,7 @@
-package com.assessment.drones.validation;
+package com.assessment.drones.validation.implementations;
 
-import com.assessment.drones.services.UserService;
+import com.assessment.drones.services.interfaces.UserService;
+import com.assessment.drones.validation.annotations.ValidEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;

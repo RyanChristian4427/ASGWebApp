@@ -1,16 +1,16 @@
-package com.assessment.drones.services;
+package com.assessment.drones.services.implementations;
 
 import com.assessment.drones.domain.Candidate;
 import com.assessment.drones.domain.RegistrationDto;
 import com.assessment.drones.domain.User;
-import com.assessment.drones.repository.CandidateRepository;
+import com.assessment.drones.repository.interfaces.CandidateRepository;
+import com.assessment.drones.services.interfaces.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +19,8 @@ public class CandidateServiceImpl implements CandidateService {
     private CandidateRepository candidateRepository;
 
     @Autowired
-    public CandidateServiceImpl(CandidateRepository aCandidateRepository) {
-        candidateRepository = aCandidateRepository;
+    public CandidateServiceImpl(CandidateRepository candidateRepository) {
+        this.candidateRepository = candidateRepository;
     }
 
     @Override

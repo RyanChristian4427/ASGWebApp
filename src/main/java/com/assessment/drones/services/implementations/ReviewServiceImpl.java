@@ -1,7 +1,8 @@
-package com.assessment.drones.services;
+package com.assessment.drones.services.implementations;
 
 import com.assessment.drones.domain.Review;
-import com.assessment.drones.repository.ReviewRepository;
+import com.assessment.drones.repository.interfaces.ReviewRepository;
+import com.assessment.drones.services.interfaces.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,8 @@ public class ReviewServiceImpl implements ReviewService {
     private ReviewRepository reviewRepository;
 
     @Autowired
-    public ReviewServiceImpl(ReviewRepository aReviewRepository) {
-        reviewRepository = aReviewRepository;
+    public ReviewServiceImpl(ReviewRepository reviewRepository) {
+        this.reviewRepository = reviewRepository;
     }
 
     public String addReview(Review review) {

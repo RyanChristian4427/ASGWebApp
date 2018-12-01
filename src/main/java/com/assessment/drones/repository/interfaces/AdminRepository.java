@@ -1,4 +1,4 @@
-package com.assessment.drones.repository;
+package com.assessment.drones.repository.interfaces;
 
 import com.assessment.drones.domain.*;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,5 @@ public interface AdminRepository {
     Integer addRecommendations (RecommendationsDto recommendationsDto);
 
     Optional<OperatorsManualDto> findOperationsManual(String candidateNumber);
-
-    FlightAssessmentDto findFlightAssessment(long candidate_number, long instructor_id);
 
 }

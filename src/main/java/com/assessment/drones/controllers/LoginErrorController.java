@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginErrorController {
 
     @RequestMapping(value = "/login-error", method = RequestMethod.GET)
-    public final String displayLoginform(Model model) {
+    public final String displayLoginForm(Model model) {
         model.addAttribute("loginError", true);
         return "login";
     }

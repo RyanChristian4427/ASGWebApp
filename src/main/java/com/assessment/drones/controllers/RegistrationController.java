@@ -1,7 +1,7 @@
 package com.assessment.drones.controllers;
 
 import com.assessment.drones.domain.RegistrationDto;
-import com.assessment.drones.services.CandidateService;
+import com.assessment.drones.services.interfaces.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +18,8 @@ public class RegistrationController {
     private CandidateService candidateService;
 
     @Autowired
-    public RegistrationController(CandidateService aCandidateService) {
-        candidateService = aCandidateService;
+    public RegistrationController(CandidateService candidateService) {
+        this.candidateService = candidateService;
     }
 
     @RequestMapping(path="/register", method= RequestMethod.GET)

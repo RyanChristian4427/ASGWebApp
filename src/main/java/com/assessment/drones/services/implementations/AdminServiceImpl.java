@@ -1,16 +1,15 @@
-package com.assessment.drones.services;
+package com.assessment.drones.services.implementations;
 
 import com.assessment.drones.domain.*;
-import com.assessment.drones.repository.AdminRepository;
-import com.assessment.drones.repository.CandidateRepository;
-import com.assessment.drones.repository.InstructorRepository;
+import com.assessment.drones.repository.interfaces.AdminRepository;
+import com.assessment.drones.repository.interfaces.CandidateRepository;
+import com.assessment.drones.repository.interfaces.InstructorRepository;
+import com.assessment.drones.services.interfaces.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
     private AdminRepository adminRepository;
     private CandidateRepository candidateRepository;
     private InstructorRepository instructorRepository;
@@ -23,7 +22,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addFlyTraining(FlightTrainingDto flightTrainingDto){
+    public String saveFlightTraining(FlightTrainingDto flightTrainingDto){
         Integer response = adminRepository.saveFlightTraining(flightTrainingDto);
 
         if (response == 1) {
@@ -34,7 +33,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addGroundSchool(GroundSchoolDto groundSchoolDto){
+    public String saveGroundSchool(GroundSchoolDto groundSchoolDto){
         Integer response = adminRepository.saveGroundSchool(groundSchoolDto);
 
         if (response == 1) {
@@ -45,7 +44,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addOperatorsManual(OperatorsManualDto operatorsManualDto){
+    public String saveOperationsManual(OperatorsManualDto operatorsManualDto){
         Integer response = adminRepository.addOperatorsManual(operatorsManualDto);
 
         if (response == 1) {
@@ -56,7 +55,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addFlightAssessment(FlightAssessmentDto flightAssessmentDto){
+    public String saveFlightAssessment(FlightAssessmentDto flightAssessmentDto){
         Integer response = adminRepository.addFlightAssessment(flightAssessmentDto);
 
         if (response == 1) {
@@ -67,7 +66,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addRecommendations(RecommendationsDto recommendationsDto){
+    public String saveRecommendations(RecommendationsDto recommendationsDto){
         Integer response = adminRepository.addRecommendations(recommendationsDto);
 
         if (response == 1) {
@@ -75,11 +74,6 @@ public class AdminServiceImpl implements AdminService{
         } else {
             return null;
         }
-    }
-
-    @Override
-    public Optional<Candidate> findManualByCandidate(String candidateNumber) {
-        return candidateRepository.findCandidateByNumber(candidateNumber);
     }
 
     @Override
@@ -91,33 +85,28 @@ public class AdminServiceImpl implements AdminService{
             verified = candidateRepository.findCandidateByNumber(((FlightTrainingDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((FlightTrainingDto) formDto)
                     .getInstructorId()).isPresent();
-            addFlyTraining((FlightTrainingDto) formDto);
+            saveFlightTraining((FlightTrainingDto) formDto);
         } else if(formDto instanceof GroundSchoolDto) {
             verified = candidateRepository.findCandidateByNumber(((GroundSchoolDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((GroundSchoolDto) formDto)
                     .getInstructorId()).isPresent();
-            addGroundSchool((GroundSchoolDto) formDto);
+            saveGroundSchool((GroundSchoolDto) formDto);
         } else if (formDto instanceof OperatorsManualDto) {
             verified = candidateRepository.findCandidateByNumber(((OperatorsManualDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((OperatorsManualDto) formDto)
                     .getInstructorId()).isPresent() &&
                     adminRepository.findOperationsManual(((OperatorsManualDto) formDto).getCandidateNumber()).isPresent();
-            addOperatorsManual((OperatorsManualDto) formDto);
+            saveOperationsManual((OperatorsManualDto) formDto);
         } else if (formDto instanceof FlightAssessmentDto) {
             verified = candidateRepository.findCandidateByNumber(((FlightAssessmentDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((FlightAssessmentDto) formDto)
                     .getInstructorId()).isPresent();
-            addFlightAssessment((FlightAssessmentDto) formDto);
+            saveFlightAssessment((FlightAssessmentDto) formDto);
         } else if(formDto instanceof RecommendationsDto) {
             verified = candidateRepository.findCandidateByNumber(((RecommendationsDto) formDto)
                     .getCandidateNumber()).isPresent();
-            addRecommendations((RecommendationsDto) formDto);
+            saveRecommendations((RecommendationsDto) formDto);
         }
         return verified;
-    }
-
-    @Override
-    public FlightAssessmentDto findFlightAssessment(long candidate_number, long instructor_id) {
-        return this.adminRepository.findFlightAssessment(candidate_number, instructor_id);
     }
 }

@@ -1,24 +1,15 @@
-package com.assessment.drones.repository;
+package com.assessment.drones.repository.implementations;
 
 import com.assessment.drones.domain.User;
-import com.assessment.drones.domain.RegistrationDto;
+import com.assessment.drones.repository.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 @Repository
-public class UserRepositoryJdbc implements UserRepository{
+public class UserRepositoryJdbc implements UserRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<User> userMapper;

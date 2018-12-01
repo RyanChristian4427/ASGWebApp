@@ -1,9 +1,9 @@
 package com.assessment.drones.domain;
 
-import com.assessment.drones.validation.PasswordMatches;
-import com.assessment.drones.validation.ValidDoB;
-import com.assessment.drones.validation.ValidEmail;
-import com.assessment.drones.validation.ValidPostCode;
+import com.assessment.drones.validation.annotations.PasswordMatches;
+import com.assessment.drones.validation.annotations.ValidDoB;
+import com.assessment.drones.validation.annotations.ValidEmail;
+import com.assessment.drones.validation.annotations.ValidPostCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +12,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-
-import static java.sql.JDBCType.DATE;
 
 @Data
 @NoArgsConstructor

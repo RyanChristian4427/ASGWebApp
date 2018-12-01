@@ -1,4 +1,4 @@
-package com.assessment.drones.services;
+package com.assessment.drones.services.interfaces;
 
 public interface UserService {
 

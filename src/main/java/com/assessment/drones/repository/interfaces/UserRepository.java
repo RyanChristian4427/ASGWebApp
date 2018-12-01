@@ -1,4 +1,4 @@
-package com.assessment.drones.repository;
+package com.assessment.drones.repository.interfaces;
 
 import com.assessment.drones.domain.User;
 import com.assessment.drones.domain.RegistrationDto;

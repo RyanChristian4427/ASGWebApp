@@ -20,10 +20,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthFailureHandler authFailureHandler;
 
     @Autowired
-    public SecurityConfig(MyUserDetailsService aService, AuthSuccessHandler aAuthSuccessHandler, AuthFailureHandler aAuthFailureHandler) {
-        userDetailsService = aService;
-        authSuccessHandler = aAuthSuccessHandler;
-        authFailureHandler = aAuthFailureHandler;
+    public SecurityConfig(MyUserDetailsService userDetailsService, AuthSuccessHandler authSuccessHandler, AuthFailureHandler authFailureHandler) {
+        this.userDetailsService = userDetailsService;
+        this.authSuccessHandler = authSuccessHandler;
+        this.authFailureHandler = authFailureHandler;
     }
 
     @Override

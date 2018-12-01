@@ -1,4 +1,6 @@
-package com.assessment.drones.validation;
+package com.assessment.drones.validation.annotations;
+
+import com.assessment.drones.validation.implementations.EmailValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

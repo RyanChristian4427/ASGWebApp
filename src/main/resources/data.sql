@@ -15,8 +15,35 @@ INSERT INTO contact_info (id, phone_number, address_id) VALUES (2, '7597268597',
 INSERT INTO contact_info (id, phone_number, address_id) VALUES (3, '7911123456', 3);
 INSERT INTO contact_info (id, phone_number, address_id) VALUES (4, '7911564856', 4);
 
-INSERT INTO drone (id, make, model) VALUES (1,'DJI', 'Mavic');
-INSERT INTO drone (id, make, model) VALUES (2,'DJI', 'Matrice');
+INSERT INTO drone (make, model)
+VALUES
+       ('DJI', 'Matrice'),
+       ('DJI', 'Mavic'),
+       ('DJI', 'Mavic 2'),
+       ('DJI', 'Mavic Air'),
+       ('DJI', 'Mavic Pro'),
+       ('DJI', 'Mavic Pro Platinum'),
+       ('DJI', 'Phantom 1'),
+       ('DJI', 'Phantom FC40'),
+       ('DJI', 'Phantom 2'),
+       ('DJI', 'Phantom 2 Vision'),
+       ('DJI', 'Phantom 2 Vision+'),
+       ('DJI', 'Phantom 3 Standard'),
+       ('DJI', 'Phantom 3 4k'),
+       ('DJI', 'Phantom 3 SE'),
+       ('DJI', 'Phantom 3 Advanced'),
+       ('DJI', 'Phantom 3 Professional'),
+       ('DJI', 'Phantom 4'),
+       ('DJI', 'Phantom 4 Advanced'),
+       ('DJI', 'Phantom 4 Pro'),
+       ('DJI', 'Phantom 4 Pro V2.0'),
+       ('DJI', 'Inspire 1'),
+       ('DJI', 'Inspire 1 Pro/Raw'),
+       ('DJI', 'Inspire 2'),
+       ('Parrot', 'Anafi'),
+       ('Parrot', 'Bebop 2'),
+       ('Parrot', 'Bebop 2 Power'),
+       ('Parrot', 'Mambo');
 
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (1, '1990/2/28', 'Cardiff', '', 'None', 'Cardiff', 1);
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (2, '1990/10/21', 'Somerset', '', 'Some', 'Somerset', 2);

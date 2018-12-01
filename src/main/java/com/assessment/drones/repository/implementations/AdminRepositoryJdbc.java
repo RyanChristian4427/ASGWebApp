@@ -1,6 +1,7 @@
-package com.assessment.drones.repository;
+package com.assessment.drones.repository.implementations;
 
 import com.assessment.drones.domain.*;
+import com.assessment.drones.repository.interfaces.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,12 +9,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Optional;
 
 @Repository
-public class AdminRepositoryJdbc implements AdminRepository{
+public class AdminRepositoryJdbc implements AdminRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<FlightTrainingDto> flyTrainingRowMapper;
@@ -111,18 +110,6 @@ public class AdminRepositoryJdbc implements AdminRepository{
                 recommendationsDto.getCandidateNumber(), recommendationsDto.getAsgRecommendDate(),
                 recommendationsDto.getFlightCompetenceDate(), recommendationsDto.getCaaApplicationDate(),
                 recommendationsDto.getCaaApprovalDate(), recommendationsDto.getAsgOverallCommentsAndApprovalByCaa());
-    }
-
-    @Override
-    public FlightAssessmentDto findFlightAssessment(long candidate_number, long instructor_id) {
-        try {
-            return jdbcTemplate.queryForObject(
-                    "SELECT * FROM flight_assessment WHERE instructor_id = ? AND candidate_number = ?",
-                    new Object[]{instructor_id, candidate_number},
-                    this.flightAssessmentRowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
     }
 
     @Override

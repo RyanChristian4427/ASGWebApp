@@ -1,4 +1,4 @@
-package com.assessment.drones.services;
+package com.assessment.drones.services.interfaces;
 
 import com.assessment.drones.domain.Candidate;
 import com.assessment.drones.domain.RegistrationDto;
