@@ -37,8 +37,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addOperatorsManual(OperatorsManual operatorsManual){
-        Integer response = adminRepository.addOperatorsManual(operatorsManual);
+    public String addOperatorsManual(OperatorsManualDto operatorsManualDto){
+        Integer response = adminRepository.addOperatorsManual(operatorsManualDto);
 
         if (response == 1) {
             return "Insert Success";
@@ -70,7 +70,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
+    public OperatorsManualDto findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
         return this.adminRepository.findOperatorManualByInstructorAndCandidate(instructorId, candidateId);
     }
 

@@ -1,7 +1,7 @@
 package com.assessment.drones.controllers;
 
 import com.assessment.drones.domain.RegistrationDto;
-import com.assessment.drones.services.RegisterUserService;
+import com.assessment.drones.services.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +15,11 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
 
-    private RegisterUserService registerUserService;
+    private CandidateService candidateService;
 
     @Autowired
-    public RegistrationController(RegisterUserService aService) {
-        registerUserService = aService;
+    public RegistrationController(CandidateService aCandidateService) {
+        candidateService = aCandidateService;
     }
 
     @RequestMapping(path="/register", method= RequestMethod.GET)
@@ -41,7 +41,7 @@ public class RegistrationController {
             Model model) {
 
         if (!result.hasErrors()) {
-            registerUserService.registerNewUserAccount(accountDto);
+            candidateService.registerNewCandidate(accountDto);
         }
         if (result.hasErrors()) {
             return register(model, accountDto);

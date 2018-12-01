@@ -25,9 +25,8 @@
       $("#dob_label").html("Date of Birth (dd/mm/yyyy)")
     });
 
-    $("#ground_school.resit").on("input", function() {
-      alert("HELLO");
-        $("#ground_school.resit_label").html("True/False")
+    $("#ground_school_resit").on("input", function() {
+        $("#ground_school_resit_label").html("True/False")
     });
 
 

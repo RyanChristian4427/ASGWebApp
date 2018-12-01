@@ -9,13 +9,13 @@ public interface AdminRepository {
 
     Integer saveGroundSchool(GroundSchoolDto groundSchoolDto);
 
-    Integer addOperatorsManual (OperatorsManual operatorsManual);
+    Integer addOperatorsManual (OperatorsManualDto operatorsManualDto);
 
     Integer addFlightAssessment (FlightAssessment flightAssessment);
 
     Integer addRecommendations (Recommendations recommendations);
 
-    OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
+    OperatorsManualDto findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
 
     FlightAssessment findFlightAssessment(long candidate_number, long instructor_id);
 

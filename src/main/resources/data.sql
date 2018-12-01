@@ -23,10 +23,10 @@ INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previ
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (3, '1990/12/31', 'Aberdeen', 'Microsoft', 'A lot', 'Aberdeen', 1);
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (4, '1990/11/15', 'Cardiff', 'Apple', 'A Pro', 'Cardiff', 2);
 
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-1', 3, 'Blaise', 'Pascal', 1, 1);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-2', 4, 'Caroline', 'Herschel', 2, 2);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-3', 5, 'Edmond', 'Halley', 3, 3);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-4', 6, 'Enrico', 'Fermi', 4, 4);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-001-18-11', 3, 'Blaise', 'Pascal', 1, 1);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-002-18-11', 4, 'Caroline', 'Herschel', 2, 2);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-003-18-11', 5, 'Edmond', 'Halley', 3, 3);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-001-18-12', 6, 'Enrico', 'Fermi', 4, 4);
 
 INSERT INTO instructor (id, user_id, first_name, surname) VALUES (1, 1, 'Erwin', 'Schroedinger');
 INSERT INTO instructor (id, user_id, first_name, surname) VALUES (2, 2, 'Johannes', 'Kepler');

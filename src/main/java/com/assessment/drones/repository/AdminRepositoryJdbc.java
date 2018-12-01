@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Repository
@@ -15,7 +16,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
     private JdbcTemplate jdbcTemplate;
     private RowMapper<FlightTrainingDto> flyTrainingRowMapper;
     private RowMapper<GroundSchoolDto> groundSchoolRowMapper;
-    private RowMapper<OperatorsManual> operatorsManualRowMapper;
+    private RowMapper<OperatorsManualDto> operatorsManualRowMapper;
     private RowMapper<FlightAssessment> flightAssessmentRowMapper;
     private RowMapper<Recommendations> recommendationsRowMapper;
 
@@ -40,7 +41,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
                 rs.getBoolean("resit")
         );
 
-        operatorsManualRowMapper = (rs, i) -> new OperatorsManual(
+        operatorsManualRowMapper = (rs, i) -> new OperatorsManualDto(
                 rs.getLong("id"),
                 rs.getLong("candidate_number"),
                 rs.getLong("instructor_id"),
@@ -86,37 +87,26 @@ public class AdminRepositoryJdbc implements AdminRepository{
         }
         return jdbcTemplate.update(
                 "INSERT INTO ground_school (candidate_number, instructor_id, completion_date, question_bank, " +
-                        "pass_result, resit) VALUES(?, ?, ?, ?, ?, ?)", groundSchoolDto.getCandidate_number(),
+                        "pass_date, pass_result, resit) VALUES(?, ?, ?, ?, ?, ?, ?)", groundSchoolDto.getCandidate_number(),
                 groundSchoolDto.getInstructor_id(), groundSchoolDto.getCompletion_date(), groundSchoolDto.getQuestion_bank(),
-                groundSchoolDto.getPass_result(), resit);
+                LocalDate.now(), groundSchoolDto.getPass_result(), resit);
     }
 
     @Override
-    public Integer addOperatorsManual(OperatorsManual operatorsManual){
-        ArrayList<Object> params = new ArrayList<>();
-        params.add(operatorsManual.getCandidate_number());
-        params.add(operatorsManual.getInstructor_id());
-        params.add(operatorsManual.getSubmitted_date());
-        params.add(operatorsManual.getPass_date());
+    public Integer addOperatorsManual(OperatorsManualDto operatorsManualDto){
         return jdbcTemplate.update(
                 "INSERT INTO operators_manual (candidate_number, instructor_id, submitted_date, pass_date) " +
-                        "VALUES(?, ?, ?, ?)",
-                params.toArray());
+                        "VALUES(?, ?, ?, ?)", operatorsManualDto.getCandidate_number(), operatorsManualDto.getInstructor_id(),
+                operatorsManualDto.getSubmitted_date(), LocalDate.now());
     }
 
     @Override
     public Integer addFlightAssessment(FlightAssessment flightAssessment){
-        ArrayList<Object> params = new ArrayList<>();
-        params.add(flightAssessment.getCandidate_number());
-        params.add(flightAssessment.getInstructor_id());
-        params.add(flightAssessment.getInsurance());
-        params.add(flightAssessment.getLogged_hours());
-        params.add(flightAssessment.getSuas_category());
-        params.add(flightAssessment.getAssessment_pass_date());
         return jdbcTemplate.update(
-                "INSERT INTO flight_assessment (candidate_number, instructor_id, insurance, logged_hours, suas_category, assessment_pass_date) " +
-                        "VALUES(?, ?, ?, ?, ?, ?)",
-                params.toArray());
+                "INSERT INTO flight_assessment (candidate_number, instructor_id, insurance, logged_hours, " +
+                        "suas_category, assessment_pass_date) VALUES(?, ?, ?, ?, ?, ?)",
+                flightAssessment.getCandidate_number(), flightAssessment.getInstructor_id(), flightAssessment.getInsurance(),
+                flightAssessment.getLogged_hours(), flightAssessment.getSuas_category(), LocalDate.now());
     }
 
     @Override
@@ -134,7 +124,7 @@ public class AdminRepositoryJdbc implements AdminRepository{
                         "VALUES(?, ?, ?, ?, ?, ?, ?)",
                 params.toArray());
     }
-    public OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
+    public OperatorsManualDto findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
         try {
             return jdbcTemplate.queryForObject(
                     "SELECT * FROM operators_manual WHERE instructor_id = ? AND candidate_number = ?",

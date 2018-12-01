@@ -8,6 +8,4 @@ import org.springframework.stereotype.Component;
 public interface UserRepository {
 
     User findUserByEmail(String emailAddress);
-
-    Integer saveUser(RegistrationDto accountDto);
 }

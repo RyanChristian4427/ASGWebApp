@@ -7,13 +7,13 @@ public interface AdminService {
 
     String addGroundSchool(GroundSchoolDto groundSchoolDto);
 
-    String addOperatorsManual(OperatorsManual operatorsManual);
+    String addOperatorsManual(OperatorsManualDto operatorsManualDto);
 
     String addFlightAssessment(FlightAssessment flightAssessment);
 
     String addRecommendations(Recommendations recommendations);
 
-    OperatorsManual findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
+    OperatorsManualDto findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
 
     FlightAssessment findFlightAssessment(long candidate_number, long instructor_id);
     

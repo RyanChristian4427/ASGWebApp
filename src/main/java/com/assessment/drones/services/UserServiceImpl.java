@@ -7,25 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RegisterUserServiceImpl implements RegisterUserService {
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 
     @Autowired
-    public RegisterUserServiceImpl(UserRepository aUserRepository) {
+    public UserServiceImpl(UserRepository aUserRepository) {
         userRepository = aUserRepository;
-    }
-
-    @Override
-    public User registerNewUserAccount(RegistrationDto accountDto) {
-
-        Integer insertResponse = userRepository.saveUser(accountDto);
-
-        if (insertResponse == 1) {
-            return new User(accountDto.getEmailAddress(), accountDto.getPassword(), "USER");
-        } else {
-            return null;
-        }
     }
 
     @Override

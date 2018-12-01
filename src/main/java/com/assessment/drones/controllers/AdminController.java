@@ -57,13 +57,13 @@ public class AdminController {
                                      @RequestParam("submitted_date") String subDate,
                                      @RequestParam("pass_date") String pDate){
 
-        OperatorsManual oManual = new OperatorsManual();
+        OperatorsManualDto oManual = new OperatorsManualDto();
         oManual.setCandidate_number(cNum);
         oManual.setInstructor_id(iNum);
         oManual.setSubmitted_date(subDate);
         oManual.setPass_date(pDate);
 
-        OperatorsManual om = this.adminService.findOperatorManualByInstructorAndCandidate(iNum, cNum);
+        OperatorsManualDto om = this.adminService.findOperatorManualByInstructorAndCandidate(iNum, cNum);
 
         if (om != null) {
             // it exists

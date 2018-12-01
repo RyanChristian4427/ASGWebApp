@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OperatorsManual {
+public class OperatorsManualDto {
     private Long id;
     private Long candidate_number;
     private Long instructor_id;

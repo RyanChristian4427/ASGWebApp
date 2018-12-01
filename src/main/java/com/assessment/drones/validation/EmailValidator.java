@@ -1,6 +1,6 @@
 package com.assessment.drones.validation;
 
-import com.assessment.drones.services.RegisterUserService;
+import com.assessment.drones.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
@@ -10,13 +10,13 @@ import java.util.regex.Pattern;
 public class EmailValidator
         implements ConstraintValidator<ValidEmail, String> {
 
-    private RegisterUserService registerUserService;
+    private UserService userService;
     private static final Pattern emailPattern =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     @Autowired
-    public EmailValidator(RegisterUserService aService) {
-        registerUserService = aService;
+    public EmailValidator(UserService aService) {
+        userService = aService;
     }
 
     @Override
@@ -28,6 +28,6 @@ public class EmailValidator
     }
 
     private boolean validateEmail(String email) {
-        return registerUserService.emailAlreadyInUse(email) && emailPattern.matcher(email).matches();
+        return userService.emailAlreadyInUse(email) && emailPattern.matcher(email).matches();
     }
 }
