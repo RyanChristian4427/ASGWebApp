@@ -5,6 +5,8 @@ import com.assessment.drones.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AdminServiceImpl implements AdminService{
     private AdminRepository adminRepository;
@@ -70,8 +72,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public OperatorsManualDto findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
-        return this.adminRepository.findOperatorManualByInstructorAndCandidate(instructorId, candidateId);
+    public Optional<OperatorsManualDto> findManualByCandidate(String candidateNumber) {
+        return adminRepository.findManualByCandidate(candidateNumber);
     }
 
     @Override

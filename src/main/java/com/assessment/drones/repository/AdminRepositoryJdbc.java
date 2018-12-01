@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
 
 @Repository
 public class AdminRepositoryJdbc implements AdminRepository{
@@ -42,11 +44,8 @@ public class AdminRepositoryJdbc implements AdminRepository{
         );
 
         operatorsManualRowMapper = (rs, i) -> new OperatorsManualDto(
-                rs.getLong("id"),
-                rs.getLong("candidate_number"),
-                rs.getLong("instructor_id"),
-                rs.getString("submitted_date"),
-                rs.getString("pass_date")
+                rs.getString("candidate_number"),
+                rs.getLong("instructor_id")
         );
 
         flightAssessmentRowMapper = (rs, i) -> new FlightAssessment(
@@ -95,9 +94,9 @@ public class AdminRepositoryJdbc implements AdminRepository{
     @Override
     public Integer addOperatorsManual(OperatorsManualDto operatorsManualDto){
         return jdbcTemplate.update(
-                "INSERT INTO operators_manual (candidate_number, instructor_id, submitted_date, pass_date) " +
-                        "VALUES(?, ?, ?, ?)", operatorsManualDto.getCandidate_number(), operatorsManualDto.getInstructor_id(),
-                operatorsManualDto.getSubmitted_date(), LocalDate.now());
+                "UPDATE operators_manual SET instructor_id = ?, pass_date = ? " +
+                        "WHERE candidate_number = ?", operatorsManualDto.getInstructor_id(), LocalDate.now(),
+                operatorsManualDto.getCandidate_number());
     }
 
     @Override
@@ -124,15 +123,13 @@ public class AdminRepositoryJdbc implements AdminRepository{
                         "VALUES(?, ?, ?, ?, ?, ?, ?)",
                 params.toArray());
     }
-    public OperatorsManualDto findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId) {
-        try {
-            return jdbcTemplate.queryForObject(
-                    "SELECT * FROM operators_manual WHERE instructor_id = ? AND candidate_number = ?",
-                    new Object[]{instructorId, candidateId},
-                    this.operatorsManualRowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
+
+    public Optional<OperatorsManualDto> findManualByCandidate(String candidateNumber) {
+        return Optional.of(
+                Objects.requireNonNull(jdbcTemplate.queryForObject(
+                        "SELECT * FROM operators_manual WHERE candidate_number = ?",
+                        new Object[]{candidateNumber},
+                        operatorsManualRowMapper)));
     }
 
     @Override

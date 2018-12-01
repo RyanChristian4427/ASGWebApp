@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -26,10 +27,9 @@ public class AdminController {
     //method to take the user to the admin page
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
     public String viewAdmin(Model model){
-        FlightTrainingDto flightTrainingDto = new FlightTrainingDto();
-        GroundSchoolDto groundSchoolDto = new GroundSchoolDto();
         model.addAttribute("flightTrainingForm", new FlightTrainingDto());
         model.addAttribute("groundSchoolForm", new GroundSchoolDto());
+        model.addAttribute("operatorsManualForm", new OperatorsManualDto());
         return "adminDashboard";
     }
 
@@ -41,38 +41,20 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/admin/groundSchool",  method = RequestMethod.POST)
-    public String getGroundSchool(@ModelAttribute("flightTrainingForm") GroundSchoolDto groundSchoolDto){
+    public String getGroundSchool(@ModelAttribute("groundSchoolForm") GroundSchoolDto groundSchoolDto){
         adminService.addGroundSchool(groundSchoolDto);
         return "redirect:/admin";
     }
 
-    @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.GET)
-    public String viewOperatorsManual() {
-        return "operatorsManualForm";
-    }
-
     @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.POST)
-    public String addOperatorsManual(@RequestParam("candidate_number") Long cNum,
-                                     @RequestParam("instructor_id") Long iNum,
-                                     @RequestParam("submitted_date") String subDate,
-                                     @RequestParam("pass_date") String pDate){
+    public String addOperatorsManual(@ModelAttribute("operatorsManualForm") OperatorsManualDto operatorsManualDto){
 
-        OperatorsManualDto oManual = new OperatorsManualDto();
-        oManual.setCandidate_number(cNum);
-        oManual.setInstructor_id(iNum);
-        oManual.setSubmitted_date(subDate);
-        oManual.setPass_date(pDate);
+        Optional<OperatorsManualDto> om = adminService.findManualByCandidate(operatorsManualDto.getCandidate_number());
 
-        OperatorsManualDto om = this.adminService.findOperatorManualByInstructorAndCandidate(iNum, cNum);
+        if (om.isPresent()) {
+            adminService.addOperatorsManual(operatorsManualDto);
 
-        if (om != null) {
-            // it exists
-            om.setPass_date(pDate);
-            om.setSubmitted_date(subDate);
-
-            adminService.addOperatorsManual(om);
-
-            return "adminDashboard";
+            return "redirect:/admin";
         } else {
             // give an error saying not found
             throw new RuntimeException("Candidate number or instructor id not found ");

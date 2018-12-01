@@ -3,6 +3,8 @@ package com.assessment.drones.repository;
 import com.assessment.drones.domain.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public interface AdminRepository {
     Integer saveFlightTraining(FlightTrainingDto flightTrainingDto);
@@ -15,7 +17,7 @@ public interface AdminRepository {
 
     Integer addRecommendations (Recommendations recommendations);
 
-    OperatorsManualDto findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
+    Optional<OperatorsManualDto> findManualByCandidate(String candidateNumber);
 
     FlightAssessment findFlightAssessment(long candidate_number, long instructor_id);
 

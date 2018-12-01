@@ -102,9 +102,9 @@ CREATE TABLE IF NOT EXISTS ground_school (
 CREATE TABLE IF NOT EXISTS operators_manual (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     candidate_number VARCHAR(13) NOT NULL,
-    instructor_id INT UNSIGNED NOT NULL,
-    submitted_date VARCHAR(20) NOT NULL,
-    pass_date VARCHAR(20) NOT NULL,
+    instructor_id INT UNSIGNED,
+    submitted_date DATE NOT NULL,
+    pass_date DATE,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 

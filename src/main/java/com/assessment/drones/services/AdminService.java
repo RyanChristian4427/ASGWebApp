@@ -2,6 +2,8 @@ package com.assessment.drones.services;
 
 import com.assessment.drones.domain.*;
 
+import java.util.Optional;
+
 public interface AdminService {
     String addFlyTraining(FlightTrainingDto flightTrainingDto);
 
@@ -13,7 +15,7 @@ public interface AdminService {
 
     String addRecommendations(Recommendations recommendations);
 
-    OperatorsManualDto findOperatorManualByInstructorAndCandidate(long instructorId, long candidateId);
+    Optional<OperatorsManualDto> findManualByCandidate(String candidateNumber);
 
     FlightAssessment findFlightAssessment(long candidate_number, long instructor_id);
     
