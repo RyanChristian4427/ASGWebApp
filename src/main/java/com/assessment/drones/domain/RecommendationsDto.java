@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Recommendations {
+public class RecommendationsDto {
     private Long id;
     private Long candidate_number;
     private String asg_recommend_date;

@@ -1,5 +1,6 @@
 package com.assessment.drones.services;
 
+import com.assessment.drones.domain.Candidate;
 import com.assessment.drones.domain.RegistrationDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.repository.CandidateRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CandidateServiceImpl implements CandidateService {
@@ -45,6 +47,11 @@ public class CandidateServiceImpl implements CandidateService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public Optional<Candidate> findManualByCandidate(String candidateNumber) {
+        return candidateRepository.findCandidateByNumber(candidateNumber);
     }
 
     private PasswordEncoder passwordEncoder() {

@@ -19,8 +19,8 @@ public class AdminRepositoryJdbc implements AdminRepository{
     private RowMapper<FlightTrainingDto> flyTrainingRowMapper;
     private RowMapper<GroundSchoolDto> groundSchoolRowMapper;
     private RowMapper<OperatorsManualDto> operatorsManualRowMapper;
-    private RowMapper<FlightAssessment> flightAssessmentRowMapper;
-    private RowMapper<Recommendations> recommendationsRowMapper;
+    private RowMapper<FlightAssessmentDto> flightAssessmentRowMapper;
+    private RowMapper<RecommendationsDto> recommendationsRowMapper;
 
     @Autowired
     public AdminRepositoryJdbc(JdbcTemplate aTemplate) {
@@ -48,17 +48,15 @@ public class AdminRepositoryJdbc implements AdminRepository{
                 rs.getLong("instructor_id")
         );
 
-        flightAssessmentRowMapper = (rs, i) -> new FlightAssessment(
-                rs.getLong("id"),
-                rs.getLong("candidate_number"),
+        flightAssessmentRowMapper = (rs, i) -> new FlightAssessmentDto(
+                rs.getString("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getString("insurance"),
-                rs.getString("logged-hours"),
-                rs.getString("suas_category"),
-                rs.getDate("assessment_pass_date")
+                rs.getDouble("logged-hours"),
+                rs.getString("suas_category")
         );
 
-        recommendationsRowMapper = (rs, i) -> new Recommendations(
+        recommendationsRowMapper = (rs, i) -> new RecommendationsDto(
                 rs.getLong("id"),
                 rs.getLong("candidate_number"),
                 rs.getString("asg_recommend_date"),
@@ -100,40 +98,32 @@ public class AdminRepositoryJdbc implements AdminRepository{
     }
 
     @Override
-    public Integer addFlightAssessment(FlightAssessment flightAssessment){
+    public Integer addFlightAssessment(FlightAssessmentDto flightAssessmentDto){
         return jdbcTemplate.update(
                 "INSERT INTO flight_assessment (candidate_number, instructor_id, insurance, logged_hours, " +
                         "suas_category, assessment_pass_date) VALUES(?, ?, ?, ?, ?, ?)",
-                flightAssessment.getCandidate_number(), flightAssessment.getInstructor_id(), flightAssessment.getInsurance(),
-                flightAssessment.getLogged_hours(), flightAssessment.getSuas_category(), LocalDate.now());
+                flightAssessmentDto.getCandidate_number(), flightAssessmentDto.getInstructor_id(), flightAssessmentDto.getInsurance(),
+                flightAssessmentDto.getLogged_hours(), flightAssessmentDto.getSuas_category(), LocalDate.now());
     }
 
     @Override
-    public Integer addRecommendations(Recommendations recommendations){
+    public Integer addRecommendations(RecommendationsDto recommendationsDto){
         ArrayList<Object> params = new ArrayList<>();
-        params.add(recommendations.getCandidate_number());
-        params.add(recommendations.getAsg_recommend_date());
-        params.add(recommendations.getFlight_competence_date());
-        params.add(recommendations.getApplication_data_date());
-        params.add(recommendations.getApplication_date());
-        params.add(recommendations.getCaa_approval_date());
-        params.add(recommendations.getOverall_comments_approval_by_caa());
+        params.add(recommendationsDto.getCandidate_number());
+        params.add(recommendationsDto.getAsg_recommend_date());
+        params.add(recommendationsDto.getFlight_competence_date());
+        params.add(recommendationsDto.getApplication_data_date());
+        params.add(recommendationsDto.getApplication_date());
+        params.add(recommendationsDto.getCaa_approval_date());
+        params.add(recommendationsDto.getOverall_comments_approval_by_caa());
         return jdbcTemplate.update(
                 "INSERT INTO recommendations (candidate_number, asg_recomend_date, flight_competence_date, application_data_date, application_date, caa_approval_date, overall_comments_approval_by_caa) " +
                         "VALUES(?, ?, ?, ?, ?, ?, ?)",
                 params.toArray());
     }
 
-    public Optional<OperatorsManualDto> findManualByCandidate(String candidateNumber) {
-        return Optional.of(
-                Objects.requireNonNull(jdbcTemplate.queryForObject(
-                        "SELECT * FROM operators_manual WHERE candidate_number = ?",
-                        new Object[]{candidateNumber},
-                        operatorsManualRowMapper)));
-    }
-
     @Override
-    public FlightAssessment findFlightAssessment(long candidate_number, long instructor_id) {
+    public FlightAssessmentDto findFlightAssessment(long candidate_number, long instructor_id) {
         try {
             return jdbcTemplate.queryForObject(
                     "SELECT * FROM flight_assessment WHERE instructor_id = ? AND candidate_number = ?",
@@ -141,6 +131,19 @@ public class AdminRepositoryJdbc implements AdminRepository{
                     this.flightAssessmentRowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
+        }
+    }
+
+    @Override
+    public Optional<OperatorsManualDto> findOperationsManual(String candidateNumber) {
+        try {
+            return Optional.of(
+                    jdbcTemplate.queryForObject(
+                            "SELECT * FROM operators_manual WHERE candidate_number = ?",
+                            new Object[]{candidateNumber},
+                            operatorsManualRowMapper));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
         }
     }
 }

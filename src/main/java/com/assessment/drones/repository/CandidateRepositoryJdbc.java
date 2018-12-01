@@ -1,28 +1,48 @@
 package com.assessment.drones.repository;
 
+import com.assessment.drones.domain.Candidate;
 import com.assessment.drones.domain.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
+import java.util.Objects;
+import java.util.Optional;
 
 @Repository
 public class CandidateRepositoryJdbc implements CandidateRepository {
 
     private JdbcTemplate jdbcTemplate;
+    private RowMapper<Candidate> candidateRowMapper;
 
     @Autowired
     public CandidateRepositoryJdbc(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
+
+        candidateRowMapper = (rs, i) -> new Candidate(
+                rs.getString("reference_number"),
+                rs.getString("first_name"),
+                rs.getString("surname")
+        );
     }
 
     @Override
     public String previousCandidateReferenceNumber() {
         return jdbcTemplate.queryForObject(
                 "SELECT reference_number FROM candidate WHERE id=(SELECT max(id) FROM candidate)", String.class);
+    }
+
+    @Override
+    public Optional<Candidate> findCandidateByNumber(String candidateNumber) {
+        return Optional.of(
+                Objects.requireNonNull(jdbcTemplate.queryForObject(
+                        "SELECT * FROM candidate WHERE reference_number = ?",
+                        new Object[]{candidateNumber},
+                        candidateRowMapper)));
     }
 
     @Override

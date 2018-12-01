@@ -13,12 +13,12 @@ public interface AdminRepository {
 
     Integer addOperatorsManual (OperatorsManualDto operatorsManualDto);
 
-    Integer addFlightAssessment (FlightAssessment flightAssessment);
+    Integer addFlightAssessment (FlightAssessmentDto flightAssessmentDto);
 
-    Integer addRecommendations (Recommendations recommendations);
+    Integer addRecommendations (RecommendationsDto recommendationsDto);
 
-    Optional<OperatorsManualDto> findManualByCandidate(String candidateNumber);
+    Optional<OperatorsManualDto> findOperationsManual(String candidateNumber);
 
-    FlightAssessment findFlightAssessment(long candidate_number, long instructor_id);
+    FlightAssessmentDto findFlightAssessment(long candidate_number, long instructor_id);
 
 }

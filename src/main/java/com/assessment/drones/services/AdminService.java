@@ -11,12 +11,14 @@ public interface AdminService {
 
     String addOperatorsManual(OperatorsManualDto operatorsManualDto);
 
-    String addFlightAssessment(FlightAssessment flightAssessment);
+    String addFlightAssessment(FlightAssessmentDto flightAssessmentDto);
 
-    String addRecommendations(Recommendations recommendations);
+    String addRecommendations(RecommendationsDto recommendationsDto);
 
-    Optional<OperatorsManualDto> findManualByCandidate(String candidateNumber);
+    Optional<Candidate> findManualByCandidate(String candidateNumber);
 
-    FlightAssessment findFlightAssessment(long candidate_number, long instructor_id);
+    Boolean verify(Object formDto);
+
+    FlightAssessmentDto findFlightAssessment(long candidate_number, long instructor_id);
     
 }

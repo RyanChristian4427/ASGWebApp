@@ -2,6 +2,8 @@ package com.assessment.drones.services;
 
 import com.assessment.drones.domain.*;
 import com.assessment.drones.repository.AdminRepository;
+import com.assessment.drones.repository.CandidateRepository;
+import com.assessment.drones.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +12,14 @@ import java.util.Optional;
 @Service
 public class AdminServiceImpl implements AdminService{
     private AdminRepository adminRepository;
+    private CandidateRepository candidateRepository;
+    private InstructorRepository instructorRepository;
 
     @Autowired
-    public AdminServiceImpl(AdminRepository aAdminRepository) {
-        adminRepository= aAdminRepository;
+    public AdminServiceImpl(AdminRepository adminRepository, CandidateRepository candidateRepository, InstructorRepository instructorRepository) {
+        this.adminRepository = adminRepository;
+        this.candidateRepository = candidateRepository;
+        this.instructorRepository = instructorRepository;
     }
 
     @Override
@@ -50,8 +56,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addFlightAssessment(FlightAssessment flightAssessment){
-        Integer response = adminRepository.addFlightAssessment(flightAssessment);
+    public String addFlightAssessment(FlightAssessmentDto flightAssessmentDto){
+        Integer response = adminRepository.addFlightAssessment(flightAssessmentDto);
 
         if (response == 1) {
             return "Insert Success";
@@ -61,8 +67,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String addRecommendations(Recommendations recommendations){
-        Integer response = adminRepository.addRecommendations(recommendations);
+    public String addRecommendations(RecommendationsDto recommendationsDto){
+        Integer response = adminRepository.addRecommendations(recommendationsDto);
 
         if (response == 1) {
             return "Insert Success";
@@ -72,12 +78,37 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public Optional<OperatorsManualDto> findManualByCandidate(String candidateNumber) {
-        return adminRepository.findManualByCandidate(candidateNumber);
+    public Optional<Candidate> findManualByCandidate(String candidateNumber) {
+        return candidateRepository.findCandidateByNumber(candidateNumber);
     }
 
     @Override
-    public FlightAssessment findFlightAssessment(long candidate_number, long instructor_id) {
+    public Boolean verify(Object formDto){
+
+        boolean verified = false;
+
+        if(formDto instanceof FlightTrainingDto) {
+            verified = candidateRepository.findCandidateByNumber(((FlightTrainingDto) formDto)
+                    .getCandidate_number()).isPresent() && instructorRepository.findInstructorByID(((FlightTrainingDto) formDto)
+                    .getInstructor_id()).isPresent();
+            addFlyTraining((FlightTrainingDto) formDto);
+        } else if(formDto instanceof GroundSchoolDto) {
+            verified = candidateRepository.findCandidateByNumber(((GroundSchoolDto) formDto)
+                    .getCandidate_number()).isPresent() && instructorRepository.findInstructorByID(((GroundSchoolDto) formDto)
+                    .getInstructor_id()).isPresent();
+            addGroundSchool((GroundSchoolDto) formDto);
+        } else if (formDto instanceof OperatorsManualDto) {
+            verified = candidateRepository.findCandidateByNumber(((OperatorsManualDto) formDto)
+                    .getCandidate_number()).isPresent() && instructorRepository.findInstructorByID(((OperatorsManualDto) formDto)
+                    .getInstructor_id()).isPresent() &&
+                    adminRepository.findOperationsManual(((OperatorsManualDto) formDto).getCandidate_number()).isPresent();
+            addOperatorsManual((OperatorsManualDto) formDto);
+        }
+        return verified;
+    }
+
+    @Override
+    public FlightAssessmentDto findFlightAssessment(long candidate_number, long instructor_id) {
         return this.adminRepository.findFlightAssessment(candidate_number, instructor_id);
     }
 }
