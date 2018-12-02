@@ -2,6 +2,7 @@ package com.assessment.drones.controllers;
 
 import com.assessment.drones.domain.*;
 import com.assessment.drones.services.interfaces.AdminService;
+import com.assessment.drones.services.interfaces.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdminController {
 
     private AdminService adminService;
+    private EmailService emailService;
 
     @Autowired
-    public AdminController(AdminService adminService) {
+    public AdminController(AdminService adminService, EmailService emailService) {
         this.adminService = adminService;
+        this.emailService = emailService;
     }
 
 
@@ -28,6 +31,7 @@ public class AdminController {
         model.addAttribute("operatorsManualForm", new OperatorsManualDto());
         model.addAttribute("flightAssessmentForm", new FlightAssessmentDto());
         model.addAttribute("recommendationsForm", new RecommendationsDto());
+        emailService.sendSimpleMessage("RyanChristian@gmail.com", "Hello There", "Hello good sir");
         return "adminDashboard";
     }
 
