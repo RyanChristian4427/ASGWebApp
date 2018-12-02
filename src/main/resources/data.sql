@@ -15,20 +15,49 @@ INSERT INTO contact_info (id, phone_number, address_id) VALUES (2, '7597268597',
 INSERT INTO contact_info (id, phone_number, address_id) VALUES (3, '7911123456', 3);
 INSERT INTO contact_info (id, phone_number, address_id) VALUES (4, '7911564856', 4);
 
-INSERT INTO drone (id, make, model) VALUES (1,'DJI', 'Mavic');
-INSERT INTO drone (id, make, model) VALUES (2,'DJI', 'Matrice');
+INSERT INTO drone (make, model)
+VALUES
+       ('DJI', 'Matrice'),
+       ('DJI', 'Mavic'),
+       ('DJI', 'Mavic 2'),
+       ('DJI', 'Mavic Air'),
+       ('DJI', 'Mavic Pro'),
+       ('DJI', 'Mavic Pro Platinum'),
+       ('DJI', 'Phantom 1'),
+       ('DJI', 'Phantom FC40'),
+       ('DJI', 'Phantom 2'),
+       ('DJI', 'Phantom 2 Vision'),
+       ('DJI', 'Phantom 2 Vision+'),
+       ('DJI', 'Phantom 3 Standard'),
+       ('DJI', 'Phantom 3 4k'),
+       ('DJI', 'Phantom 3 SE'),
+       ('DJI', 'Phantom 3 Advanced'),
+       ('DJI', 'Phantom 3 Professional'),
+       ('DJI', 'Phantom 4'),
+       ('DJI', 'Phantom 4 Advanced'),
+       ('DJI', 'Phantom 4 Pro'),
+       ('DJI', 'Phantom 4 Pro V2.0'),
+       ('DJI', 'Inspire 1'),
+       ('DJI', 'Inspire 1 Pro/Raw'),
+       ('DJI', 'Inspire 2'),
+       ('Parrot', 'Anafi'),
+       ('Parrot', 'Bebop 2'),
+       ('Parrot', 'Bebop 2 Power'),
+       ('Parrot', 'Mambo');
 
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (1, '1990/2/28', 'Cardiff', '', 'None', 'Cardiff', 1);
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (2, '1990/10/21', 'Somerset', '', 'Some', 'Somerset', 2);
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (3, '1990/12/31', 'Aberdeen', 'Microsoft', 'A lot', 'Aberdeen', 1);
 INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (4, '1990/11/15', 'Cardiff', 'Apple', 'A Pro', 'Cardiff', 2);
 
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (1, 3, 'Blaise', 'Pascal', 1, 1);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (2, 4, 'Caroline', 'Herschel', 2, 2);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (3, 5, 'Edmond', 'Halley', 3, 3);
-INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES (4, 6, 'Enrico', 'Fermi', 4, 4);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-001-18-11', 3, 'Blaise', 'Pascal', 1, 1);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-002-18-11', 4, 'Caroline', 'Herschel', 2, 2);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-003-18-11', 5, 'Edmond', 'Halley', 3, 3);
+INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-001-18-12', 6, 'Enrico', 'Fermi', 4, 4);
 
 INSERT INTO instructor (id, user_id, first_name, surname) VALUES (1, 1, 'Erwin', 'Schroedinger');
 INSERT INTO instructor (id, user_id, first_name, surname) VALUES (2, 2, 'Johannes', 'Kepler');
 
-INSERT into operators_manual (candidate_id, instructor_id ,submitted_date ,pass_date )VALUES(2,2,'10/10/1990','10/10/1990');
+INSERT into operators_manual (candidate_number, submitted_date, file_path)VALUES('ASG-001-18-11', '1990/10/21', '/');
+
+INSERT INTO flight_training (candidate_number, training_type, instructor_id, skills_assessment_date) VALUES ('ASG-001-18-12', 'None', 1, '2018/12/2')

@@ -25,6 +25,10 @@
       $("#dob_label").html("Date of Birth (dd/mm/yyyy)")
     });
 
+    $("#ground_school_resit").on("input", function() {
+        $("#ground_school_resit_label").html("True/False")
+    });
+
 
     // Toggle the side navigation
   $("#sidebarToggle").on('click',function(e) {
