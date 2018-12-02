@@ -85,27 +85,37 @@ public class AdminServiceImpl implements AdminService {
             verified = candidateRepository.findCandidateByNumber(((FlightTrainingDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((FlightTrainingDto) formDto)
                     .getInstructorId()).isPresent();
-            saveFlightTraining((FlightTrainingDto) formDto);
+            if(verified) {
+                saveFlightTraining((FlightTrainingDto) formDto);
+            }
         } else if(formDto instanceof GroundSchoolDto) {
             verified = candidateRepository.findCandidateByNumber(((GroundSchoolDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((GroundSchoolDto) formDto)
                     .getInstructorId()).isPresent();
-            saveGroundSchool((GroundSchoolDto) formDto);
+            if(verified) {
+                saveGroundSchool((GroundSchoolDto) formDto);
+            }
         } else if (formDto instanceof OperatorsManualDto) {
             verified = candidateRepository.findCandidateByNumber(((OperatorsManualDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((OperatorsManualDto) formDto)
                     .getInstructorId()).isPresent() &&
                     adminRepository.findOperationsManual(((OperatorsManualDto) formDto).getCandidateNumber()).isPresent();
-            saveOperationsManual((OperatorsManualDto) formDto);
+            if(verified) {
+                saveOperationsManual((OperatorsManualDto) formDto);
+            }
         } else if (formDto instanceof FlightAssessmentDto) {
             verified = candidateRepository.findCandidateByNumber(((FlightAssessmentDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((FlightAssessmentDto) formDto)
                     .getInstructorId()).isPresent();
-            saveFlightAssessment((FlightAssessmentDto) formDto);
+            if(verified) {
+                saveFlightAssessment((FlightAssessmentDto) formDto);
+            }
         } else if(formDto instanceof RecommendationsDto) {
             verified = candidateRepository.findCandidateByNumber(((RecommendationsDto) formDto)
                     .getCandidateNumber()).isPresent();
-            saveRecommendations((RecommendationsDto) formDto);
+            if(verified) {
+                saveRecommendations((RecommendationsDto) formDto);
+            }
         }
         return verified;
     }

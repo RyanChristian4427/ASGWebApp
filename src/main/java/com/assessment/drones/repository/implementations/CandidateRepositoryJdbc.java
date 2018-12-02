@@ -4,6 +4,7 @@ import com.assessment.drones.domain.Candidate;
 import com.assessment.drones.domain.RegistrationDto;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -39,11 +40,15 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
 
     @Override
     public Optional<Candidate> findCandidateByNumber(String candidateNumber) {
-        return Optional.of(
-                Objects.requireNonNull(jdbcTemplate.queryForObject(
-                        "SELECT * FROM candidate WHERE reference_number = ?",
-                        new Object[]{candidateNumber},
-                        candidateRowMapper)));
+        try {
+            return Optional.ofNullable(
+                    jdbcTemplate.queryForObject(
+                            "SELECT * FROM candidate WHERE reference_number = ?",
+                            new Object[]{candidateNumber},
+                            candidateRowMapper));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     @Override

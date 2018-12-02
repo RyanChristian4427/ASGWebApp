@@ -3,9 +3,9 @@ package com.assessment.drones.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -13,6 +13,7 @@ import java.util.Date;
 public class GroundSchoolDto {
     private String candidateNumber;
     private Long instructorId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate completionDate;
     private Long questionBank;
     private Long passResult;

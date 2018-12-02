@@ -3,11 +3,11 @@ package com.assessment.drones.repository.implementations;
 import com.assessment.drones.domain.Instructor;
 import com.assessment.drones.repository.interfaces.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Repository
@@ -29,10 +29,14 @@ public class InstructorRepositoryJdbc implements InstructorRepository {
 
     @Override
     public Optional<Instructor> findInstructorByID(Long id) {
-        return Optional.of(
-                Objects.requireNonNull(jdbcTemplate.queryForObject(
-                        "SELECT * FROM instructor WHERE id = ?",
-                        new Object[]{id},
-                        instructorRowMapper)));
+        try {
+            return Optional.ofNullable(
+                    jdbcTemplate.queryForObject(
+                            "SELECT * FROM instructor WHERE id = ?",
+                            new Object[]{id},
+                            instructorRowMapper));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 }

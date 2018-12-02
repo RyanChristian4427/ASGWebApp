@@ -245,7 +245,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="text" id="flight_training_skills_date" th:field="*{skillsDate}" class="form-control" placeholder="Skills Assessment Date" required="required">
+                                            <input type="date" id="flight_training_skills_date" th:field="*{skillsDate}" class="form-control" placeholder="Skills Assessment Date" required="required">
                                             <label for="flight_training_skills_date">Skills Assessment Date</label>
                                         </div>
                                     </div>
@@ -291,7 +291,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="text" id="ground_school_completion_date" th:field="*{completionDate}" class="form-control" placeholder="Date of Completion" required="required">
+                                            <input type="date" id="ground_school_completion_date" th:field="*{completionDate}" class="form-control" placeholder="Date of Completion" required="required">
                                             <label for="ground_school_completion_date">Date of Completion</label>
                                         </div>
                                     </div>
@@ -332,7 +332,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="operatorsManualModalLabel">Ground School</h5>
+                        <h5 class="modal-title" id="operatorsManualModalLabel">Operators Manual</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -368,7 +368,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="flightAssessmentLabel">Ground School</h5>
+                        <h5 class="modal-title" id="flightAssessmentLabel">Flight Assessment</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -426,7 +426,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="recommendationsLabel">Ground School</h5>
+                        <h5 class="modal-title" id="recommendationsLabel">Recommendations</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -443,7 +443,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="text" id="recommendations_asgRecommendDate" th:field="*{asgRecommendDate}" class="form-control" placeholder="Instructor ID" required = "required">
+                                            <input type="date" id="recommendations_asgRecommendDate" th:field="*{asgRecommendDate}" class="form-control" placeholder="Instructor ID" required = "required">
                                             <label for="recommendations_asgRecommendDate">Date ASG Forwarded Recommendation</label>
                                         </div>
                                     </div>
@@ -453,13 +453,13 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="text" id="recommendations_flightCompetenceDate" th:field="*{flightCompetenceDate}" class="form-control" placeholder="Date of Flight Competence Certificate" required = "required"/>
+                                            <input type="date" id="recommendations_flightCompetenceDate" th:field="*{flightCompetenceDate}" class="form-control" placeholder="Date of Flight Competence Certificate" required = "required"/>
                                             <label for="recommendations_flightCompetenceDate">Date of Flight Competence Certificate</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="text" id="recommendations_caaApplicationDate" th:field="*{caaApplicationDate}" class="form-control" placeholder="Date Application Sent to CAA" required = "required">
+                                            <input type="date" id="recommendations_caaApplicationDate" th:field="*{caaApplicationDate}" class="form-control" placeholder="Date Application Sent to CAA" required = "required">
                                             <label for="recommendations_caaApplicationDate">Date Application Sent to CAA</label>
                                         </div>
                                     </div>
@@ -469,13 +469,13 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="text" id="recommendations_caaApprovalDate" th:field="*{caaApprovalDate}" class="form-control" placeholder="Date CAA Approved Application" required = "required"/>
+                                            <input type="date" id="recommendations_caaApprovalDate" th:field="*{caaApprovalDate}" class="form-control" placeholder="Date CAA Approved Application" required = "required"/>
                                             <label for="recommendations_caaApprovalDate">Date CAA Approved Application</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="text" id="recommendations_asgOverallCommentsAndApprovalByCaa" th:field="*{asgOverallCommentsAndApprovalByCaa}" class="form-control" placeholder="Date ASG Returned Comments" required = "required">
+                                            <input type="date" id="recommendations_asgOverallCommentsAndApprovalByCaa" th:field="*{asgOverallCommentsAndApprovalByCaa}" class="form-control" placeholder="Date ASG Returned Comments" required = "required">
                                             <label for="recommendations_asgOverallCommentsAndApprovalByCaa">Date ASG Returned Comments</label>
                                         </div>
                                     </div>
