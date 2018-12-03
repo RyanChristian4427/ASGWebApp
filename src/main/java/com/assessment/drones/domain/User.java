@@ -12,6 +12,6 @@ public class User {
     private String emailAddress;
     private String password;
     private String role;
-//    private boolean enabled;
-//    private boolean authenticated;
+    private boolean authenticated;
+    private boolean enabled;
 }

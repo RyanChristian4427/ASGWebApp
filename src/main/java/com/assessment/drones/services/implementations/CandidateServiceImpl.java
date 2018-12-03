@@ -43,7 +43,7 @@ public class CandidateServiceImpl implements CandidateService {
         Integer insertResponse = candidateRepository.saveUser(accountDto, newReferenceNumber);
 
         if (insertResponse == 1) {
-            return new User(accountDto.getEmailAddress(), accountDto.getPassword(), "USER");
+            return new User(accountDto.getEmailAddress(), accountDto.getPassword(), "candidate", false, true);
         } else {
             return null;
         }

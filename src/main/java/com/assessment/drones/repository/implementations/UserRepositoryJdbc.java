@@ -23,7 +23,9 @@ public class UserRepositoryJdbc implements UserRepository {
         userMapper = (rs, i) -> new User(
                 rs.getString("email"),
                 rs.getString("password"),
-                rs.getString("role")
+                rs.getString("role"),
+                rs.getBoolean("activated"),
+                rs.getBoolean("enabled")
         );
 
         verificationTokenMapper = (rs, i) -> new VerificationToken(
@@ -37,7 +39,7 @@ public class UserRepositoryJdbc implements UserRepository {
     public User findUserByEmail(String emailAddress) {
         try {
             return jdbcTemplate.queryForObject(
-                    "SELECT email, password, role FROM user WHERE user.email = ?",
+                    "SELECT email, password, role, activated, enabled FROM user WHERE user.email = ?",
                     new Object[]{emailAddress},
                     userMapper);
         } catch (EmptyResultDataAccessException e) {

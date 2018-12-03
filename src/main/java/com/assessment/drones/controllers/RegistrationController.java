@@ -59,12 +59,11 @@ public class RegistrationController {
             BindingResult result, WebRequest request, Model model) {
 
         if (!result.hasErrors()) {
-            candidateService.registerNewCandidate(accountDto);
+            User user = candidateService.registerNewCandidate(accountDto);
 
             try {
                 String appUrl = request.getContextPath();
-                applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent
-                        (new User(accountDto.getEmailAddress(), accountDto.getPassword(), "candidate"), request.getLocale(), appUrl));
+                applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
 
                 return "redirect:/login";
             } catch (Exception me) {
@@ -78,17 +77,13 @@ public class RegistrationController {
     @RequestMapping(value = "/registrationConfirm", method = RequestMethod.GET)
     public String confirmRegistration(Model model, @RequestParam("token") String token) {
 
-//        Locale locale = request.getLocale();
-
         VerificationToken verificationToken = userService.getVerificationToken(token);
         if (verificationToken == null) {
-//            String message = messages.getMessage("auth.message.invalidToken", null, locale);
             model.addAttribute("message", "Invalid Auth Token");
             return "redirect:/badUser.html?lang=";
         }
 
         if (LocalDateTime.now().isAfter(verificationToken.getExpiryDate())) {
-//            String messageValue = messages.getMessage("auth.message.expired", null, locale);
             model.addAttribute("message", "Token has expired");
             return "redirect:/badUser.html?lang=";
         }

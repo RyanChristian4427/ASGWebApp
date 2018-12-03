@@ -62,8 +62,7 @@ public class UserDetailsImpl implements UserDetails
     @Override
     public boolean isEnabled()
     {
-        return true;
-//                user.isEnabled() && user.isAuthenticated();
+        return user.isEnabled() && user.isAuthenticated();
     }
 
     public User getUser()
