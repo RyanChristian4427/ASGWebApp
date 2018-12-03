@@ -10,10 +10,15 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.flywaydb.flyway" version "5.2.3"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+
 
 group = 'com.assessment'
 version = '0.0.1-SNAPSHOT'
@@ -40,6 +45,13 @@ test {
     } else {
         systemProperty 'spring.profiles.active', 'development'
     }
+}
+
+
+flyway{
+    user="root"
+    password="comsc"
+    url="jdbc:mysql://localhost:3306/"
 }
 
 dependencies {
