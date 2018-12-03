@@ -46,8 +46,20 @@ CREATE TABLE IF NOT EXISTS user (
   role VARCHAR(10),
   activated TINYINT NOT NULL DEFAUlt 0,
   enabled TINYINT NOT NULL DEFAULT 1,
+  authentication_token VARCHAR(36),
+  expiry_datetime DATETIME,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
+
+
+# Was a thought, but decided against it for now
+# CREATE TABLE IF NOT EXISTS verification_token (
+#   user_id INT UNSIGNED NOT NULL,
+#   authentication_token VARCHAR(36) NOT NULL,
+#   expiry_time DATETIME NOT NULL,
+#   PRIMARY KEY (user_id),
+#   FOREIGN KEY (user_id) REFERENCES user (id)
+# ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS candidate (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,

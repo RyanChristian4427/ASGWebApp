@@ -18,7 +18,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = PostCodeValidator.class)
 @Documented
 public @interface ValidPostCode {
-    String message() default "Post code does not British format. Please check over what you've submitted.";
+    String message() default "Post code does not valid format. Please check over what you've submitted.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

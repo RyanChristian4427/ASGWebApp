@@ -25,7 +25,7 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public User registerNewCandidate(RegistrationDto accountDto) {
-        passwordEncoder().encode(accountDto.getPassword());
+        accountDto.setPassword(passwordEncoder().encode(accountDto.getPassword()));
 
         String previousCandidateReferenceNumber = candidateRepository.previousCandidateReferenceNumber();
         String[] referenceNumberParts = previousCandidateReferenceNumber.split("-");

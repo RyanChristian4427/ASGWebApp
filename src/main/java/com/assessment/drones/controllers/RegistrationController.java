@@ -1,25 +1,44 @@
 package com.assessment.drones.controllers;
 
 import com.assessment.drones.domain.RegistrationDto;
+import com.assessment.drones.domain.User;
+import com.assessment.drones.domain.VerificationToken;
+import com.assessment.drones.services.OnRegistrationCompleteEvent;
 import com.assessment.drones.services.interfaces.CandidateService;
+import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Locale;
 
 @Controller
 public class RegistrationController {
 
     private CandidateService candidateService;
+    private ApplicationEventPublisher applicationEventPublisher;
+    private UserService userService;
 
     @Autowired
-    public RegistrationController(CandidateService candidateService) {
+    public RegistrationController(CandidateService candidateService, ApplicationEventPublisher applicationEventPublisher,
+                                  UserService userService) {
         this.candidateService = candidateService;
+        this.applicationEventPublisher = applicationEventPublisher;
+        this.userService = userService;
     }
 
     @RequestMapping(path="/register", method= RequestMethod.GET)
@@ -37,16 +56,44 @@ public class RegistrationController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerUserAccount(
             @ModelAttribute("user") @Valid RegistrationDto accountDto,
-            BindingResult result,
-            Model model) {
+            BindingResult result, WebRequest request, Model model) {
 
         if (!result.hasErrors()) {
             candidateService.registerNewCandidate(accountDto);
-        }
-        if (result.hasErrors()) {
-            return register(model, accountDto);
+
+            try {
+                String appUrl = request.getContextPath();
+                applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent
+                        (new User(accountDto.getEmailAddress(), accountDto.getPassword(), "candidate"), request.getLocale(), appUrl));
+
+                return "redirect:/login";
+            } catch (Exception me) {
+                return register(model, accountDto);
+            }
         } else {
-            return "redirect:/login";
+            return register(model, accountDto);
         }
+    }
+
+    @RequestMapping(value = "/registrationConfirm", method = RequestMethod.GET)
+    public String confirmRegistration(Model model, @RequestParam("token") String token) {
+
+//        Locale locale = request.getLocale();
+
+        VerificationToken verificationToken = userService.getVerificationToken(token);
+        if (verificationToken == null) {
+//            String message = messages.getMessage("auth.message.invalidToken", null, locale);
+            model.addAttribute("message", "Invalid Auth Token");
+            return "redirect:/badUser.html?lang=";
+        }
+
+        if (LocalDateTime.now().isAfter(verificationToken.getExpiryDate())) {
+//            String messageValue = messages.getMessage("auth.message.expired", null, locale);
+            model.addAttribute("message", "Token has expired");
+            return "redirect:/badUser.html?lang=";
+        }
+
+        userService.authenticateUser(verificationToken.getUserEmail());
+        return "redirect:/login";
     }
 }

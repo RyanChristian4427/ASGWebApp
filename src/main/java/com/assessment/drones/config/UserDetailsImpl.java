@@ -63,6 +63,7 @@ public class UserDetailsImpl implements UserDetails
     public boolean isEnabled()
     {
         return true;
+//                user.isEnabled() && user.isAuthenticated();
     }
 
     public User getUser()

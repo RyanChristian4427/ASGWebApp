@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Controller
 public class AdminController {
 
@@ -31,7 +34,8 @@ public class AdminController {
         model.addAttribute("operatorsManualForm", new OperatorsManualDto());
         model.addAttribute("flightAssessmentForm", new FlightAssessmentDto());
         model.addAttribute("recommendationsForm", new RecommendationsDto());
-        emailService.sendSimpleMessage("RyanChristian@gmail.com", "Hello There", "Hello good sir");
+//        emailService.sendSimpleMessage("Team7@gmail.com", "Demo Test", "This is a test of the new email system.");
+        System.out.println(LocalDateTime.now());
         return "adminDashboard";
     }
 

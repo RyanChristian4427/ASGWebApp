@@ -108,7 +108,7 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
                     new String[] {"id"});
             pstmt.setString(1, accountDto.getEmailAddress());
             pstmt.setString(2, accountDto.getPassword());
-            pstmt.setString(3, "client");
+            pstmt.setString(3, "candidate");
             return pstmt;
         }, holder);
 

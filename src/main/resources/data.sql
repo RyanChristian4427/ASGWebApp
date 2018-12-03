@@ -1,9 +1,9 @@
 INSERT INTO user (id, email, password, role) VALUES (1, 'admin@asg.com', '$2a$10$6443CNhV26R6qEMohATMYuleZxiUfr/ya0urCUqheo5STYOU6maqu', 'admin');
 INSERT INTO user (id, email, password, role) VALUES (2, 'admin2@asg.com', '$2a$10$cGXMmSfOg2ZrUXUgCxaiaO4pgjJsSvcFYlKPMcFDBgVp3MqrZ2M96', 'admin');
-INSERT INTO user (id, email, password, role) VALUES (3, 'client@asg.com', '$2a$10$S4MOcUgShERWJpI1EpTReeNbwKL09wElxbCLLimHdf3yrOG7H2PWG', 'client');
-INSERT INTO user (id, email, password, role) VALUES (4, 'client2@asg.com', '$2a$10$uzGe/I2v.1LtdTPBQg8oDOe/07mlgaGyG0UoF8G5VQD7b6PAvTQHq', 'client');
-INSERT INTO user (id, email, password, role) VALUES (5, 'client3@asg.com', '$2a$10$H2GWvDnlRJD1DuVPkfkSLujsmzSwGmM7ELKpZY0olKQFObp4GWZ56', 'client');
-INSERT INTO user (id, email, password, role) VALUES (6, 'client4@asg.com', '$2a$10$1XELQEuTrZ0JbFg0MijjI.4QFWJYMppieYp5XN8Aj6z6LIg9QwgN2', 'client');
+INSERT INTO user (id, email, password, role) VALUES (3, 'client@asg.com', '$2a$10$S4MOcUgShERWJpI1EpTReeNbwKL09wElxbCLLimHdf3yrOG7H2PWG', 'candidate');
+INSERT INTO user (id, email, password, role) VALUES (4, 'client2@asg.com', '$2a$10$uzGe/I2v.1LtdTPBQg8oDOe/07mlgaGyG0UoF8G5VQD7b6PAvTQHq', 'candidate');
+INSERT INTO user (id, email, password, role) VALUES (5, 'client3@asg.com', '$2a$10$H2GWvDnlRJD1DuVPkfkSLujsmzSwGmM7ELKpZY0olKQFObp4GWZ56', 'candidate');
+INSERT INTO user (id, email, password, role) VALUES (6, 'client4@asg.com', '$2a$10$1XELQEuTrZ0JbFg0MijjI.4QFWJYMppieYp5XN8Aj6z6LIg9QwgN2', 'candidate');
 
 INSERT INTO address (id, line_1, line_2, city, postcode) VALUES (1, 'Studio 103, The Business Centre', '61 Wellfield Road', 'Cardiff', 'CF24 3DG');
 INSERT INTO address (id, line_1, line_2, city, postcode) VALUES (2, 'Unit 14, 3 Edgar Buildings', 'George Street', 'Bath', 'BA1 2FJ');
