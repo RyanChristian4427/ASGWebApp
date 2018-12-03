@@ -79,13 +79,15 @@ public class RegistrationController {
 
         VerificationToken verificationToken = userService.getVerificationToken(token);
         if (verificationToken == null) {
-            model.addAttribute("message", "Invalid Auth Token");
-            return "redirect:/badUser.html?lang=";
+            model.addAttribute("message", "Sorry, but that token seems to be invalid. Make " +
+                    "sure it's correct, or sign up for an account with us if you don't already have one.");
+            return "authError";
         }
 
         if (LocalDateTime.now().isAfter(verificationToken.getExpiryDate())) {
-            model.addAttribute("message", "Token has expired");
-            return "redirect:/badUser.html?lang=";
+            model.addAttribute("message", "Sorry, but that token has expired. Please click " +
+                    "below to request a new one. All tokens do expire 24 hours after they are sent out.");
+            return "authError";
         }
 
         userService.authenticateUser(verificationToken.getUserEmail());

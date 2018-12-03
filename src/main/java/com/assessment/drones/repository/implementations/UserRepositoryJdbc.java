@@ -55,9 +55,12 @@ public class UserRepositoryJdbc implements UserRepository {
 
     @Override
     public VerificationToken getVerificationToken(String token){
-        return jdbcTemplate.queryForObject("SELECT email, authentication_token, expiry_datetime FROM user " +
-                "WHERE authentication_token = ?", new Object[] {token}, verificationTokenMapper);
-
+        try {
+            return jdbcTemplate.queryForObject("SELECT email, authentication_token, expiry_datetime FROM user " +
+                    "WHERE authentication_token = ?", new Object[] {token}, verificationTokenMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override

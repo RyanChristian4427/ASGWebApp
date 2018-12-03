@@ -1,39 +1,37 @@
 package com.assessment.drones.config;
 
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class AuthFailureHandler implements AuthenticationFailureHandler {
+public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-            AuthenticationException exception) throws IOException {
+            AuthenticationException exception) throws IOException, ServletException {
 
-        response.sendRedirect("/login-error");
-    }
-
-    @Override
-    public void onAuthenticationFailure(HttpServletRequest request,
-                                        HttpServletResponse response, AuthenticationException exception)
-            throws IOException, ServletException {
-        setDefaultFailureUrl("/login.html?error=true");
-
+        setDefaultFailureUrl("/login?error=true");
         super.onAuthenticationFailure(request, response, exception);
 
-        Locale locale = localeResolver.resolveLocale(request);
+        String errorMessage = "";
 
-        String errorMessage = messages.getMessage("message.badCredentials", null, locale);
+        //Useful for adding new exceptions later
+//        System.out.println("Exception is: " + exception);
 
         if (exception.getMessage().equalsIgnoreCase("User is disabled")) {
-            errorMessage = messages.getMessage("auth.message.disabled", null, locale);
-        } else if (exception.getMessage().equalsIgnoreCase("User account has expired")) {
-            errorMessage = messages.getMessage("auth.message.expired", null, locale);
+            errorMessage = "Sorry, but that account has not been activated yet. Please look for an email " +
+                    "with an activation link. After you've used it, you can log in.";
+        } else if (exception.getMessage().equalsIgnoreCase("Bad credentials")) {
+            errorMessage = "Sorry, but your credentials do not match any that we have on record";
         }
 
         request.getSession().setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, errorMessage);

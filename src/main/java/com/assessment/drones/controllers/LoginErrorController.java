@@ -10,7 +10,7 @@ public class LoginErrorController {
 
     @RequestMapping(value = "/login-error", method = RequestMethod.GET)
     public final String displayLoginForm(Model model) {
-        model.addAttribute("loginError", true);
+//        model.addAttribute("loginError", true);
         return "login";
     }
 }
