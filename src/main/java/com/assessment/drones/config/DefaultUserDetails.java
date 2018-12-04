@@ -14,9 +14,9 @@ public class DefaultUserDetails implements UserDetails
 {
     private User user;
 
-    DefaultUserDetails(User aUser)
+    DefaultUserDetails(User user)
     {
-        this.user = aUser;
+        this.user = user;
     }
 
     @Override

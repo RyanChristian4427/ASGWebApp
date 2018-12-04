@@ -41,6 +41,7 @@
                 <label for="inputPassword">Password</label>
               </div>
             </div>
+            <p th:if="${loginError}" class="error">The entered username and password do not match any records.</p>
             <div class="form-group">
               <div class="checkbox">
                 <label>
