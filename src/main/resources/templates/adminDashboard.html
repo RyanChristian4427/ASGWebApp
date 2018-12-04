@@ -248,9 +248,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <!--<input type="text" class="form-control date-picker" th:field="*{dob}" id="date-picker" placeholder="Date of Birth" required="required">-->
-                                            <input type="date" id="flight_training_skills_date" th:field="*{skillsDate}" class="form-control" placeholder="Skills Assessment Date" required="required">
-                                            <label for="flight_training_skills_date">Skills Assessment Date</label>
+                                            <input type="text" id="date-picker" th:field="*{skillsDate}" class="form-control date-picker" placeholder="Date of Birth" required="required">
+                                            <label for="date-picker">Skills Assessment Date</label>
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +294,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="date" id="ground_school_completion_date" th:field="*{completionDate}" class="form-control" placeholder="Date of Completion" required="required">
+                                            <input type="text" id="ground_school_completion_date" th:field="*{completionDate}" class="form-control date-picker" placeholder="Date of Completion" required="required">
                                             <label for="ground_school_completion_date">Date of Completion</label>
                                         </div>
                                     </div>
@@ -447,8 +446,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="date" id="recommendations_asgRecommendDate" th:field="*{asgRecommendDate}" class="form-control" placeholder="Instructor ID" required = "required">
-                                            <label for="recommendations_asgRecommendDate">Date ASG Forwarded Recommendation</label>
+                                            <input type="text" id="recommendations_asg_recommend_date" th:field="*{asgRecommendDate}" class="form-control date-picker" placeholder="Date ASG Forwarded Recommendation" required="required">
+                                            <label for="recommendations_asg_recommend_date">Date ASG Forwarded Recommendation</label>
                                         </div>
                                     </div>
                                 </div>
@@ -457,14 +456,14 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="date" id="recommendations_flightCompetenceDate" th:field="*{flightCompetenceDate}" class="form-control" placeholder="Date of Flight Competence Certificate" required = "required"/>
-                                            <label for="recommendations_flightCompetenceDate">Date of Flight Competence Certificate</label>
+                                            <input type="text" id="recommendations_flight_competence_date" th:field="*{flightCompetenceDate}" class="form-control date-picker" placeholder="Date of Flight Competence Certificate" required="required">
+                                            <label for="recommendations_flight_competence_date">Date of Flight Competence Certificate</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="date" id="recommendations_caaApplicationDate" th:field="*{caaApplicationDate}" class="form-control" placeholder="Date Application Sent to CAA" required = "required">
-                                            <label for="recommendations_caaApplicationDate">Date Application Sent to CAA</label>
+                                            <input type="text" id="recommendations_caa_application_date" th:field="*{caaApplicationDate}" class="form-control date-picker" placeholder="Date Application Sent to CAA" required="required">
+                                            <label for="recommendations_caa_application_date">Date Application Sent to CAA</label>
                                         </div>
                                     </div>
                                 </div>
@@ -473,14 +472,14 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="date" id="recommendations_caaApprovalDate" th:field="*{caaApprovalDate}" class="form-control" placeholder="Date CAA Approved Application" required = "required"/>
-                                            <label for="recommendations_caaApprovalDate">Date CAA Approved Application</label>
+                                            <input type="text" id="recommendations_caa_approval_date" th:field="*{caaApprovalDate}" class="form-control date-picker" placeholder="Date CAA Approved Application" required="required">
+                                            <label for="recommendations_caa_approval_date">Date CAA Approved Application</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
-                                            <input type="date" id="recommendations_asgOverallCommentsAndApprovalByCaa" th:field="*{asgOverallCommentsAndApprovalByCaa}" class="form-control" placeholder="Date ASG Returned Comments" required = "required">
-                                            <label for="recommendations_asgOverallCommentsAndApprovalByCaa">Date ASG Returned Comments</label>
+                                            <input type="text" id="recommendations_asg_overall_comments_and_approval_by_caa" th:field="*{asgOverallCommentsAndApprovalByCaa}" class="form-control date-picker" placeholder="Date ASG Returned Comments" required="required">
+                                            <label for="recommendations_asg_overall_comments_and_approval_by_caa">Date ASG Returned Comments</label>
                                         </div>
                                     </div>
                                 </div>
@@ -515,6 +514,6 @@
         <!-- Demo scripts for this page-->
         <script th:src="@{js/demo/datatables-demo.js}"></script>
         <script th:src="@{js/demo/chart-area-demo.js}"></script>
-
+        <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js}"></script>
     </body>
 </html>

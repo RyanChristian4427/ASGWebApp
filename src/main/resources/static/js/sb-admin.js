@@ -5,15 +5,28 @@
         $("#ground_school_resit_label").html("True/False")
     });
 
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear() - 18;
+
+
     $(function(){
-        $('.date-picker').datepicker({
+            $('.date-picker').datepicker({
             format: "dd/mm/yyyy",
-            startDate: "01-01-1920",
-            endDate: "30-06-2001",
+            startDate: "01-01-2010",
             maxViewMode: 3
         });
     });
 
+    $(function(){
+        $('#dob').datepicker({
+            format: "dd/mm/yyyy",
+            startDate: "01-01-1920",
+            endDate: dd + "-" + mm + "-" + yyyy,
+            maxViewMode: 3
+        });
+    });
 
     // Toggle the side navigation
   $("#sidebarToggle").on('click',function(e) {
