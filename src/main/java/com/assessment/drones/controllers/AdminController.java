@@ -38,7 +38,7 @@ public class AdminController {
     //getting data from the flying training form
     @RequestMapping(path = "/admin/flightTraining", method = RequestMethod.POST)
     public String getFlyTraining (@ModelAttribute("flightTrainingForm") FlightTrainingDto flightTrainingDto){
-        //This returns a boolean, so do an error and success page?
+        //TODO This returns a boolean, so do an error and success page?
         adminService.verify(flightTrainingDto);
         return "redirect:/admin";
     }

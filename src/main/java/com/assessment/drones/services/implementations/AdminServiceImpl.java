@@ -81,6 +81,7 @@ public class AdminServiceImpl implements AdminService {
 
         boolean verified = false;
 
+        //TODO Check to make sure the candidate numbers aren't already in each table, as it throws and error
         if(formDto instanceof FlightTrainingDto) {
             verified = candidateRepository.findCandidateByNumber(((FlightTrainingDto) formDto)
                     .getCandidateNumber()).isPresent() && instructorRepository.findInstructorByID(((FlightTrainingDto) formDto)
