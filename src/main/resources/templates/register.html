@@ -171,18 +171,20 @@
                   <label for="preferredLocation">Preferred Location</label>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" id="droneMake" th:field="*{droneMake}" class="form-control" placeholder="Make of Drone You Will Be Using" required="required">
-                  <label for="droneMake">Make of Drone You Will Be Using</label>
+              <!--<div th:object="${drone}">-->
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="text" id="droneMake" th:field="*{droneDto.make}" class="form-control" placeholder="Make of Drone You Will Be Using" required="required">
+                    <label for="droneMake">Make of Drone You Will Be Using</label>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" id="droneModel" th:field="*{droneModel}" class="form-control" placeholder="Model of Drone You Will Be Using" required="required">
-                  <label for="droneModel">Model of Drone You Will Be Using</label>
+                  <div class="form-group">
+                    <div class="form-label-group">
+                      <input type="text" id="droneModel" th:field="*{droneDto.model}" class="form-control" placeholder="Model of Drone You Will Be Using" required="required">
+                      <label for="droneModel">Model of Drone You Will Be Using</label>
+                    </div>
                 </div>
-              </div>
+              <!--</div>-->
               <input type="button" name="previous" class="previous action-button" value="Previous" />
               <button type="submit" class="btn btn-primary btn-block" value="submit">Register</button>
             </fieldset>

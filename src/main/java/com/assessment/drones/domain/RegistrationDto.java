@@ -42,6 +42,5 @@ public class RegistrationDto {
     private String companyName;
     private String preferredLocation;
 
-    private String droneMake;
-    private String droneModel;
+    private DroneDto droneDto;
 }

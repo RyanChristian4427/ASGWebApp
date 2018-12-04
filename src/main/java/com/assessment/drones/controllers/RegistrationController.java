@@ -1,5 +1,6 @@
 package com.assessment.drones.controllers;
 
+import com.assessment.drones.domain.DroneDto;
 import com.assessment.drones.domain.RegistrationDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.domain.VerificationToken;
@@ -16,15 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Locale;
 
 @Controller
 public class RegistrationController {
@@ -43,8 +38,7 @@ public class RegistrationController {
 
     @RequestMapping(path="/register", method= RequestMethod.GET)
     public String register(Model model){
-        RegistrationDto accountDto = new RegistrationDto();
-        model.addAttribute("user", accountDto);
+        model.addAttribute("user", new RegistrationDto());
         return "register";
     }
 

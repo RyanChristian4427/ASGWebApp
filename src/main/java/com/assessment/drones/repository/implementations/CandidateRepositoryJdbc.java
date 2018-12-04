@@ -81,8 +81,8 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
             PreparedStatement pstmt = connection.prepareStatement(
                     "INSERT INTO drone(make, model) VALUES(?, ?)",
                     new String[] {"id"});
-            pstmt.setString(1, accountDto.getDroneMake());
-            pstmt.setString(2, accountDto.getDroneModel());
+            pstmt.setString(1, accountDto.getDroneDto().getMake());
+            pstmt.setString(2, accountDto.getDroneDto().getModel());
             return pstmt;
         }, holder);
 
