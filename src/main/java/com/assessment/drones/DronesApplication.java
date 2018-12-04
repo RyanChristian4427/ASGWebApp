@@ -2,8 +2,8 @@ package com.assessment.drones;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
@@ -13,11 +13,12 @@ public class DronesApplication
     {
         SpringApplication.run(DronesApplication.class, args);
     }
-
-    @Configuration
+    @Bean
     @Profile("development")
-    @ComponentScan(lazyInit = true)
-    static class LocalConfig {
+    public FlywayMigrationStrategy cleanMigrateStrategy() {
+        return flyway -> {
+            flyway.clean();
+            flyway.migrate();
+        };
     }
-
 }

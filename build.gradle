@@ -15,6 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+
 group = 'com.assessment'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 10
@@ -42,12 +43,12 @@ test {
     }
 }
 
+
 dependencies {
     annotationProcessor('org.projectlombok:lombok:1.18.2')
     compileOnly('org.projectlombok:lombok:1.18.2')
-
+    implementation('org.flywaydb:flyway-core')
     implementation('mysql:mysql-connector-java')
-
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter')
