@@ -41,7 +41,7 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
     @Override
     public Optional<Candidate> findCandidateByNumber(String candidateNumber) {
         try {
-            return Optional.ofNullable(
+            return Optional.of(
                     jdbcTemplate.queryForObject(
                             "SELECT * FROM candidate WHERE reference_number = ?",
                             new Object[]{candidateNumber},
