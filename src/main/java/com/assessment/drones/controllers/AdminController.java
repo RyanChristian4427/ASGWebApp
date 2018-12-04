@@ -17,12 +17,10 @@ import java.time.LocalDateTime;
 public class AdminController {
 
     private AdminService adminService;
-    private EmailService emailService;
 
     @Autowired
-    public AdminController(AdminService adminService, EmailService emailService) {
+    public AdminController(AdminService adminService) {
         this.adminService = adminService;
-        this.emailService = emailService;
     }
 
 
@@ -34,8 +32,6 @@ public class AdminController {
         model.addAttribute("operatorsManualForm", new OperatorsManualDto());
         model.addAttribute("flightAssessmentForm", new FlightAssessmentDto());
         model.addAttribute("recommendationsForm", new RecommendationsDto());
-//        emailService.sendSimpleMessage("Team7@gmail.com", "Demo Test", "This is a test of the new email system.");
-        System.out.println(LocalDateTime.now());
         return "adminDashboard";
     }
 
