@@ -10,10 +10,6 @@ buildscript {
     }
 }
 
-plugins {
-    id "org.flywaydb.flyway" version "5.2.3"
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -48,18 +44,11 @@ test {
 }
 
 
-flyway{
-    user="root"
-    password="comsc"
-    url="jdbc:mysql://localhost:3306/"
-}
-
 dependencies {
     annotationProcessor('org.projectlombok:lombok:1.18.2')
     compileOnly('org.projectlombok:lombok:1.18.2')
-
+    implementation('org.flywaydb:flyway-core')
     implementation('mysql:mysql-connector-java')
-
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter')
