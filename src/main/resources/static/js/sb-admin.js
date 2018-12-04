@@ -1,34 +1,32 @@
 (function($) {
   "use strict"; // Start of use strict
 
-    var format = "dd/mm/yyyy";
-    var match = new RegExp(format
-        .replace(/(\w+)\W(\w+)\W(\w+)/, "^\\s*($1)\\W*($2)?\\W*($3)?([0-9]*).*")
-        .replace(/[mdy]/g, "\\d"));
-    var replace = "$1/$2/$3$4"
-        .replace(/\//g, format.match(/\W/));
-
-    function doFormat(target)
-    {
-        target.value = target.value
-            .replace(/(^|\W)(?=\d\W)/g, "$10")   // padding
-            .replace(match, replace)             // fields
-            .replace(/(\W)+/g, "$1");            // remove repeats
-    }
-
-    $("input[name='dob']:first").keyup(function(e) {
-        if(!e.ctrlKey && !e.metaKey && (e.keyCode == 32 || e.keyCode > 46))
-            doFormat(e.target)
-    });
-
-    $("#dob").on("input", function() {
-      $("#dob_label").html("Date of Birth (dd/mm/yyyy)")
-    });
-
     $("#ground_school_resit").on("input", function() {
         $("#ground_school_resit_label").html("True/False")
     });
 
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear() - 18;
+
+
+    $(function(){
+            $('.date-picker').datepicker({
+            format: "dd/mm/yyyy",
+            startDate: "01-01-2010",
+            maxViewMode: 3
+        });
+    });
+
+    $(function(){
+        $('#dob').datepicker({
+            format: "dd/mm/yyyy",
+            startDate: "01-01-1920",
+            endDate: dd + "-" + mm + "-" + yyyy,
+            maxViewMode: 3
+        });
+    });
 
     // Toggle the side navigation
   $("#sidebarToggle").on('click',function(e) {

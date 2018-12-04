@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class GroundSchoolDto {
     private String candidateNumber;
     private Long instructorId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate completionDate;
     private Long questionBank;
     private Long passResult;

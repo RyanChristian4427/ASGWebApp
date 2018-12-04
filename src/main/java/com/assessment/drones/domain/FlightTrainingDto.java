@@ -15,6 +15,6 @@ public class FlightTrainingDto {;
     private String candidateNumber;
     private Long instructorId;
     private String trainingType;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate skillsDate;
 }

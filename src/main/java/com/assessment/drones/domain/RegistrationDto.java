@@ -19,67 +19,29 @@ import java.time.LocalDate;
 @PasswordMatches
 public class RegistrationDto {
 
-    @NotNull
-    @NotEmpty
     private String firstName;
-
-    @NotNull
-    @NotEmpty
     private String lastName;
 
-    @NotNull
-    @NotEmpty
-    @ValidEmail
     private String emailAddress;
 
-    @NotNull
-    @NotEmpty
     private String password;
     private String matchingPassword;
 
-    @NotNull
-    @NotEmpty
     private String addressLine1;
-
     private String addressLine2;
-
-    @NotNull
-    @NotEmpty
-    @ValidPostCode
     private String postCode;
-
-    @NotNull
-    @NotEmpty
     private String city;
 
-    @NotNull
-    @NotEmpty
     private String phoneNumber;
 
-    private String companyName;
-
-    @NotNull
-    @ValidDoB
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dob;
-
-    @NotNull
-    @NotEmpty
     private String pob;
 
-    @NotNull
-    @NotEmpty
     private String flightExperience;
-
-    @NotNull
-    @NotEmpty
+    private String companyName;
     private String preferredLocation;
 
-    @NotNull
-    @NotEmpty
     private String droneMake;
-
-    @NotNull
-    @NotEmpty
     private String droneModel;
 }
