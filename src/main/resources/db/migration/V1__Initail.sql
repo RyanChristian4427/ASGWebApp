@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS contact_info (
 CREATE TABLE IF NOT EXISTS drone (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     make VARCHAR(15) NOT NULL,
-    model VARCHAR(20) NOT NULL,
+    model VARCHAR(25) NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
@@ -37,24 +37,28 @@ CREATE TABLE IF NOT EXISTS general_info (
     FOREIGN KEY (drone_type_id) REFERENCES drone (id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS user (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  email VARCHAR(50) NOT NULL,
+  password VARCHAR(60) NOT NULL,
+  role VARCHAR(10),
+  activated TINYINT NOT NULL DEFAUlt 0,
+  enabled TINYINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS candidate (
-	reference_number INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    reference_number VARCHAR(13) UNIQUE NOT NULL,
     user_id INT UNSIGNED NOT NULL,
     first_name VARCHAR(10) NOT NULL,
     surname VARCHAR(15) NOT NULL,
     contact_info_id INT UNSIGNED NOT NULL,
     general_info_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (reference_number),
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
     FOREIGN KEY (contact_info_id) REFERENCES contact_info (id),
     FOREIGN KEY (general_info_id) REFERENCES general_info (id)
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS user (
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    email VARCHAR(50) NOT NULL,
-    password VARCHAR(60) NOT NULL,
-    role VARCHAR(10),
-    PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS instructor (
@@ -62,7 +66,8 @@ CREATE TABLE IF NOT EXISTS instructor (
     user_id INT UNSIGNED NOT NULL,
     first_name VARCHAR(20) NOT NULL,
     surname VARCHAR(20) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES user (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS course (
@@ -73,9 +78,9 @@ CREATE TABLE IF NOT EXISTS course (
     PRIMARY KEY (course_number)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS flying_training (
+CREATE TABLE IF NOT EXISTS flight_training (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_number INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(13) UNIQUE NOT NULL,
     training_type VARCHAR(20) NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     skills_assessment_date DATE NOT NULL,
@@ -86,12 +91,12 @@ CREATE TABLE IF NOT EXISTS flying_training (
 
 CREATE TABLE IF NOT EXISTS ground_school (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_number INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(13) NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     completion_date DATE NOT NULL,
     question_bank INT NOT NULL,
-    pass_date DATE NOT NULL,
     pass_result INT UNSIGNED NOT NULL,
+    pass_date DATE NOT NULL,
     resit TINYINT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (candidate_number) REFERENCES candidate (reference_number),
@@ -100,10 +105,11 @@ CREATE TABLE IF NOT EXISTS ground_school (
 
 CREATE TABLE IF NOT EXISTS operators_manual (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_number INT UNSIGNED NOT NULL,
-    instructor_id INT UNSIGNED NOT NULL,
-    submitted_date VARCHAR(20) NOT NULL,
-    pass_date VARCHAR(20) NOT NULL,
+    candidate_number VARCHAR(13) NOT NULL,
+    instructor_id INT UNSIGNED,
+    submitted_date DATE NOT NULL,
+    pass_date DATE,
+    file_path VARCHAR(50) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (candidate_number) REFERENCES candidate (reference_number),
     FOREIGN KEY (instructor_id) REFERENCES instructor (id)
@@ -111,7 +117,7 @@ CREATE TABLE IF NOT EXISTS operators_manual (
 
 CREATE TABLE IF NOT EXISTS flight_assessment (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_number INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(13) NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     insurance VARCHAR(1) NOT NULL,
     logged_hours TIME NOT NULL,
@@ -124,11 +130,10 @@ CREATE TABLE IF NOT EXISTS flight_assessment (
 
 CREATE TABLE IF NOT EXISTS recommendations (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_number INT UNSIGNED NOT NULL,
+    candidate_number VARCHAR(13) NOT NULL,
     asg_recomend_date VARCHAR(20) NOT NULL,
     flight_competence_date VARCHAR(20) NOT NULL,
-    application_data_date VARCHAR(20) NOT NULL,
-    application_date VARCHAR(20) NOT NULL,
+    caa_application_date VARCHAR(20) NOT NULL,
     caa_approval_date VARCHAR(20) NOT NULL,
     overall_comments_approval_by_caa VARCHAR(20) NOT NULL,
     PRIMARY KEY (id),
@@ -137,10 +142,10 @@ CREATE TABLE IF NOT EXISTS recommendations (
 
 CREATE TABLE IF NOT EXISTS review (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    candidate_number INT UNSIGNED NOT NULL,
+    candidate_id INT UNSIGNED NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     review_text TEXT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (candidate_number) REFERENCES candidate (reference_number),
+    FOREIGN KEY (candidate_id) REFERENCES candidate (id),
     FOREIGN KEY (instructor_id) REFERENCES instructor (id)
 ) ENGINE = InnoDB;

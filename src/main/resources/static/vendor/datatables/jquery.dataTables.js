@@ -669,7 +669,7 @@
 		
 		
 		/**
-		 * Change the pagination - provides the internal logic for pagination in a simple API
+		 * Change the pagination - provides the internal implementations for pagination in a simple API
 		 * function. With this function you can have a DataTables table go to the next,
 		 * previous, first or last pages.
 		 *  @param {string|int} mAction Paging action to take: "first", "previous", "next" or "last"
@@ -3610,7 +3610,7 @@
 						sAttr = classes.sJUIFooter;
 					}
 	
-					/* The attribute can be in the format of "#id.class", "#id" or "class" This logic
+					/* The attribute can be in the format of "#id.class", "#id" or "class" This implementations
 					 * breaks the string into parts and applies them as needed
 					 */
 					if ( sAttr.indexOf('.') != -1 )
@@ -4859,7 +4859,7 @@
 	
 	
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * Note that most of the paging logic is done in
+	 * Note that most of the paging implementations is done in
 	 * DataTable.ext.pager
 	 */
 	
@@ -13945,9 +13945,9 @@
 		 * 
 		 * This method of searching is complimentary to the default type based
 		 * searching, and a lot more comprehensive as it allows you complete control
-		 * over the searching logic. Each element in this array is a function
+		 * over the searching implementations. Each element in this array is a function
 		 * (parameters described below) that is called for every row in the table,
-		 * and your logic decides if it should be included in the searching data set
+		 * and your implementations decides if it should be included in the searching data set
 		 * or not.
 		 *
 		 * Searching functions have the following input parameters:

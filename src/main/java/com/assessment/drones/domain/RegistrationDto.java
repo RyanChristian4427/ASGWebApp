@@ -1,13 +1,17 @@
 package com.assessment.drones.domain;
 
-import com.assessment.drones.validation.PasswordMatches;
-import com.assessment.drones.validation.ValidEmail;
+import com.assessment.drones.validation.annotations.PasswordMatches;
+import com.assessment.drones.validation.annotations.ValidDoB;
+import com.assessment.drones.validation.annotations.ValidEmail;
+import com.assessment.drones.validation.annotations.ValidPostCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -33,13 +37,15 @@ public class RegistrationDto {
     private String password;
     private String matchingPassword;
 
-//    @NotNull
-//    @NotEmpty
+    @NotNull
+    @NotEmpty
     private String addressLine1;
+
     private String addressLine2;
 
     @NotNull
     @NotEmpty
+    @ValidPostCode
     private String postCode;
 
     @NotNull
@@ -53,8 +59,9 @@ public class RegistrationDto {
     private String companyName;
 
     @NotNull
-    @NotEmpty
-    private String dob;
+    @ValidDoB
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dob;
 
     @NotNull
     @NotEmpty
