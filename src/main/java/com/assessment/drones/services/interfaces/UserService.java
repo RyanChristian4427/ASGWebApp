@@ -5,7 +5,7 @@ import com.assessment.drones.domain.User;
 
 public interface UserService {
 
-    boolean emailInUse(String email);
+    User emailInUse(String email);
 
     void createAuthenticationToken(User user, String purpose);
 

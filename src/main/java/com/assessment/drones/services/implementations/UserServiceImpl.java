@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean emailInUse(String email) {
-        return userRepository.findUserByEmail(email) != null;
+    public User emailInUse(String email) {
+        return userRepository.findUserByEmail(email);
     }
 
     @Override
@@ -39,13 +39,17 @@ public class UserServiceImpl implements UserService {
                 LocalDateTime.now().plusMinutes(tokenExpiryTimeInMinutes)));
 
         if(purpose.equalsIgnoreCase("register")) {
-
-
             String recipientAddress = user.getEmailAddress();
             String subject = "Registration Confirmation";
             String message = "Please follow this link to activate your account: " +
                     "http://localhost:8080/registrationConfirm?token=" + token;
 
+            emailService.sendSimpleMessage(recipientAddress, subject, message);
+        } else if (purpose.equalsIgnoreCase("password reset")){
+            String recipientAddress = user.getEmailAddress();
+            String subject = "Password Reset";
+            String message = "Please follow this link to activate your account: " +
+                    "http://localhost:8080/registrationConfirm?token=" + token;
             emailService.sendSimpleMessage(recipientAddress, subject, message);
         }
     }
