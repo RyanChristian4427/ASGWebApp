@@ -37,7 +37,6 @@ public class ForgottenPasswordController {
             ModelAndView modelAndView = new ModelAndView("forgottenPassword");
             return modelAndView.addObject(result);
         }
-        System.out.println("Don't get here");
         return new ModelAndView("forgottenPassword");
     }
 

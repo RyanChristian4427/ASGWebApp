@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -35,10 +36,9 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @RequestMapping(path="/register", method= RequestMethod.GET)
+    @RequestMapping(path="/register", method = RequestMethod.GET)
     public String register(Model model){
-        RegistrationDto accountDto = new RegistrationDto();
-        model.addAttribute("user", accountDto);
+        model.addAttribute("user", new RegistrationDto());
         return "register";
     }
 
@@ -48,8 +48,8 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerUserAccount(@ModelAttribute("user") @Valid RegistrationDto accountDto,
-            BindingResult result, WebRequest request, Model model) {
+    public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid RegistrationDto accountDto,
+                                            BindingResult result, WebRequest request) {
 
         if (!result.hasErrors()) {
             User user = candidateService.registerNewCandidate(accountDto);
@@ -58,12 +58,14 @@ public class RegistrationController {
                 String appUrl = request.getContextPath();
                 applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
 
-                return "redirect:/login";
+                return new ModelAndView("/login");
             } catch (Exception me) {
-                return register(model, accountDto);
+                return new ModelAndView("registration","user", accountDto);
             }
         } else {
-            return register(model, accountDto);
+//            ModelAndView modelAndView = new ModelAndView("/register");
+//            modelAndView.addObject()
+            return new ModelAndView("registration","user", accountDto);
         }
     }
 
