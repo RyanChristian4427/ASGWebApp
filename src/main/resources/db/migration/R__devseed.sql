@@ -45,10 +45,10 @@ VALUES
        ('Parrot', 'Bebop 2 Power'),
        ('Parrot', 'Mambo');
 
-INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (1, '1990/2/28', 'Cardiff', '', 'None', 'Cardiff', 1);
-INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (2, '1990/10/21', 'Somerset', '', 'Some', 'Somerset', 2);
-INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (3, '1990/12/31', 'Aberdeen', 'Microsoft', 'A lot', 'Aberdeen', 1);
-INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id) VALUES (4, '1990/11/15', 'Cardiff', 'Apple', 'A Pro', 'Cardiff', 2);
+INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id, english_speaking, disability) VALUES (1, '1990/2/28', 'Cardiff', '', 'None', 'Cardiff', 1, 5, 'none');
+INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id, english_speaking, disability) VALUES (2, '1990/10/21', 'Somerset', '', 'Some', 'Somerset', 2, 5, 'none');
+INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id, english_speaking, disability) VALUES (3, '1990/12/31', 'Aberdeen', 'Microsoft', 'A lot', 'Aberdeen', 1, 5, 'none');
+INSERT INTO general_info (id, date_of_birth, place_of_birth, company_name, previous_flying_exp, preferred_location, drone_type_id, english_speaking, disability) VALUES (4, '1990/11/15', 'Cardiff', 'Apple', 'A Pro', 'Cardiff', 2, 5, 'none');
 
 INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-001-18-11', 3, 'Blaise', 'Pascal', 1, 1);
 INSERT INTO candidate (reference_number, user_id, first_name, surname, contact_info_id, general_info_id) VALUES ('ASG-002-18-11', 4, 'Caroline', 'Herschel', 2, 2);
