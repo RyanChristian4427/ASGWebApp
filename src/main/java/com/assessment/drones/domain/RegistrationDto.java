@@ -45,11 +45,6 @@ public class RegistrationDto {
     private String droneMake;
     private String droneModel;
 
-    @NotNull
-    @NotEmpty
     private Long englishLevel;
-
-    @NotNull
-    @NotEmpty
     private String disability;
 }
