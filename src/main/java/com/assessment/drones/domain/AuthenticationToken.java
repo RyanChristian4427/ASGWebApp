@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-public class VerificationToken {
+public class AuthenticationToken {
 
     private String userEmail;
     private String token;
