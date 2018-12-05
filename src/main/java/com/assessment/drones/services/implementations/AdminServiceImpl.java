@@ -8,6 +8,8 @@ import com.assessment.drones.services.interfaces.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminServiceImpl implements AdminService {
     private AdminRepository adminRepository;
@@ -120,4 +122,9 @@ public class AdminServiceImpl implements AdminService {
         }
         return verified;
     }
-}
+
+    @Override
+    public List<Candidate> getCandidateList(){
+
+        return adminRepository.getCandidateList();
+    }}
