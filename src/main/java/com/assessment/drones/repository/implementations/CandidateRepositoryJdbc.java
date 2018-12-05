@@ -89,7 +89,7 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
         jdbcTemplate.update(connection -> {
             PreparedStatement pstmt = connection.prepareStatement(
                     "INSERT INTO general_info(date_of_birth, place_of_birth, company_name, " +
-                            "previous_flying_exp, preferred_location, drone_type_id) VALUES(?, ?, ?, ?, ?, ?)",
+                            "previous_flying_exp, preferred_location, drone_type_id, english_speaking, disability) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
                     new String[] {"id"});
             pstmt.setObject(1, accountDto.getDob());
             pstmt.setString(2, accountDto.getPob());
@@ -97,6 +97,8 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
             pstmt.setString(4, accountDto.getFlightExperience());
             pstmt.setString(5, accountDto.getPreferredLocation());
             pstmt.setLong(6, holder.getKey().longValue());
+            pstmt.setLong(7, accountDto.getEnglishLevel());
+            pstmt.setString(8, accountDto.getDisability());
             return pstmt;
         }, holder);
 
