@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,6 +21,7 @@ public class AdminRepositoryJdbc implements AdminRepository {
     private RowMapper<OperatorsManualDto> operatorsManualRowMapper;
     private RowMapper<FlightAssessmentDto> flightAssessmentRowMapper;
     private RowMapper<RecommendationsDto> recommendationsRowMapper;
+    private RowMapper<Candidate> candidateRowMapper;
 
     @Autowired
     public AdminRepositoryJdbc(JdbcTemplate aTemplate) {
@@ -62,6 +64,12 @@ public class AdminRepositoryJdbc implements AdminRepository {
                 rs.getDate("caa_approval_date").toLocalDate(),
                 rs.getDate("overall_comments_approval_by_caa").toLocalDate()
         );
+
+        candidateRowMapper = ((rs, rowNum) ->  new Candidate(
+                rs.getString("reference_number"),
+                rs.getString("first_name"),
+                rs.getString("surname")
+        ));
     }
 
     @Override
@@ -123,6 +131,11 @@ public class AdminRepositoryJdbc implements AdminRepository {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<Candidate> getCandidateList() {
+        return jdbcTemplate.query("SELECT reference_number, first_name, surname FROM candidate", candidateRowMapper);
     }
 }
 

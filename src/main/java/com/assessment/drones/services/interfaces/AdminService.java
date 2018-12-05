@@ -2,6 +2,8 @@ package com.assessment.drones.services.interfaces;
 
 import com.assessment.drones.domain.*;
 
+import java.util.List;
+
 public interface AdminService {
     String saveFlightTraining(FlightTrainingDto flightTrainingDto);
 
@@ -14,4 +16,6 @@ public interface AdminService {
     String saveRecommendations(RecommendationsDto recommendationsDto);
 
     Boolean verify(Object formDto);
+
+    List<Candidate> getCandidateList();
 }

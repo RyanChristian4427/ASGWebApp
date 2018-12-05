@@ -72,7 +72,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="future_use/charts.html">
+                    <a class="nav-link" href="/chart">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Charts</span></a>
                 </li>
@@ -173,6 +173,37 @@
                                 </a>
                             </div>
                         </div>
+
+
+                    </div>
+
+
+                    <!-- DataTables Example -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-table"></i>
+                            Data Table Example</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="serachData" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Reference</th>
+                                        <th>First name</th>
+                                        <th>surname</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="Candidate : ${candidate}">
+                                        <td th:text="${Candidate.referenceNumber}"></td>
+                                        <td th:text="${Candidate.firstName}"></td>
+                                        <td th:text="${Candidate.surname}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -515,5 +546,8 @@
         <script th:src="@{js/demo/datatables-demo.js}"></script>
         <script th:src="@{js/demo/chart-area-demo.js}"></script>
         <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js}"></script>
+
+
+
     </body>
 </html>
