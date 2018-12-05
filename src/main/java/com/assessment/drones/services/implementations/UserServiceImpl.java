@@ -1,18 +1,23 @@
 package com.assessment.drones.services.implementations;
 
 import com.assessment.drones.domain.AuthenticationToken;
+import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.repository.interfaces.UserRepository;
 import com.assessment.drones.services.interfaces.EmailService;
 import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,6 +41,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void changePassword(PasswordResetDto passwordResetDto) {
+        passwordResetDto.setPassword(passwordEncoder().encode(passwordResetDto.getPassword()));
+        userRepository.changePassword(passwordResetDto);
+    }
+
+    @Override
     public void createAuthenticationToken(User user, String purpose){
         //How long, from now, until the token is expired
         int tokenExpiryTimeInMinutes = 24*60;
@@ -48,15 +59,16 @@ public class UserServiceImpl implements UserService {
             String recipientAddress = user.getEmailAddress();
             String subject = "Registration Confirmation";
             String message = "Please follow this link to activate your account: " +
-                    "http://localhost:8080/registrationConfirm?token=" + token;
+                    "<a href=http://localhost:8080/registrationConfirm?token=" + token + ">Link</a>";
 
-            emailService.sendSimpleMessage(recipientAddress, subject, message);
+            emailService.sendHTMLMessage(recipientAddress, subject, message);
         } else if (purpose.equalsIgnoreCase("password reset")){
+
             String recipientAddress = user.getEmailAddress();
             String subject = "Password Reset";
             String message = "Please follow this link to activate your account: " +
-                    "http://localhost:8080/passwordReset?token=" + token;
-            emailService.sendSimpleMessage(recipientAddress, subject, message);
+                    "<a href=http://localhost:8080/passwordReset?token=" + token + ">Link</a>";
+            emailService.sendHTMLMessage(recipientAddress, subject, message);
         }
     }
 
@@ -95,6 +107,10 @@ public class UserServiceImpl implements UserService {
         }
 
         return null;
+    }
+
+    private PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }

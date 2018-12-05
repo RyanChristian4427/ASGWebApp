@@ -1,10 +1,10 @@
 package com.assessment.drones.controllers;
 
-import com.assessment.drones.domain.AuthenticationToken;
 import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,7 +48,22 @@ public class ForgottenPasswordController {
 
         }
 
+        return "redirect:/updatePassword";
+    }
+
+    @RequestMapping(path = "/updatePassword", method = RequestMethod.GET)
+    public String updatePassword(Model model){
+        model.addAttribute("passwordResetDto", new PasswordResetDto());
         return "updatePassword";
+    }
+
+    @RequestMapping(path = "/updatePassword", method = RequestMethod.POST)
+    public ModelAndView updatePassword(@ModelAttribute("passwordResetDto") PasswordResetDto passwordResetDto, BindingResult result){
+        User user = (User) SecurityContextHolder.getContext()
+                        .getAuthentication().getPrincipal();
+        passwordResetDto.setEmailAddress(user.getEmailAddress());
+        userService.changePassword(passwordResetDto);
+        return new ModelAndView("login");
     }
 
 }

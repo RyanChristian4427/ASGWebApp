@@ -1,5 +1,6 @@
 package com.assessment.drones.repository.implementations;
 
+import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.domain.AuthenticationToken;
 import com.assessment.drones.repository.interfaces.UserRepository;
@@ -66,6 +67,11 @@ public class UserRepositoryJdbc implements UserRepository {
     @Override
     public void authenticateUser(String userEmail){
         jdbcTemplate.update("UPDATE user SET activated = 1 WHERE email = ?", userEmail);
+    }
+
+    @Override
+    public void changePassword(PasswordResetDto passwordResetDto){
+        jdbcTemplate.update("UPDATE user SET password = ? WHERE email = ?", passwordResetDto.getPassword(), passwordResetDto.getEmailAddress());
     }
 
 }
