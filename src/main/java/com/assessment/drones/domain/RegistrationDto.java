@@ -82,4 +82,12 @@ public class RegistrationDto {
     @NotNull
     @NotEmpty
     private String droneModel;
+
+    @NotNull
+    @NotEmpty
+    private Long englishLevel;
+
+    @NotNull
+    @NotEmpty
+    private String disability;
 }
