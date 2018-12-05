@@ -8,9 +8,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.io.Console;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Repository
 public class AdminRepositoryJdbc implements AdminRepository {
@@ -135,6 +137,7 @@ public class AdminRepositoryJdbc implements AdminRepository {
 
     @Override
     public List<Candidate> getCandidateList() {
+        System.out.print("LOGGGING");
         return jdbcTemplate.query("SELECT reference_number, first_name, surname FROM candidate", candidateRowMapper);
     }
 }
