@@ -1,7 +1,7 @@
 package com.assessment.drones.repository.implementations;
 
 import com.assessment.drones.domain.User;
-import com.assessment.drones.domain.VerificationToken;
+import com.assessment.drones.domain.AuthenticationToken;
 import com.assessment.drones.repository.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -14,7 +14,7 @@ public class UserRepositoryJdbc implements UserRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<User> userMapper;
-    private RowMapper<VerificationToken> verificationTokenMapper;
+    private RowMapper<AuthenticationToken> verificationTokenMapper;
 
     @Autowired
     public UserRepositoryJdbc(JdbcTemplate aTemplate) {
@@ -28,7 +28,7 @@ public class UserRepositoryJdbc implements UserRepository {
                 rs.getBoolean("enabled")
         );
 
-        verificationTokenMapper = (rs, i) -> new VerificationToken(
+        verificationTokenMapper = (rs, i) -> new AuthenticationToken(
                 rs.getString("email"),
                 rs.getString("authentication_token"),
                 rs.getTimestamp("expiry_datetime").toLocalDateTime()
@@ -48,13 +48,13 @@ public class UserRepositoryJdbc implements UserRepository {
     }
 
     @Override
-    public void createVerificationToken(VerificationToken verificationToken){
+    public void createAuthenticationToken(AuthenticationToken authenticationToken){
         jdbcTemplate.update("UPDATE user SET authentication_token = ?, expiry_datetime = ? WHERE email = ?",
-                verificationToken.getToken(), verificationToken.getExpiryDate(), verificationToken.getUserEmail());
+                authenticationToken.getToken(), authenticationToken.getExpiryDate(), authenticationToken.getUserEmail());
     }
 
     @Override
-    public VerificationToken getVerificationToken(String token){
+    public AuthenticationToken getAuthenticationToken(String token){
         try {
             return jdbcTemplate.queryForObject("SELECT email, authentication_token, expiry_datetime FROM user " +
                     "WHERE authentication_token = ?", new Object[] {token}, verificationTokenMapper);

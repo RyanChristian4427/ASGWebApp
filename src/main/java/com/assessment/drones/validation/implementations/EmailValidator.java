@@ -29,6 +29,6 @@ public class EmailValidator
     }
 
     private boolean validateEmail(String email) {
-        return userService.emailAlreadyInUse(email) && emailPattern.matcher(email).matches();
+        return userService.emailInUse(email) && emailPattern.matcher(email).matches();
     }
 }

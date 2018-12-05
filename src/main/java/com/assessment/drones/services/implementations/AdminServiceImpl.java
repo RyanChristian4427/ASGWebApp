@@ -67,9 +67,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public String saveRecommendations(RecommendationsDto recommendationsDto){
-        Integer response = adminRepository.addRecommendations(recommendationsDto);
-
-        if (response == 1) {
+        if (1 == adminRepository.addRecommendations(recommendationsDto)) {
             return "Insert Success";
         } else {
             return null;
