@@ -127,6 +127,22 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="form-label-group">
+                      <input type="text" id="englishLevel" name="englishLevel" th:field="*{englishLevel}" placeholder="5" class="form-control" required="required">
+                      <label for="englishLevel" id="englishLevel_label">Please enter English speaking level if applicable</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-label-group">
+                      <input type="text" id="disability" name="disability" th:field="*{disability}" class="form-control" placeholder="Enter disability here" required="required">
+                      <label for="disability">Please enter disability, type none if not applicable</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-label-group">
                       <input type="date" id="dob" name="dob" th:field="*{dob}" placeholder="dd/mm/yyyy" class="form-control" required="required">
                       <label for="dob" id="dob_label">Date of Birth</label>
                       <p class="error" th:each="error : ${#fields.errors('dob')}"
@@ -137,22 +153,6 @@
                     <div class="form-label-group">
                       <input type="text" id="pob" th:field="*{pob}" class="form-control" placeholder="Place of Birth" required="required">
                       <label for="pob">Place of Birth</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <div class="form-label-group">
-                      <input type="int" id="englishLevel" name="englishLevel" th:field="*{englishLevel}" placeholder="5" class="form-control" required="required">
-                      <label for="englishLevel" id="englishLevel_label">Please enter English speaking level if applicable</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-label-group">
-                      <input type="text" id="disability" name="disability" th:field="*{disability}" class="form-control" placeholder="Enter disability here" required="required">
-                      <label for="disability">Please enter disability, type none if not applicable</label>
                     </div>
                   </div>
                 </div>
