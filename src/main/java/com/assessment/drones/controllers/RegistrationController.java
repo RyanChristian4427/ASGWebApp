@@ -70,22 +70,11 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/registrationConfirm", method = RequestMethod.GET)
-    public String confirmRegistration(Model model, @RequestParam("token") String token) {
+    public String confirmRegistration(@RequestParam("token") String token, Model model) {
+        String errors = userService.authenticateUser(token, "register");
+        if (errors != null) {
 
-        AuthenticationToken authenticationToken = userService.getAuthenticationToken(token);
-        if (authenticationToken == null) {
-            model.addAttribute("message", "Sorry, but that token seems to be invalid. Make " +
-                    "sure it's correct, or sign up for an account with us if you don't already have one.");
-            return "authError";
         }
-
-        if (LocalDateTime.now().isAfter(authenticationToken.getExpiryDate())) {
-            model.addAttribute("message", "Sorry, but that token has expired. Please click " +
-                    "below to request a new one. All tokens do expire 24 hours after they are sent out.");
-            return "authError";
-        }
-
-        userService.authenticateUser(authenticationToken.getUserEmail());
         return "redirect:/login";
     }
 }

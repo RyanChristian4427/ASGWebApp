@@ -1,6 +1,5 @@
 package com.assessment.drones.services.interfaces;
 
-import com.assessment.drones.domain.AuthenticationToken;
 import com.assessment.drones.domain.User;
 
 public interface UserService {
@@ -9,7 +8,5 @@ public interface UserService {
 
     void createAuthenticationToken(User user, String purpose);
 
-    AuthenticationToken getAuthenticationToken(String token);
-
-    void authenticateUser(String userEmail);
+    String authenticateUser(String token, String purpose);
 }

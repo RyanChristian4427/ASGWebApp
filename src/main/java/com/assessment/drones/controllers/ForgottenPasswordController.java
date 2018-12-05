@@ -1,12 +1,12 @@
 package com.assessment.drones.controllers;
 
+import com.assessment.drones.domain.AuthenticationToken;
 import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,6 +38,17 @@ public class ForgottenPasswordController {
             return modelAndView.addObject(result);
         }
         return new ModelAndView("forgottenPassword");
+    }
+
+    @RequestMapping(value = "/passwordReset", method = RequestMethod.GET)
+    public String passwordReset(@RequestParam("token") String token, Model model) {
+
+        String errors = userService.authenticateUser(token, "password reset");
+        if (errors != null) {
+
+        }
+
+        return "updatePassword";
     }
 
 }
