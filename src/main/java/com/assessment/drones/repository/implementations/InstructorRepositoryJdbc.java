@@ -30,7 +30,7 @@ public class InstructorRepositoryJdbc implements InstructorRepository {
     @Override
     public Optional<Instructor> findInstructorByID(Long id) {
         try {
-            return Optional.ofNullable(
+            return Optional.of(
                     jdbcTemplate.queryForObject(
                             "SELECT * FROM instructor WHERE id = ?",
                             new Object[]{id},

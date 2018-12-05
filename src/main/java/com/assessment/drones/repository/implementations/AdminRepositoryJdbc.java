@@ -115,7 +115,7 @@ public class AdminRepositoryJdbc implements AdminRepository {
     @Override
     public Optional<OperatorsManualDto> findOperationsManual(String candidateNumber) {
         try {
-            return Optional.ofNullable(
+            return Optional.of(
                     jdbcTemplate.queryForObject(
                             "SELECT * FROM operators_manual WHERE candidate_number = ?",
                             new Object[]{candidateNumber},

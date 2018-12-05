@@ -9,18 +9,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private MyUserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
     private AuthSuccessHandler authSuccessHandler;
     private AuthFailureHandler authFailureHandler;
 
     @Autowired
-    public SecurityConfig(MyUserDetailsService userDetailsService, AuthSuccessHandler authSuccessHandler, AuthFailureHandler authFailureHandler) {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService, AuthSuccessHandler authSuccessHandler, AuthFailureHandler authFailureHandler) {
         this.userDetailsService = userDetailsService;
         this.authSuccessHandler = authSuccessHandler;
         this.authFailureHandler = authFailureHandler;
@@ -38,10 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/register", "/registrationConfirm").permitAll()
                 .antMatchers("/login", "/login-error").permitAll()
                 .antMatchers("/admin").hasRole("admin")
-                .antMatchers("/dashboard").hasRole("client")
+                .antMatchers("/dashboard").hasRole("candidate")
                 .antMatchers("/css/**", "/js/**", "/vendor/**").permitAll()
                 .anyRequest().authenticated();
 

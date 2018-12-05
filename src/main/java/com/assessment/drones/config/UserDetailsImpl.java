@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class DefaultUserDetails implements UserDetails
+public class UserDetailsImpl implements UserDetails
 {
     private User user;
 
-    DefaultUserDetails(User user)
+    UserDetailsImpl(User user)
     {
         this.user = user;
     }
@@ -62,7 +62,7 @@ public class DefaultUserDetails implements UserDetails
     @Override
     public boolean isEnabled()
     {
-        return true;
+        return user.isEnabled() && user.isAuthenticated();
     }
 
     public User getUser()

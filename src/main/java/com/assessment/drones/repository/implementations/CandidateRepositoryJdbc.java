@@ -41,7 +41,7 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
     @Override
     public Optional<Candidate> findCandidateByNumber(String candidateNumber) {
         try {
-            return Optional.ofNullable(
+            return Optional.of(
                     jdbcTemplate.queryForObject(
                             "SELECT * FROM candidate WHERE reference_number = ?",
                             new Object[]{candidateNumber},
@@ -104,31 +104,13 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
 
         long generalInfoKey = holder.getKey().longValue();
 
-        jdbcTemplate.update(connection -> {
-            PreparedStatement pstmt = connection.prepareStatement(
-                    "INSERT INTO user(email, password, role) VALUES(?, ?, ?)",
-                    new String[] {"id"});
-            pstmt.setString(1, accountDto.getEmailAddress());
-            pstmt.setString(2, accountDto.getPassword());
-            pstmt.setString(3, "client");
-            return pstmt;
-        }, holder);
+        jdbcTemplate.update("INSERT INTO user(email, password, role) VALUES(?, ?, ?)",
+                    accountDto.getEmailAddress(), accountDto.getPassword(), "candidate");
 
-        long userIdKey = holder.getKey().longValue();
-
-        jdbcTemplate.update(connection -> {
-            PreparedStatement pstmt = connection.prepareStatement(
-                    "INSERT INTO candidate(reference_number, user_id, first_name," +
+        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id, first_name," +
                             "surname, contact_info_id, general_info_id) VALUES(?, ?, ?, ?, ?, ?)",
-                    new String[] {"id"});
-            pstmt.setString(1, newReferenceNumber);
-            pstmt.setLong(2, userIdKey);
-            pstmt.setString(3, accountDto.getFirstName());
-            pstmt.setString(4, accountDto.getLastName());
-            pstmt.setLong(5, contactInfoKey);
-            pstmt.setLong(6, generalInfoKey);
-            return pstmt;
-        });
+                newReferenceNumber, accountDto.getEmailAddress(), accountDto.getFirstName(),
+                accountDto.getLastName(), contactInfoKey, generalInfoKey);
 
         return 1;
     }
