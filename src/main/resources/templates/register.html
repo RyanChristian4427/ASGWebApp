@@ -11,15 +11,22 @@
       <title>SB Admin - Register</title>
 
       <!-- Bootstrap core CSS-->
-      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
 
-      <link href="css/test.css" rel="stylesheet">
+      <!-- Style for the custom date-picker -->
+      <link  rel="stylesheet" type="text/css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css}">
+
+      <!-- Style for the multi-page form display -->
+      <link rel="stylesheet" type="text/css" th:href="@{css/register-multi-page.css}">
 
       <!-- Custom fonts for this template-->
-      <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" type="text/css" th:href="@{vendor/fontawesome-free/css/all.min.css}">
+
+      <!-- Page level plugin CSS-->
+      <link rel="stylesheet" type="text/css" th:href="@{vendor/datatables/dataTables.bootstrap4.css}">
 
       <!-- Custom styles for this template-->
-      <link href="css/sb-admin.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" th:href="@{css/sb-admin.css}">
 
     </head>
     <body class="bg-dark">
@@ -57,7 +64,7 @@
                 <div class="form-label-group">
                   <input type="email" id="emailAddress" th:field="*{emailAddress}" class="form-control" placeholder="Email Address" required="required">
                   <label for="emailAddress">Email Address</label>
-                  <p th:each="error : ${#fields.errors('emailAddress')}"
+                  <p class="error" th:each="error : ${#fields.errors('emailAddress')}"
                      th:text="${error}">Validation error</p>
                 </div>
               </div>
@@ -67,7 +74,8 @@
                     <div class="form-label-group">
                       <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" required="required">
                       <label for="inputPassword">Password</label>
-                      <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Validation error</p>
+                      <p class="error" th:if="${#fields.hasErrors('global')}"
+                         th:errors="*{global}">Validation error</p>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -99,13 +107,17 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="form-label-group">
-                      <input type="text" id="postCode" th:field="*{postCode}" class="form-control" placeholder="Postal Code" required="required" autofocus="autofocus">
+                      <input type="text" id="postCode" th:field="*{postCode}" class="form-control"
+                             placeholder="Postal Code" required="required" autofocus="autofocus">
                       <label for="postCode">Postal Code</label>
+                      <p class="error" th:each="error : ${#fields.errors('postCode')}"
+                         th:text="${error}">Validation error</p>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-label-group">
-                      <input type="text" id="city" th:field="*{city}" class="form-control" placeholder="City" required="required">
+                      <input type="text" id="city" th:field="*{city}" class="form-control" placeholder="City"
+                             required="required">
                       <label for="city">City</label>
                     </div>
                   </div>
@@ -113,7 +125,8 @@
               </div>
               <div class="form-group">
                 <div class="form-label-group">
-                  <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" placeholder="Contact Phone Number" required="required">
+                  <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"
+                         placeholder="Contact Phone Number" required="required">
                   <label for="phoneNumber">Contact Phone Number</label>
                 </div>
               </div>
@@ -121,8 +134,26 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="form-label-group">
-                      <input type="date" id="dob" th:field="*{dob}" class="form-control" placeholder="Date of Birth" required="required" autofocus="autofocus">
-                      <label for="dob">Date of Birth</label>
+                      <input type="text" id="englishLevel" name="englishLevel" th:field="*{englishLevel}" placeholder="5" class="form-control" required="required">
+                      <label for="englishLevel" id="englishLevel_label">Please enter English speaking level if applicable</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-label-group">
+                      <input type="text" id="disability" name="disability" th:field="*{disability}" class="form-control" placeholder="Enter disability here" required="required">
+                      <label for="disability">Please enter disability, type none if not applicable</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-label-group">
+                      <input type="text" id="dob" name="dob" th:field="*{dob}" placeholder="dd/mm/yyyy" class="form-control" required="required">
+                      <label for="dob" id="dob_label">Date of Birth</label>
+                      <p class="error" th:each="error : ${#fields.errors('dob')}"
+                         th:text="${error}">Validation error</p>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -174,18 +205,31 @@
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="/login">Login Page</a>
-            <a class="d-block small" href="future_use/forgot-password.html">Forgot Password?</a>
+            <a class="d-block small" href="forgottenPassword.html">Forgot Password?</a>
           </div>
         </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery core plugin JavaScript-->
+        <script th:src="@{vendor/jquery/jquery.min.js}"></script>
 
-        <script src="js/test.js"></script>
+        <!-- Bootstrap core plugin JavaScript-->
+        <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Easing core plugin JavaScript-->
+        <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+        <!-- Page level plugin JavaScript-->
+        <script th:src="@{vendor/chart.js/Chart.min.js}"></script>
+        <script th:src="@{vendor/datatables/jquery.dataTables.js}"></script>
+        <script th:src="@{vendor/datatables/dataTables.bootstrap4.js}"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script th:src="@{js/sb-admin.js}"></script>
+
+        <!-- Scripts for this page-->
+        <script th:src="@{js/register-multi-page.js}"></script>
+        <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js}"></script>
+        <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js}"></script>
 
     </body>
 </html>

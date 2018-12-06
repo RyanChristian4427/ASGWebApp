@@ -9,19 +9,20 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private MyUserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
     private AuthSuccessHandler authSuccessHandler;
+    private AuthFailureHandler authFailureHandler;
 
     @Autowired
-    public SecurityConfig(MyUserDetailsService aService, AuthSuccessHandler aAuthSuccessHandler) {
-        userDetailsService = aService;
-        authSuccessHandler = aAuthSuccessHandler;
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService, AuthSuccessHandler authSuccessHandler, AuthFailureHandler authFailureHandler) {
+        this.userDetailsService = userDetailsService;
+        this.authSuccessHandler = authSuccessHandler;
+        this.authFailureHandler = authFailureHandler;
     }
 
     @Override
@@ -36,9 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/register", "/registrationConfirm", "/forgottenPassword", "/passwordReset").permitAll()
+                .antMatchers("/updatePassword").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
                 .antMatchers("/login").permitAll()
                 .antMatchers("/admin").hasRole("admin")
+                .antMatchers("/dashboard").hasRole("candidate")
                 .antMatchers("/css/**", "/js/**", "/vendor/**").permitAll()
                 .anyRequest().authenticated();
 
@@ -46,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .successHandler(authSuccessHandler)
-                .failureUrl("/login?error=true");
+                .failureHandler(authFailureHandler);
 
         http.logout()
                 .logoutSuccessUrl("/login");

@@ -341,6 +341,10 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   color: #777;
 }
 
+.error {
+  color:red;
+}
+
 footer.sticky-footer {
   display: -webkit-box;
   display: -ms-flexbox;
