@@ -15,20 +15,18 @@ public class ChartController {
     public String chart(Model model) {
         
         //first, add the regional sales
-        Integer northeastSales = 17089;
-        Integer westSales = 10603;
-        Integer midwestSales = 5223;
-        Integer southSales = 10111;
+        Integer northeastSales = 17;
+        Integer midwestSales = 22;
+        Integer southSales = 15;
         
         model.addAttribute("northeastSales", northeastSales);
         model.addAttribute("southSales", southSales);
         model.addAttribute("midwestSales", midwestSales);
-        model.addAttribute("westSales", westSales);
         
         //now add sales by lure type
-        List<Integer> inshoreSales = Arrays.asList(4074, 3455, 4112);
-        List<Integer> nearshoreSales = Arrays.asList(3222, 3011, 3788);
-        List<Integer> offshoreSales = Arrays.asList(7811, 7098, 6455);
+        List<Integer> inshoreSales = Arrays.asList(40, 34, 41);
+        List<Integer> nearshoreSales = Arrays.asList(32, 30, 37);
+        List<Integer> offshoreSales = Arrays.asList(78, 70, 64);
         
         model.addAttribute("inshoreSales", inshoreSales);
         model.addAttribute("nearshoreSales", nearshoreSales);

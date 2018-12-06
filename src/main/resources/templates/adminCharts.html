@@ -137,7 +137,7 @@
                         text: 'Candidates at stages'
                     },
                     tooltip: {
-                        pointFormat: "${point.y:,.0f}"
+                        pointFormat: "{point.y:,.0f}"
                     },
                     plotOptions: {
                         pie: {
@@ -149,17 +149,14 @@
                         name: 'Regions',
                         colorByPoint:true,
                         data: [{
-                            name: 'Drone type 1',
+                            name: 'Ground School',
                             y: /*[[${northeastSales}]]*/ 0
                         },{
-                            name: 'Drone type 2',
+                            name: 'Operations Manual',
                             y: /*[[${southSales}]]*/ 0
                         },{
-                            name: 'Drone type 3',
+                            name: 'Flight Assessment',
                             y: /*[[${midwestSales}]]*/ 0
-                        },{
-                            name: 'Drone type 4',
-                            y: /*[[${westSales}]]*/ 0
                         }]
                     }]
                 });
@@ -178,7 +175,7 @@
                         }
                     },
                     title: {
-                        text: 'Sales by Lure Type'
+                        text: 'Candidate per stage per month'
                     },
                     xAxis: {
                         categories: ['May', 'June', 'July']
@@ -189,7 +186,7 @@
                         }
                     },
                     tooltip: {
-                        pointFormat: "${point.y:,.0f}"
+                        pointFormat: "{point.y:,.0f}"
                     },
                     plotOptions: {
                         column: {
@@ -200,13 +197,13 @@
                         }
                     },
                     series: [{
-                        name: 'Ground school',
+                        name: 'Ground School',
                         data: /*[[${inshoreSales}]]*/ []
                     }, {
-                        name: 'Flight training',
+                        name: 'Operations Manual',
                         data: /*[[${nearshoreSales}]]*/ []
                     }, {
-                        name: 'Flight assesment',
+                        name: 'Flight Assessment',
                         data: /*[[${offshoreSales}]]*/ []
                     }]
                 });
