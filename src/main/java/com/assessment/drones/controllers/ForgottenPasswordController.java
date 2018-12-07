@@ -24,7 +24,7 @@ public class ForgottenPasswordController {
     @RequestMapping(path = "/forgottenPassword", method = RequestMethod.GET)
     public String forgottenPassword(Model model){
         model.addAttribute("passwordResetDto", new PasswordResetDto());
-        return "forgottenPassword";
+        return "forgotten-password";
     }
 
     @RequestMapping(path = "/forgottenPassword", method = RequestMethod.POST)
@@ -34,10 +34,10 @@ public class ForgottenPasswordController {
             userService.createAuthenticationToken(user, "Password reset");
         } else {
             result.rejectValue("emailAddress", "error.user","No account found with that email.");
-            ModelAndView modelAndView = new ModelAndView("forgottenPassword");
+            ModelAndView modelAndView = new ModelAndView("forgotten-password");
             return modelAndView.addObject(result);
         }
-        return new ModelAndView("forgottenPassword");
+        return new ModelAndView("forgotten-password");
     }
 
     @RequestMapping(value = "/passwordReset", method = RequestMethod.GET)
@@ -54,7 +54,7 @@ public class ForgottenPasswordController {
     @RequestMapping(path = "/updatePassword", method = RequestMethod.GET)
     public String updatePassword(Model model){
         model.addAttribute("passwordResetDto", new PasswordResetDto());
-        return "updatePassword";
+        return "update-password";
     }
 
     @RequestMapping(path = "/updatePassword", method = RequestMethod.POST)

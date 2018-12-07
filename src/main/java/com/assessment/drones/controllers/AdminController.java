@@ -2,16 +2,12 @@ package com.assessment.drones.controllers;
 
 import com.assessment.drones.domain.*;
 import com.assessment.drones.services.interfaces.AdminService;
-import com.assessment.drones.services.interfaces.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Controller
 public class AdminController {
@@ -34,7 +30,7 @@ public class AdminController {
         model.addAttribute("operatorsManualForm", new OperatorsManualDto());
         model.addAttribute("flightAssessmentForm", new FlightAssessmentDto());
         model.addAttribute("recommendationsForm", new RecommendationsDto());
-        return "adminDashboard";
+        return "admin-dashboard";
     }
 
     //getting data from the flying training form

@@ -32,7 +32,7 @@ public class ChartController {
         model.addAttribute("nearshoreSales", nearshoreSales);
         model.addAttribute("offshoreSales", offshoreSales);
         
-        return "adminCharts";
+        return "admin-charts";
     }
     
     

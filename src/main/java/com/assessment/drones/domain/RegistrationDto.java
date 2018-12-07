@@ -1,9 +1,6 @@
 package com.assessment.drones.domain;
 
-import com.assessment.drones.validation.annotations.PasswordMatches;
-import com.assessment.drones.validation.annotations.ValidDoB;
-import com.assessment.drones.validation.annotations.ValidEmail;
-import com.assessment.drones.validation.annotations.ValidPostCode;
+import com.assessment.drones.validation.annotations.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,12 +27,19 @@ public class RegistrationDto {
 
     private String addressLine1;
     private String addressLine2;
+
+    @ValidPostCode
     private String postCode;
     private String city;
 
     private String phoneNumber;
 
+    @ValidEnglishSpeakingLevel
+    private Integer englishLevel;
+    private String disability;
+
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @ValidDoB
     private LocalDate dob;
     private String pob;
 
@@ -45,7 +49,4 @@ public class RegistrationDto {
 
     private String droneMake;
     private String droneModel;
-
-    private Long englishLevel;
-    private String disability;
 }
