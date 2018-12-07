@@ -60,12 +60,12 @@ public class RegistrationController {
 
                 return new ModelAndView("/login");
             } catch (Exception me) {
-                return new ModelAndView("registration","user", accountDto);
+                return new ModelAndView("register","user", accountDto);
             }
         } else {
 //            ModelAndView modelAndView = new ModelAndView("/register");
 //            modelAndView.addObject()
-            return new ModelAndView("registration","user", accountDto);
+            return new ModelAndView("register","user", accountDto);
         }
     }
 

@@ -22,6 +22,7 @@ public class RegistrationDto {
     private String firstName;
     private String lastName;
 
+    @ValidEmail
     private String emailAddress;
 
     private String password;
