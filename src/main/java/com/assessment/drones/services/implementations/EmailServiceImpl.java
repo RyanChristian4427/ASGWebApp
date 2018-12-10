@@ -40,7 +40,7 @@ public class EmailServiceImpl implements EmailService {
             context.setVariable("link", text);
 
             MimeMessage mimeMessage = emailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "charset=ISO-8859-1");
             mimeMessage.setContent(templateEngine.process("email-template", context), "text/html");
             helper.setTo(to);
             helper.setSubject(subject);
