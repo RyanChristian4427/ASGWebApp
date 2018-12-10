@@ -10,5 +10,5 @@ public interface CandidateService {
 
     User registerNewCandidate(CourseRegistrationDto accountDto);
 
-    Optional<Candidate> findManualByCandidate(String candidateNumber);
+    Optional<Candidate> findCandidateByEmail(String emailAddress);
 }

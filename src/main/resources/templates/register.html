@@ -64,7 +64,6 @@
                     <div class="form-label-group">
                       <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" onblur="checkPass()" required="required">
                       <label for="inputPassword">Password</label>
-                      <p class="error" th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Validation error</p>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -73,6 +72,7 @@
                       <label for="confirmPassword">Confirm password</label>
                     </div>
                   </div>
+                  <p class="error" th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Validation error</p>
                 </div>
               </div>
               <button type="submit" class="btn btn-primary btn-block" value="submit">Register</button>

@@ -122,8 +122,4 @@ public class AdminServiceImpl implements AdminService {
         return verified;
     }
 
-    @Override
-    public List<Candidate> getCandidateList(){
-
-        return adminRepository.getCandidateList();
-    }}
+}

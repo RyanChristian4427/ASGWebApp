@@ -26,8 +26,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
         candidateRowMapper = (rs, i) -> new Candidate(
                 rs.getString("reference_number"),
-                rs.getString("first_name"),
-                rs.getString("surname")
+                rs.getString("user_id")
         );
     }
 
@@ -40,10 +39,23 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     @Override
     public Optional<Candidate> findCandidateByNumber(String candidateNumber) {
         try {
-            return Optional.of(
+            return Optional.ofNullable(
                     jdbcTemplate.queryForObject(
                             "SELECT * FROM candidate WHERE reference_number = ?",
                             new Object[]{candidateNumber},
+                            candidateRowMapper));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<Candidate> findCandidateByEmail(String emailAddress) {
+        try {
+            return Optional.ofNullable(
+                    jdbcTemplate.queryForObject(
+                            "SELECT reference_number, user_id FROM candidate WHERE user_id = ?",
+                            new Object[]{emailAddress},
                             candidateRowMapper));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();

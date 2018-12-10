@@ -24,15 +24,13 @@ import java.util.logging.Logger;
 @Controller
 public class UserRegistrationController {
 
-    private static final Logger LOGGER = Logger.getLogger(UserRegistrationController.class.getName() );
-    private CandidateService candidateService;
+    private static final Logger LOGGER = Logger.getLogger(UserRegistrationController.class.getName());
     private ApplicationEventPublisher applicationEventPublisher;
     private UserService userService;
 
     @Autowired
-    public UserRegistrationController(CandidateService candidateService, ApplicationEventPublisher applicationEventPublisher,
+    public UserRegistrationController(ApplicationEventPublisher applicationEventPublisher,
                                       UserService userService) {
-        this.candidateService = candidateService;
         this.applicationEventPublisher = applicationEventPublisher;
         this.userService = userService;
     }
@@ -61,14 +59,5 @@ public class UserRegistrationController {
         } else {
             return new ModelAndView("register","user", registrationDto);
         }
-    }
-
-    @RequestMapping(value = "/registrationConfirm", method = RequestMethod.GET)
-    public String confirmRegistration(@RequestParam("token") String token, Model model) {
-        String errors = userService.authenticateUser(token, "register");
-        if (errors != null) {
-
-        }
-        return "redirect:/login";
     }
 }

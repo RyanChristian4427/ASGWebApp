@@ -20,7 +20,4 @@ public interface AdminRepository {
     Integer addRecommendations (RecommendationsDto recommendationsDto);
 
     Optional<OperatorsManualDto> findOperationsManual(String candidateNumber);
-
-    List<Candidate> getCandidateList();
-
 }

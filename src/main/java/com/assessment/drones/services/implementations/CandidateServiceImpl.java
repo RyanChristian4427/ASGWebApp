@@ -50,8 +50,8 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Optional<Candidate> findManualByCandidate(String candidateNumber) {
-        return candidateRepository.findCandidateByNumber(candidateNumber);
+    public Optional<Candidate> findCandidateByEmail(String emailAddress) {
+        return candidateRepository.findCandidateByEmail(emailAddress.toLowerCase());
     }
 
     private PasswordEncoder passwordEncoder() {

@@ -1,4 +1,4 @@
-package com.assessment.drones.controllers;
+package com.assessment.drones.controllers.admin;
 
 import com.assessment.drones.domain.courseProgress.*;
 import com.assessment.drones.services.interfaces.AdminService;
@@ -24,7 +24,6 @@ public class AdminController {
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
     public String viewAdmin(Model model){
 
-        model.addAttribute("candidate", adminService.getCandidateList());
         model.addAttribute("flightTrainingForm", new FlightTrainingDto());
         model.addAttribute("groundSchoolForm", new GroundSchoolDto());
         model.addAttribute("operatorsManualForm", new OperatorsManualDto());

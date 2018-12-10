@@ -22,11 +22,10 @@ public class AdminRepositoryImpl implements AdminRepository {
     private RowMapper<OperatorsManualDto> operatorsManualRowMapper;
     private RowMapper<FlightAssessmentDto> flightAssessmentRowMapper;
     private RowMapper<RecommendationsDto> recommendationsRowMapper;
-    private RowMapper<Candidate> candidateRowMapper;
 
     @Autowired
-    public AdminRepositoryImpl(JdbcTemplate aTemplate) {
-        jdbcTemplate = aTemplate;
+    public AdminRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
 
         flyTrainingRowMapper = (rs, i) -> new FlightTrainingDto(
                 rs.getString("candidate_number"),
@@ -65,12 +64,6 @@ public class AdminRepositoryImpl implements AdminRepository {
                 rs.getDate("caa_approval_date").toLocalDate(),
                 rs.getDate("overall_comments_approval_by_caa").toLocalDate()
         );
-
-        candidateRowMapper = ((rs, rowNum) ->  new Candidate(
-                rs.getString("reference_number"),
-                rs.getString("first_name"),
-                rs.getString("surname")
-        ));
     }
 
     @Override
@@ -132,12 +125,6 @@ public class AdminRepositoryImpl implements AdminRepository {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
-    }
-
-    @Override
-    public List<Candidate> getCandidateList() {
-        System.out.print("LOGGGING");
-        return jdbcTemplate.query("SELECT reference_number, first_name, surname FROM candidate", candidateRowMapper);
     }
 }
 

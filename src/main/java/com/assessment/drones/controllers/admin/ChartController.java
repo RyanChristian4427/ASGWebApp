@@ -1,4 +1,4 @@
-package com.assessment.drones.controllers;
+package com.assessment.drones.controllers.admin;
 
 import java.util.Arrays;
 import java.util.List;

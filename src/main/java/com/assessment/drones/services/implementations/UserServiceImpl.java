@@ -61,17 +61,15 @@ public class UserServiceImpl implements UserService {
         if(purpose.equalsIgnoreCase("register")) {
             String recipientAddress = user.getEmailAddress();
             String subject = "Registration Confirmation";
-            String message = "Please follow this link to activate your account: " +
-                    "<a href=http://localhost:8080/registrationConfirm?token=" + token + ">Link</a>";
+            String link = "http://localhost:8080/registrationConfirm?token=" + token;
 
-            emailService.sendHTMLMessage(recipientAddress, subject, message);
+            emailService.sendHTMLMessage(recipientAddress, subject, link);
         } else if (purpose.equalsIgnoreCase("password reset")){
 
             String recipientAddress = user.getEmailAddress();
             String subject = "Password Reset";
-            String message = "Please follow this link to activate your account: " +
-                    "<a href=http://localhost:8080/passwordReset?token=" + token + ">Link</a>";
-            emailService.sendHTMLMessage(recipientAddress, subject, message);
+            String link = "http://localhost:8080/passwordReset?token=" + token;
+            emailService.sendHTMLMessage(recipientAddress, subject, link);
         }
     }
 

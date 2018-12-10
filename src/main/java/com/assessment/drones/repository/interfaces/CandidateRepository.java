@@ -13,5 +13,7 @@ public interface CandidateRepository {
 
     Optional<Candidate> findCandidateByNumber(String candidateNumber);
 
+    Optional<Candidate> findCandidateByEmail(String emailAddress);
+
     String previousCandidateReferenceNumber();
 }
