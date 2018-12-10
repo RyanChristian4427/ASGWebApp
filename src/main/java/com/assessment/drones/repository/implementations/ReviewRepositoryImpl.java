@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ReviewRepositoryJdbc implements ReviewRepository
+public class ReviewRepositoryImpl implements ReviewRepository
 {
     private JdbcTemplate jdbcTemplate;
     private RowMapper<Review> reviewMapper;
 
 
     @Autowired
-    public ReviewRepositoryJdbc(JdbcTemplate aTemplate) {
+    public ReviewRepositoryImpl(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
 
         reviewMapper = (rs, i) -> new Review(

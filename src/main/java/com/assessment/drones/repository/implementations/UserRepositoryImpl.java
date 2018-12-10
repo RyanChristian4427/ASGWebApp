@@ -12,14 +12,14 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepositoryJdbc implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<User> userMapper;
     private RowMapper<AuthenticationToken> verificationTokenMapper;
 
     @Autowired
-    public UserRepositoryJdbc(JdbcTemplate aTemplate) {
+    public UserRepositoryImpl(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
 
         userMapper = (rs, i) -> new User(

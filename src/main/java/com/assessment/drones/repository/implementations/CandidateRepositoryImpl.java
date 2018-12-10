@@ -15,13 +15,13 @@ import java.sql.PreparedStatement;
 import java.util.Optional;
 
 @Repository
-public class CandidateRepositoryJdbc implements CandidateRepository {
+public class CandidateRepositoryImpl implements CandidateRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<Candidate> candidateRowMapper;
 
     @Autowired
-    public CandidateRepositoryJdbc(JdbcTemplate jdbcTemplate) {
+    public CandidateRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
 
         candidateRowMapper = (rs, i) -> new Candidate(

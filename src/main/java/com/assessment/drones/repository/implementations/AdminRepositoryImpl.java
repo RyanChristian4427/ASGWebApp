@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class AdminRepositoryJdbc implements AdminRepository {
+public class AdminRepositoryImpl implements AdminRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<FlightTrainingDto> flyTrainingRowMapper;
@@ -25,7 +25,7 @@ public class AdminRepositoryJdbc implements AdminRepository {
     private RowMapper<Candidate> candidateRowMapper;
 
     @Autowired
-    public AdminRepositoryJdbc(JdbcTemplate aTemplate) {
+    public AdminRepositoryImpl(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
 
         flyTrainingRowMapper = (rs, i) -> new FlightTrainingDto(

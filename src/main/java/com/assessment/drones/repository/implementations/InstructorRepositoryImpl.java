@@ -11,13 +11,13 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public class InstructorRepositoryJdbc implements InstructorRepository {
+public class InstructorRepositoryImpl implements InstructorRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<Instructor> instructorRowMapper;
 
     @Autowired
-    public InstructorRepositoryJdbc(JdbcTemplate aTemplate) {
+    public InstructorRepositoryImpl(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
 
         instructorRowMapper = (rs, i) -> new Instructor(
