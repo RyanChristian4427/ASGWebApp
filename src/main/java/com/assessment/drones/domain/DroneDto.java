@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DroneDto {
 
-    private Long id;
     private String make;
     private String model;
 }
