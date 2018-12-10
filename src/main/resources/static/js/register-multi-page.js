@@ -75,6 +75,14 @@ $(".previous").click(function(){
     });
 });
 
-$(".submit").click(function(){
-    return false;
-});
+function formCheck(form) {
+    return true;
+}
+
+function checkEmail() {
+    var email = $("#emailAddress");
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email.toLowerCase())) {
+        email.style.borderColor="red";
+    }
+}

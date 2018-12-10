@@ -1,14 +1,15 @@
 package com.assessment.drones.services.interfaces;
 
-import com.assessment.drones.domain.VerificationToken;
+import com.assessment.drones.domain.PasswordResetDto;
+import com.assessment.drones.domain.User;
 
 public interface UserService {
 
-    boolean emailAlreadyInUse(String email);
+    User emailInUse(String email);
 
-    void createVerificationToken(VerificationToken verificationToken);
+    void createAuthenticationToken(User user, String purpose);
 
-    VerificationToken getVerificationToken(String token);
+    String authenticateUser(String token, String purpose);
 
-    void authenticateUser(String userEmail);
+    void changePassword(PasswordResetDto passwordResetDto);
 }

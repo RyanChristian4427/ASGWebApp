@@ -1,6 +1,5 @@
 package com.assessment.drones.controllers;
 
-import com.assessment.drones.domain.GroundSchoolDto;
 import com.assessment.drones.domain.RegistrationDto;
 import com.assessment.drones.services.interfaces.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
@@ -29,7 +27,7 @@ public class DashboardController {
 
         RegistrationDto accountDto = new RegistrationDto();
         model.addAttribute("updateAddress", accountDto);
-        return "clientDashboard";
+        return "client-dashboard";
     }
 
     @RequestMapping(path = "/updateDetails", method = RequestMethod.POST)
