@@ -1,20 +1,16 @@
-package com.assessment.drones.controllers.registration;
+package com.assessment.drones.controllers.accounts;
 
-import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.domain.registration.UserRegistrationDto;
 import com.assessment.drones.services.OnRegistrationCompleteEvent;
-import com.assessment.drones.services.interfaces.CandidateService;
 import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,7 +49,7 @@ public class UserRegistrationController {
 
                 return new ModelAndView("redirect:/login");
             } catch (Exception e) {
-                LOGGER.fine("Exception with sending user registration email: " + e);
+                LOGGER.fine("Exception with sending user accounts email: " + e);
                 return new ModelAndView("register","user", registrationDto);
             }
         } else {

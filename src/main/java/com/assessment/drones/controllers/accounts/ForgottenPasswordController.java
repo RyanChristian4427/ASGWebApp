@@ -1,4 +1,4 @@
-package com.assessment.drones.controllers;
+package com.assessment.drones.controllers.accounts;
 
 import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;

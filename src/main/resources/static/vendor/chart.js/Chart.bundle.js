@@ -12509,10 +12509,10 @@ var layouts = require(30);
 module.exports = function(Chart) {
 
 	Chart.scaleService = {
-		// Scale registration object. Extensions can register new scale types (such as log or DB scales) and then
+		// Scale accounts object. Extensions can register new scale types (such as log or DB scales) and then
 		// use the new chart options to grab the correct scale
 		constructors: {},
-		// Use a registration function so that we can move to an ES6 map when we no longer need to support
+		// Use a accounts function so that we can move to an ES6 map when we no longer need to support
 		// old browsers
 
 		// Scale config defaults

@@ -1,4 +1,4 @@
-package com.assessment.drones.controllers.registration;
+package com.assessment.drones.controllers.accounts;
 
 import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -27,12 +29,17 @@ public class ClientDashboardController {
     @RequestMapping(path = "/dashboard", method = RequestMethod.GET)
     public ModelAndView viewDashboard(Principal principal) {
         Optional<Candidate> candidate = candidateService.findCandidateByEmail(principal.getName());
-        ModelAndView modelAndView = new ModelAndView("client-dashboard", "updateAddress", new CourseRegistrationDto());
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("updateAddress", new CourseRegistrationDto());
+        model.put("courseRegistration", new CourseRegistrationDto());
 
         if (candidate.isPresent()) {
-            return modelAndView.addObject("userRegistered", true);
+            model.put("userRegistered", true);
+        } else {
+            model.put("userRegistered", false);
         }
-        return modelAndView.addObject("userRegistered", false);
+        return new ModelAndView("client-dashboard", model);
     }
 
     @RequestMapping(path = "/updateDetails", method = RequestMethod.POST)
