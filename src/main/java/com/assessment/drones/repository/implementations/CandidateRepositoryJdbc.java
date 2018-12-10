@@ -1,7 +1,7 @@
 package com.assessment.drones.repository.implementations;
 
 import com.assessment.drones.domain.Candidate;
-import com.assessment.drones.domain.RegistrationDto;
+import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -12,7 +12,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
-import java.util.Objects;
 import java.util.Optional;
 
 @Repository
@@ -22,8 +21,8 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
     private RowMapper<Candidate> candidateRowMapper;
 
     @Autowired
-    public CandidateRepositoryJdbc(JdbcTemplate aTemplate) {
-        jdbcTemplate = aTemplate;
+    public CandidateRepositoryJdbc(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
 
         candidateRowMapper = (rs, i) -> new Candidate(
                 rs.getString("reference_number"),
@@ -52,7 +51,7 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
     }
 
     @Override
-    public Integer saveUser(RegistrationDto accountDto, String newReferenceNumber) {
+    public Integer saveUser(CourseRegistrationDto accountDto, String newReferenceNumber) {
         KeyHolder holder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -104,13 +103,14 @@ public class CandidateRepositoryJdbc implements CandidateRepository {
 
         long generalInfoKey = holder.getKey().longValue();
 
-        jdbcTemplate.update("INSERT INTO user(email, password, role) VALUES(?, ?, ?)",
-                    accountDto.getEmailAddress(), accountDto.getPassword(), "candidate");
-
-        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id, first_name," +
-                            "surname, contact_info_id, general_info_id) VALUES(?, ?, ?, ?, ?, ?)",
-                newReferenceNumber, accountDto.getEmailAddress(), accountDto.getFirstName(),
-                accountDto.getLastName(), contactInfoKey, generalInfoKey);
+//        jdbcTemplate.update("INSERT INTO user(email, password, first_name, surname, role) VALUES(?, ?, ?, ?, ?)",
+//                    accountDto.getEmailAddress(), accountDto.getPassword(), accountDto.getFirstName(),
+//                accountDto.getLastName(), "candidate");
+//
+//        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id," +
+//                            "contact_info_id, general_info_id) VALUES(?, ?, ?, ?)",
+//                newReferenceNumber, accountDto.getEmailAddress(), accountDto.getFirstName(),
+//                accountDto.getLastName(), contactInfoKey, generalInfoKey);
 
         return 1;
     }

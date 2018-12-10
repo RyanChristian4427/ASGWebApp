@@ -3,6 +3,7 @@ package com.assessment.drones.repository.implementations;
 import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.domain.AuthenticationToken;
+import com.assessment.drones.domain.registration.UserRegistrationDto;
 import com.assessment.drones.repository.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -72,6 +73,13 @@ public class UserRepositoryJdbc implements UserRepository {
     @Override
     public void changePassword(PasswordResetDto passwordResetDto){
         jdbcTemplate.update("UPDATE user SET password = ? WHERE email = ?", passwordResetDto.getPassword(), passwordResetDto.getEmailAddress());
+    }
+
+    @Override
+    public Integer saveUser(UserRegistrationDto registrationDto){
+        return jdbcTemplate.update("INSERT INTO user(email, password, first_name, surname, role) VALUES(?, ?, ?, ?, ?)",
+                registrationDto.getEmailAddress(), registrationDto.getPassword(), registrationDto.getFirstName(),
+                registrationDto.getSurname(), "candidate");
     }
 
 }

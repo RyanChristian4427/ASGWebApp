@@ -1,6 +1,7 @@
 package com.assessment.drones.repository.implementations;
 
 import com.assessment.drones.domain.*;
+import com.assessment.drones.domain.courseProgress.*;
 import com.assessment.drones.repository.interfaces.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -8,11 +9,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.io.Console;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Repository
 public class AdminRepositoryJdbc implements AdminRepository {

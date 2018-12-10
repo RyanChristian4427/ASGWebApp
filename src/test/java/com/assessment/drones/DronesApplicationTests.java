@@ -1,7 +1,7 @@
 package com.assessment.drones;
 
-import com.assessment.drones.domain.DroneDto;
-import com.assessment.drones.domain.RegistrationDto;
+import com.assessment.drones.domain.registration.DroneDto;
+import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ public class DronesApplicationTests {
 
     @Test
     public void testRegistration() {
-        RegistrationDto accountDto = new RegistrationDto("Ryan", "Christian",
+        CourseRegistrationDto accountDto = new CourseRegistrationDto("Ryan", "Christian",
                 "ryan@gmail.com", "pass", "pass", "AddressLine1", "AddressLine2",
                 "56123", "Cardiff", "262-949-7898", 5, "", LocalDate.of(2018, 01, 01), "10/15/2000", "Cardiff",
                 "None", "Cardiff", new DroneDto("DJI", "Matrix"));

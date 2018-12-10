@@ -1,7 +1,7 @@
 package com.assessment.drones.services.implementations;
 
 import com.assessment.drones.domain.Candidate;
-import com.assessment.drones.domain.RegistrationDto;
+import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
 import com.assessment.drones.services.interfaces.CandidateService;
@@ -24,8 +24,8 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public User registerNewCandidate(RegistrationDto accountDto) {
-        accountDto.setPassword(passwordEncoder().encode(accountDto.getPassword()));
+    public User registerNewCandidate(CourseRegistrationDto accountDto) {
+//        accountDto.setPassword(passwordEncoder().encode(accountDto.getPassword()));
 
         String previousCandidateReferenceNumber = candidateRepository.previousCandidateReferenceNumber();
         String[] referenceNumberParts = previousCandidateReferenceNumber.split("-");
@@ -43,7 +43,7 @@ public class CandidateServiceImpl implements CandidateService {
         Integer insertResponse = candidateRepository.saveUser(accountDto, newReferenceNumber);
 
         if (insertResponse == 1) {
-            return new User(accountDto.getEmailAddress(), accountDto.getPassword(), "candidate", false, true);
+            return new User("test", "test", "candidate", false, true);
         } else {
             return null;
         }

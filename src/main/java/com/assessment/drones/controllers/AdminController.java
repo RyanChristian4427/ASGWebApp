@@ -1,6 +1,6 @@
 package com.assessment.drones.controllers;
 
-import com.assessment.drones.domain.*;
+import com.assessment.drones.domain.courseProgress.*;
 import com.assessment.drones.services.interfaces.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

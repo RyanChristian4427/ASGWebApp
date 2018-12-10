@@ -1,4 +1,4 @@
-package com.assessment.drones.domain;
+package com.assessment.drones.domain.registration;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

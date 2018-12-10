@@ -1,9 +1,8 @@
-package com.assessment.drones.controllers;
+package com.assessment.drones.controllers.registration;
 
-import com.assessment.drones.domain.DroneDto;
-import com.assessment.drones.domain.RegistrationDto;
+import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.domain.User;
-import com.assessment.drones.domain.AuthenticationToken;
+import com.assessment.drones.domain.registration.UserRegistrationDto;
 import com.assessment.drones.services.OnRegistrationCompleteEvent;
 import com.assessment.drones.services.interfaces.CandidateService;
 import com.assessment.drones.services.interfaces.UserService;
@@ -20,52 +19,47 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.logging.Logger;
 
 @Controller
-public class RegistrationController {
+public class UserRegistrationController {
 
+    private static final Logger LOGGER = Logger.getLogger(UserRegistrationController.class.getName() );
     private CandidateService candidateService;
     private ApplicationEventPublisher applicationEventPublisher;
     private UserService userService;
 
     @Autowired
-    public RegistrationController(CandidateService candidateService, ApplicationEventPublisher applicationEventPublisher,
-                                  UserService userService) {
+    public UserRegistrationController(CandidateService candidateService, ApplicationEventPublisher applicationEventPublisher,
+                                      UserService userService) {
         this.candidateService = candidateService;
         this.applicationEventPublisher = applicationEventPublisher;
         this.userService = userService;
     }
 
     @RequestMapping(path="/register", method = RequestMethod.GET)
-    public String register(Model model){
-        model.addAttribute("user", new RegistrationDto());
-        return "register";
-    }
-
-    public String register(Model model, RegistrationDto accountDto){
-        model.addAttribute("user", accountDto);
-        return "register";
+    public ModelAndView register(){
+        return new ModelAndView("register", "user", new UserRegistrationDto());
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid RegistrationDto accountDto,
+    public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto registrationDto,
                                             BindingResult result, WebRequest request) {
 
         if (!result.hasErrors()) {
-            User user = candidateService.registerNewCandidate(accountDto);
+            User user = userService.registerNewUser(registrationDto);
 
             try {
                 String appUrl = request.getContextPath();
                 applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
 
-                return new ModelAndView("/login");
-            } catch (Exception me) {
-                return new ModelAndView("register","user", accountDto);
+                return new ModelAndView("redirect:/login");
+            } catch (Exception e) {
+                LOGGER.fine("Exception with sending user registration email: " + e);
+                return new ModelAndView("register","user", registrationDto);
             }
         } else {
-//            ModelAndView modelAndView = new ModelAndView("/register");
-//            modelAndView.addObject()
-            return new ModelAndView("register","user", accountDto);
+            return new ModelAndView("register","user", registrationDto);
         }
     }
 

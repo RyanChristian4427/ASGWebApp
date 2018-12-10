@@ -1,4 +1,4 @@
-package com.assessment.drones.domain;
+package com.assessment.drones.domain.registration;
 
 import com.assessment.drones.validation.annotations.*;
 import lombok.AllArgsConstructor;
@@ -6,24 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@PasswordMatches
-public class RegistrationDto {
-
-    private String firstName;
-    private String lastName;
-
-    @ValidEmail
-    private String emailAddress;
-
-    private String password;
-    private String matchingPassword;
+public class CourseRegistrationDto {
 
     private String addressLine1;
     private String addressLine2;

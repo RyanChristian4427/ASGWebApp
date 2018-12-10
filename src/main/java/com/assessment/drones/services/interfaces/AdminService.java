@@ -1,6 +1,7 @@
 package com.assessment.drones.services.interfaces;
 
 import com.assessment.drones.domain.*;
+import com.assessment.drones.domain.courseProgress.*;
 
 import java.util.List;
 

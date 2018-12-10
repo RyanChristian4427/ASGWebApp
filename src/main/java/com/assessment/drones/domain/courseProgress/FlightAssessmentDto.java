@@ -1,4 +1,4 @@
-package com.assessment.drones.domain;
+package com.assessment.drones.domain.courseProgress;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

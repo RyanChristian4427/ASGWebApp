@@ -3,6 +3,8 @@ package com.assessment.drones.services.implementations;
 import com.assessment.drones.domain.AuthenticationToken;
 import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;
+import com.assessment.drones.domain.registration.CourseRegistrationDto;
+import com.assessment.drones.domain.registration.UserRegistrationDto;
 import com.assessment.drones.repository.interfaces.UserRepository;
 import com.assessment.drones.services.interfaces.EmailService;
 import com.assessment.drones.services.interfaces.UserService;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -107,6 +110,19 @@ public class UserServiceImpl implements UserService {
         }
 
         return null;
+    }
+
+    @Override
+    public User registerNewUser(UserRegistrationDto registrationDto) {
+        registrationDto.setPassword(passwordEncoder().encode(registrationDto.getPassword()));
+
+        Integer insertResponse = userRepository.saveUser(registrationDto);
+
+        if (insertResponse == 1) {
+            return new User(registrationDto.getEmailAddress(), registrationDto.getPassword(), "candidate", false, true);
+        } else {
+            return null;
+        }
     }
 
     private PasswordEncoder passwordEncoder() {
