@@ -1,5 +1,8 @@
 package com.assessment.drones.config;
 
+import com.assessment.drones.handlers.AuthFailureHandler;
+import com.assessment.drones.handlers.AuthSuccessHandler;
+import com.assessment.drones.services.implementations.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

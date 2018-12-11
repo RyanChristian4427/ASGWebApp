@@ -1,5 +1,6 @@
-package com.assessment.drones.config;
+package com.assessment.drones.services.implementations;
 
+import com.assessment.drones.config.DefaultUserDetails;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.repository.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

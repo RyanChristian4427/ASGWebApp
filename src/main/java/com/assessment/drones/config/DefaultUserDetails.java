@@ -14,7 +14,7 @@ public class DefaultUserDetails implements UserDetails
 {
     private User user;
 
-    DefaultUserDetails(User user)
+    public DefaultUserDetails(User user)
     {
         this.user = user;
     }

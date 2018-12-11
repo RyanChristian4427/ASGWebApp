@@ -1,15 +1,12 @@
 package com.assessment.drones.services.implementations;
 
 import com.assessment.drones.config.DefaultUserDetails;
-import com.assessment.drones.config.UserDetailsServiceImpl;
 import com.assessment.drones.domain.Candidate;
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
 import com.assessment.drones.services.interfaces.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
