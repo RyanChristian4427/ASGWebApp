@@ -67,9 +67,9 @@
 })(jQuery); // End of use strict
 
 function modalOpen() {
-    console.log("English has and error: " + document.getElementById("englishLevelError").innerHTML !== "");
-    console.log("Post Code has and error: " + document.getElementById("postCodeError").innerHTML !== "");
-    if (document.getElementById("englishLevelError").innerHTML !== "" || document.getElementById("postCodeError").innerHTML !== "") {
+    if ($("#postCodeError").val() != null) {
+        $('#courseRegistrationModal').modal('show');
+    } else if ($("#englishLevelError").val() != null) {
         $('#courseRegistrationModal').modal('show');
     }
 }
