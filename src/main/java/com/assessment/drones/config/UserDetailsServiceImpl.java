@@ -3,11 +3,15 @@ package com.assessment.drones.config;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.repository.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -28,7 +32,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(
                     "No user found with username: "+ email);
         } else {
-            return new UserDetailsImpl(user);
+            return new DefaultUserDetails(user);
         }
+    }
+
+    public Optional<DefaultUserDetails> getCurrentUserDetails() {
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken))
+            return Optional.of((DefaultUserDetails) authentication.getPrincipal());
+        else return Optional.empty();
     }
 }

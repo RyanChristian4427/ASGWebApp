@@ -115,14 +115,9 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
         long generalInfoKey = holder.getKey().longValue();
 
-//        jdbcTemplate.update("INSERT INTO user(email, password, first_name, surname, role) VALUES(?, ?, ?, ?, ?)",
-//                    accountDto.getEmailAddress(), accountDto.getPassword(), accountDto.getFirstName(),
-//                accountDto.getLastName(), "candidate");
-//
-//        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id," +
-//                            "contact_info_id, general_info_id) VALUES(?, ?, ?, ?)",
-//                newReferenceNumber, accountDto.getEmailAddress(), accountDto.getFirstName(),
-//                accountDto.getLastName(), contactInfoKey, generalInfoKey);
+        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id," +
+                            "contact_info_id, general_info_id) VALUES(?, ?, ?, ?)",
+                accountDto.getReferenceNumber(), accountDto.getEmailAddress(), contactInfoKey, generalInfoKey);
 
         return 1;
     }
