@@ -75,6 +75,11 @@
                   <p class="error" th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Validation error</p>
                 </div>
               </div>
+              <div class="form-group">
+                <div class="form-label-group">
+                  Do you accept the terms and conditions?<input type="checkbox" id="acceptTnCs" name="acceptTnCs" class="form-control" value="true" required="required">
+                </div>
+              </div>
               <button type="submit" class="btn btn-primary btn-block" value="submit">Register</button>
             </fieldset>
           </form>
