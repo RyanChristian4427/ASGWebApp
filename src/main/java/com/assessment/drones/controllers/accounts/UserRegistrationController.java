@@ -15,18 +15,15 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.logging.Logger;
 
 @Controller
 public class UserRegistrationController {
 
-    private static final Logger LOGGER = Logger.getLogger(UserRegistrationController.class.getName());
     private ApplicationEventPublisher applicationEventPublisher;
     private UserService userService;
 
     @Autowired
-    public UserRegistrationController(ApplicationEventPublisher applicationEventPublisher,
-                                      UserService userService) {
+    public UserRegistrationController(ApplicationEventPublisher applicationEventPublisher, UserService userService) {
         this.applicationEventPublisher = applicationEventPublisher;
         this.userService = userService;
     }
@@ -43,15 +40,9 @@ public class UserRegistrationController {
         if (!result.hasErrors()) {
             User user = userService.registerNewUser(registrationDto);
 
-            try {
-                String appUrl = request.getContextPath();
-                applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
-
-                return new ModelAndView("redirect:/login");
-            } catch (Exception e) {
-                LOGGER.fine("Exception with sending user accounts email: " + e);
-                return new ModelAndView("register","user", registrationDto);
-            }
+            String appUrl = request.getContextPath();
+            applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
+            return new ModelAndView("redirect:/login");
         } else {
             return new ModelAndView("register","user", registrationDto);
         }

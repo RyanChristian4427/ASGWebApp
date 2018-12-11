@@ -27,7 +27,6 @@ public class CourseRegistrationDto {
     private String disability;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-//    @ValidDoB
     private LocalDate dob;
     private String pob;
 
