@@ -38,4 +38,6 @@ public class CourseRegistrationDto {
     private String preferredLocation;
 
     private DroneDto droneDto;
+
+    private Boolean paid = false;
 }

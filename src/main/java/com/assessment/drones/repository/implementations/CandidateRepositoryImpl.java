@@ -100,7 +100,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
         jdbcTemplate.update(connection -> {
             PreparedStatement pstmt = connection.prepareStatement(
                     "INSERT INTO general_info(date_of_birth, place_of_birth, company_name, " +
-                            "previous_flying_exp, preferred_location, drone_type_id, english_speaking, disability) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
+                            "previous_flying_exp, preferred_location, drone_type_id, english_speaking, disability, paid) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     new String[] {"id"});
             pstmt.setObject(1, accountDto.getDob());
             pstmt.setString(2, accountDto.getPob());
@@ -110,6 +110,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
             pstmt.setLong(6, holder.getKey().longValue());
             pstmt.setLong(7, accountDto.getEnglishLevel());
             pstmt.setString(8, accountDto.getDisability());
+            pstmt.setBoolean(9, accountDto.getPaid());
             return pstmt;
         }, holder);
 
