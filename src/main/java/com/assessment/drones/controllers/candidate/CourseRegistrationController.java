@@ -36,7 +36,7 @@ public class CourseRegistrationController {
             candidateService.registerNewCandidate(registrationDto);
             return new ModelAndView("redirect:/dashboard", model);
         } else {
-
+            model.put("userRegistered", false);
             return new ModelAndView("client-dashboard", model);
         }
     }
