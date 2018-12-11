@@ -1,6 +1,8 @@
 package com.assessment.drones.controllers.candidate;
 
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
+import com.assessment.drones.services.interfaces.CandidateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,13 @@ import java.util.Map;
 @Controller
 public class CourseRegistrationController {
 
+    private CandidateService candidateService;
+
+    @Autowired
+    public CourseRegistrationController(CandidateService candidateService) {
+        this.candidateService = candidateService;
+    }
+
     @RequestMapping(path="/courseRegister", method = RequestMethod.POST)
     public ModelAndView registerCourse(@ModelAttribute("courseRegistration") @Valid CourseRegistrationDto registrationDto,
                                             BindingResult result) {
@@ -24,6 +33,7 @@ public class CourseRegistrationController {
         model.put("courseRegistration", registrationDto);
 
         if (!result.hasErrors()) {
+            candidateService.registerNewCandidate(registrationDto);
             return new ModelAndView("redirect:/dashboard", model);
         } else {
 

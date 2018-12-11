@@ -13,6 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CourseRegistrationDto {
 
+    private String emailAddress;
+    private String referenceNumber;
+
     private String addressLine1;
     private String addressLine2;
 

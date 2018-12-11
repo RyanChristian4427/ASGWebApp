@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class UserDetailsImpl implements UserDetails
+public class DefaultUserDetails implements UserDetails
 {
     private User user;
 
-    UserDetailsImpl(User user)
+    DefaultUserDetails(User user)
     {
         this.user = user;
     }

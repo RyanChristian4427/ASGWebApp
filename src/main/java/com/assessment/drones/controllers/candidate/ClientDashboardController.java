@@ -27,8 +27,8 @@ public class ClientDashboardController {
     }
 
     @RequestMapping(path = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView viewDashboard(Principal principal) {
-        Optional<Candidate> candidate = candidateService.findCandidateByEmail(principal.getName());
+    public ModelAndView viewDashboard() {
+        Optional<Candidate> candidate = candidateService.findCandidateByEmail();
 
         Map<String, Object> model = new HashMap<>();
         model.put("updateAddress", new CourseRegistrationDto());
