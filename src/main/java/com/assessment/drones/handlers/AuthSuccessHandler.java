@@ -1,4 +1,4 @@
-package com.assessment.drones.config;
+package com.assessment.drones.handlers;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
