@@ -24,11 +24,9 @@ public class CourseRegistrationController {
         model.put("courseRegistration", registrationDto);
 
         if (!result.hasErrors()) {
-            System.out.println("No errors in form post");
-            return new ModelAndView("client-dashboard", model);
+            return new ModelAndView("redirect:/dashboard", model);
         } else {
-            System.out.println(result);
-            System.out.println("Catches issue: " + registrationDto.getPostCode() + " " + registrationDto.getEnglishLevel());
+
             return new ModelAndView("client-dashboard", model);
         }
     }
