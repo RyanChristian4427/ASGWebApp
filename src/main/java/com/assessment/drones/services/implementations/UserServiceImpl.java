@@ -3,6 +3,8 @@ package com.assessment.drones.services.implementations;
 import com.assessment.drones.domain.AuthenticationToken;
 import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;
+import com.assessment.drones.domain.registration.CourseRegistrationDto;
+import com.assessment.drones.domain.registration.UserRegistrationDto;
 import com.assessment.drones.repository.interfaces.UserRepository;
 import com.assessment.drones.services.interfaces.EmailService;
 import com.assessment.drones.services.interfaces.UserService;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -58,17 +61,15 @@ public class UserServiceImpl implements UserService {
         if(purpose.equalsIgnoreCase("register")) {
             String recipientAddress = user.getEmailAddress();
             String subject = "Registration Confirmation";
-            String message = "Please follow this link to activate your account: " +
-                    "<a href=http://localhost:8080/registrationConfirm?token=" + token + ">Link</a>";
+            String link = "http://localhost:8080/registrationConfirm?token=" + token;
 
-            emailService.sendHTMLMessage(recipientAddress, subject, message);
+            emailService.sendHTMLMessage(recipientAddress, subject, link);
         } else if (purpose.equalsIgnoreCase("password reset")){
 
             String recipientAddress = user.getEmailAddress();
             String subject = "Password Reset";
-            String message = "Please follow this link to activate your account: " +
-                    "<a href=http://localhost:8080/passwordReset?token=" + token + ">Link</a>";
-            emailService.sendHTMLMessage(recipientAddress, subject, message);
+            String link = "http://localhost:8080/passwordReset?token=" + token;
+            emailService.sendHTMLMessage(recipientAddress, subject, link);
         }
     }
 
@@ -107,6 +108,19 @@ public class UserServiceImpl implements UserService {
         }
 
         return null;
+    }
+
+    @Override
+    public User registerNewUser(UserRegistrationDto registrationDto) {
+        registrationDto.setPassword(passwordEncoder().encode(registrationDto.getPassword()));
+
+        Integer insertResponse = userRepository.saveUser(registrationDto);
+
+        if (insertResponse == 1) {
+            return new User(registrationDto.getEmailAddress(), registrationDto.getPassword(), "candidate", false, true);
+        } else {
+            return null;
+        }
     }
 
     private PasswordEncoder passwordEncoder() {

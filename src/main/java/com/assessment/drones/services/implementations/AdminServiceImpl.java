@@ -1,6 +1,7 @@
 package com.assessment.drones.services.implementations;
 
 import com.assessment.drones.domain.*;
+import com.assessment.drones.domain.courseProgress.*;
 import com.assessment.drones.repository.interfaces.AdminRepository;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
 import com.assessment.drones.repository.interfaces.InstructorRepository;
@@ -121,8 +122,4 @@ public class AdminServiceImpl implements AdminService {
         return verified;
     }
 
-    @Override
-    public List<Candidate> getCandidateList(){
-
-        return adminRepository.getCandidateList();
-    }}
+}

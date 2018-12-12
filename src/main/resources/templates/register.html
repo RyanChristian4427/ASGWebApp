@@ -31,12 +31,7 @@
     </head>
     <body class="bg-dark">
         <div class="container">
-          <form action="/register" id="msform" th:object="${user}" method="POST" onsubmit="return formCheck(this)">
-            <ul id="progressbar">
-              <li class="active">Account Setup</li>
-              <li>Personal Details</li>
-              <li>Personal Details</li>
-            </ul>
+          <form action="/register" id="msform" th:object="${user}" method="POST">
             <fieldset>
               <h2 class="fs-title">Account Setup</h2>
               <h3 class="fs-subtitle">So that you can stay connected to the course</h3>
@@ -50,7 +45,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-label-group">
-                      <input type="text" id="lastName" th:field="*{lastName}" class="form-control" placeholder="Last name" required="required">
+                      <input type="text" id="lastName" th:field="*{surname}" class="form-control" placeholder="Last name" required="required">
                       <label for="lastName">Last name</label>
                     </div>
                   </div>
@@ -69,7 +64,6 @@
                     <div class="form-label-group">
                       <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" onblur="checkPass()" required="required">
                       <label for="inputPassword">Password</label>
-                      <p class="error" th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Validation error</p>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -78,120 +72,17 @@
                       <label for="confirmPassword">Confirm password</label>
                     </div>
                   </div>
-                </div>
-              </div>
-              <input type="button" name="next" class="next action-button" value="Next" />
-            </fieldset>
-            <fieldset>
-              <h2 class="fs-title">Personal Details</h2>
-              <h3 class="fs-subtitle">For later contact</h3>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" id="addressLine1" th:field="*{addressLine1}" class="form-control" placeholder="Address Line 1" required="required">
-                  <label for="addressLine1">Address Line 1</label>
+                  <p class="error" th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Validation error</p>
                 </div>
               </div>
               <div class="form-group">
                 <div class="form-label-group">
-                  <input type="text" id="addressLine2" th:field="*{addressLine2}" class="form-control" placeholder="Address Line 2">
-                  <label for="addressLine2">Address Line 2</label>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <div class="form-label-group">
-                      <input type="text" id="postCode" th:field="*{postCode}" class="form-control" placeholder="Postal Code" required="required" autofocus="autofocus">
-                      <label for="postCode">Postal Code</label>
-                      <p class="error" th:each="error : ${#fields.errors('postCode')}" th:text="${error}">Validation error</p>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-label-group">
-                      <input type="text" id="city" th:field="*{city}" class="form-control" placeholder="City" required="required">
-                      <label for="city">City</label>
-                    </div>
+                  <div class="form-check">
+                    <input type="checkbox" id="acceptTnCs" class="form-check-input" required="required">
+                    <label class="form-check-label" for="acceptTnCs">Do you accept the <a href="https://asg.ltd/">terms and conditions</a>?</label>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" placeholder="Contact Phone Number" required="required">
-                  <label for="phoneNumber">Contact Phone Number</label>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <div class="form-label-group">
-                      <input type="text" id="englishLevel" name="englishLevel" th:field="*{englishLevel}" placeholder="5" class="form-control" required="required">
-                      <label for="englishLevel">English Speaking Level (1-6)</label>
-                      <p class="error" th:each="error : ${#fields.errors('englishLevel')}" th:text="${error}">Validation error</p>
-                      <a href="https://www.examenglish.com/CEFR/cefr.php" target="_blank">CEFR English Speaking Level Guide</a>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-label-group">
-                      <input type="text" id="disability" name="disability" th:field="*{disability}" class="form-control" placeholder="Enter disability">
-                      <label for="disability">Any Disabilities (If Applicable)</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <div class="form-label-group">
-                      <input type="text" id="dob" name="dob" th:field="*{dob}" placeholder="dd/mm/yyyy" class="form-control" required="required">
-                      <label for="dob" id="dob_label">Date of Birth</label>
-                      <p class="error" th:each="error : ${#fields.errors('dob')}"
-                         th:text="${error}">Validation error</p>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-label-group">
-                      <input type="text" id="pob" th:field="*{pob}" class="form-control" placeholder="Place of Birth" required="required">
-                      <label for="pob">Place of Birth</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <input type="button" name="previous" class="previous action-button" value="Previous" />
-              <input type="button" name="next" class="next action-button" value="Next" />
-            </fieldset>
-            <fieldset>
-              <h2 class="fs-title">Extended Details</h2>
-              <h3 class="fs-subtitle"></h3>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <textarea type="text" id="flightExperience" th:field="*{flightExperience}" class="form-control" placeholder="Flight Experience" required="required"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" id="companyName" th:field="*{companyName}" class="form-control" placeholder="Company Name (if applicable)">
-                  <label for="companyName">Company Name (if applicable)</label>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" id="preferredLocation" th:field="*{preferredLocation}" class="form-control" placeholder="Preferred Location" required="required">
-                  <label for="preferredLocation">Preferred Location</label>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" id="droneMake" th:field="*{droneMake}" class="form-control" placeholder="Make of Drone You Will Be Using" required="required">
-                  <label for="droneMake">Make of Drone You Will Be Using</label>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" id="droneModel" th:field="*{droneModel}" class="form-control" placeholder="Model of Drone You Will Be Using" required="required">
-                  <label for="droneModel">Model of Drone You Will Be Using</label>
-                </div>
-              </div>
-              <input type="button" name="previous" class="previous action-button" value="Previous" />
               <button type="submit" class="btn btn-primary btn-block" value="submit">Register</button>
             </fieldset>
           </form>

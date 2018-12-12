@@ -18,7 +18,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = EnglishSpeakingLevelValidator.class)
 @Documented
 public @interface ValidEnglishSpeakingLevel {
-    String message() default "Sorry, but your response does not match the field.";
+    String message() default "Sorry, but your response does not match the field boundaries.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

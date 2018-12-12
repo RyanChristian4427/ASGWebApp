@@ -6,18 +6,22 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+
 
 @Component
 public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender emailSender;
+    private final TemplateEngine templateEngine;
 
     @Autowired
-    public EmailServiceImpl(JavaMailSender emailSender) {
+    public EmailServiceImpl(JavaMailSender emailSender, TemplateEngine templateEngine) {
         this.emailSender = emailSender;
+        this.templateEngine = templateEngine;
     }
 
     @Override
@@ -32,13 +36,16 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendHTMLMessage(String to, String subject, String text) {
         try {
+            Context context = new Context();
+            context.setVariable("link", text);
+
             MimeMessage mimeMessage = emailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");
-            mimeMessage.setContent(text, "text/html");
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "charset=ISO-8859-1");
+            mimeMessage.setContent(templateEngine.process("email-template", context), "text/html");
             helper.setTo(to);
             helper.setSubject(subject);
             emailSender.send(mimeMessage);
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             System.out.println("Messaging Exception: " + e);
         }
 

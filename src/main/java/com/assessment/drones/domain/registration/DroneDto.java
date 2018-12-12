@@ -1,4 +1,4 @@
-package com.assessment.drones.domain;
+package com.assessment.drones.domain.registration;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Candidate {
-    private String referenceNumber;
-    private String userEmail;
+public class DroneDto {
+
+    private String make;
+    private String model;
 }
