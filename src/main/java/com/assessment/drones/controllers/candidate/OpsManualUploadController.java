@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 
 @Controller
 public class OpsManualUploadController {
@@ -35,6 +37,24 @@ public class OpsManualUploadController {
         storageService.store(file);
 
         return "redirect:/dashboard";
+    }
+
+    @GetMapping("/downloadOpsManual")
+    public void downloadFile3(HttpServletResponse response) throws IOException {
+        File file = new File("download_dir/OperatorsManualTemplate.pdf");
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment;filename=" + file.getName());
+        BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+        BufferedOutputStream outStream = new BufferedOutputStream(response.getOutputStream());
+
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+        outStream.flush();
+        inputStream.close();
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)
