@@ -1,6 +1,7 @@
 package com.assessment.drones.services.interfaces;
 
 import com.assessment.drones.domain.Candidate;
+import com.assessment.drones.domain.courseProgress.OperatorsManualDto;
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.domain.User;
 
@@ -11,5 +12,7 @@ public interface CandidateService {
 
     User registerNewCandidate(CourseRegistrationDto accountDto);
 
-    Optional<Candidate> findCandidateByEmail();
+    Optional<Candidate> findCandidateByCurrentUser();
+
+    void saveOperatorsManual(OperatorsManualDto operatorsManualDto);
 }

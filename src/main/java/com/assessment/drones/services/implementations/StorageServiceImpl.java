@@ -10,8 +10,11 @@ import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
 import com.assessment.drones.config.StorageProperties;
+import com.assessment.drones.domain.courseProgress.OperatorsManualDto;
 import com.assessment.drones.handlers.StorageException;
 import com.assessment.drones.handlers.StorageFileNotFoundException;
+import com.assessment.drones.services.interfaces.AdminService;
+import com.assessment.drones.services.interfaces.CandidateService;
 import com.assessment.drones.services.interfaces.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -25,10 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class StorageServiceImpl implements StorageService {
 
     private final Path rootLocation;
+    private final CandidateService candidateService;
 
     @Autowired
-    public StorageServiceImpl(StorageProperties properties) {
+    public StorageServiceImpl(StorageProperties properties, CandidateService candidateService) {
         this.rootLocation = Paths.get(properties.getLocation());
+        this.candidateService = candidateService;
     }
 
     @Override
@@ -47,6 +52,9 @@ public class StorageServiceImpl implements StorageService {
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, this.rootLocation.resolve(filename),
                         StandardCopyOption.REPLACE_EXISTING);
+                candidateService.saveOperatorsManual(new OperatorsManualDto(
+                        candidateService.findCandidateByCurrentUser().get().getReferenceNumber(),
+                        0L, this.rootLocation.resolve(filename).toString()));
             }
         }
         catch (IOException e) {

@@ -13,4 +13,5 @@ import java.util.Date;
 public class OperatorsManualDto {
     private String candidateNumber;
     private Long instructorId;
+    private String filePath;
 }

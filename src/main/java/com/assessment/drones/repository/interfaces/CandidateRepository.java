@@ -1,6 +1,7 @@
 package com.assessment.drones.repository.interfaces;
 
 import com.assessment.drones.domain.Candidate;
+import com.assessment.drones.domain.courseProgress.OperatorsManualDto;
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import org.springframework.stereotype.Component;
 
@@ -16,4 +17,6 @@ public interface CandidateRepository {
     Optional<Candidate> findCandidateByEmail(String emailAddress);
 
     String previousCandidateReferenceNumber();
+
+    void saveOperatorsManual(OperatorsManualDto operatorsManualDto);
 }

@@ -45,7 +45,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public String saveOperationsManual(OperatorsManualDto operatorsManualDto){
+    public String saveOperatorsManual(OperatorsManualDto operatorsManualDto){
         Integer response = adminRepository.addOperatorsManual(operatorsManualDto);
 
         if (response == 1) {
@@ -101,7 +101,7 @@ public class AdminServiceImpl implements AdminService {
                     .getInstructorId()).isPresent() &&
                     adminRepository.findOperationsManual(((OperatorsManualDto) formDto).getCandidateNumber()).isPresent();
             if(verified) {
-                saveOperationsManual((OperatorsManualDto) formDto);
+                saveOperatorsManual((OperatorsManualDto) formDto);
             }
         } else if (formDto instanceof FlightAssessmentDto) {
             verified = candidateRepository.findCandidateByNumber(((FlightAssessmentDto) formDto)

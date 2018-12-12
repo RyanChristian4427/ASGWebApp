@@ -45,7 +45,8 @@ public class AdminRepositoryImpl implements AdminRepository {
 
         operatorsManualRowMapper = (rs, i) -> new OperatorsManualDto(
                 rs.getString("candidate_number"),
-                rs.getLong("instructor_id")
+                rs.getLong("instructor_id"),
+                rs.getString("file_path")
         );
 
         flightAssessmentRowMapper = (rs, i) -> new FlightAssessmentDto(
@@ -117,7 +118,7 @@ public class AdminRepositoryImpl implements AdminRepository {
     @Override
     public Optional<OperatorsManualDto> findOperationsManual(String candidateNumber) {
         try {
-            return Optional.of(
+            return Optional.ofNullable(
                     jdbcTemplate.queryForObject(
                             "SELECT * FROM operators_manual WHERE candidate_number = ?",
                             new Object[]{candidateNumber},

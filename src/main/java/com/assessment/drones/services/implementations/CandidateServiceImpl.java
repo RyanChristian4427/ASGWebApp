@@ -2,6 +2,7 @@ package com.assessment.drones.services.implementations;
 
 import com.assessment.drones.config.DefaultUserDetails;
 import com.assessment.drones.domain.Candidate;
+import com.assessment.drones.domain.courseProgress.OperatorsManualDto;
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
@@ -39,13 +40,18 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Optional<Candidate> findCandidateByEmail() {
+    public Optional<Candidate> findCandidateByCurrentUser() {
         Optional<DefaultUserDetails> currentUser = userDetailsService.getCurrentUserDetails();
         if (currentUser.isPresent()) {
             return candidateRepository.findCandidateByEmail(currentUser.get().getUsername());
         } else {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public void saveOperatorsManual(OperatorsManualDto operatorsManualDto) {
+       candidateRepository.saveOperatorsManual(operatorsManualDto);
     }
 
 

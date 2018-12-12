@@ -22,15 +22,14 @@ public class InstructorRepositoryImpl implements InstructorRepository {
 
         instructorRowMapper = (rs, i) -> new Instructor(
                 rs.getLong("id"),
-                rs.getString("first_name"),
-                rs.getString("surname")
+                rs.getString("user_id")
         );
     }
 
     @Override
     public Optional<Instructor> findInstructorByID(Long id) {
         try {
-            return Optional.of(
+            return Optional.ofNullable(
                     jdbcTemplate.queryForObject(
                             "SELECT * FROM instructor WHERE id = ?",
                             new Object[]{id},
