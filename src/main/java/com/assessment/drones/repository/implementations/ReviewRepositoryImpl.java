@@ -32,7 +32,7 @@ public class ReviewRepositoryImpl implements ReviewRepository
     public void addReview(ReviewDto reviewDto) {
         jdbcTemplate.update(
                 "INSERT INTO review(candidate_number, instructor_id, review_text) " +
-                        "VALUES(?,?,?)", reviewDto.getCandidateNumber(), 0L, reviewDto.getReviewText());
+                        "VALUES(?,?,?)", reviewDto.getCandidateNumber(), 1L, reviewDto.getReviewText());
     }
 
     @Override

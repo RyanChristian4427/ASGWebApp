@@ -58,7 +58,8 @@ public class ClientDashboardController {
     }
 
     @PostMapping(path = "/submitReview")
-    public void submitReview(@ModelAttribute("review") ReviewDto reviewDto) {
+    public ModelAndView submitReview(@ModelAttribute("review") ReviewDto reviewDto) {
         reviewService.addReview(reviewDto);
+        return new ModelAndView("redirect:/dashboard");
     }
 }
