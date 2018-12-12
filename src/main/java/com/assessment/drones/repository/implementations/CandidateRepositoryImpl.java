@@ -1,6 +1,7 @@
 package com.assessment.drones.repository.implementations;
 
 import com.assessment.drones.domain.Candidate;
+import com.assessment.drones.domain.courseProgress.OperatorsManualDto;
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Repository
@@ -63,7 +65,14 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     @Override
-    public Integer saveUser(CourseRegistrationDto accountDto, String newReferenceNumber) {
+    public void saveOperatorsManual(OperatorsManualDto operatorsManualDto) {
+        jdbcTemplate.update(
+                "INSERT INTO operators_manual(candidate_number, submitted_date, file_path) VALUES(?,?,?)",
+                operatorsManualDto.getCandidateNumber(), LocalDate.now(), operatorsManualDto.getFilePath());
+    }
+
+    @Override
+    public Integer saveUser(CourseRegistrationDto accountDto) {
         KeyHolder holder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -116,9 +125,9 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
         long generalInfoKey = holder.getKey().longValue();
 
-        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id," +
-                            "contact_info_id, general_info_id) VALUES(?, ?, ?, ?)",
-                accountDto.getReferenceNumber(), accountDto.getEmailAddress(), contactInfoKey, generalInfoKey);
+        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id, contact_info_id, general_info_id) " +
+                        "VALUES(?, ?, ?, ?)", accountDto.getReferenceNumber(), accountDto.getEmailAddress(),
+                        contactInfoKey, generalInfoKey);
 
         return 1;
     }

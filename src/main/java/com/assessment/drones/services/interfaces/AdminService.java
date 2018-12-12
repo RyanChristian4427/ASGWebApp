@@ -10,7 +10,7 @@ public interface AdminService {
 
     String saveGroundSchool(GroundSchoolDto groundSchoolDto);
 
-    String saveOperationsManual(OperatorsManualDto operatorsManualDto);
+    String saveOperatorsManual(OperatorsManualDto operatorsManualDto);
 
     String saveFlightAssessment(FlightAssessmentDto flightAssessmentDto);
 

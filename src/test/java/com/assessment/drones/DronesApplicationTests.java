@@ -1,5 +1,6 @@
 package com.assessment.drones;
 
+import com.assessment.drones.domain.Candidate;
 import com.assessment.drones.domain.registration.DroneDto;
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
@@ -24,10 +25,9 @@ public class DronesApplicationTests {
 
     @Test
     public void testRegistration() {
-        CourseRegistrationDto accountDto = new CourseRegistrationDto("Ryan", "Christian",
-                "ryan@gmail.com", "pass", "pass", "AddressLine1", "AddressLine2",
-                "56123", "Cardiff", "262-949-7898", 5, "", LocalDate.of(2018, 01, 01), "10/15/2000", "Cardiff",
-                "None", "Cardiff", new DroneDto("DJI", "Matrix"));
-        assert(1 == candidateRepository.saveUser(accountDto, "ASG-003-18-12"));
+        CourseRegistrationDto accountDto = new CourseRegistrationDto("admin@asg.com", "ASG-003-18-12", "AddressLine1", "AddressLine2",
+                "CF10 4BE", "Cardiff", "262-949-7898", 5, "", LocalDate.of(2018, 01, 01), "10/15/2000", "Cardiff",
+                "None", "Cardiff", new DroneDto("DJI", "Matrix"), false);
+        assert (1 == candidateRepository.saveUser(accountDto));
     }
 }
