@@ -1,8 +1,10 @@
 package com.assessment.drones.controllers.candidate;
 
 import com.assessment.drones.domain.Candidate;
+import com.assessment.drones.domain.ReviewDto;
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.services.interfaces.CandidateService;
+import com.assessment.drones.services.interfaces.ReviewService;
 import com.assessment.drones.services.interfaces.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,14 +22,16 @@ public class ClientDashboardController {
 
     private final CandidateService candidateService;
     private final StorageService storageService;
+    private final ReviewService reviewService;
 
     @Autowired
-    public ClientDashboardController(CandidateService candidateService, StorageService storageService){
+    public ClientDashboardController(CandidateService candidateService, StorageService storageService, ReviewService reviewService){
         this.candidateService = candidateService;
         this.storageService = storageService;
+        this.reviewService = reviewService;
     }
 
-    @RequestMapping(path = "/dashboard", method = RequestMethod.GET)
+    @GetMapping(path = "/dashboard")
     public ModelAndView viewDashboard() {
         Optional<Candidate> candidate = candidateService.findCandidateByCurrentUser();
 
@@ -38,6 +42,7 @@ public class ClientDashboardController {
                 path -> MvcUriComponentsBuilder.fromMethodName(OpsManualUploadController.class,
                         "serveFile", path.getFileName().toString()).build().toString())
                 .collect(Collectors.toList()));
+        model.put("review", new ReviewDto());
 
         if (candidate.isPresent()) {
             model.put("userRegistered", true);
@@ -47,8 +52,13 @@ public class ClientDashboardController {
         return new ModelAndView("client-dashboard", model);
     }
 
-    @RequestMapping(path = "/updateDetails", method = RequestMethod.POST)
+    @PostMapping(path = "/updateDetails")
     public void updateClientDetails(@ModelAttribute("updateAddress") CourseRegistrationDto accountDto) {
         candidateService.registerNewCandidate(accountDto);
+    }
+
+    @PostMapping(path = "/submitReview")
+    public void submitReview(@ModelAttribute("review") ReviewDto reviewDto) {
+        reviewService.addReview(reviewDto);
     }
 }

@@ -1,6 +1,6 @@
 package com.assessment.drones.repository.implementations;
 
-import com.assessment.drones.domain.Review;
+import com.assessment.drones.domain.ReviewDto;
 import com.assessment.drones.repository.interfaces.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,15 +14,14 @@ import java.util.List;
 public class ReviewRepositoryImpl implements ReviewRepository
 {
     private JdbcTemplate jdbcTemplate;
-    private RowMapper<Review> reviewMapper;
+    private RowMapper<ReviewDto> reviewMapper;
 
 
     @Autowired
     public ReviewRepositoryImpl(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
 
-        reviewMapper = (rs, i) -> new Review(
-                rs.getLong("id"),
+        reviewMapper = (rs, i) -> new ReviewDto(
                 rs.getString("candidate_number"),
                 rs.getLong("instructor_id"),
                 rs.getString("reviewText")
@@ -30,19 +29,14 @@ public class ReviewRepositoryImpl implements ReviewRepository
     }
 
     @Override
-    public Integer addReview(Review review) {
-        ArrayList<Object> params = new ArrayList<>();
-        params.add(review.getCandidateNumber());
-        params.add(review.getInstructorID());
-        params.add(review.getReviewText());
-        return jdbcTemplate.update(
-                "INSERT INTO review(candidate_number, instructor_id, reviewText) " +
-                        "VALUES(?,?,?)",
-                params.toArray());
+    public void addReview(ReviewDto reviewDto) {
+        jdbcTemplate.update(
+                "INSERT INTO review(candidate_number, instructor_id, review_text) " +
+                        "VALUES(?,?,?)", reviewDto.getCandidateNumber(), 0L, reviewDto.getReviewText());
     }
 
     @Override
-    public List<Review> reviewsByInstructor(String surname){
+    public List<ReviewDto> reviewsByInstructor(String surname){
         return jdbcTemplate.query(
                 "SELECT review.id, review.candidate_number, review.instructor_id, " +
                         "review.reviewText FROM review " +

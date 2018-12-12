@@ -2,12 +2,12 @@ package com.assessment.drones.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class Review {
-
-    private Long id;
+@NoArgsConstructor
+public class ReviewDto {
     private String candidateNumber;
     private Long instructorID;
     private String reviewText;

@@ -133,9 +133,9 @@
                                         <div class="card-body-icon">
                                             <i class="fas fa-fw fa-comments"></i>
                                         </div>
-                                        <div class="mr-5">Contact Instructor</div>
+                                        <div class="mr-5">Give Review</div>
                                     </div>
-                                    <a class="card-footer text-white clearfix small z-1" href="#">
+                                    <a class="card-footer text-white clearfix small z-1" href="#" data-toggle="modal" data-target="#reviewModal">
                                         <span class="float-left">View Details</span>
                                         <span class="float-right">
                                         <i class="fas fa-angle-right"></i>
@@ -282,6 +282,36 @@
                                 </label>
                             </div>
                         <!--</fieldset>-->
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary btn-block" value="submit">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reviewModalLabel">Update Details</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form action="/submitReview" th:object="${review}" method="POST">
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" id="instructor" th:field="*{instructorID}" class="form-control" placeholder="Instructor (if applicable)">
+                                <label for="instructor">Instructor (if applicable)</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <textarea type="text" id="reviewText" th:field="*{reviewText}" class="form-control" placeholder="Review" required="required"></textarea>
+                            </div>
+                        </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary btn-block" value="submit">Confirm</button>
