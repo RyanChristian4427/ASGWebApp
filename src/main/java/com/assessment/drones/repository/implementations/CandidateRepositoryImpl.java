@@ -63,7 +63,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     @Override
-    public Integer saveUser(CourseRegistrationDto accountDto, String newReferenceNumber) {
+    public Integer saveUser(CourseRegistrationDto accountDto) {
         KeyHolder holder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -116,9 +116,9 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
         long generalInfoKey = holder.getKey().longValue();
 
-        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id," +
-                            "contact_info_id, general_info_id) VALUES(?, ?, ?, ?)",
-                accountDto.getReferenceNumber(), accountDto.getEmailAddress(), contactInfoKey, generalInfoKey);
+        jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id, contact_info_id, general_info_id) " +
+                        "VALUES(?, ?, ?, ?)", accountDto.getReferenceNumber(), accountDto.getEmailAddress(),
+                        contactInfoKey, generalInfoKey);
 
         return 1;
     }

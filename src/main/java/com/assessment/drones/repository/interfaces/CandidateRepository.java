@@ -9,7 +9,7 @@ import java.util.Optional;
 @Component
 public interface CandidateRepository {
 
-    Integer saveUser(CourseRegistrationDto accountDto, String newReferenceNumber);
+    Integer saveUser(CourseRegistrationDto accountDto);
 
     Optional<Candidate> findCandidateByNumber(String candidateNumber);
 

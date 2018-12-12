@@ -2,7 +2,7 @@ package com.assessment.drones.controllers.accounts;
 
 import com.assessment.drones.domain.User;
 import com.assessment.drones.domain.registration.UserRegistrationDto;
-import com.assessment.drones.services.OnRegistrationCompleteEvent;
+import com.assessment.drones.domain.OnRegistrationCompleteEvent;
 import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

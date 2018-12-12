@@ -1,4 +1,4 @@
-package com.assessment.drones.services;
+package com.assessment.drones.domain;
 
 import com.assessment.drones.domain.User;
 import lombok.Data;

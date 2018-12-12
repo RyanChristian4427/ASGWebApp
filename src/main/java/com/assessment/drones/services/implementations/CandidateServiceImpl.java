@@ -29,7 +29,7 @@ public class CandidateServiceImpl implements CandidateService {
 
         registrationDto.setEmailAddress(userDetailsService.getCurrentUserDetails().get().getUsername());
         registrationDto.setReferenceNumber(createReferenceNumberMonthYear());
-        Integer insertResponse = candidateRepository.saveUser(registrationDto, createReferenceNumberMonthYear());
+        Integer insertResponse = candidateRepository.saveUser(registrationDto);
 
         if (insertResponse == 1) {
             return new User("test", "test", "candidate", false, true);

@@ -1,10 +1,8 @@
 package com.assessment.drones.repository.interfaces;
 
-import com.assessment.drones.domain.*;
 import com.assessment.drones.domain.courseProgress.*;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component

@@ -43,9 +43,9 @@ test {
     }
 }
 
-
 dependencies {
     annotationProcessor('org.projectlombok:lombok:1.18.2')
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     compileOnly('org.projectlombok:lombok:1.18.2')
     implementation('org.flywaydb:flyway-core')
     implementation('mysql:mysql-connector-java')
