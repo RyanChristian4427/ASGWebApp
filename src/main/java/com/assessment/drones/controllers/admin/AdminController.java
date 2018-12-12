@@ -28,6 +28,7 @@ public class AdminController {
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
     public ModelAndView viewAdmin(){
         Map<String, Object> model = new HashMap<>();
+//        model.put("candidate", adminService.getCandidateList());
         model.put("flightTrainingForm", new FlightTrainingDto());
         model.put("groundSchoolForm", new GroundSchoolDto());
         model.put("operatorsManualForm", new OperatorsManualDto());

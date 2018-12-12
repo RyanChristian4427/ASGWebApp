@@ -22,6 +22,8 @@ public class AdminRepositoryImpl implements AdminRepository {
     private RowMapper<OperatorsManualDto> operatorsManualRowMapper;
     private RowMapper<FlightAssessmentDto> flightAssessmentRowMapper;
     private RowMapper<RecommendationsDto> recommendationsRowMapper;
+    private RowMapper<Candidate> candidateRowMapper;
+
 
     @Autowired
     public AdminRepositoryImpl(JdbcTemplate jdbcTemplate) {
@@ -65,7 +67,21 @@ public class AdminRepositoryImpl implements AdminRepository {
                 rs.getDate("caa_approval_date").toLocalDate(),
                 rs.getDate("overall_comments_approval_by_caa").toLocalDate()
         );
+
+        //TODO map a SP for the progress stages
+//        candidateRowMapper = ((rs, i) ->  new CandidateList(
+//                new Candidate(rs.getString("reference_number"),
+//                rs.getString("user_id")),
+//                rs.getString("firstName" + " " + "surname"),
+//                rs.getInt()
+//        ));
     }
+
+//    @Override
+//    public List<CandidateList> getCandidateList() {
+//        return jdbcTemplate.query("SELECT reference_number, first_name, surname FROM candidate", candidateRowMapper);
+//    }
+
 
     @Override
     public Integer saveFlightTraining(FlightTrainingDto flightTrainingDto){

@@ -18,4 +18,5 @@ public interface AdminService {
 
     Boolean verify(Object formDto);
 
+//    List<Candidate> getCandidateList();
 }

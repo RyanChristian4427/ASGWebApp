@@ -1,5 +1,6 @@
 package com.assessment.drones.services.implementations;
 
+import com.assessment.drones.domain.Candidate;
 import com.assessment.drones.domain.courseProgress.*;
 import com.assessment.drones.repository.interfaces.AdminRepository;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
@@ -7,6 +8,8 @@ import com.assessment.drones.repository.interfaces.InstructorRepository;
 import com.assessment.drones.services.interfaces.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -120,4 +123,8 @@ public class AdminServiceImpl implements AdminService {
         return verified;
     }
 
+//    @Override
+//    public List<Candidate> getCandidateList(){
+//        return adminRepository.getCandidateList();
+//    }
 }
