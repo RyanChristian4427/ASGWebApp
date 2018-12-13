@@ -1,5 +1,6 @@
 package com.assessment.drones.controllers.candidate;
 
+import com.assessment.drones.domain.ReviewDto;
 import com.assessment.drones.domain.registration.CourseRegistrationDto;
 import com.assessment.drones.services.interfaces.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class CourseRegistrationController {
         Map<String, Object> model = new HashMap<>();
         model.put("updateAddress", new CourseRegistrationDto());
         model.put("courseRegistration", registrationDto);
+        model.put("review", new ReviewDto());
+
 
         if (!result.hasErrors()) {
             candidateService.registerNewCandidate(registrationDto);
