@@ -1,19 +1,20 @@
 package com.assessment.drones.controllers;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import com.assessment.drones.services.interfaces.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ChartController {
 
-    ChartService chartService;
+    private final ChartService chartService;
 
     @Autowired
     public ChartController(ChartService chartService){
@@ -21,34 +22,19 @@ public class ChartController {
     }
 
     @RequestMapping(value = "/chart", method=RequestMethod.GET)
-    public String chart(Model model) {
+    public ModelAndView chart() {
 
-        //first, add the regional sales
-        Integer northeastSales = chartService.findAmountOfOperationsManual();
-        Integer midwestSales = chartService.findAmountOfCandidates();
-        Integer southSales = chartService.findAmountOfGroundSchool();
+        Map<String, Object> model = new HashMap<>();
 
-        model.addAttribute("northeastSales", northeastSales);
-        model.addAttribute("southSales", southSales);
-        model.addAttribute("midwestSales", midwestSales);
+        model.put("amtGroundSchool", chartService.findAmountOfGroundSchool());
+        model.put("amtOpsManual", chartService.findAmountOfOperationsManual());
+        model.put("amtFlightAssessment", chartService.findAmountOfFlightAssessment());
 
-        //now add sales by lure type
-        List<Integer> inshoreSales = Arrays.asList(chartService.findAmountOfGroundSchool());
-        List<Integer> nearshoreSales = Arrays.asList(chartService.findAmountOfOperationsManual());
-        List<Integer> offshoreSales = Arrays.asList(chartService.findAmountOfCandidates());
+        model.put("amtGroundSchoolList", Collections.singletonList(chartService.findAmountOfGroundSchool()));
+        model.put("amtOpsManualList", Collections.singletonList(chartService.findAmountOfOperationsManual()));
+        model.put("amtFlightAssessmentList", Collections.singletonList(chartService.findAmountOfFlightAssessment()));
 
-        model.addAttribute("inshoreSales", inshoreSales);
-        model.addAttribute("nearshoreSales", nearshoreSales);
-        model.addAttribute("offshoreSales", offshoreSales);
-
-        return "admin-charts";
-    }
-
-
-    //redirect to demo if user hits the root
-    @RequestMapping("/")
-    public String home(Model model) {
-        return "redirect:chart";
+        return new ModelAndView("admin-charts", model);
     }
 }
 

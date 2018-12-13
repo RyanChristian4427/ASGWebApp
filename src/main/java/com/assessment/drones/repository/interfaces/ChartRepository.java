@@ -9,7 +9,7 @@ import java.util.List;
 public interface ChartRepository {
 
 
-    Integer findAmountOfCandidates();
+    Integer findAmountOfFlightAssessment();
 
     Integer findAmountOfGroundSchool();
 

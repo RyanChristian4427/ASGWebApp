@@ -52,14 +52,10 @@ public class ChartRepositoryJdbc implements ChartRepository {
                 rs.getString("candidate_number"),
                 rs.getLong("instructor_id")
         );
-
-
     }
 
-
-
     @Override
-    public Integer findAmountOfCandidates() {
+    public Integer findAmountOfFlightAssessment() {
         return jdbcTemplate.query("SELECT COUNT(candidate_number) AS numberOfRows FROM flight_assessment", rs -> {
             if (rs.next()) {
                 return rs.getInt("numberOfRows");

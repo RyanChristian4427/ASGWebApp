@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ChartService {
 
-    Integer findAmountOfCandidates();
+    Integer findAmountOfFlightAssessment();
 
     Integer findAmountOfGroundSchool();
 

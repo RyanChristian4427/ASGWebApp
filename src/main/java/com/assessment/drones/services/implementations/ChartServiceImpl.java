@@ -1,13 +1,9 @@
 package com.assessment.drones.services.implementations;
 
-import com.assessment.drones.domain.Candidate;
-import com.assessment.drones.domain.FlightAssessmentDto;
 import com.assessment.drones.repository.interfaces.ChartRepository;
 import com.assessment.drones.services.interfaces.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ChartServiceImpl implements ChartService {
@@ -18,10 +14,9 @@ public class ChartServiceImpl implements ChartService {
         this.chartRepository = chartRepository;
     }
 
-
     @Override
-    public Integer findAmountOfCandidates() {
-        return chartRepository.findAmountOfCandidates();
+    public Integer findAmountOfFlightAssessment() {
+        return chartRepository.findAmountOfFlightAssessment();
     }
 
     @Override
