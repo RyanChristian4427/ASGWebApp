@@ -1,20 +1,13 @@
 package com.assessment.drones.repository.implementations;
 
-import com.assessment.drones.domain.FlightAssessmentDto;
-import com.assessment.drones.domain.GroundSchoolDto;
-import com.assessment.drones.domain.OperatorsManualDto;
+import com.assessment.drones.domain.courseProgress.FlightAssessmentDto;
+import com.assessment.drones.domain.courseProgress.GroundSchoolDto;
+import com.assessment.drones.domain.courseProgress.OperatorsManualDto;
 import com.assessment.drones.repository.interfaces.ChartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
 
 @Repository
 public class ChartRepositoryImpl implements ChartRepository {
@@ -50,7 +43,8 @@ public class ChartRepositoryImpl implements ChartRepository {
 
         operatorsManualRowMapper = (rs, i) -> new OperatorsManualDto(
                 rs.getString("candidate_number"),
-                rs.getLong("instructor_id")
+                rs.getLong("instructor_id"),
+                rs.getString("file_path")
         );
     }
 
