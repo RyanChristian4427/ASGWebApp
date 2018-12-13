@@ -41,7 +41,11 @@ public class EmailServiceImpl implements EmailService {
 
             MimeMessage mimeMessage = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "charset=ISO-8859-1");
-            mimeMessage.setContent(templateEngine.process("email-template", context), "text/html");
+            if (text.contains("confirm")) {
+                mimeMessage.setContent(templateEngine.process("email-template-address", context), "text/html");
+            } else {
+                mimeMessage.setContent(templateEngine.process("email-template-pass", context), "text/html");
+            }
             helper.setTo(to);
             helper.setSubject(subject);
             emailSender.send(mimeMessage);
