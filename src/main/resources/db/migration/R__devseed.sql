@@ -60,4 +60,8 @@ INSERT INTO instructor (id, user_id) VALUES (2, 'admin2@asg.com');
 
 # INSERT into operators_manual (candidate_number, submitted_date, file_path)VALUES('ASG-001-18-11', '1990/10/21', '/');
 
-INSERT INTO flight_training (candidate_number, training_type, instructor_id, skills_assessment_date) VALUES ('ASG-001-18-11', 'None', 1, '2018/12/2')
+INSERT INTO flight_training (candidate_number, training_type, instructor_id, skills_assessment_date) VALUES ('ASG-001-18-12', 'None', 1, '2018/12/2');
+
+INSERT INTO flight_assessment(id, candidate_number,  instructor_id, insurance, logged_hours, suas_category, assessment_pass_date) VALUES(3, 'ASG-001-18-11', 1, true, 226, 'dusnno', NOW());
+INSERT INTO flight_assessment(id, candidate_number,  instructor_id, insurance, logged_hours, suas_category, assessment_pass_date) VALUES(4, 'ASG-002-18-11', 2, true, 225, 'dunsno', NOW());
+INSERT INTO flight_assessment(id, candidate_number,  instructor_id, insurance, logged_hours, suas_category, assessment_pass_date) VALUES(5, 'ASG-003-18-11', 1, true, 224, 'dunnso', NOW());
