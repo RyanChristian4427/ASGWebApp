@@ -1,6 +1,7 @@
 package com.assessment.drones.services.interfaces;
 
 import com.assessment.drones.domain.*;
+import com.assessment.drones.domain.courseProgress.*;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface AdminService {
 
     String saveGroundSchool(GroundSchoolDto groundSchoolDto);
 
-    String saveOperationsManual(OperatorsManualDto operatorsManualDto);
+    String saveOperatorsManual(OperatorsManualDto operatorsManualDto);
 
     String saveFlightAssessment(FlightAssessmentDto flightAssessmentDto);
 
@@ -17,5 +18,5 @@ public interface AdminService {
 
     Boolean verify(Object formDto);
 
-    List<Candidate> getCandidateList();
+//    List<Candidate> getCandidateList();
 }

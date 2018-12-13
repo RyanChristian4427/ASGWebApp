@@ -3,8 +3,8 @@ services:
 - mysql:latest
 
 variables:
-    MYSQL_DATABASE: test
-    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: root
+    MYSQL_ROOT_PASSWORD: comsc
 
 stages:
 - build

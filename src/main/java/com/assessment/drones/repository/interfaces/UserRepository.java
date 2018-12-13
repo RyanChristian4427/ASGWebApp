@@ -3,6 +3,8 @@ package com.assessment.drones.repository.interfaces;
 import com.assessment.drones.domain.PasswordResetDto;
 import com.assessment.drones.domain.User;
 import com.assessment.drones.domain.AuthenticationToken;
+import com.assessment.drones.domain.registration.CourseRegistrationDto;
+import com.assessment.drones.domain.registration.UserRegistrationDto;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,4 +19,7 @@ public interface UserRepository {
     void authenticateUser(String userEmail);
 
     void changePassword(PasswordResetDto passwordResetDto);
+
+    Integer saveUser(UserRegistrationDto registrationDto);
+
 }

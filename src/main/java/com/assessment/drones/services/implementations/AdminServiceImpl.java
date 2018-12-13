@@ -1,6 +1,7 @@
 package com.assessment.drones.services.implementations;
 
-import com.assessment.drones.domain.*;
+import com.assessment.drones.domain.Candidate;
+import com.assessment.drones.domain.courseProgress.*;
 import com.assessment.drones.repository.interfaces.AdminRepository;
 import com.assessment.drones.repository.interfaces.CandidateRepository;
 import com.assessment.drones.repository.interfaces.InstructorRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -46,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public String saveOperationsManual(OperatorsManualDto operatorsManualDto){
+    public String saveOperatorsManual(OperatorsManualDto operatorsManualDto){
         Integer response = adminRepository.addOperatorsManual(operatorsManualDto);
 
         if (response == 1) {
@@ -102,7 +104,7 @@ public class AdminServiceImpl implements AdminService {
                     .getInstructorId()).isPresent() &&
                     adminRepository.findOperationsManual(((OperatorsManualDto) formDto).getCandidateNumber()).isPresent();
             if(verified) {
-                saveOperationsManual((OperatorsManualDto) formDto);
+                saveOperatorsManual((OperatorsManualDto) formDto);
             }
         } else if (formDto instanceof FlightAssessmentDto) {
             verified = candidateRepository.findCandidateByNumber(((FlightAssessmentDto) formDto)
@@ -121,8 +123,8 @@ public class AdminServiceImpl implements AdminService {
         return verified;
     }
 
-    @Override
-    public List<Candidate> getCandidateList(){
-
-        return adminRepository.getCandidateList();
-    }}
+//    @Override
+//    public List<Candidate> getCandidateList(){
+//        return adminRepository.getCandidateList();
+//    }
+}

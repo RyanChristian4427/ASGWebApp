@@ -1,6 +1,6 @@
 package com.assessment.drones.repository.interfaces;
 
-import com.assessment.drones.domain.Review;
+import com.assessment.drones.domain.ReviewDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public interface ReviewRepository
 {
-    Integer addReview(Review review);
+    void addReview(ReviewDto reviewDto);
 
-    List<Review> reviewsByInstructor(String surname);
+    List<ReviewDto> reviewsByInstructor(String surname);
 }

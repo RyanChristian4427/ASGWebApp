@@ -1,0 +1,2 @@
+ALTER TABLE general_info
+ADD paid TINYINT NOT NULL;

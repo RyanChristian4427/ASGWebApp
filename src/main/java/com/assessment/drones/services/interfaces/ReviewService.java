@@ -1,12 +1,12 @@
 package com.assessment.drones.services.interfaces;
 
-import com.assessment.drones.domain.Review;
+import com.assessment.drones.domain.ReviewDto;
 
 import java.util.List;
 
 public interface ReviewService {
 
-    String addReview(Review review);
+    void addReview(ReviewDto reviewDto);
 
-    List<Review> reviewsByInstructor(String surname);
+    List<ReviewDto> reviewsByInstructor(String surname);
 }

@@ -65,3 +65,11 @@
   });
 
 })(jQuery); // End of use strict
+
+function modalOpen() {
+    if ($("#postCodeError").val() != null) {
+        $('#courseRegistrationModal').modal('show');
+    } else if ($("#englishLevelError").val() != null) {
+        $('#courseRegistrationModal').modal('show');
+    }
+}
