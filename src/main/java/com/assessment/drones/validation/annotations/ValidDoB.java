@@ -18,7 +18,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = DateOfBirthValidator.class)
 @Documented
 public @interface ValidDoB {
-    String message() default "Sorry, but you must be over 18, and the date format is dd/mm/yyyy.";
+    String message() default "Sorry, but you must be over 18.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

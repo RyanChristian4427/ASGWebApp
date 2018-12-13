@@ -1,6 +1,8 @@
 package com.assessment.drones.repository.interfaces;
 
-import com.assessment.drones.domain.*;
+import com.assessment.drones.domain.Candidate;
+import com.assessment.drones.domain.CandidateList;
+import com.assessment.drones.domain.courseProgress.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,6 +22,5 @@ public interface AdminRepository {
 
     Optional<OperatorsManualDto> findOperationsManual(String candidateNumber);
 
-    List<Candidate> getCandidateList();
-
+//    List<CandidateList> getCandidateList();
 }

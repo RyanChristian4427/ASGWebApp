@@ -1,5 +1,6 @@
 package com.assessment.drones.services;
 
+import com.assessment.drones.domain.OnRegistrationCompleteEvent;
 import com.assessment.drones.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;

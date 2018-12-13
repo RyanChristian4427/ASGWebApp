@@ -1,6 +1,7 @@
 package com.assessment.drones.validation.implementations;
 
-import com.assessment.drones.domain.RegistrationDto;
+import com.assessment.drones.domain.registration.CourseRegistrationDto;
+import com.assessment.drones.domain.registration.UserRegistrationDto;
 import com.assessment.drones.validation.annotations.PasswordMatches;
 
 import javax.validation.ConstraintValidator;
@@ -14,7 +15,7 @@ public class PasswordMatchesValidator
     }
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context){
-        RegistrationDto user = (RegistrationDto) obj;
+        UserRegistrationDto user = (UserRegistrationDto) obj;
         return user.getPassword().equals(user.getMatchingPassword());
     }
 }
