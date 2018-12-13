@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Repository
-public class ChartRepositoryJdbc implements ChartRepository {
+public class ChartRepositoryImpl implements ChartRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<FlightAssessmentDto> flightAssessmentRowMapper;
@@ -27,7 +27,7 @@ public class ChartRepositoryJdbc implements ChartRepository {
 
 
     @Autowired
-    public ChartRepositoryJdbc(JdbcTemplate aTemplate) {
+    public ChartRepositoryImpl(JdbcTemplate aTemplate) {
 
         jdbcTemplate = aTemplate;
 
