@@ -59,7 +59,7 @@ INSERT INTO candidate (reference_number, user_id, contact_info_id, general_info_
 INSERT INTO instructor (id, user_id) VALUES (1, 'admin@asg.com');
 INSERT INTO instructor (id, user_id) VALUES (2, 'admin2@asg.com');
 
-# INSERT into operators_manual (candidate_number, submitted_date, file_path)VALUES('ASG-001-18-11', '1990/10/21', '/');
+INSERT into operators_manual (candidate_number, submitted_date, file_path) VALUES('ASG-001-18-11', '1990/10/21', '/');
 
 INSERT INTO flight_training (candidate_number, training_type, instructor_id, skills_assessment_date) VALUES ('ASG-001-18-12', 'None', 1, '2018/12/2');
 
