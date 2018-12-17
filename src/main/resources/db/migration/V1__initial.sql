@@ -49,14 +49,14 @@ CREATE TABLE IF NOT EXISTS user (
 ) ENGINE=InnoDB;
 
 
-# Was a thought, but decided against it for now
-# CREATE TABLE IF NOT EXISTS verification_token (
-#   user_id INT UNSIGNED NOT NULL,
-#   authentication_token VARCHAR(36) NOT NULL,
-#   expiry_time DATETIME NOT NULL,
-#   PRIMARY KEY (user_id),
-#   FOREIGN KEY (user_id) REFERENCES user (id)
-# ) ENGINE=InnoDB;
+-- Was a thought, but decided against it for now
+-- CREATE TABLE IF NOT EXISTS verification_token (
+--   user_id INT UNSIGNED NOT NULL,
+--   authentication_token VARCHAR(36) NOT NULL,
+--   expiry_time DATETIME NOT NULL,
+--   PRIMARY KEY (user_id),
+--   FOREIGN KEY (user_id) REFERENCES user (id)
+-- ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS candidate (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS flight_assessment (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     candidate_number VARCHAR(13) NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
-    insurance VARCHAR(1) NOT NULL,
+    insurance TINYINT NOT NULL,
     logged_hours TIME NOT NULL,
     suas_category VARCHAR(20) NOT NULL,
     assessment_pass_date DATE NOT NULL,

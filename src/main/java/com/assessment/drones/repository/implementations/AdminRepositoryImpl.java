@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -24,6 +23,7 @@ public class AdminRepositoryImpl implements AdminRepository {
     private RowMapper<RecommendationsDto> recommendationsRowMapper;
     private RowMapper<Candidate> candidateRowMapper;
 
+    //TODO get instructor id from logged in user
 
     @Autowired
     public AdminRepositoryImpl(JdbcTemplate jdbcTemplate) {
