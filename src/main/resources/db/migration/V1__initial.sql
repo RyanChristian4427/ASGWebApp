@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS user (
 
 CREATE TABLE IF NOT EXISTS candidate (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    reference_number VARCHAR(13) UNIQUE NOT NULL,
+    reference_number VARCHAR(13) UNIQUE,
     user_id VARCHAR(30) NOT NULL,
     first_name VARCHAR(10) NOT NULL,
     surname VARCHAR(15) NOT NULL,
