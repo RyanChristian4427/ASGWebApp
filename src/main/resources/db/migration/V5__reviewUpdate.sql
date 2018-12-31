@@ -3,3 +3,6 @@ ALTER TABLE review
   DROP candidate_id,
   ADD candidate_number VARCHAR(13) NOT NULL,
   ADD FOREIGN KEY (candidate_number) REFERENCES candidate (reference_number);
+
+ALTER TABLE candidate
+  ADD stage INT;

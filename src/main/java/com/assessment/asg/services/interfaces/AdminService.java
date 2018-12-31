@@ -1,0 +1,19 @@
+package com.assessment.asg.services.interfaces;
+
+import com.assessment.asg.domain.courseProgress.*;
+
+public interface AdminService {
+    String saveFlightTraining(FlightTrainingDto flightTrainingDto);
+
+    String saveGroundSchool(GroundSchoolDto groundSchoolDto);
+
+    String saveOperatorsManual(OperatorsManualDto operatorsManualDto);
+
+    String saveFlightAssessment(FlightAssessmentDto flightAssessmentDto);
+
+    String saveRecommendations(RecommendationsDto recommendationsDto);
+
+    Boolean verify(Object formDto);
+
+//    List<Candidate> getCandidateList();
+}

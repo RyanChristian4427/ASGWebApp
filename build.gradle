@@ -32,7 +32,7 @@ bootRun {
         systemProperty 'spring.profiles.active', 'development'
     }
 
-    main = 'com.assessment.drones.DronesApplication'
+    main = 'com.assessment.asg.DronesApplication'
 }
 
 test {
