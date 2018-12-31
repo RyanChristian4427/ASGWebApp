@@ -26,9 +26,9 @@ build:gradle:
     stage: build
     script:
         - ./gradlew build --stacktrace -Pprofiles=ci
-        - touch V1_initial.sql
-        - mysqldump --no-data $MYSQL_DATABASE -u root -p$MYSQL_ROOT_PASSWORD -h mysql > V1_initial.sql
-        - cat V1_initial.sql
+        - touch V1__initial.sql
+        - mysqldump --no-data $MYSQL_DATABASE -u root -p$MYSQL_ROOT_PASSWORD -h mysql > V1__initial.sql
+        - cat V1__initial.sql
     artifacts:
         name: "$CI_JOB_NAME"
         paths:
