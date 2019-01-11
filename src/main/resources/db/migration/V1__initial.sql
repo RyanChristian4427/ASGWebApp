@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS operators_manual (
     instructor_id INT UNSIGNED,
     submitted_date DATE NOT NULL,
     pass_date DATE,
-    file_path VARCHAR(50) NOT NULL,
+    file_path VARCHAR(100) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (candidate_number) REFERENCES candidate (reference_number),
     FOREIGN KEY (instructor_id) REFERENCES instructor (id)

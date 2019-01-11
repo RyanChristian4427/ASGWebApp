@@ -59,14 +59,15 @@ INSERT INTO candidate (reference_number, user_id, contact_info_id, general_info_
 VALUES ('ASG-001-18-11', 'client@asg.com', 1, 1),
        ('ASG-002-18-11', 'client2@asg.com', 2, 2),
        ('ASG-003-18-11', 'client3@asg.com', 3, 3),
-       ('ASG-001-18-12', 'client3@asg.com', 3, 3);
+       ('ASG-001-18-12', 'client4@asg.com', 4, 4),
+       ('ASG-002-18-12', 'client4@asg.com', 4, 4);
 
 INSERT INTO instructor (id, user_id)
 VALUES (1, 'admin@asg.com'),
        (2, 'admin2@asg.com');
 
-INSERT into operators_manual (candidate_number, submitted_date, file_path)
-VALUES ('ASG-001-18-11', '1990/10/21', '/upload-dir/file.pdf');
+# INSERT into operators_manual (candidate_number, submitted_date, file_path)
+# VALUES ('ASG-001-18-11', '1990/10/21', '/upload-dir/file.pdf');
 
 INSERT INTO flight_training (candidate_number, training_type, instructor_id, skills_assessment_date)
 VALUES ('ASG-001-18-12', 'None', 1, '2018/12/2');

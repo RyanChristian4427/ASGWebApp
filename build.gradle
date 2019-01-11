@@ -24,6 +24,10 @@ repositories {
     mavenCentral()
 }
 
+bootJar {
+    mainClassName = 'com.assessment.asg.AsgApplication'
+}
+
 bootRun {
     sourceResources sourceSets.main
     if (project.hasProperty("profiles")) {
@@ -32,7 +36,7 @@ bootRun {
         systemProperty 'spring.profiles.active', 'development'
     }
 
-    main = 'com.assessment.asg.DronesApplication'
+    main = 'com.assessment.asg.AsgApplication'
 }
 
 test {

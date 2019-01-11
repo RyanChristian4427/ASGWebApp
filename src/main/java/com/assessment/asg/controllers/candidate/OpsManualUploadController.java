@@ -1,8 +1,10 @@
 package com.assessment.asg.controllers.candidate;
 
+import com.assessment.asg.AsgApplication;
 import com.assessment.asg.handlers.StorageFileNotFoundException;
 import com.assessment.asg.services.interfaces.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -40,8 +42,8 @@ public class OpsManualUploadController {
     }
 
     @GetMapping("/downloadOpsManual")
-    public void downloadFile3(HttpServletResponse response) throws IOException {
-        File file = new File("download_dir/OperatorsManualTemplate.pdf");
+    public void downloadFile(HttpServletResponse response) throws IOException {
+        File file = new ClassPathResource("/static/download_dir/OperatorsManualTemplate.pdf").getFile();
 
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment;filename=" + file.getName());
