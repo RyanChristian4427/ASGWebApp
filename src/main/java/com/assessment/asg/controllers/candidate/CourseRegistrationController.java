@@ -1,0 +1,46 @@
+package com.assessment.asg.controllers.candidate;
+
+import com.assessment.asg.domain.ReviewDto;
+import com.assessment.asg.domain.registration.CourseRegistrationDto;
+import com.assessment.asg.services.interfaces.CandidateService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+
+@Controller
+public class CourseRegistrationController {
+
+    private CandidateService candidateService;
+
+    @Autowired
+    public CourseRegistrationController(CandidateService candidateService) {
+        this.candidateService = candidateService;
+    }
+
+    @RequestMapping(path="/courseRegister", method = RequestMethod.POST)
+    public ModelAndView registerCourse(@ModelAttribute("courseRegistration") @Valid CourseRegistrationDto registrationDto,
+                                            BindingResult result) {
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("updateAddress", new CourseRegistrationDto());
+        model.put("courseRegistration", registrationDto);
+        model.put("review", new ReviewDto());
+
+
+        if (!result.hasErrors()) {
+            candidateService.registerNewCandidate(registrationDto);
+            return new ModelAndView("redirect:/dashboard", model);
+        } else {
+            model.put("userRegistered", false);
+            return new ModelAndView("client-dashboard", model);
+        }
+    }
+}
