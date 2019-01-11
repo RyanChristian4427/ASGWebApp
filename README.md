@@ -1,7 +1,7 @@
 #C1717381 Client Project ReadMe
 
 1) In order to run this, a local database named "ASG" will need to be made, along with a schema "asg". Due to the migration services, without a
-schema in place, it can't start. The path of the jar is build/libs/asg-1.0.0.jar
+schema in place, it can't start. The path of the jar is build/libs/asg-1.0.0.jar. Run with "java -jar -Dspring.profiles.active=development asg-1.0.0.jar"
 
 2) Before any manual tests are done, the team originally used MailTrap, which is an inbox that collects all out going mail from the server. The credentials
 for this account are "ChristianR@cardiff.ac.uk" as the username, and the password "U&P5@n9C". Alternatively, you could swap this out with any other mail
