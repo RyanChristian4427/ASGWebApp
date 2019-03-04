@@ -21,11 +21,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository) {
+    public UserDetailsServiceImpl(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public UserDetails loadUserByUsername(String email)
+    public UserDetails loadUserByUsername(final String email)
             throws UsernameNotFoundException {
 
         User user = userRepository.findUserByEmail(email);

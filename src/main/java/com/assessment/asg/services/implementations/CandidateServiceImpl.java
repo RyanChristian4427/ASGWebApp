@@ -20,14 +20,13 @@ public class CandidateServiceImpl implements CandidateService {
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public CandidateServiceImpl(CandidateRepository candidateRepository, UserDetailsServiceImpl userDetailsService) {
+    public CandidateServiceImpl(final CandidateRepository candidateRepository, final UserDetailsServiceImpl userDetailsService) {
         this.candidateRepository = candidateRepository;
         this.userDetailsService = userDetailsService;
     }
 
     @Override
-    public User registerNewCandidate(CourseRegistrationDto registrationDto) {
-
+    public User registerNewCandidate(final CourseRegistrationDto registrationDto) {
         registrationDto.setEmailAddress(userDetailsService.getCurrentUserDetails().get().getUsername());
         registrationDto.setReferenceNumber(createReferenceNumberMonthYear());
         Integer insertResponse = candidateRepository.saveUser(registrationDto);
@@ -50,7 +49,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public void saveOperatorsManual(OperatorsManualDto operatorsManualDto) {
+    public void saveOperatorsManual(final OperatorsManualDto operatorsManualDto) {
        candidateRepository.saveOperatorsManual(operatorsManualDto);
     }
 
@@ -59,13 +58,13 @@ public class CandidateServiceImpl implements CandidateService {
         String[] referenceNumberParts = candidateRepository.previousCandidateReferenceNumber().split("-");
         LocalDate localDate = LocalDate.now();
         String newReferenceNumber;
-        if(Integer.toString(localDate.getMonthValue()).equals(referenceNumberParts[3])) {
+        if (Integer.toString(localDate.getMonthValue()).equals(referenceNumberParts[3])) {
             String newUniqueNum = String.format("%03d", Integer.parseInt(referenceNumberParts[1])+ 1);
-            newReferenceNumber = "ASG-" + newUniqueNum + "-" + Integer.toString(localDate.getYear()-2000)
-                    + "-" + (Integer.toString(localDate.getMonthValue()));
+            newReferenceNumber = "ASG-" + newUniqueNum + "-" +(localDate.getYear() - 2000)
+                    + "-" + (localDate.getMonthValue());
         } else {
-            newReferenceNumber = "ASG-" + "000" + "-" + Integer.toString(localDate.getYear()-2000)
-                    + "-" + (Integer.toString(localDate.getMonthValue()));
+            newReferenceNumber = "ASG-" + "000" + "-" + (localDate.getYear() - 2000)
+                    + "-" + (localDate.getMonthValue());
         }
         return newReferenceNumber;
     }

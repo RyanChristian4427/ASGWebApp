@@ -14,8 +14,8 @@ import java.io.IOException;
 public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-            AuthenticationException exception) throws IOException, ServletException {
+    public void onAuthenticationFailure(final HttpServletRequest request, final HttpServletResponse response,
+                                        final AuthenticationException exception) throws IOException, ServletException {
 
         setDefaultFailureUrl("/login?error=true");
         super.onAuthenticationFailure(request, response, exception);
@@ -26,8 +26,8 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 //        System.out.println("Exception is: " + exception);
 
         if (exception.getMessage().equalsIgnoreCase("User is disabled")) {
-            errorMessage = "Sorry, but that account has not been activated yet. Please look for an email " +
-                    "with an activation link. After you've used it, you can log in.";
+            errorMessage = "Sorry, but that account has not been activated yet. Please look for an email "
+                    + "with an activation link. After you've used it, you can log in.";
         } else if (exception.getMessage().equalsIgnoreCase("Bad credentials")) {
             errorMessage = "Sorry, but your credentials do not match any that we have on record";
         }

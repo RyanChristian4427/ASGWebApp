@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -21,13 +20,13 @@ public class CourseRegistrationController {
     private CandidateService candidateService;
 
     @Autowired
-    public CourseRegistrationController(CandidateService candidateService) {
+    public CourseRegistrationController(final CandidateService candidateService) {
         this.candidateService = candidateService;
     }
 
-    @RequestMapping(path="/courseRegister", method = RequestMethod.POST)
-    public ModelAndView registerCourse(@ModelAttribute("courseRegistration") @Valid CourseRegistrationDto registrationDto,
-                                            BindingResult result) {
+    @PostMapping(path = "/courseRegister")
+    public ModelAndView registerCourse(final @ModelAttribute("courseRegistration") @Valid CourseRegistrationDto registrationDto,
+                                       final BindingResult result) {
 
         Map<String, Object> model = new HashMap<>();
         model.put("updateAddress", new CourseRegistrationDto());

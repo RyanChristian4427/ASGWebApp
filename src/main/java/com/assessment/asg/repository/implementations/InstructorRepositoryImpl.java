@@ -17,17 +17,17 @@ public class InstructorRepositoryImpl implements InstructorRepository {
     private RowMapper<Instructor> instructorRowMapper;
 
     @Autowired
-    public InstructorRepositoryImpl(JdbcTemplate aTemplate) {
+    public InstructorRepositoryImpl(final JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
 
         instructorRowMapper = (rs, i) -> new Instructor(
                 rs.getLong("id"),
-                rs.getString("user_id")
+                rs.getString("userId")
         );
     }
 
     @Override
-    public Optional<Instructor> findInstructorByID(Long id) {
+    public Optional<Instructor> findInstructorByID(final Long id) {
         try {
             return Optional.ofNullable(
                     jdbcTemplate.queryForObject(

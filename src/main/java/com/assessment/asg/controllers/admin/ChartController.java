@@ -5,8 +5,7 @@ import java.util.*;
 import com.assessment.asg.services.interfaces.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -15,13 +14,12 @@ public class ChartController {
     private final ChartService chartService;
 
     @Autowired
-    public ChartController(ChartService chartService){
+    public ChartController(final ChartService chartService) {
         this.chartService = chartService;
     }
 
-    @RequestMapping(value = "/chart", method=RequestMethod.GET)
+    @GetMapping(value = "/chart")
     public ModelAndView chart() {
-
         Map<String, Object> model = new HashMap<>();
 
         model.put("amtGroundSchool", chartService.findAmountOfGroundSchool());

@@ -11,13 +11,11 @@ public interface AdminRepository {
 
     Integer saveGroundSchool(GroundSchoolDto groundSchoolDto);
 
-    Integer addOperatorsManual (OperatorsManualDto operatorsManualDto);
+    Integer addOperatorsManual(OperatorsManualDto operatorsManualDto);
 
-    Integer addFlightAssessment (FlightAssessmentDto flightAssessmentDto);
+    Integer addFlightAssessment(FlightAssessmentDto flightAssessmentDto);
 
-    Integer addRecommendations (RecommendationsDto recommendationsDto);
+    Integer addRecommendations(RecommendationsDto recommendationsDto);
 
     Optional<OperatorsManualDto> findOperationsManual(String candidateNumber);
-
-//    List<CandidateList> getCandidateList();
 }

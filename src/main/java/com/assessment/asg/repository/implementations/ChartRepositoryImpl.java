@@ -20,7 +20,7 @@ public class ChartRepositoryImpl implements ChartRepository {
 
 
     @Autowired
-    public ChartRepositoryImpl(JdbcTemplate aTemplate) {
+    public ChartRepositoryImpl(final JdbcTemplate aTemplate) {
 
         jdbcTemplate = aTemplate;
 

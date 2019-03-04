@@ -12,23 +12,23 @@ public class EmailValidator
         implements ConstraintValidator<ValidEmail, String> {
 
     private UserService userService;
-    private static final Pattern emailPattern =
+    private static final Pattern EMAILPATTERN =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     @Autowired
-    public EmailValidator(UserService aService) {
+    public EmailValidator(final UserService aService) {
         userService = aService;
     }
 
     @Override
-    public void initialize(ValidEmail constraintAnnotation) {
+    public void initialize(final ValidEmail constraintAnnotation) {
     }
     @Override
-    public boolean isValid(String email, ConstraintValidatorContext context){
+    public boolean isValid(final String email, final ConstraintValidatorContext context) {
         return (validateEmail(email));
     }
 
-    private boolean validateEmail(String emailAddress) {
-        return userService.emailInUse(emailAddress) == null && emailPattern.matcher(emailAddress).matches();
+    private boolean validateEmail(final String emailAddress) {
+        return userService.emailInUse(emailAddress) == null && EMAILPATTERN.matcher(emailAddress).matches();
     }
 }

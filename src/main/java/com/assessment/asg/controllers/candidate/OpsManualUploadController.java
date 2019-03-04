@@ -1,6 +1,5 @@
 package com.assessment.asg.controllers.candidate;
 
-import com.assessment.asg.AsgApplication;
 import com.assessment.asg.handlers.StorageFileNotFoundException;
 import com.assessment.asg.services.interfaces.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +20,13 @@ public class OpsManualUploadController {
     private final StorageService storageService;
 
     @Autowired
-    public OpsManualUploadController(StorageService storageService) {
+    public OpsManualUploadController(final StorageService storageService) {
         this.storageService = storageService;
     }
 
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+    public ResponseEntity<Resource> serveFile(final @PathVariable String filename) {
 
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
@@ -35,14 +34,14 @@ public class OpsManualUploadController {
     }
 
     @PostMapping("/uploadOperatorsManual")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+    public String handleFileUpload(final @RequestParam("file") MultipartFile file) {
         storageService.store(file);
 
         return "redirect:/dashboard";
     }
 
     @GetMapping("/downloadOpsManual")
-    public void downloadFile(HttpServletResponse response) throws IOException {
+    public void downloadFile(final HttpServletResponse response) throws IOException {
         File file = new ClassPathResource("/static/download_dir/OperatorsManualTemplate.pdf").getFile();
 
         response.setContentType("application/pdf");

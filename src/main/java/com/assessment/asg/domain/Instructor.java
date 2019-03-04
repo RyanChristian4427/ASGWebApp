@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class Instructor {
     private Long id;
-    private String user_id;
+    private String userId;
 }

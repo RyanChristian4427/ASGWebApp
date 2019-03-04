@@ -16,18 +16,14 @@ public class ReviewServiceImpl implements ReviewService {
     private final CandidateService candidateService;
 
     @Autowired
-    public ReviewServiceImpl(ReviewRepository reviewRepository, CandidateService candidateService) {
+    public ReviewServiceImpl(final ReviewRepository reviewRepository, final CandidateService candidateService) {
         this.reviewRepository = reviewRepository;
         this.candidateService = candidateService;
     }
 
-    public void addReview(ReviewDto reviewDto) {
+    public void addReview(final ReviewDto reviewDto) {
         //TODO link this to an instructor ID from a given first and last name
         reviewDto.setCandidateNumber(candidateService.findCandidateByCurrentUser().get().getReferenceNumber());
         reviewRepository.addReview(reviewDto);
-    }
-
-    public List<ReviewDto> reviewsByInstructor(String surname){
-        return reviewRepository.reviewsByInstructor(surname);
     }
 }

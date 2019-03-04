@@ -10,7 +10,7 @@ public class ChartServiceImpl implements ChartService {
     private ChartRepository chartRepository;
 
     @Autowired
-    public ChartServiceImpl(ChartRepository chartRepository){
+    public ChartServiceImpl(final ChartRepository chartRepository) {
         this.chartRepository = chartRepository;
     }
 
