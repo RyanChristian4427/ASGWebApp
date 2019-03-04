@@ -22,7 +22,7 @@ public class InstructorRepositoryImpl implements InstructorRepository {
 
         instructorRowMapper = (rs, i) -> new Instructor(
                 rs.getLong("id"),
-                rs.getString("userId")
+                rs.getString("user_id")
         );
     }
 
