@@ -29,7 +29,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
         candidateRowMapper = (rs, i) -> new Candidate(
                 rs.getString("reference_number"),
-                rs.getString("userId")
+                rs.getString("user_id")
         );
     }
 
