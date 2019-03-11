@@ -1,13 +1,11 @@
 package com.assessment.asg.services.implementations;
 
 import com.assessment.asg.domain.ReviewDto;
-import com.assessment.asg.repository.interfaces.ReviewRepository;
+import com.assessment.asg.repositories.interfaces.ReviewRepository;
 import com.assessment.asg.services.interfaces.CandidateService;
 import com.assessment.asg.services.interfaces.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {

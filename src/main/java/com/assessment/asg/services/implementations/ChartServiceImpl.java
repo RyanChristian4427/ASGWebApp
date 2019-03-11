@@ -1,6 +1,6 @@
 package com.assessment.asg.services.implementations;
 
-import com.assessment.asg.repository.interfaces.ChartRepository;
+import com.assessment.asg.repositories.interfaces.ChartRepository;
 import com.assessment.asg.services.interfaces.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

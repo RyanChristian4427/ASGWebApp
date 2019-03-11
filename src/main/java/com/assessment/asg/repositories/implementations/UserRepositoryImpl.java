@@ -1,10 +1,10 @@
-package com.assessment.asg.repository.implementations;
+package com.assessment.asg.repositories.implementations;
 
 import com.assessment.asg.domain.PasswordResetDto;
 import com.assessment.asg.domain.User;
 import com.assessment.asg.domain.AuthenticationToken;
 import com.assessment.asg.domain.registration.UserRegistrationDto;
-import com.assessment.asg.repository.interfaces.UserRepository;
+import com.assessment.asg.repositories.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

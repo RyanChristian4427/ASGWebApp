@@ -1,7 +1,7 @@
-package com.assessment.asg.repository.implementations;
+package com.assessment.asg.repositories.implementations;
 
 import com.assessment.asg.domain.ReviewDto;
-import com.assessment.asg.repository.interfaces.ReviewRepository;
+import com.assessment.asg.repositories.interfaces.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

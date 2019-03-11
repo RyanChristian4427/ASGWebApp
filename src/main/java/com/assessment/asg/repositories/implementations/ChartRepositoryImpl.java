@@ -1,9 +1,9 @@
-package com.assessment.asg.repository.implementations;
+package com.assessment.asg.repositories.implementations;
 
 import com.assessment.asg.domain.courseProgress.FlightAssessmentDto;
 import com.assessment.asg.domain.courseProgress.GroundSchoolDto;
 import com.assessment.asg.domain.courseProgress.OperatorsManualDto;
-import com.assessment.asg.repository.interfaces.ChartRepository;
+import com.assessment.asg.repositories.interfaces.ChartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

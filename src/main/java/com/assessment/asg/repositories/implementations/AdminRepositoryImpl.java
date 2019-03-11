@@ -1,7 +1,7 @@
-package com.assessment.asg.repository.implementations;
+package com.assessment.asg.repositories.implementations;
 
 import com.assessment.asg.domain.courseProgress.*;
-import com.assessment.asg.repository.interfaces.AdminRepository;
+import com.assessment.asg.repositories.interfaces.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

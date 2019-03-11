@@ -5,7 +5,7 @@ import com.assessment.asg.domain.Candidate;
 import com.assessment.asg.domain.courseProgress.OperatorsManualDto;
 import com.assessment.asg.domain.registration.CourseRegistrationDto;
 import com.assessment.asg.domain.User;
-import com.assessment.asg.repository.interfaces.CandidateRepository;
+import com.assessment.asg.repositories.interfaces.CandidateRepository;
 import com.assessment.asg.services.interfaces.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

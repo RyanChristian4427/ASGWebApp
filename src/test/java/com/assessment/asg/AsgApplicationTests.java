@@ -1,13 +1,12 @@
 package com.assessment.asg;
 
-import com.assessment.asg.domain.Candidate;
 import com.assessment.asg.domain.User;
 import com.assessment.asg.domain.courseProgress.OperatorsManualDto;
 import com.assessment.asg.domain.registration.DroneDto;
 import com.assessment.asg.domain.registration.CourseRegistrationDto;
 import com.assessment.asg.domain.registration.UserRegistrationDto;
-import com.assessment.asg.repository.interfaces.AdminRepository;
-import com.assessment.asg.repository.interfaces.CandidateRepository;
+import com.assessment.asg.repositories.interfaces.AdminRepository;
+import com.assessment.asg.repositories.interfaces.CandidateRepository;
 import com.assessment.asg.services.interfaces.AdminService;
 import com.assessment.asg.services.interfaces.CandidateService;
 import com.assessment.asg.services.interfaces.UserService;
