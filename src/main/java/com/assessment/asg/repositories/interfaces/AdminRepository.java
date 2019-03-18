@@ -1,4 +1,4 @@
-package com.assessment.asg.repository.interfaces;
+package com.assessment.asg.repositories.interfaces;
 
 import com.assessment.asg.domain.courseProgress.*;
 import org.springframework.stereotype.Component;
@@ -11,13 +11,11 @@ public interface AdminRepository {
 
     Integer saveGroundSchool(GroundSchoolDto groundSchoolDto);
 
-    Integer addOperatorsManual (OperatorsManualDto operatorsManualDto);
+    Integer addOperatorsManual(OperatorsManualDto operatorsManualDto);
 
-    Integer addFlightAssessment (FlightAssessmentDto flightAssessmentDto);
+    Integer addFlightAssessment(FlightAssessmentDto flightAssessmentDto);
 
-    Integer addRecommendations (RecommendationsDto recommendationsDto);
+    Integer addRecommendations(RecommendationsDto recommendationsDto);
 
     Optional<OperatorsManualDto> findOperationsManual(String candidateNumber);
-
-//    List<CandidateList> getCandidateList();
 }

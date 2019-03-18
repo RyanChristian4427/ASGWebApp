@@ -1,10 +1,10 @@
-package com.assessment.asg.repository.implementations;
+package com.assessment.asg.repositories.implementations;
 
 import com.assessment.asg.domain.PasswordResetDto;
 import com.assessment.asg.domain.User;
 import com.assessment.asg.domain.AuthenticationToken;
 import com.assessment.asg.domain.registration.UserRegistrationDto;
-import com.assessment.asg.repository.interfaces.UserRepository;
+import com.assessment.asg.repositories.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,7 +19,7 @@ public class UserRepositoryImpl implements UserRepository {
     private RowMapper<AuthenticationToken> verificationTokenMapper;
 
     @Autowired
-    public UserRepositoryImpl(JdbcTemplate aTemplate) {
+    public UserRepositoryImpl(final JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
 
         userMapper = (rs, i) -> new User(
@@ -38,7 +38,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findUserByEmail(String emailAddress) {
+    public User findUserByEmail(final String emailAddress) {
         try {
             return jdbcTemplate.queryForObject(
                     "SELECT email, password, role, activated, enabled FROM user WHERE user.email = ?",
@@ -50,13 +50,13 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void createAuthenticationToken(AuthenticationToken authenticationToken){
+    public void createAuthenticationToken(final AuthenticationToken authenticationToken) {
         jdbcTemplate.update("UPDATE user SET authentication_token = ?, expiry_datetime = ? WHERE email = ?",
                 authenticationToken.getToken(), authenticationToken.getExpiryDate(), authenticationToken.getUserEmail());
     }
 
     @Override
-    public AuthenticationToken getAuthenticationToken(String token){
+    public AuthenticationToken getAuthenticationToken(final String token) {
         try {
             return jdbcTemplate.queryForObject("SELECT email, authentication_token, expiry_datetime FROM user " +
                     "WHERE authentication_token = ?", new Object[] {token}, verificationTokenMapper);
@@ -66,17 +66,17 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void authenticateUser(String userEmail){
+    public void authenticateUser(final String userEmail) {
         jdbcTemplate.update("UPDATE user SET activated = 1 WHERE email = ?", userEmail);
     }
 
     @Override
-    public void changePassword(PasswordResetDto passwordResetDto){
+    public void changePassword(final PasswordResetDto passwordResetDto) {
         jdbcTemplate.update("UPDATE user SET password = ? WHERE email = ?", passwordResetDto.getPassword(), passwordResetDto.getEmailAddress());
     }
 
     @Override
-    public Integer saveUser(UserRegistrationDto registrationDto){
+    public Integer saveUser(final UserRegistrationDto registrationDto) {
         return jdbcTemplate.update("INSERT INTO user(email, password, first_name, surname, role) VALUES(?, ?, ?, ?, ?)",
                 registrationDto.getEmailAddress(), registrationDto.getPassword(), registrationDto.getFirstName(),
                 registrationDto.getSurname(), "candidate");

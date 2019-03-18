@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Profile;
 @EnableConfigurationProperties(StorageProperties.class)
 public class AsgApplication {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SpringApplication.run(AsgApplication.class, args);
     }
 
@@ -29,7 +29,7 @@ public class AsgApplication {
 
     @Bean
     @Profile("development")
-    CommandLineRunner init(StorageService storageService) {
+    CommandLineRunner init(final StorageService storageService) {
         return (args) -> {
             storageService.deleteAll();
             storageService.init();

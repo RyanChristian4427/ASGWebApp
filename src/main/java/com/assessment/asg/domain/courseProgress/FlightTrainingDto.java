@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FlightTrainingDto {;
+public class FlightTrainingDto {
     private String candidateNumber;
     private Long instructorId;
     private String trainingType;

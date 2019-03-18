@@ -30,13 +30,13 @@ public class StorageServiceImpl implements StorageService {
     private final CandidateService candidateService;
 
     @Autowired
-    public StorageServiceImpl(StorageProperties properties, CandidateService candidateService) {
+    public StorageServiceImpl(final StorageProperties properties, final CandidateService candidateService) {
         this.rootLocation = Paths.get(properties.getLocation());
         this.candidateService = candidateService;
     }
 
     @Override
-    public void store(MultipartFile file) {
+    public void store(final MultipartFile file) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
@@ -55,8 +55,7 @@ public class StorageServiceImpl implements StorageService {
                         candidateService.findCandidateByCurrentUser().get().getReferenceNumber(),
                         0L, this.rootLocation.resolve(filename).toString()));
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to store file " + filename, e);
         }
     }
@@ -67,33 +66,30 @@ public class StorageServiceImpl implements StorageService {
             return Files.walk(this.rootLocation, 1)
                     .filter(path -> !path.equals(this.rootLocation))
                     .map(this.rootLocation::relativize);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to read stored files", e);
         }
 
     }
 
     @Override
-    public Path load(String filename) {
+    public Path load(final String filename) {
         return rootLocation.resolve(filename);
     }
 
     @Override
-    public Resource loadAsResource(String filename) {
+    public Resource loadAsResource(final String filename) {
         try {
             Path file = load(filename);
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
-            }
-            else {
+            } else {
                 throw new StorageFileNotFoundException(
                         "Could not read file: " + filename);
 
             }
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             throw new StorageFileNotFoundException("Could not read file: " + filename, e);
         }
     }
@@ -107,8 +103,7 @@ public class StorageServiceImpl implements StorageService {
     public void init() {
         try {
             Files.createDirectories(rootLocation);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);
         }
     }

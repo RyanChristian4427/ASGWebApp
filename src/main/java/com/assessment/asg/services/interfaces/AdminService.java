@@ -14,6 +14,4 @@ public interface AdminService {
     String saveRecommendations(RecommendationsDto recommendationsDto);
 
     Boolean verify(Object formDto);
-
-//    List<Candidate> getCandidateList();
 }

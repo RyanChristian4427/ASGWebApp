@@ -1,4 +1,4 @@
-package com.assessment.asg.repository.interfaces;
+package com.assessment.asg.repositories.interfaces;
 
 import com.assessment.asg.domain.Candidate;
 import com.assessment.asg.domain.courseProgress.OperatorsManualDto;

@@ -1,6 +1,3 @@
-CREATE SCHEMA IF NOT EXISTS asg;
-USE asg;
-
 CREATE TABLE IF NOT EXISTS address (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     line_1 VARCHAR(50) NOT NULL,
@@ -47,16 +44,6 @@ CREATE TABLE IF NOT EXISTS user (
   expiry_datetime DATETIME,
   PRIMARY KEY (email)
 ) ENGINE=InnoDB;
-
-
--- Was a thought, but decided against it for now
--- CREATE TABLE IF NOT EXISTS verification_token (
---   user_id INT UNSIGNED NOT NULL,
---   authentication_token VARCHAR(36) NOT NULL,
---   expiry_time DATETIME NOT NULL,
---   PRIMARY KEY (user_id),
---   FOREIGN KEY (user_id) REFERENCES user (id)
--- ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS candidate (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
