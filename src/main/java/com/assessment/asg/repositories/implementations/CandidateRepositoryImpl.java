@@ -1,9 +1,9 @@
-package com.assessment.asg.repository.implementations;
+package com.assessment.asg.repositories.implementations;
 
 import com.assessment.asg.domain.Candidate;
 import com.assessment.asg.domain.courseProgress.OperatorsManualDto;
 import com.assessment.asg.domain.registration.CourseRegistrationDto;
-import com.assessment.asg.repository.interfaces.CandidateRepository;
+import com.assessment.asg.repositories.interfaces.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,7 +24,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     private RowMapper<Candidate> candidateRowMapper;
 
     @Autowired
-    public CandidateRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    public CandidateRepositoryImpl(final JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
 
         candidateRowMapper = (rs, i) -> new Candidate(
@@ -40,7 +40,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     @Override
-    public Optional<Candidate> findCandidateByNumber(String candidateNumber) {
+    public Optional<Candidate> findCandidateByNumber(final String candidateNumber) {
         try {
             return Optional.ofNullable(
                     jdbcTemplate.queryForObject(
@@ -53,7 +53,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     @Override
-    public Optional<Candidate> findCandidateByEmail(String emailAddress) {
+    public Optional<Candidate> findCandidateByEmail(final String emailAddress) {
         try {
             return Optional.ofNullable(
                     jdbcTemplate.queryForObject(
@@ -66,14 +66,14 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     @Override
-    public void saveOperatorsManual(OperatorsManualDto operatorsManualDto) {
+    public void saveOperatorsManual(final OperatorsManualDto operatorsManualDto) {
         jdbcTemplate.update(
                 "INSERT INTO operators_manual(candidate_number, submitted_date, file_path) VALUES(?,?,?)",
                 operatorsManualDto.getCandidateNumber(), LocalDate.now(), operatorsManualDto.getFilePath());
     }
 
     @Override
-    public Integer saveUser(CourseRegistrationDto accountDto) {
+    public Integer saveUser(final CourseRegistrationDto accountDto) {
         KeyHolder holder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {

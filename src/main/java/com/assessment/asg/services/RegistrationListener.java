@@ -12,16 +12,16 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     private UserService userService;
 
     @Autowired
-    public RegistrationListener(UserService userService) {
+    public RegistrationListener(final UserService userService) {
         this.userService = userService;
     }
 
     @Override
-    public void onApplicationEvent(OnRegistrationCompleteEvent event) {
+    public void onApplicationEvent(final OnRegistrationCompleteEvent event) {
         this.confirmRegistration(event);
     }
 
-    private void confirmRegistration(OnRegistrationCompleteEvent event) {
+    private void confirmRegistration(final OnRegistrationCompleteEvent event) {
         userService.createAuthenticationToken(event.getUser(), "register");
     }
 }

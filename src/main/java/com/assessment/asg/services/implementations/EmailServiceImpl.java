@@ -19,13 +19,13 @@ public class EmailServiceImpl implements EmailService {
     private final TemplateEngine templateEngine;
 
     @Autowired
-    public EmailServiceImpl(JavaMailSender emailSender, TemplateEngine templateEngine) {
+    public EmailServiceImpl(final JavaMailSender emailSender, final TemplateEngine templateEngine) {
         this.emailSender = emailSender;
         this.templateEngine = templateEngine;
     }
 
     @Override
-    public void sendSimpleMessage(String to, String subject, String text) {
+    public void sendSimpleMessage(final String to, final String subject, final String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);
@@ -34,7 +34,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendHTMLMessage(String to, String subject, String text) {
+    public void sendHTMLMessage(final String to, final String subject, final String text) {
         try {
             Context context = new Context();
             context.setVariable("link", text);
@@ -52,6 +52,5 @@ public class EmailServiceImpl implements EmailService {
         } catch (Exception e) {
             System.out.println("Messaging Exception: " + e);
         }
-
     }
 }

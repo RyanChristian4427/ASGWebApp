@@ -2,7 +2,7 @@ package com.assessment.asg.services.implementations;
 
 import com.assessment.asg.config.DefaultUserDetails;
 import com.assessment.asg.domain.User;
-import com.assessment.asg.repository.interfaces.UserRepository;
+import com.assessment.asg.repositories.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,11 +21,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository) {
+    public UserDetailsServiceImpl(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public UserDetails loadUserByUsername(String email)
+    public UserDetails loadUserByUsername(final String email)
             throws UsernameNotFoundException {
 
         User user = userRepository.findUserByEmail(email);

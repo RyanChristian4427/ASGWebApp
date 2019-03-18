@@ -5,6 +5,7 @@ import com.assessment.asg.services.interfaces.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,14 +19,14 @@ public class AdminController {
     private AdminService adminService;
 
     @Autowired
-    public AdminController(AdminService adminService) {
+    public AdminController(final AdminService adminService) {
         this.adminService = adminService;
     }
 
 
     //method to take the user to the admin page
     @RequestMapping(path = "/admin", method = RequestMethod.GET)
-    public ModelAndView viewAdmin(){
+    public ModelAndView viewAdmin() {
         Map<String, Object> model = new HashMap<>();
 //        model.put("candidate", adminService.getCandidateList());
         model.put("flightTrainingForm", new FlightTrainingDto());
@@ -38,33 +39,33 @@ public class AdminController {
     }
 
     //getting data from the flying training form
-    @RequestMapping(path = "/admin/flightTraining", method = RequestMethod.POST)
-    public ModelAndView getFlyTraining (@ModelAttribute("flightTrainingForm") FlightTrainingDto flightTrainingDto){
+    @PostMapping(path = "/admin/flightTraining")
+    public ModelAndView getFlyTraining(final @ModelAttribute("flightTrainingForm") FlightTrainingDto flightTrainingDto) {
         //TODO This returns a boolean, so do an error and success page?
         adminService.verify(flightTrainingDto);
         return new ModelAndView("redirect:/admin");
     }
 
-    @RequestMapping(path = "/admin/groundSchool",  method = RequestMethod.POST)
-    public ModelAndView getGroundSchool(@ModelAttribute("groundSchoolForm") GroundSchoolDto groundSchoolDto){
+    @PostMapping(path = "/admin/groundSchool")
+    public ModelAndView getGroundSchool(final @ModelAttribute("groundSchoolForm") GroundSchoolDto groundSchoolDto) {
         adminService.verify(groundSchoolDto);
         return new ModelAndView("redirect:/admin");
     }
 
-    @RequestMapping(path = "/admin/operatorsManual", method = RequestMethod.POST)
-    public ModelAndView addOperatorsManual(@ModelAttribute("operatorsManualForm") OperatorsManualDto operatorsManualDto){
+    @PostMapping(path = "/admin/operatorsManual")
+    public ModelAndView addOperatorsManual(final @ModelAttribute("operatorsManualForm") OperatorsManualDto operatorsManualDto) {
         adminService.verify(operatorsManualDto);
         return new ModelAndView("redirect:/admin");
     }
 
-    @RequestMapping(path = "/admin/flightAssessment", method = RequestMethod.POST)
-    public ModelAndView addFlightAssessment(@ModelAttribute("flightAssessment") FlightAssessmentDto flightAssessmentDto){
+    @PostMapping(path = "/admin/flightAssessment")
+    public ModelAndView addFlightAssessment(final @ModelAttribute("flightAssessment") FlightAssessmentDto flightAssessmentDto) {
         adminService.verify(flightAssessmentDto);
         return new ModelAndView("redirect:/admin");
     }
 
-    @RequestMapping(path = "/admin/recommendations", method = RequestMethod.POST)
-    public ModelAndView addRecommendations(@ModelAttribute("flightAssessment") RecommendationsDto recommendationsDto){
+    @PostMapping(path = "/admin/recommendations")
+    public ModelAndView addRecommendations(final @ModelAttribute("flightAssessment") RecommendationsDto recommendationsDto) {
         adminService.verify(recommendationsDto);
         return new ModelAndView("redirect:/admin");
     }

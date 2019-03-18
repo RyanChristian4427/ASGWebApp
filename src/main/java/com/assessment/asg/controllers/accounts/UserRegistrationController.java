@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,20 +21,21 @@ public class UserRegistrationController {
     private UserService userService;
 
     @Autowired
-    public UserRegistrationController(ApplicationEventPublisher applicationEventPublisher, UserService userService) {
+    public UserRegistrationController(final ApplicationEventPublisher applicationEventPublisher,
+                                      final UserService userService) {
         this.applicationEventPublisher = applicationEventPublisher;
         this.userService = userService;
     }
 
-    @RequestMapping(path="/register", method = RequestMethod.GET)
-    public ModelAndView register(){
+    @GetMapping(path = "/register")
+    public ModelAndView register() {
         return new ModelAndView("register", "user", new UserRegistrationDto());
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto registrationDto,
-                                            BindingResult result, WebRequest request) {
-
+    @PostMapping(value = "/register")
+    public ModelAndView registerUserAccount(final @ModelAttribute("user") @Valid UserRegistrationDto registrationDto,
+                                            final BindingResult result,
+                                            final WebRequest request) {
         if (!result.hasErrors()) {
             User user = userService.registerNewUser(registrationDto);
 
@@ -44,7 +43,7 @@ public class UserRegistrationController {
             applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
             return new ModelAndView("redirect:/login");
         } else {
-            return new ModelAndView("register","user", registrationDto);
+            return new ModelAndView("register", "user", registrationDto);
         }
     }
 }

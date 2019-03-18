@@ -1,4 +1,4 @@
-package com.assessment.asg.repository.interfaces;
+package com.assessment.asg.repositories.interfaces;
 
 import com.assessment.asg.domain.ReviewDto;
 import org.springframework.stereotype.Component;
@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public interface ReviewRepository
-{
+public interface ReviewRepository {
     void addReview(ReviewDto reviewDto);
 
     List<ReviewDto> reviewsByInstructor(String surname);

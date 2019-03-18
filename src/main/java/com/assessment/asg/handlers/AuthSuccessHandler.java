@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     @Override
-    protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response) {
+    protected String determineTargetUrl(final HttpServletRequest request, final HttpServletResponse response) {
         // Get the role of logged in user
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String role = auth.getAuthorities().toString();
 
         String targetUrl = "";
-        if(role.contains("candidate")) {
+        if (role.contains("candidate")) {
             targetUrl = "/dashboard";
-        } else if(role.contains("admin")) {
+        } else if (role.contains("admin")) {
             targetUrl = "/admin";
         }
         return targetUrl;

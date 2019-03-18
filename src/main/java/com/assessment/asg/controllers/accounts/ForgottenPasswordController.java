@@ -17,48 +17,49 @@ public class ForgottenPasswordController {
     private final UserService userService;
 
     @Autowired
-    public ForgottenPasswordController(UserService userService) {
+    public ForgottenPasswordController(final UserService userService) {
         this.userService = userService;
     }
 
-    @RequestMapping(path = "/forgottenPassword", method = RequestMethod.GET)
-    public String forgottenPassword(Model model){
+    @GetMapping(path = "/forgottenPassword")
+    public String forgottenPassword(final Model model) {
         model.addAttribute("passwordResetDto", new PasswordResetDto());
         return "forgotten-password";
     }
 
-    @RequestMapping(path = "/forgottenPassword", method = RequestMethod.POST)
-    public ModelAndView passwordReset(@ModelAttribute("passwordResetDto") PasswordResetDto passwordResetDto, BindingResult result){
+    @PostMapping(path = "/forgottenPassword")
+    public ModelAndView passwordReset(final @ModelAttribute("passwordResetDto") PasswordResetDto passwordResetDto,
+                                      final BindingResult result) {
         User user = userService.emailInUse(passwordResetDto.getEmailAddress());
-        if(user != null) {
+        if (user != null) {
             userService.createAuthenticationToken(user, "Password reset");
         } else {
-            result.rejectValue("emailAddress", "error.user","No account found with that email.");
+            result.rejectValue("emailAddress", "error.user", "No account found with that email.");
             ModelAndView modelAndView = new ModelAndView("forgotten-password");
             return modelAndView.addObject(result);
         }
         return new ModelAndView("forgotten-password");
     }
 
-    @RequestMapping(value = "/passwordReset", method = RequestMethod.GET)
-    public String passwordReset(@RequestParam("token") String token, Model model) {
+    @GetMapping(value = "/passwordReset")
+    public String passwordReset(final @RequestParam("token") String token) {
 
         String errors = userService.authenticateUser(token, "password reset");
-        if (errors != null) {
-
-        }
+//        if (errors != null) {
+//
+//        }
 
         return "redirect:/updatePassword";
     }
 
-    @RequestMapping(path = "/updatePassword", method = RequestMethod.GET)
-    public String updatePassword(Model model){
+    @GetMapping(path = "/updatePassword")
+    public String updatePassword(final Model model) {
         model.addAttribute("passwordResetDto", new PasswordResetDto());
         return "update-password";
     }
 
-    @RequestMapping(path = "/updatePassword", method = RequestMethod.POST)
-    public ModelAndView updatePassword(@ModelAttribute("passwordResetDto") PasswordResetDto passwordResetDto, BindingResult result){
+    @PostMapping(path = "/updatePassword")
+    public ModelAndView updatePassword(final @ModelAttribute("passwordResetDto") PasswordResetDto passwordResetDto) {
         User user = (User) SecurityContextHolder.getContext()
                         .getAuthentication().getPrincipal();
         passwordResetDto.setEmailAddress(user.getEmailAddress());

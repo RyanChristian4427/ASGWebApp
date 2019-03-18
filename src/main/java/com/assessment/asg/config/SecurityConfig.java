@@ -22,14 +22,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthFailureHandler authFailureHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService, AuthSuccessHandler authSuccessHandler, AuthFailureHandler authFailureHandler) {
+    public SecurityConfig(final UserDetailsServiceImpl userDetailsService, final AuthSuccessHandler authSuccessHandler,
+                          final AuthFailureHandler authFailureHandler) {
         this.userDetailsService = userDetailsService;
         this.authSuccessHandler = authSuccessHandler;
         this.authFailureHandler = authFailureHandler;
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth)
+    protected void configure(final AuthenticationManagerBuilder auth)
             throws Exception {
         auth.userDetailsService(userDetailsService);
     }

@@ -25,7 +25,8 @@ public class ClientDashboardController {
     private final ReviewService reviewService;
 
     @Autowired
-    public ClientDashboardController(CandidateService candidateService, StorageService storageService, ReviewService reviewService){
+    public ClientDashboardController(final CandidateService candidateService, final StorageService storageService,
+                                     final ReviewService reviewService) {
         this.candidateService = candidateService;
         this.storageService = storageService;
         this.reviewService = reviewService;
@@ -53,12 +54,12 @@ public class ClientDashboardController {
     }
 
     @PostMapping(path = "/updateDetails")
-    public void updateClientDetails(@ModelAttribute("updateAddress") CourseRegistrationDto accountDto) {
+    public void updateClientDetails(final @ModelAttribute("updateAddress") CourseRegistrationDto accountDto) {
         candidateService.registerNewCandidate(accountDto);
     }
 
     @PostMapping(path = "/submitReview")
-    public ModelAndView submitReview(@ModelAttribute("review") ReviewDto reviewDto) {
+    public ModelAndView submitReview(final @ModelAttribute("review") ReviewDto reviewDto) {
         reviewService.addReview(reviewDto);
         return new ModelAndView("redirect:/dashboard");
     }
