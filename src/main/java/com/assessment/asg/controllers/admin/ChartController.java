@@ -22,6 +22,7 @@ public class ChartController {
     public ModelAndView chart() {
         Map<String, Object> model = new HashMap<>();
 
+        //TODO figure out how to pass these to the charts js
         model.put("amtGroundSchool", chartService.findAmountOfGroundSchool());
         model.put("amtOpsManual", chartService.findAmountOfOperationsManual());
         model.put("amtFlightAssessment", chartService.findAmountOfFlightAssessment());

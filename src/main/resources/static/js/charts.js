@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
     Highcharts.setOptions({
         lang: {
             decimalPoint: '.',
@@ -10,9 +10,8 @@ $(function () {
     drawSalesByRegionChart();
 });
 
-
 function drawSalesByRegionChart() {
-    var salesByRegionChart = Highcharts.chart('salesByRegion', {
+    Highcharts.chart('salesByRegion', {
         chart: {
             type: 'pie',
             margin: 40,
@@ -26,7 +25,7 @@ function drawSalesByRegionChart() {
             text: 'Candidates at stages'
         },
         tooltip: {
-            pointFormat: "${point.y:,.0f}"
+            pointFormat: "{point.y:,.0f}"
         },
         plotOptions: {
             pie: {
@@ -38,24 +37,21 @@ function drawSalesByRegionChart() {
             name: 'Regions',
             colorByPoint:true,
             data: [{
-                name: 'Drone type 1',
-                y: /*[[${northeastSales}]]*/ 0
+                name: 'Ground School',
+                y: /*[[${amtGroundSchool}]]*/ 0
             },{
-                name: 'Drone type 2',
-                y: /*[[${southSales}]]*/ 0
+                name: 'Operations Manual',
+                y: /*[[${amtOpsManual}]]*/ 0
             },{
-                name: 'Drone type 3',
-                y: /*[[${midwestSales}]]*/ 0
-            },{
-                name: 'Drone type 4',
-                y: /*[[${westSales}]]*/ 0
+                name: 'Flight Assessment',
+                y: /*[[${amtFlightAssessment}]]*/ 0
             }]
         }]
     });
 }
 
 function drawSalesByTypeChart() {
-    var salesByTypeChart = Highcharts.chart('salesByType', {
+    Highcharts.chart('salesByType', {
         chart: {
             type: 'column',
             margin: 75,
@@ -67,18 +63,18 @@ function drawSalesByTypeChart() {
             }
         },
         title: {
-            text: 'Sales by Lure Type'
+            text: 'Candidate per stage per month'
         },
         xAxis: {
-            categories: ['May', 'June', 'July']
+            categories: ['November', 'December']
         },
         yAxis: {
             title: {
-                text: 'Candidates'
+                text: 'Number of Candidates'
             }
         },
         tooltip: {
-            pointFormat: "${point.y:,.0f}"
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}:{point.y} / {point.stackTotal}'
         },
         plotOptions: {
             column: {
@@ -89,14 +85,14 @@ function drawSalesByTypeChart() {
             }
         },
         series: [{
-            name: 'Ground school',
-            data: /*[[${inshoreSales}]]*/ []
+            name: 'Ground School',
+            data: /*[[${amtGroundSchoolList}]]*/ []
         }, {
-            name: 'Flight training',
-            data: /*[[${nearshoreSales}]]*/ []
+            name: 'Operations Manual',
+            data: /*[[${amtOpsManualList}]]*/ []
         }, {
-            name: 'Flight assesment',
-            data: /*[[${offshoreSales}]]*/ []
+            name: 'Flight Assessment',
+            data: /*[[${amtFlightAssessmentList}]]*/ []
         }]
     });
 }
