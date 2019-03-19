@@ -22,6 +22,7 @@ public class ChartController {
     public ModelAndView chart() {
         Map<String, Object> model = new HashMap<>();
 
+        //TODO figure out how to pass these to the charts js
         model.put("amtGroundSchool", chartService.findAmountOfGroundSchool());
         model.put("amtOpsManual", chartService.findAmountOfOperationsManual());
         model.put("amtFlightAssessment", chartService.findAmountOfFlightAssessment());
@@ -30,7 +31,7 @@ public class ChartController {
         model.put("amtOpsManualList", Collections.singletonList(chartService.findAmountOfOperationsManual()));
         model.put("amtFlightAssessmentList", Collections.singletonList(chartService.findAmountOfFlightAssessment()));
 
-        return new ModelAndView("admin-charts", model);
+        return new ModelAndView("dashboard/admin/charts", model);
     }
 }
 

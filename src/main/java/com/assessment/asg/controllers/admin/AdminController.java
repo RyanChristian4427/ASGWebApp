@@ -35,7 +35,7 @@ public class AdminController {
         model.put("flightAssessmentForm", new FlightAssessmentDto());
         model.put("recommendationsForm", new RecommendationsDto());
 
-        return new ModelAndView("admin-dashboard", model);
+        return new ModelAndView("dashboard/admin/index", model);
     }
 
     //getting data from the flying training form

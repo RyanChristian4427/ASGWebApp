@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>ASG - Chart View</title>
+
+        <!-- Bootstrap core CSS-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+
+        <!-- Custom fonts for this template-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/fontawesome-free/css/all.min.css}">
+
+        <!-- Page level plugin CSS-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/datatables/dataTables.bootstrap4.css}">
+
+        <!-- Custom styles for this template-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/sb-admin.css}">
+
+        <!--<object th:include="fragments/head :: head" th:remove="tag"></object>-->
+        <!--<link rel="stylesheet" type="text/css" th:src="@{css/charts.css}"/>-->
+    </head>
+    <body id="page-top">
+        <div th:replace="fragments/header/admin :: header">&nbsp;</div>
+        <div id="wrapper">
+            <div th:replace="fragments/sidebar/admin :: sidebar">&nbsp;</div>
+            <div id="content-wrapper" style="background-color:#eff3f8">
+                <div class="container-fluid">
+                    <div class="page-container">
+                        <div class="page-content-wrapper">
+                            <div class="page-head" style="padding-top:40px">
+                                <div class="container">
+                                    <div class="row" style="margin-bottom:30px">
+                                        <div class="col-md-6">
+                                            <h1>ASG: Clients</h1>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:30px">
+                                        <div class="col-md-6" style="margin-top:20px">
+                                            <div id="salesByType" style="width: 600px"></div>
+                                        </div>
+                                        <div class="col-md-6" style="margin-top:20px">
+                                            <div id="salesByRegion" style="width: 600px"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="/logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery core plugin JavaScript-->
+        <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+
+        <!-- Bootstrap core plugin JavaScript-->
+        <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+        <!-- Easing core plugin JavaScript-->
+        <script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+        <!--<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js}"></script>-->
+
+        <!-- Custom scripts for all pages-->
+        <script th:src="@{js/sb-admin.js}"></script>
+
+        <!-- Scripts for this page-->
+        <script th:src="@{vendor/highcharts/highcharts.js}"></script>
+        <script th:src="@{vendor/highcharts/highcharts-3d.js}"></script>
+        <script th:src="@{js/charts.js}"></script>
+   </body>
+</html>
