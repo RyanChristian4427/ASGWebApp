@@ -30,7 +30,7 @@ public class ChartController {
         model.put("amtOpsManualList", Collections.singletonList(chartService.findAmountOfOperationsManual()));
         model.put("amtFlightAssessmentList", Collections.singletonList(chartService.findAmountOfFlightAssessment()));
 
-        return new ModelAndView("admin-charts", model);
+        return new ModelAndView("dashboard/admin/charts", model);
     }
 }
 

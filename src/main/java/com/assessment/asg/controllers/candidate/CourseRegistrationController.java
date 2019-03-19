@@ -39,7 +39,7 @@ public class CourseRegistrationController {
             return new ModelAndView("redirect:/dashboard", model);
         } else {
             model.put("userRegistered", false);
-            return new ModelAndView("client-dashboard", model);
+            return new ModelAndView("dashboard/candidate/index", model);
         }
     }
 }
