@@ -10,6 +10,8 @@ import com.assessment.asg.repositories.interfaces.CandidateRepository;
 import com.assessment.asg.services.interfaces.AdminService;
 import com.assessment.asg.services.interfaces.CandidateService;
 import com.assessment.asg.services.interfaces.UserService;
+import org.flywaydb.core.Flyway;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,15 @@ public class AsgApplicationTests {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    Flyway flyway;
+
+    @Before
+    public void init(){
+        flyway.clean();
+        flyway.migrate();
+    }
 
     @Test
     public void testUserRegistration(){
