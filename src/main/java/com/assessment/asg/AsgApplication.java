@@ -19,7 +19,7 @@ public class AsgApplication {
     }
 
     @Bean
-    @Profile("development")
+    @Profile("ci, development, devops, prod")
     public FlywayMigrationStrategy cleanMigrateStrategy() {
         return flyway -> {
             flyway.clean();
@@ -28,7 +28,7 @@ public class AsgApplication {
     }
 
     @Bean
-    @Profile("development")
+    @Profile("development, devops, prod")
     CommandLineRunner init(final StorageService storageService) {
         return (args) -> {
             storageService.deleteAll();
