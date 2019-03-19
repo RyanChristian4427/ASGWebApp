@@ -50,7 +50,7 @@ public class ClientDashboardController {
         } else {
             model.put("userRegistered", false);
         }
-        return new ModelAndView("client-dashboard", model);
+        return new ModelAndView("dashboard/candidate/index", model);
     }
 
     @PostMapping(path = "/updateDetails")

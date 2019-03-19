@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{css/sb-admin.css}">
+    </head>
+    <body>
+        <ul class="sidebar navbar-nav" th:fragment="sidebar">
+            <li class="nav-item active">
+                <a class="nav-link" href="/dashboard">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="/chart">-->
+                    <!--<i class="fas fa-fw fa-chart-area"></i>-->
+                    <!--<span>Charts</span></a>-->
+            <!--</li>-->
+        </ul>
+    </body>
+</html>

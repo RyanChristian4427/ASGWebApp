@@ -1,44 +1,39 @@
-#C1717381 Client Project ReadMe
+# ASGWebApp
 
-1) In order to run this, a local database named "ASG" will need to be made, along with a schema "asg". Due to the migration services, without a
-schema in place, it can't start. The path of the jar is build/libs/asg-1.0.0.jar. Run with "java -jar -Dspring.profiles.active=development asg-1.0.0.jar"
+This was a group project from the first semester of the second year of university based on Spring Boot and MySQL databases. For this project, we met with a client who requested a web server and a relational database to replace his previous booking and progress system that was handled in Excel. This project was very much a 'learn as you go' sort of experience for the class, so some items may be inconsistent, as we eventually found better ways to do some items as we went through.
 
-2) Before any manual tests are done, the team originally used MailTrap, which is an inbox that collects all out going mail from the server. The credentials
-for this account are "ChristianR@cardiff.ac.uk" as the username, and the password "U&P5@n9C". Alternatively, you could swap this out with any other mail
-server, and the server details are located in "application.properties". Without access to the email, no new accounts could be authorized, and no accounts
-can update their passwords. 
+## Getting Started
 
-//If you choose to use the existing mail server
-3) Navigate to localhost:8080/register
-4) Give a first and last name, a valid email (name@gmail.com), and a password.
-5) Accept terms and conditions
-6) Click on "Register"
-7) Wait for redirect to /login
-8) Use the details you previousely provided and try to login
-9) You should be denied
-10) Go to https://mailtrap.io/inboxes and login
-11) Go to the demo inbox
-12) There will be a single email to the address you provided, click on the 'Verify Email' button
-13) Login using the credentials you registered with
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-//else
-3) Navigate to localhost:8080/login
-4) Login using the credentials 'client4@asg.com' and 'pass' as the password
-5) This is the first step a client would see after registering for an account, and verifying
+### Prerequisites
 
+What things you need to install the software and how to install them
 
-14/6) Click on the "Register" part of the modal. This would be how the client registers for the course. Don't fill it in.
-15) Instead, click on the user icon in the top right hand of the webpage, and logout
-16) Login with the credentials 'admin@asg.com' and 'pass'
-17) Using the left side bar, click on 'Charts'
-18) Hover over the green in either chart, and you'll observe two candidates are currently in stage 'Flight Assessment'
-19) Logout in the top right hand of the webpage again
-20) Login with the credentials 'client@asg.com' and 'pass'.
-21) This is what a client would see after they filled in the previous registration form. 
-22) Click 'View Details' under 'Resources Access and Upload'
-23) Upload any PDF file that you may have
-24) While the end user will not see this, the file will be added to a directory "upload-dir" in the same directory as the jar is in.
-25) Once again, logout.
-26) Log back in with 'admin@asg.com' and 'pass'
-27) Go back to charts
-28) Observe that there is now a new candidate at stage "Operators Manual"
+```
+Java 11
+MySQL Server
+```
+
+### Running
+
+To run the web server on localhost, you will need a local MySQL server running and Java 11 installed. By default, the Spring Boot profiles are configured for a database server running on port 3306. Simply create a table called 'asg', and run in the root project folder:
+
+```
+./gradlew bootRun -Pprofiles=development
+```
+
+Navigate in to https://localhost:8080/login in your browser of choice to begin using the system. There are 6 default accounts in the system, 2 admin, 4 candidate, and all use the password "pass". Login with admin@asg.com, admin2@asg.com, candidate@asg.com, ..., candidate4@asg.com. Navigate the site from there.
+
+## Authors
+
+* **Ryan Christian** - *All Around Developer* - [Ryan Christian](https://gitlab.cs.cf.ac.uk/c1717381)
+* **James Apps** - *All Around Developer* - [James Apps](https://gitlab.cs.cf.ac.uk/c1769423)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Thanks to Aviation Systems Group for giving us this project to work on, and allowing us to use this as part of our portfolios.
