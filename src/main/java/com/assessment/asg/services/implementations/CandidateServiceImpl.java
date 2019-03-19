@@ -59,12 +59,12 @@ public class CandidateServiceImpl implements CandidateService {
         LocalDate localDate = LocalDate.now();
         String newReferenceNumber;
         if (Integer.toString(localDate.getMonthValue()).equals(referenceNumberParts[3])) {
-            String newUniqueNum = String.format("%03d", Integer.parseInt(referenceNumberParts[1])+ 1);
-            newReferenceNumber = "ASG-" + newUniqueNum + "-" +(localDate.getYear() - 2000)
-                    + "-" + (localDate.getMonthValue());
+            String newUniqueNum = String.format("%03d", Integer.parseInt(referenceNumberParts[1]) + 1);
+            newReferenceNumber = "ASG-" + newUniqueNum + "-" + (localDate.getYear() - 2000) +
+                    "-" + (localDate.getMonthValue());
         } else {
-            newReferenceNumber = "ASG-" + "000" + "-" + (localDate.getYear() - 2000)
-                    + "-" + (localDate.getMonthValue());
+            newReferenceNumber = "ASG-" + "000" + "-" + (localDate.getYear() - 2000) +
+                    "-" + (localDate.getMonthValue());
         }
         return newReferenceNumber;
     }
