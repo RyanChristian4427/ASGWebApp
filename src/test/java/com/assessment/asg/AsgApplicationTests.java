@@ -47,13 +47,13 @@ public class AsgApplicationTests {
     Flyway flyway;
 
     @Before
-    public void init(){
+    public void init() {
         flyway.clean();
         flyway.migrate();
     }
 
     @Test
-    public void testUserRegistration(){
+    public void testUserRegistration() {
         User user = userService.registerNewUser(new UserRegistrationDto("Enrico", "Fermi",
                 "enrico@gmail.com", "password", "password"));
         assert (!user.isAuthenticated() && user.getEmailAddress().equals("enrico@gmail.com"));
@@ -68,7 +68,7 @@ public class AsgApplicationTests {
     }
 
     @Test
-    public void testOperatorsManual(){
+    public void testOperatorsManual() {
         candidateService.saveOperatorsManual(new OperatorsManualDto("ASG-002-18-11", 0L, "upload-dir/filename"));
         assert (adminRepository.findOperationsManual("ASG-002-18-11").isPresent());
         assert (adminService.verify(new OperatorsManualDto("ASG-002-18-11", 1L, "")));
