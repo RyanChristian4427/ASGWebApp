@@ -1,6 +1,6 @@
 package com.assessment.asg.services.interfaces;
 
-import com.assessment.asg.domain.courseProgress.*;
+import com.assessment.asg.models.courseProgress.*;
 
 public interface AdminService {
     String saveFlightTraining(FlightTrainingDto flightTrainingDto);

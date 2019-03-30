@@ -42,7 +42,7 @@ public class OpsManualUploadController {
 
     @GetMapping("/downloadOpsManual")
     public void downloadFile(final HttpServletResponse response) throws IOException {
-        File file = new ClassPathResource("/static/download_dir/OperatorsManualTemplate.pdf").getFile();
+        File file = new ClassPathResource("/static/download/OperatorsManualTemplate.pdf").getFile();
 
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment;filename=" + file.getName());

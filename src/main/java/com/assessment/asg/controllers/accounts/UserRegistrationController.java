@@ -1,8 +1,8 @@
 package com.assessment.asg.controllers.accounts;
 
-import com.assessment.asg.domain.User;
-import com.assessment.asg.domain.registration.UserRegistrationDto;
-import com.assessment.asg.domain.OnRegistrationCompleteEvent;
+import com.assessment.asg.models.User;
+import com.assessment.asg.models.registration.UserRegistrationDto;
+import com.assessment.asg.models.OnRegistrationCompleteEvent;
 import com.assessment.asg.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

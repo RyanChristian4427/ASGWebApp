@@ -1,6 +1,6 @@
 package com.assessment.asg.services;
 
-import com.assessment.asg.domain.OnRegistrationCompleteEvent;
+import com.assessment.asg.models.OnRegistrationCompleteEvent;
 import com.assessment.asg.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;

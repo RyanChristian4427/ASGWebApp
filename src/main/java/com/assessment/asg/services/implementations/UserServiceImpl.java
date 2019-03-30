@@ -1,10 +1,10 @@
 package com.assessment.asg.services.implementations;
 
-import com.assessment.asg.domain.AuthenticationToken;
-import com.assessment.asg.domain.PasswordResetDto;
-import com.assessment.asg.domain.User;
-import com.assessment.asg.domain.registration.UserRegistrationDto;
-import com.assessment.asg.repositories.interfaces.UserRepository;
+import com.assessment.asg.models.AuthenticationToken;
+import com.assessment.asg.models.PasswordResetDto;
+import com.assessment.asg.models.User;
+import com.assessment.asg.models.registration.UserRegistrationDto;
+import com.assessment.asg.db.interfaces.UserRepository;
 import com.assessment.asg.services.interfaces.EmailService;
 import com.assessment.asg.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

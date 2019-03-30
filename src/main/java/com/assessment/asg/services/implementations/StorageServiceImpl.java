@@ -10,7 +10,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
 import com.assessment.asg.config.StorageProperties;
-import com.assessment.asg.domain.courseProgress.OperatorsManualDto;
+import com.assessment.asg.models.courseProgress.OperatorsManualDto;
 import com.assessment.asg.handlers.StorageException;
 import com.assessment.asg.handlers.StorageFileNotFoundException;
 import com.assessment.asg.services.interfaces.CandidateService;

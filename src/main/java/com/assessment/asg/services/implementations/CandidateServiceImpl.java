@@ -1,11 +1,11 @@
 package com.assessment.asg.services.implementations;
 
 import com.assessment.asg.config.DefaultUserDetails;
-import com.assessment.asg.domain.Candidate;
-import com.assessment.asg.domain.courseProgress.OperatorsManualDto;
-import com.assessment.asg.domain.registration.CourseRegistrationDto;
-import com.assessment.asg.domain.User;
-import com.assessment.asg.repositories.interfaces.CandidateRepository;
+import com.assessment.asg.models.Candidate;
+import com.assessment.asg.models.courseProgress.OperatorsManualDto;
+import com.assessment.asg.models.registration.CourseRegistrationDto;
+import com.assessment.asg.models.User;
+import com.assessment.asg.db.interfaces.CandidateRepository;
 import com.assessment.asg.services.interfaces.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

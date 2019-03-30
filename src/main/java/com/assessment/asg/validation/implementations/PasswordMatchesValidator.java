@@ -1,6 +1,6 @@
 package com.assessment.asg.validation.implementations;
 
-import com.assessment.asg.domain.registration.UserRegistrationDto;
+import com.assessment.asg.models.registration.UserRegistrationDto;
 import com.assessment.asg.validation.annotations.PasswordMatches;
 
 import javax.validation.ConstraintValidator;

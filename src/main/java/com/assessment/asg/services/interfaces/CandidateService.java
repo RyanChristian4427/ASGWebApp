@@ -1,9 +1,9 @@
 package com.assessment.asg.services.interfaces;
 
-import com.assessment.asg.domain.Candidate;
-import com.assessment.asg.domain.courseProgress.OperatorsManualDto;
-import com.assessment.asg.domain.registration.CourseRegistrationDto;
-import com.assessment.asg.domain.User;
+import com.assessment.asg.models.Candidate;
+import com.assessment.asg.models.courseProgress.OperatorsManualDto;
+import com.assessment.asg.models.registration.CourseRegistrationDto;
+import com.assessment.asg.models.User;
 
 import java.util.Optional;
 

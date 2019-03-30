@@ -1,6 +1,6 @@
 package com.assessment.asg.controllers.admin;
 
-import com.assessment.asg.domain.courseProgress.*;
+import com.assessment.asg.models.courseProgress.*;
 import com.assessment.asg.services.interfaces.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

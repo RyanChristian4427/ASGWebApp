@@ -1,9 +1,9 @@
 package com.assessment.asg.services.implementations;
 
-import com.assessment.asg.domain.courseProgress.*;
-import com.assessment.asg.repositories.interfaces.AdminRepository;
-import com.assessment.asg.repositories.interfaces.CandidateRepository;
-import com.assessment.asg.repositories.interfaces.InstructorRepository;
+import com.assessment.asg.models.courseProgress.*;
+import com.assessment.asg.db.interfaces.AdminRepository;
+import com.assessment.asg.db.interfaces.CandidateRepository;
+import com.assessment.asg.db.interfaces.InstructorRepository;
 import com.assessment.asg.services.interfaces.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

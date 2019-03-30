@@ -1,7 +1,7 @@
 package com.assessment.asg.controllers.accounts;
 
-import com.assessment.asg.domain.PasswordResetDto;
-import com.assessment.asg.domain.User;
+import com.assessment.asg.models.PasswordResetDto;
+import com.assessment.asg.models.User;
 import com.assessment.asg.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

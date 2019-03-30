@@ -1,8 +1,8 @@
 package com.assessment.asg.controllers.candidate;
 
-import com.assessment.asg.domain.Candidate;
-import com.assessment.asg.domain.ReviewDto;
-import com.assessment.asg.domain.registration.CourseRegistrationDto;
+import com.assessment.asg.models.Candidate;
+import com.assessment.asg.models.ReviewDto;
+import com.assessment.asg.models.registration.CourseRegistrationDto;
 import com.assessment.asg.services.interfaces.CandidateService;
 import com.assessment.asg.services.interfaces.ReviewService;
 import com.assessment.asg.services.interfaces.StorageService;

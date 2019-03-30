@@ -1,8 +1,8 @@
 package com.assessment.asg.services.interfaces;
 
-import com.assessment.asg.domain.PasswordResetDto;
-import com.assessment.asg.domain.User;
-import com.assessment.asg.domain.registration.UserRegistrationDto;
+import com.assessment.asg.models.PasswordResetDto;
+import com.assessment.asg.models.User;
+import com.assessment.asg.models.registration.UserRegistrationDto;
 
 public interface UserService {
 

@@ -1,7 +1,7 @@
 package com.assessment.asg.services.implementations;
 
-import com.assessment.asg.domain.ReviewDto;
-import com.assessment.asg.repositories.interfaces.ReviewRepository;
+import com.assessment.asg.models.ReviewDto;
+import com.assessment.asg.db.interfaces.ReviewRepository;
 import com.assessment.asg.services.interfaces.CandidateService;
 import com.assessment.asg.services.interfaces.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.assessment.asg.config;
 
 
-import com.assessment.asg.domain.User;
+import com.assessment.asg.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
