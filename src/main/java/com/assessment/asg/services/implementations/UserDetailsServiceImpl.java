@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findUserByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException(
-                    "No user found with username: "+ email);
+                    "No user found with username: " + email);
         } else {
             return new DefaultUserDetails(user);
         }
@@ -39,8 +39,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public Optional<DefaultUserDetails> getCurrentUserDetails() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken))
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
             return Optional.of((DefaultUserDetails) authentication.getPrincipal());
-        else return Optional.empty();
+        } else {
+            return Optional.empty();
+        }
     }
 }
