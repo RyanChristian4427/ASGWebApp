@@ -48,7 +48,6 @@ public class ForgottenPasswordController {
 //        if (errors != null) {
 //
 //        }
-
         return "redirect:/updatePassword";
     }
 
