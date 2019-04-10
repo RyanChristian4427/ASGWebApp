@@ -1,16 +1,25 @@
-package com.assessment.asg.db.implementations;
+package com.assessment.asg.db;
 
 import com.assessment.asg.models.courseProgress.FlightAssessmentDto;
 import com.assessment.asg.models.courseProgress.GroundSchoolDto;
 import com.assessment.asg.models.courseProgress.OperatorsManualDto;
-import com.assessment.asg.db.interfaces.ChartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+@Component
+public interface ChartRepository {
+    Integer findAmountOfFlightAssessment();
+
+    Integer findAmountOfGroundSchool();
+
+    Integer findAmountOfOperationsManual();
+}
+
 @Repository
-public class ChartRepositoryImpl implements ChartRepository {
+class ChartRepositoryImpl implements ChartRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<FlightAssessmentDto> flightAssessmentRowMapper;
@@ -80,6 +89,4 @@ public class ChartRepositoryImpl implements ChartRepository {
             }
         });
     }
-
-
 }

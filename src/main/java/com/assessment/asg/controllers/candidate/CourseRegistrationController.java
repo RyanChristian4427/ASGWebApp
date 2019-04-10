@@ -2,7 +2,7 @@ package com.assessment.asg.controllers.candidate;
 
 import com.assessment.asg.models.ReviewDto;
 import com.assessment.asg.models.registration.CourseRegistrationDto;
-import com.assessment.asg.services.interfaces.CandidateService;
+import com.assessment.asg.services.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

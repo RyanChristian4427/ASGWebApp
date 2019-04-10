@@ -1,14 +1,17 @@
-package com.assessment.asg.services.implementations;
+package com.assessment.asg.services;
 
+import com.assessment.asg.db.ReviewRepository;
 import com.assessment.asg.models.ReviewDto;
-import com.assessment.asg.db.interfaces.ReviewRepository;
-import com.assessment.asg.services.interfaces.CandidateService;
-import com.assessment.asg.services.interfaces.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+public interface ReviewService {
+
+    void addReview(ReviewDto reviewDto);
+}
+
 @Service
-public class ReviewServiceImpl implements ReviewService {
+class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final CandidateService candidateService;

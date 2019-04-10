@@ -2,7 +2,7 @@ package com.assessment.asg.controllers.admin;
 
 import java.util.*;
 
-import com.assessment.asg.services.interfaces.ChartService;
+import com.assessment.asg.services.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

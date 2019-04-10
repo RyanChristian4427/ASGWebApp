@@ -1,12 +1,20 @@
-package com.assessment.asg.services.implementations;
+package com.assessment.asg.services;
 
-import com.assessment.asg.db.interfaces.ChartRepository;
-import com.assessment.asg.services.interfaces.ChartService;
+import com.assessment.asg.db.ChartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+public interface ChartService {
+
+    Integer findAmountOfFlightAssessment();
+
+    Integer findAmountOfGroundSchool();
+
+    Integer findAmountOfOperationsManual();
+}
+
 @Service
-public class ChartServiceImpl implements ChartService {
+class ChartServiceImpl implements ChartService {
     private ChartRepository chartRepository;
 
     @Autowired
@@ -28,6 +36,4 @@ public class ChartServiceImpl implements ChartService {
     public Integer findAmountOfOperationsManual() {
         return chartRepository.findAmountOfOperationsManual();
     }
-
-
 }

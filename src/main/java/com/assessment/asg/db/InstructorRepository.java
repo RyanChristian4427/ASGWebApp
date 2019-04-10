@@ -1,17 +1,22 @@
-package com.assessment.asg.db.implementations;
+package com.assessment.asg.db;
 
 import com.assessment.asg.models.Instructor;
-import com.assessment.asg.db.interfaces.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Component
+public interface InstructorRepository {
+    Optional<Instructor> findInstructorByID(Long id);
+}
+
 @Repository
-public class InstructorRepositoryImpl implements InstructorRepository {
+class InstructorRepositoryImpl implements InstructorRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<Instructor> instructorRowMapper;

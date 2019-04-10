@@ -1,7 +1,7 @@
 package com.assessment.asg.controllers.candidate;
 
 import com.assessment.asg.handlers.StorageFileNotFoundException;
-import com.assessment.asg.services.interfaces.StorageService;
+import com.assessment.asg.services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;

@@ -1,4 +1,16 @@
-package com.assessment.asg.services.implementations;
+package com.assessment.asg.services;
+
+import com.assessment.asg.config.StorageProperties;
+import com.assessment.asg.handlers.StorageException;
+import com.assessment.asg.handlers.StorageFileNotFoundException;
+import com.assessment.asg.models.courseProgress.OperatorsManualDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.stereotype.Service;
+import org.springframework.util.FileSystemUtils;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,22 +21,23 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
-import com.assessment.asg.config.StorageProperties;
-import com.assessment.asg.models.courseProgress.OperatorsManualDto;
-import com.assessment.asg.handlers.StorageException;
-import com.assessment.asg.handlers.StorageFileNotFoundException;
-import com.assessment.asg.services.interfaces.CandidateService;
-import com.assessment.asg.services.interfaces.StorageService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.stereotype.Service;
-import org.springframework.util.FileSystemUtils;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
+public interface StorageService {
+
+    void init();
+
+    void store(MultipartFile file);
+
+    Stream<Path> loadAll();
+
+    Path load(String filename);
+
+    Resource loadAsResource(String filename);
+
+    void deleteAll();
+}
 
 @Service
-public class StorageServiceImpl implements StorageService {
+class StorageServiceImpl implements StorageService {
 
     private final Path rootLocation;
     private final CandidateService candidateService;

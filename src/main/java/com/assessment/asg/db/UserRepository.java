@@ -1,18 +1,34 @@
-package com.assessment.asg.db.implementations;
+package com.assessment.asg.db;
 
 import com.assessment.asg.models.PasswordResetDto;
 import com.assessment.asg.models.User;
 import com.assessment.asg.models.AuthenticationToken;
 import com.assessment.asg.models.registration.UserRegistrationDto;
-import com.assessment.asg.db.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+@Component
+public interface UserRepository {
+
+    User findUserByEmail(String emailAddress);
+
+    void createAuthenticationToken(AuthenticationToken authenticationToken);
+
+    AuthenticationToken getAuthenticationToken(String token);
+
+    void authenticateUser(String userEmail);
+
+    void changePassword(PasswordResetDto passwordResetDto);
+
+    Integer saveUser(UserRegistrationDto registrationDto);
+}
+
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+class UserRepositoryImpl implements UserRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<User> userMapper;
@@ -81,5 +97,4 @@ public class UserRepositoryImpl implements UserRepository {
                 registrationDto.getEmailAddress(), registrationDto.getPassword(), registrationDto.getFirstName(),
                 registrationDto.getSurname(), "candidate");
     }
-
 }

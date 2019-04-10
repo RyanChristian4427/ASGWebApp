@@ -1,7 +1,7 @@
 package com.assessment.asg;
 
 import com.assessment.asg.config.StorageProperties;
-import com.assessment.asg.services.interfaces.StorageService;
+import com.assessment.asg.services.StorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

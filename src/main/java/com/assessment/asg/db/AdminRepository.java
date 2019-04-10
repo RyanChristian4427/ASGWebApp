@@ -1,23 +1,36 @@
-package com.assessment.asg.db.implementations;
+package com.assessment.asg.db;
 
 import com.assessment.asg.models.courseProgress.*;
-import com.assessment.asg.db.interfaces.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
+@Component
+public interface AdminRepository {
+    Integer saveFlightTraining(FlightTrainingDto flightTrainingDto);
+
+    Integer saveGroundSchool(GroundSchoolDto groundSchoolDto);
+
+    Integer addOperatorsManual(OperatorsManualDto operatorsManualDto);
+
+    Integer addFlightAssessment(FlightAssessmentDto flightAssessmentDto);
+
+    Integer addRecommendations(RecommendationsDto recommendationsDto);
+
+    Optional<OperatorsManualDto> findOperationsManual(String candidateNumber);
+}
+
 @Repository
-public class AdminRepositoryImpl implements AdminRepository {
+class AdminRepositoryImpl implements AdminRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<OperatorsManualDto> operatorsManualRowMapper;
-
-    //TODO get instructor id from logged in user
 
     @Autowired
     public AdminRepositoryImpl(final JdbcTemplate jdbcTemplate) {
@@ -91,4 +104,3 @@ public class AdminRepositoryImpl implements AdminRepository {
         }
     }
 }
-

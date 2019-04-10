@@ -1,16 +1,23 @@
-package com.assessment.asg.db.implementations;
+package com.assessment.asg.db;
 
 import com.assessment.asg.models.ReviewDto;
-import com.assessment.asg.db.interfaces.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Component
+public interface ReviewRepository {
+    void addReview(ReviewDto reviewDto);
+
+    List<ReviewDto> reviewsByInstructor(String surname);
+}
+
 @Repository
-public class ReviewRepositoryImpl implements ReviewRepository {
+class ReviewRepositoryImpl implements ReviewRepository {
     private JdbcTemplate jdbcTemplate;
     private RowMapper<ReviewDto> reviewMapper;
 
@@ -45,5 +52,4 @@ public class ReviewRepositoryImpl implements ReviewRepository {
                 new Object[]{"%" + surname + "%"},
                 reviewMapper);
     }
-
 }

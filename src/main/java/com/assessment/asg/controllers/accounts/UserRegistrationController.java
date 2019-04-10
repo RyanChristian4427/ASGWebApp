@@ -3,7 +3,7 @@ package com.assessment.asg.controllers.accounts;
 import com.assessment.asg.models.User;
 import com.assessment.asg.models.registration.UserRegistrationDto;
 import com.assessment.asg.models.OnRegistrationCompleteEvent;
-import com.assessment.asg.services.interfaces.UserService;
+import com.assessment.asg.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;

@@ -1,16 +1,18 @@
-package com.assessment.asg.services.implementations;
+package com.assessment.asg.services;
 
+import com.assessment.asg.db.AdminRepository;
+import com.assessment.asg.db.CandidateRepository;
+import com.assessment.asg.db.InstructorRepository;
 import com.assessment.asg.models.courseProgress.*;
-import com.assessment.asg.db.interfaces.AdminRepository;
-import com.assessment.asg.db.interfaces.CandidateRepository;
-import com.assessment.asg.db.interfaces.InstructorRepository;
-import com.assessment.asg.services.interfaces.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+public interface AdminService {
+    Boolean verify(Object formDto);
+}
 
 @Service
-public class AdminServiceImpl implements AdminService {
+class AdminServiceImpl implements AdminService {
     private AdminRepository adminRepository;
     private CandidateRepository candidateRepository;
     private InstructorRepository instructorRepository;
@@ -23,8 +25,7 @@ public class AdminServiceImpl implements AdminService {
         this.instructorRepository = instructorRepository;
     }
 
-    @Override
-    public String saveFlightTraining(final FlightTrainingDto flightTrainingDto) {
+    private String saveFlightTraining(final FlightTrainingDto flightTrainingDto) {
         Integer response = adminRepository.saveFlightTraining(flightTrainingDto);
 
         if (response == 1) {
@@ -34,8 +35,7 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
-    @Override
-    public String saveGroundSchool(final GroundSchoolDto groundSchoolDto) {
+    private String saveGroundSchool(final GroundSchoolDto groundSchoolDto) {
         Integer response = adminRepository.saveGroundSchool(groundSchoolDto);
 
         if (response == 1) {
@@ -45,8 +45,7 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
-    @Override
-    public String saveOperatorsManual(final OperatorsManualDto operatorsManualDto) {
+    private String saveOperatorsManual(final OperatorsManualDto operatorsManualDto) {
         Integer response = adminRepository.addOperatorsManual(operatorsManualDto);
 
         if (response == 1) {
@@ -56,8 +55,7 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
-    @Override
-    public String saveFlightAssessment(final FlightAssessmentDto flightAssessmentDto) {
+    private String saveFlightAssessment(final FlightAssessmentDto flightAssessmentDto) {
         Integer response = adminRepository.addFlightAssessment(flightAssessmentDto);
 
         if (response == 1) {
@@ -67,8 +65,7 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
-    @Override
-    public String saveRecommendations(final RecommendationsDto recommendationsDto) {
+    private String saveRecommendations(final RecommendationsDto recommendationsDto) {
         if (1 == adminRepository.addRecommendations(recommendationsDto)) {
             return "Insert Success";
         } else {

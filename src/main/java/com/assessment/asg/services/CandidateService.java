@@ -1,20 +1,28 @@
-package com.assessment.asg.services.implementations;
+package com.assessment.asg.services;
 
 import com.assessment.asg.config.DefaultUserDetails;
+import com.assessment.asg.db.CandidateRepository;
 import com.assessment.asg.models.Candidate;
 import com.assessment.asg.models.courseProgress.OperatorsManualDto;
 import com.assessment.asg.models.registration.CourseRegistrationDto;
 import com.assessment.asg.models.User;
-import com.assessment.asg.db.interfaces.CandidateRepository;
-import com.assessment.asg.services.interfaces.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
+public interface CandidateService {
+
+    User registerNewCandidate(CourseRegistrationDto accountDto);
+
+    Optional<Candidate> findCandidateByCurrentUser();
+
+    void saveOperatorsManual(OperatorsManualDto operatorsManualDto);
+}
+
 @Service
-public class CandidateServiceImpl implements CandidateService {
+class CandidateServiceImpl implements CandidateService {
 
     private CandidateRepository candidateRepository;
     private UserDetailsServiceImpl userDetailsService;
@@ -50,7 +58,7 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public void saveOperatorsManual(final OperatorsManualDto operatorsManualDto) {
-       candidateRepository.saveOperatorsManual(operatorsManualDto);
+        candidateRepository.saveOperatorsManual(operatorsManualDto);
     }
 
 

@@ -1,20 +1,24 @@
-package com.assessment.asg.services.implementations;
+package com.assessment.asg.services;
 
-import com.assessment.asg.services.interfaces.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import javax.mail.internet.MimeMessage;
 
+public interface EmailService {
 
-@Component
-public class EmailServiceImpl implements EmailService {
+    void sendSimpleMessage(String to, String subject, String text);
 
+    void sendHTMLMessage(String to, String subject, String text);
+}
+
+@Service
+class EmailServiceImpl implements EmailService {
     private final JavaMailSender emailSender;
     private final TemplateEngine templateEngine;
 

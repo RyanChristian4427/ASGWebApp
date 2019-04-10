@@ -1,12 +1,10 @@
-package com.assessment.asg.services.implementations;
+package com.assessment.asg.services;
 
+import com.assessment.asg.db.UserRepository;
 import com.assessment.asg.models.AuthenticationToken;
 import com.assessment.asg.models.PasswordResetDto;
 import com.assessment.asg.models.User;
 import com.assessment.asg.models.registration.UserRegistrationDto;
-import com.assessment.asg.db.interfaces.UserRepository;
-import com.assessment.asg.services.interfaces.EmailService;
-import com.assessment.asg.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,8 +18,21 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.UUID;
 
+public interface UserService {
+
+    User emailInUse(String email);
+
+    void createAuthenticationToken(User user, String purpose);
+
+    String authenticateUser(String token, String purpose);
+
+    void changePassword(PasswordResetDto passwordResetDto);
+
+    User registerNewUser(UserRegistrationDto accountDto);
+}
+
 @Service
-public class UserServiceImpl implements UserService {
+class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private EmailService emailService;
@@ -55,14 +66,14 @@ public class UserServiceImpl implements UserService {
         if (purpose.equalsIgnoreCase("register")) {
             String recipientAddress = user.getEmailAddress();
             String subject = "Registration Confirmation";
-            String link = "http://localhost:8080/registrationConfirm?token=" + token;
+            String link = "https://localhost:8443/registrationConfirm?token=" + token;
 
             emailService.sendHTMLMessage(recipientAddress, subject, link);
         } else if (purpose.equalsIgnoreCase("password reset")) {
 
             String recipientAddress = user.getEmailAddress();
             String subject = "Password Reset";
-            String link = "http://localhost:8080/passwordReset?token=" + token;
+            String link = "https://localhost:8443/passwordReset?token=" + token;
             emailService.sendHTMLMessage(recipientAddress, subject, link);
         }
     }
@@ -120,5 +131,5 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
+

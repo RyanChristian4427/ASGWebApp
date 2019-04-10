@@ -1,18 +1,17 @@
 package com.assessment.asg.services;
 
 import com.assessment.asg.models.OnRegistrationCompleteEvent;
-import com.assessment.asg.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
+public class RegistrationService implements ApplicationListener<OnRegistrationCompleteEvent> {
 
     private UserService userService;
 
     @Autowired
-    public RegistrationListener(final UserService userService) {
+    public RegistrationService(final UserService userService) {
         this.userService = userService;
     }
 

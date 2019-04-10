@@ -2,7 +2,7 @@ package com.assessment.asg.config;
 
 import com.assessment.asg.handlers.AuthFailureHandler;
 import com.assessment.asg.handlers.AuthSuccessHandler;
-import com.assessment.asg.services.implementations.UserDetailsServiceImpl;
+import com.assessment.asg.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

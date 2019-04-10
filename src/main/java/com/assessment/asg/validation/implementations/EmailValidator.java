@@ -1,6 +1,6 @@
 package com.assessment.asg.validation.implementations;
 
-import com.assessment.asg.services.interfaces.UserService;
+import com.assessment.asg.services.UserService;
 import com.assessment.asg.validation.annotations.ValidEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 

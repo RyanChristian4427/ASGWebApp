@@ -1,15 +1,15 @@
-package com.assessment.asg.db.implementations;
+package com.assessment.asg.db;
 
 import com.assessment.asg.models.Candidate;
 import com.assessment.asg.models.courseProgress.OperatorsManualDto;
 import com.assessment.asg.models.registration.CourseRegistrationDto;
-import com.assessment.asg.db.interfaces.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -17,8 +17,22 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 
+@Component
+public interface CandidateRepository {
+
+    Integer saveUser(CourseRegistrationDto accountDto);
+
+    Optional<Candidate> findCandidateByNumber(String candidateNumber);
+
+    Optional<Candidate> findCandidateByEmail(String emailAddress);
+
+    String previousCandidateReferenceNumber();
+
+    void saveOperatorsManual(OperatorsManualDto operatorsManualDto);
+}
+
 @Repository
-public class CandidateRepositoryImpl implements CandidateRepository {
+class CandidateRepositoryImpl implements CandidateRepository {
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<Candidate> candidateRowMapper;
@@ -128,7 +142,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
         jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id, contact_info_id, general_info_id) " +
                         "VALUES(?, ?, ?, ?)", accountDto.getReferenceNumber(), accountDto.getEmailAddress(),
-                        contactInfoKey, generalInfoKey);
+                contactInfoKey, generalInfoKey);
 
         return 1;
     }
