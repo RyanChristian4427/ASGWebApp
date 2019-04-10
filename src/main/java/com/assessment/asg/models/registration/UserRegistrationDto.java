@@ -1,7 +1,7 @@
 package com.assessment.asg.models.registration;
 
-import com.assessment.asg.validation.annotations.PasswordMatches;
-import com.assessment.asg.validation.annotations.ValidEmail;
+import com.assessment.asg.validation.PasswordMatches;
+import com.assessment.asg.validation.ValidEmail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

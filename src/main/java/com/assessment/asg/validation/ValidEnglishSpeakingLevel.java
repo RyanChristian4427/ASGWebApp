@@ -1,9 +1,9 @@
-package com.assessment.asg.validation.annotations;
+package com.assessment.asg.validation;
 
-import com.assessment.asg.validation.implementations.EnglishSpeakingLevelValidator;
 
 import javax.validation.Constraint;
-import javax.validation.Payload;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -20,5 +20,15 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ValidEnglishSpeakingLevel {
     String message() default "Sorry, but your response does not match the field boundaries.";
     Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
+}
+
+class EnglishSpeakingLevelValidator implements ConstraintValidator<ValidEnglishSpeakingLevel, Integer> {
+
+    @Override
+    public void initialize(final ValidEnglishSpeakingLevel constraintAnnotation) {}
+
+    @Override
+    public boolean isValid(final Integer speakingLevel, final ConstraintValidatorContext context) {
+        return (0 < speakingLevel && speakingLevel < 7);
+    }
 }

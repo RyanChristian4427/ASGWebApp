@@ -1,6 +1,7 @@
 package com.assessment.asg.models.registration;
 
-import com.assessment.asg.validation.annotations.*;
+import com.assessment.asg.validation.ValidEnglishSpeakingLevel;
+import com.assessment.asg.validation.ValidPostCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
