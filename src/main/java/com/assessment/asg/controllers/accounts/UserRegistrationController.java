@@ -34,11 +34,9 @@ public class UserRegistrationController {
 
     @PostMapping(value = "/register")
     public ModelAndView registerUserAccount(final @ModelAttribute("user") @Valid UserRegistrationDto registrationDto,
-                                            final BindingResult result,
-                                            final WebRequest request) {
+                                            final BindingResult result, final WebRequest request) {
         if (!result.hasErrors()) {
             User user = userService.registerNewUser(registrationDto);
-
             String appUrl = request.getContextPath();
             applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
             return new ModelAndView("redirect:/login");

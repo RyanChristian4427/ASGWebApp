@@ -21,7 +21,7 @@ public class EmailAuthenticationController {
     public ModelAndView confirmRegistration(final @RequestParam("token") String token) {
         String errors = userService.authenticateUser(token, "register");
         if (errors != null) {
-            return new ModelAndView("error", "message", errors);
+            return new ModelAndView("error-generic", "message", errors);
         }
         return new ModelAndView("redirect:/login");
     }

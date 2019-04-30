@@ -82,27 +82,27 @@ class UserServiceImpl implements UserService {
     public String authenticateUser(final String token, final String purpose) {
 
         AuthenticationToken authenticationToken = userRepository.getAuthenticationToken(token);
+        String invalidToken = "Sorry, but that token seems to be invalid. Make " +
+                "sure it's correct, or sign up for an account with us if you don't already have one.";
+        String expiredToken = "Sorry, but that token has expired. Please click " +
+                "below to request a new one. All tokens do expire 24 hours after they are sent out.";
         if (purpose.equalsIgnoreCase("register")) {
             if (authenticationToken == null) {
-                return "Sorry, but that token seems to be invalid. Make " +
-                        "sure it's correct, or sign up for an account with us if you don't already have one.";
+                return invalidToken;
             }
 
             if (LocalDateTime.now().isAfter(authenticationToken.getExpiryDate())) {
-                return "Sorry, but that token has expired. Please click " +
-                        "below to request a new one. All tokens do expire 24 hours after they are sent out.";
+                return expiredToken;
             }
 
             userRepository.authenticateUser(authenticationToken.getUserEmail());
         } else if (purpose.equalsIgnoreCase("password reset")) {
             if (authenticationToken == null) {
-                return "Sorry, but that token seems to be invalid. Make " +
-                        "sure it's correct, or request a new reset token.";
+                return invalidToken;
             }
 
             if (LocalDateTime.now().isAfter(authenticationToken.getExpiryDate())) {
-                return "Sorry, but that token has expired. Please click " +
-                        "below to request a new one. All tokens do expire 24 hours after they are sent out.";
+                return expiredToken;
             }
 
             User user = emailInUse(authenticationToken.getUserEmail());
