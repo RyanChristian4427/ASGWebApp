@@ -42,10 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/register", "/login", "/forgottenPassword", "/passwordReset").permitAll()
-                .antMatchers("/css/**", "/js/**", "/vendor/**").permitAll()
+                .antMatchers("/css/**", "/images/**", "/js/**", "/vendor/**").permitAll()
                 .antMatchers("/updatePassword").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
                 .antMatchers("/admin", "/chart").hasRole("admin")
-                .antMatchers("/dashboard", "/downloadOpsManual").hasRole("candidate")
+                .antMatchers("/dashboard", "/downloadOpsManual", "/download/**").hasRole("candidate")
                 .anyRequest().authenticated();
 
         http.formLogin()
