@@ -25,6 +25,8 @@ To run the web server on localhost, you will need a local MySQL server running a
 
 Navigate to https://localhost:8443/ in your browser of choice to begin using the system. There are 6 default accounts in the system, 2 admin, 4 candidate, and all use the password "pass". Login with admin@asg.com, admin2@asg.com, candidate@asg.com, ..., candidate4@asg.com. Navigate the site from there.
 
+New user registration is turned off, as it required access to a mail server which has since been disconnected. 
+
 ## Authors
 
 * **Ryan Christian** - *All Around Developer* - [Ryan Christian](https://gitlab.cs.cf.ac.uk/c1717381)
