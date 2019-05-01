@@ -3,6 +3,9 @@ package com.assessment.asg.controllers.candidate;
 import com.assessment.asg.models.ReviewDto;
 import com.assessment.asg.models.registration.CourseRegistrationDto;
 import com.assessment.asg.services.CandidateService;
+import com.assessment.asg.services.UserDetailsServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,23 +20,24 @@ import java.util.Map;
 @Controller
 public class CourseRegistrationController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private CandidateService candidateService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public CourseRegistrationController(final CandidateService candidateService) {
+    public CourseRegistrationController(final CandidateService candidateService, final UserDetailsServiceImpl userDetailsService) {
         this.candidateService = candidateService;
+        this.userDetailsService = userDetailsService;
     }
 
     @PostMapping(path = "/courseRegister")
     public ModelAndView registerCourse(final @ModelAttribute("courseRegistration") @Valid CourseRegistrationDto registrationDto,
                                        final BindingResult result) {
-
+        LOGGER.info("User " + userDetailsService.getCurrentUserDetails().get().getUsername() + " has submitted course registration information");
         Map<String, Object> model = new HashMap<>();
         model.put("updateAddress", new CourseRegistrationDto());
         model.put("courseRegistration", registrationDto);
         model.put("review", new ReviewDto());
-
-
         if (!result.hasErrors()) {
             candidateService.registerNewCandidate(registrationDto);
             return new ModelAndView("redirect:/dashboard", model);

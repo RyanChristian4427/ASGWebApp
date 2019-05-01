@@ -2,6 +2,9 @@ package com.assessment.asg.controllers.candidate;
 
 import com.assessment.asg.handlers.StorageFileNotFoundException;
 import com.assessment.asg.services.StorageService;
+import com.assessment.asg.services.UserDetailsServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -17,17 +20,20 @@ import java.io.*;
 @Controller
 public class OpsManualUploadController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final StorageService storageService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public OpsManualUploadController(final StorageService storageService) {
+    public OpsManualUploadController(final StorageService storageService, final UserDetailsServiceImpl userDetailsService) {
         this.storageService = storageService;
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(final @PathVariable String filename) {
-
+        LOGGER.info("User " + userDetailsService.getCurrentUserDetails().get().getUsername() + " has been served the operators manual template");
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
@@ -35,13 +41,14 @@ public class OpsManualUploadController {
 
     @PostMapping("/uploadOperatorsManual")
     public String handleFileUpload(final @RequestParam("file") MultipartFile file) {
+        LOGGER.info("User " + userDetailsService.getCurrentUserDetails().get().getUsername() + " has submitted an operators manual");
         storageService.store(file);
-
         return "redirect:/dashboard";
     }
 
     @GetMapping("/downloadOpsManual")
     public void downloadFile(final HttpServletResponse response) throws IOException {
+        LOGGER.info("User " + userDetailsService.getCurrentUserDetails().get().getUsername() + " has requested the operators manual template");
         File file = new ClassPathResource("/static/download/OperatorsManualTemplate.pdf").getFile();
 
         response.setContentType("application/pdf");

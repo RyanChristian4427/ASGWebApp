@@ -6,6 +6,9 @@ import com.assessment.asg.models.registration.CourseRegistrationDto;
 import com.assessment.asg.services.CandidateService;
 import com.assessment.asg.services.ReviewService;
 import com.assessment.asg.services.StorageService;
+import com.assessment.asg.services.UserDetailsServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,20 +23,24 @@ import java.util.stream.Collectors;
 @Controller
 public class ClientDashboardController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final CandidateService candidateService;
     private final StorageService storageService;
     private final ReviewService reviewService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     public ClientDashboardController(final CandidateService candidateService, final StorageService storageService,
-                                     final ReviewService reviewService) {
+                                     final ReviewService reviewService, final UserDetailsServiceImpl userDetailsService) {
         this.candidateService = candidateService;
         this.storageService = storageService;
         this.reviewService = reviewService;
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping(path = "/dashboard")
     public ModelAndView viewDashboard() {
+        LOGGER.info("User " + userDetailsService.getCurrentUserDetails().get().getUsername() + " has requested the dashboard");
         Optional<Candidate> candidate = candidateService.findCandidateByCurrentUser();
 
         Map<String, Object> model = new HashMap<>();
@@ -55,11 +62,13 @@ public class ClientDashboardController {
 
     @PostMapping(path = "/updateDetails")
     public void updateClientDetails(final @ModelAttribute("updateAddress") CourseRegistrationDto accountDto) {
+        LOGGER.info("User " + userDetailsService.getCurrentUserDetails().get().getUsername() + " has submitted new contact information.");
         candidateService.registerNewCandidate(accountDto);
     }
 
     @PostMapping(path = "/submitReview")
     public ModelAndView submitReview(final @ModelAttribute("review") ReviewDto reviewDto) {
+        LOGGER.info("User " + userDetailsService.getCurrentUserDetails().get().getUsername() + " has submitted a course review.");
         reviewService.addReview(reviewDto);
         return new ModelAndView("redirect:/dashboard");
     }
