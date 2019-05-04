@@ -3,6 +3,7 @@ package com.assessment.asg.validation;
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -20,6 +21,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ValidPostCode {
     String message() default "Post code does not valid format. Please check over what you've submitted.";
     Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
 }
 
 class PostCodeValidator implements ConstraintValidator<ValidPostCode, String> {

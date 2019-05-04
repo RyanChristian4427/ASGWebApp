@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -24,6 +25,7 @@ public @interface ValidEmail {
     String message() default "Email address has an invalid format, or email already in use. " +
             "Please review the address. If it is correct, the email is already in use. Please login instead.";
     Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
 }
 
 class EmailValidator implements ConstraintValidator<ValidEmail, String> {
@@ -38,8 +40,8 @@ class EmailValidator implements ConstraintValidator<ValidEmail, String> {
     }
 
     @Override
-    public void initialize(final ValidEmail constraintAnnotation) {
-    }
+    public void initialize(final ValidEmail constraintAnnotation) {}
+
     @Override
     public boolean isValid(final String email, final ConstraintValidatorContext context) {
         return (validateEmail(email));

@@ -1,6 +1,7 @@
 package com.assessment.asg.models.registration;
 
 import com.assessment.asg.validation.PasswordMatches;
+import com.assessment.asg.validation.ValidPasswordStrength;
 import com.assessment.asg.validation.ValidEmail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class UserRegistrationDto {
     @ValidEmail
     private String emailAddress;
 
+    @ValidPasswordStrength
     private String password;
     private String matchingPassword;
 }

@@ -23,7 +23,6 @@ public class AsgApplication {
     }
 
     @Bean
-    @Profile("ci, development, devops, prod")
     public FlywayMigrationStrategy cleanMigrateStrategy() {
         return flyway -> {
             LOGGER.info("Cleaning Database");

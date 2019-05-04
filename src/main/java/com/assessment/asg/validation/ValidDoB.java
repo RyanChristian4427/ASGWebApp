@@ -3,6 +3,7 @@ package com.assessment.asg.validation;
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -21,6 +22,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ValidDoB {
     String message() default "Sorry, but you must be over 18.";
     Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
 }
 
 class DateOfBirthValidator implements ConstraintValidator<ValidDoB, LocalDate> {
@@ -30,6 +32,7 @@ class DateOfBirthValidator implements ConstraintValidator<ValidDoB, LocalDate> {
 
     @Override
     public boolean isValid(final LocalDate dob, final ConstraintValidatorContext context) {
-        return Period.between(dob, LocalDate.now()).getYears() >= 18;
+        var ageInYears = Period.between(dob, LocalDate.now()).getYears();
+        return ageInYears >= 18 && ageInYears <= 100;
     }
 }

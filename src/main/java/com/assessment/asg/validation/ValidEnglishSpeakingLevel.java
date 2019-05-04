@@ -4,6 +4,7 @@ package com.assessment.asg.validation;
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -20,6 +21,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ValidEnglishSpeakingLevel {
     String message() default "Sorry, but your response does not match the field boundaries.";
     Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
 }
 
 class EnglishSpeakingLevelValidator implements ConstraintValidator<ValidEnglishSpeakingLevel, Integer> {
