@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean isEmailInUse(final String email) {
+        return userRepository.isEmailInUse(email);
+    }
+
+    @Override
     public void changePassword(final PasswordResetDto passwordResetDto) {
         passwordResetDto.setPassword(passwordEncoder().encode(passwordResetDto.getPassword()));
         userRepository.changePassword(passwordResetDto);

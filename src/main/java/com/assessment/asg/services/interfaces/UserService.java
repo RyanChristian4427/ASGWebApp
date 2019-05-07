@@ -8,6 +8,8 @@ public interface UserService {
 
     User emailInUse(String email);
 
+    boolean isEmailInUse(String email);
+
     void createAuthenticationToken(User user, String purpose);
 
     String authenticateUser(String token, String purpose);

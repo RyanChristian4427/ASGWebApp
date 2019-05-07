@@ -41,11 +41,22 @@ public class UserRepositoryImpl implements UserRepository {
     public User findUserByEmail(final String emailAddress) {
         try {
             return jdbcTemplate.queryForObject(
-                    "SELECT email, password, role, activated, enabled FROM user WHERE user.email = ?",
+                    "SELECT email, password, role, activated, enabled FROM user WHERE email = ?",
                     new Object[]{emailAddress},
                     userMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
+        }
+    }
+
+    @Override
+    public boolean isEmailInUse(final String emailAddress) {
+        try {
+            return 1 == jdbcTemplate.queryForObject(
+                    "SELECT COUNT(*) FROM user WHERE email = ?", Integer.class,
+                    emailAddress);
+        } catch (NullPointerException e) {
+            return false;
         }
     }
 

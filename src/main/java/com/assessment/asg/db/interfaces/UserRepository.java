@@ -11,6 +11,8 @@ public interface UserRepository {
 
     User findUserByEmail(String emailAddress);
 
+    boolean isEmailInUse(String emailAddress);
+
     void createAuthenticationToken(AuthenticationToken authenticationToken);
 
     AuthenticationToken getAuthenticationToken(String token);
