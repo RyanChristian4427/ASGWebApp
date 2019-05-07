@@ -57,13 +57,13 @@ public class UserServiceImpl implements UserService {
             String subject = "Registration Confirmation";
             String link = "http://localhost:8080/registrationConfirm?token=" + token;
 
-            emailService.sendHTMLMessage(recipientAddress, subject, link);
+            //emailService.sendHTMLMessage(recipientAddress, subject, link);
         } else if (purpose.equalsIgnoreCase("password reset")) {
 
             String recipientAddress = user.getEmailAddress();
             String subject = "Password Reset";
             String link = "http://localhost:8080/passwordReset?token=" + token;
-            emailService.sendHTMLMessage(recipientAddress, subject, link);
+            //emailService.sendHTMLMessage(recipientAddress, subject, link);
         }
     }
 

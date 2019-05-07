@@ -19,7 +19,7 @@ public class AsgApplication {
     }
 
     @Bean
-    @Profile("ci, development, devops, prod")
+    //@Profile("ci, development, devops, prod")
     public FlywayMigrationStrategy cleanMigrateStrategy() {
         return flyway -> {
             flyway.clean();
