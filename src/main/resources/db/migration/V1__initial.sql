@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS general_info (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS user (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   email VARCHAR(30) NOT NULL,
   password VARCHAR(60) NOT NULL,
   role VARCHAR(10),
@@ -43,30 +42,30 @@ CREATE TABLE IF NOT EXISTS user (
   enabled TINYINT NOT NULL DEFAULT 1,
   authentication_token VARCHAR(36),
   expiry_datetime DATETIME,
-  PRIMARY KEY (id)
+  PRIMARY KEY (email)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS candidate (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     reference_number VARCHAR(13) UNIQUE NOT NULL,
-    user_id INT UNSIGNED NOT NULL,
+    user_id VARCHAR(30) NOT NULL,
     first_name VARCHAR(10) NOT NULL,
     surname VARCHAR(15) NOT NULL,
     contact_info_id INT UNSIGNED NOT NULL,
     general_info_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (user_id) REFERENCES user (email),
     FOREIGN KEY (contact_info_id) REFERENCES contact_info (id),
     FOREIGN KEY (general_info_id) REFERENCES general_info (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS instructor (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    user_id INT UNSIGNED NOT NULL,
+    user_id VARCHAR(30) NOT NULL,
     first_name VARCHAR(20) NOT NULL,
     surname VARCHAR(20) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES user (id)
+    FOREIGN KEY (user_id) REFERENCES user (email)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS course (

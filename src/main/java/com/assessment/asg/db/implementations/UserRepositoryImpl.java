@@ -53,7 +53,7 @@ public class UserRepositoryImpl implements UserRepository {
     public boolean isEmailInUse(final String emailAddress) {
         try {
             return 1 == jdbcTemplate.queryForObject(
-                    "SELECT COUNT(*) FROM user WHERE email = ?", Integer.class,
+                    "SELECT COUNT(*) FROM user WHERE email = ?", Long.class,
                     emailAddress);
         } catch (NullPointerException e) {
             return false;
