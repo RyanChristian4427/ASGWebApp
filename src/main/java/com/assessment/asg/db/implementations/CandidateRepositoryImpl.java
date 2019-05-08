@@ -126,8 +126,12 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
         long generalInfoKey = Objects.requireNonNull(holder.getKey()).longValue();
 
+        long userId = jdbcTemplate.queryForObject(
+                "SELECT id FROM user WHERE email = ?",
+                new Object[]{accountDto.getEmailAddress()}, long.class);
+
         jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id, contact_info_id, general_info_id) " +
-                        "VALUES(?, ?, ?, ?)", accountDto.getReferenceNumber(), accountDto.getEmailAddress(),
+                        "VALUES(?, ?, ?, ?)", accountDto.getReferenceNumber(), userId,
                         contactInfoKey, generalInfoKey);
 
         return 1;

@@ -56,14 +56,14 @@ VALUES (1, '1990-2-28', 'Cardiff', '', 'None', 'Cardiff', 1, 5, 'none', 1),
        (4, '1990-11-15', 'Cardiff', 'Apple', 'A Pro', 'Cardiff', 2, 5, 'none', 1);
 
 INSERT INTO candidate (reference_number, user_id, contact_info_id, general_info_id)
-VALUES ('ASG-001-18-11', 'client@asg.com', 1, 1),
-       ('ASG-002-18-11', 'client2@asg.com', 2, 2),
-       ('ASG-003-18-11', 'client3@asg.com', 3, 3),
-       ('ASG-001-18-12', 'client4@asg.com', 4, 4);
+VALUES ('ASG-001-18-11', 3, 1, 1),
+       ('ASG-002-18-11', 4, 2, 2),
+       ('ASG-003-18-11', 5, 3, 3),
+       ('ASG-001-18-12', 6, 4, 4);
 
 INSERT INTO instructor (id, user_id)
-VALUES (1, 'admin@asg.com'),
-       (2, 'admin2@asg.com');
+VALUES (1, 1),
+       (2, 2);
 
 # INSERT into operators_manual (candidate_number, submitted_date, file_path)
 # VALUES ('ASG-001-18-11', '1990/10/21', '/upload-dir/file.pdf');
