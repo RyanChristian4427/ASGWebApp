@@ -17,7 +17,7 @@ MySQL Server
 
 ### Running
 
-To run the web server on localhost, you will need a local MySQL server running and Java 11 installed. By default, the Spring Boot profiles are configured for a database server running on port 3306. Simply create a table called 'asg', and run in the root project folder:
+To run the web server on localhost, you will need a local MySQL server running and Java 11 installed. By default, the Spring Boot profiles are configured for a database server running on port 3306. Simply create a schema called 'asg', and run in the root project folder:
 
 ```
 ./gradlew bootRun -Pprofiles=development

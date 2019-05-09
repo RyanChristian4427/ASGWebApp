@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS flight_assessment (
 CREATE TABLE IF NOT EXISTS recommendations (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     candidate_number VARCHAR(13) NOT NULL,
-    asg_recomend_date VARCHAR(20) NOT NULL,
+    asa_recommend_date VARCHAR(20) NOT NULL,
     flight_competence_date VARCHAR(20) NOT NULL,
     caa_application_date VARCHAR(20) NOT NULL,
     caa_approval_date VARCHAR(20) NOT NULL,
