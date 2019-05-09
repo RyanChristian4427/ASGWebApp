@@ -150,3 +150,4 @@ CREATE TABLE IF NOT EXISTS review (
 ) ENGINE = InnoDB;
 
 create index EmailIndex on user(email);
+create index CandidateReferenceNumberIndex on candidate(reference_number);

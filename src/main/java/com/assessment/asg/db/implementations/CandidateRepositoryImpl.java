@@ -57,7 +57,9 @@ public class CandidateRepositoryImpl implements CandidateRepository {
         try {
             return Optional.ofNullable(
                     jdbcTemplate.queryForObject(
-                            "SELECT reference_number, user_id FROM candidate WHERE user_id = ?",
+                            "SELECT reference_number, user_id FROM candidate c " +
+                                    "INNER JOIN user u on c.user_id = u.id " +
+                                    "WHERE u.email = ?",
                             new Object[]{emailAddress},
                             candidateRowMapper));
         } catch (EmptyResultDataAccessException e) {
