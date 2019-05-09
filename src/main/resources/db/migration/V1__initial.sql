@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS address (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     line_1 VARCHAR(50) NOT NULL,
     line_2 VARCHAR(50) NOT NULL,
     city VARCHAR(20) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS address (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS contact_info (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     phone_number VARCHAR(15) NOT NULL,
     address_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
@@ -16,14 +16,14 @@ CREATE TABLE IF NOT EXISTS contact_info (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS drone (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     make VARCHAR(15) NOT NULL,
     model VARCHAR(25) NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS general_info (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     date_of_birth VARCHAR(10) NOT NULL,
     place_of_birth VARCHAR(50) NOT NULL,
     company_name VARCHAR(20) NOT NULL,
@@ -35,38 +35,40 @@ CREATE TABLE IF NOT EXISTS general_info (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS user (
-  email VARCHAR(30) NOT NULL,
-  password VARCHAR(60) NOT NULL,
-  role VARCHAR(10),
-  activated TINYINT NOT NULL DEFAUlt 0,
-  enabled TINYINT NOT NULL DEFAULT 1,
-  authentication_token VARCHAR(36),
-  expiry_datetime DATETIME,
-  PRIMARY KEY (email)
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    email VARCHAR(30) NOT NULL,
+    password VARCHAR(60) NOT NULL,
+    role VARCHAR(10),
+    activated TINYINT NOT NULL DEFAUlt 0,
+    enabled TINYINT NOT NULL DEFAULT 1,
+    authentication_token VARCHAR(36),
+    expiry_datetime DATETIME,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS candidate (
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    reference_number VARCHAR(13) UNIQUE NOT NULL,
-    user_id VARCHAR(30) NOT NULL,
-    first_name VARCHAR(10) NOT NULL,
-    surname VARCHAR(15) NOT NULL,
-    contact_info_id INT UNSIGNED NOT NULL,
-    general_info_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES user (email),
-    FOREIGN KEY (contact_info_id) REFERENCES contact_info (id),
-    FOREIGN KEY (general_info_id) REFERENCES general_info (id)
+     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+     reference_number VARCHAR(13) UNIQUE NOT NULL,
+     user_id INT UNSIGNED NOT NULL,
+     first_name VARCHAR(10) NOT NULL,
+     surname VARCHAR(15) NOT NULL,
+     contact_info_id INT UNSIGNED NOT NULL,
+     general_info_id INT UNSIGNED NOT NULL,
+     PRIMARY KEY (id),
+     FOREIGN KEY (user_id) REFERENCES user (id),
+     FOREIGN KEY (contact_info_id) REFERENCES contact_info (id),
+     FOREIGN KEY (general_info_id) REFERENCES general_info (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS instructor (
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    user_id VARCHAR(30) NOT NULL,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
     first_name VARCHAR(20) NOT NULL,
     surname VARCHAR(20) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES user (email)
+    FOREIGN KEY (user_id) REFERENCES user (id)
 ) ENGINE=InnoDB;
+
 
 CREATE TABLE IF NOT EXISTS course (
 	course_number VARCHAR(20) NOT NULL,
@@ -139,7 +141,7 @@ CREATE TABLE IF NOT EXISTS recommendations (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS review (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     candidate_id INT UNSIGNED NOT NULL,
     instructor_id INT UNSIGNED NOT NULL,
     review_text TEXT NOT NULL,
@@ -147,3 +149,6 @@ CREATE TABLE IF NOT EXISTS review (
     FOREIGN KEY (candidate_id) REFERENCES candidate (id),
     FOREIGN KEY (instructor_id) REFERENCES instructor (id)
 ) ENGINE = InnoDB;
+
+create index EmailIndex on user(email);
+create index CandidateReferenceNumberIndex on candidate(reference_number);

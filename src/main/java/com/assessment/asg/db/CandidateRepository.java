@@ -71,7 +71,9 @@ class CandidateRepositoryImpl implements CandidateRepository {
         try {
             return Optional.ofNullable(
                     jdbcTemplate.queryForObject(
-                            "SELECT reference_number, user_id FROM candidate WHERE user_id = ?",
+                            "SELECT reference_number, user_id FROM candidate c " +
+                                    "INNER JOIN user u on c.user_id = u.id " +
+                                    "WHERE u.email = ?",
                             new Object[]{emailAddress},
                             candidateRowMapper));
         } catch (EmptyResultDataAccessException e) {
@@ -140,9 +142,14 @@ class CandidateRepositoryImpl implements CandidateRepository {
 
         long generalInfoKey = Objects.requireNonNull(holder.getKey()).longValue();
 
+        long userId = jdbcTemplate.queryForObject(
+                "SELECT id FROM user WHERE email = ?",
+                new Object[]{accountDto.getEmailAddress()}, long.class);
+
         jdbcTemplate.update("INSERT INTO candidate(reference_number, user_id, contact_info_id, general_info_id) " +
-                        "VALUES(?, ?, ?, ?)", accountDto.getReferenceNumber(), accountDto.getEmailAddress(),
+                "VALUES(?, ?, ?, ?)", accountDto.getReferenceNumber(), userId,
                 contactInfoKey, generalInfoKey);
+
 
         return 1;
     }
