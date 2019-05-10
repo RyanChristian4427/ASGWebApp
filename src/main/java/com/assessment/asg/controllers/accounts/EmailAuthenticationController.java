@@ -25,7 +25,7 @@ public class EmailAuthenticationController {
         LOGGER.info("Someone has attempted to confirm their registration.");
         String errors = userService.authenticateUser(token, "register");
         if (errors != null) {
-            return new ModelAndView("error-generic", "message", errors);
+            return new ModelAndView("errors/error-generic", "message", errors);
         }
         LOGGER.info("User using token: " + token + " has successfully registered for the site.");
         return new ModelAndView("redirect:/login");

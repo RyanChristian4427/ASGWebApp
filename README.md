@@ -25,7 +25,7 @@ To run the web server on localhost, you will need a local MySQL server running a
 
 Navigate to https://localhost:8443/ in your browser of choice to begin using the system. There are 6 default accounts in the system, 2 admin, 4 candidate, and all use the password "pass". Login with admin@asg.com, admin2@asg.com, candidate@asg.com, ..., candidate4@asg.com. Navigate the site from there.
 
-New user registration is turned off, as it required access to a mail server which has since been disconnected. 
+User registration and password reset both require access to an email address, as an authentication token will be sent. To alleviate spam mail, this application uses MailTrap, which catches all out-going emails. To access this mail box, go to https://mailtrap.io and login with the credentials "ChristianR@cardiff.ac.uk" with password "U&P5@n9C". From there, you can access the tokens that are sent by the application.
 
 ## Authors
 

@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS user (
     role VARCHAR(10),
     activated TINYINT NOT NULL DEFAUlt 0,
     enabled TINYINT NOT NULL DEFAULT 1,
-    authentication_token VARCHAR(36),
+    authentication_token VARCHAR(60),
     expiry_datetime DATETIME,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;

@@ -5,6 +5,8 @@ import com.assessment.asg.models.AuthenticationToken;
 import com.assessment.asg.models.PasswordResetDto;
 import com.assessment.asg.models.User;
 import com.assessment.asg.models.registration.UserRegistrationDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.UUID;
@@ -36,6 +41,7 @@ class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private EmailService emailService;
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public UserServiceImpl(final UserRepository userRepository, final EmailService emailService) {
@@ -60,7 +66,8 @@ class UserServiceImpl implements UserService {
         int tokenExpiryTimeInMinutes = 24 * 60;
 
         String token = UUID.randomUUID().toString();
-        userRepository.createAuthenticationToken(new AuthenticationToken(user.getEmailAddress(), token,
+        String hashedToken = encodeToken(token);
+        userRepository.createAuthenticationToken(new AuthenticationToken(user.getEmailAddress(), hashedToken,
                 LocalDateTime.now().plusMinutes(tokenExpiryTimeInMinutes)));
 
         if (purpose.equalsIgnoreCase("register")) {
@@ -81,7 +88,7 @@ class UserServiceImpl implements UserService {
     @Override
     public String authenticateUser(final String token, final String purpose) {
 
-        AuthenticationToken authenticationToken = userRepository.getAuthenticationToken(token);
+        AuthenticationToken authenticationToken = userRepository.getAuthenticationToken(encodeToken(token));
         String invalidToken = "Sorry, but that token seems to be invalid. Make " +
                 "sure it's correct, or sign up for an account with us if you don't already have one.";
         String expiredToken = "Sorry, but that token has expired. Please click " +
@@ -130,6 +137,17 @@ class UserServiceImpl implements UserService {
 
     private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    private String encodeToken(String token) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            digest.update(token.getBytes());
+            return new String(digest.digest());
+        } catch (NoSuchAlgorithmException e) {
+            LOGGER.info("No such algorithm while hashing authentication token");
+            return token;
+        }
     }
 }
 
