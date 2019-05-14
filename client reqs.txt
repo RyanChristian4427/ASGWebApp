@@ -1,0 +1,17 @@
+mock payment,
+if payment has been made,
+english speaking level,
+disability,
+eye sight standards, link to DVLA eye sight standard,  
+change form inputs to be in british standard
+drone drop down
+drone logbook,
+T&C's, 
+email authentication,
+forgot password,
+"How many people have done ops manual in the last 3 months?", 
+created and updated columns in db, 
+after 21 months after creation, email users to ask whether data will need to be deleted or not,
+change colours to match branding,
+error on user not found,
+minimum age requirement
