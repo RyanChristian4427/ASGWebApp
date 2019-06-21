@@ -23,7 +23,7 @@ To run the web server on localhost, you will need a local MySQL server running a
 ./gradlew bootRun -Pprofiles=development
 ```
 
-Navigate in to https://localhost:8080/login in your browser of choice to begin using the system. There are 6 default accounts in the system, 2 admin, 4 candidate, and all use the password "pass". Login with admin@asg.com, admin2@asg.com, candidate@asg.com, ..., candidate4@asg.com. Navigate the site from there.
+Navigate in to localhost:8080/login in your browser of choice to begin using the system. There are 6 default accounts in the system, 2 admin, 4 candidate, and all use the password "pass". Login with admin@asg.com, admin2@asg.com, candidate@asg.com, ..., candidate4@asg.com. Navigate the site from there.
 
 ## Authors
 
