@@ -1,6 +1,10 @@
 # ASGWebApp
 
-This was a group project from the first semester of the second year of university based on Spring Boot and MySQL databases. For this project, we met with a client who requested a web server and a relational database to replace his previous booking and progress system that was handled in Excel. This project was very much a 'learn as you go' sort of experience for the class, so some items may be inconsistent, as we eventually found better ways to do some items as we went through.
+This was a group project from the first semester of the second year of university based on Spring Boot and MySQL databases. For this project, we met with a client who requested a web server and a relational database to replace his previous booking and progress system that was handled in Excel. We opted to stick with a standard server-side rendering solution using Thymeleaf, and utilizing various modules like Spring Security and Mail. 
+
+After the first semester, the class continued to use these projects for various assessments in semester two. Each student had their own fork of the project for these, and it was no longer a team product. For DevOps, we needed to configure a Jenkins server to pull the project, run the tests and Checkstyle, then host the running server. These changes have been merged in, however, the remaining modules have not. For our security module, we were tasked with fixing 6 security risks. For performance an scalability, we had to analyze performance, and improve 3 performance bottlenecks. 
+
+This project was very much a 'learn as you go' sort of experience for the class, so some items may be inconsistent, as we eventually found better ways to do some items as we went through.
 
 ## Getting Started
 
