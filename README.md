@@ -31,8 +31,8 @@ Navigate in to https://localhost:8080/login in your browser of choice to begin u
 
 ## Authors
 
-* **Ryan Christian** - *All Around Developer* - [Ryan Christian](https://gitlab.cs.cf.ac.uk/c1717381)
-* **James Apps** - *All Around Developer* - [James Apps](https://gitlab.cs.cf.ac.uk/c1769423)
+* **Ryan Christian** - *All Around Developer* - [Ryan Christian](https://github.com/RyanChristian4427)
+* **James Apps** - *All Around Developer*
 
 ## License
 
